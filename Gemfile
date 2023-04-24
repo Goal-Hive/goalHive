@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.2.1'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem 'rails', '~> 7.0.4', '>= 7.0.4.1'
+gem 'rails', '~> 7.0.4', '>= 7.0.4.3'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
@@ -18,14 +18,14 @@ gem 'puma', '~> 5.0'
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem 'jsbundling-rails'
 
-# # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-# gem "importmap-rails"
-
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem 'turbo-rails'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem 'stimulus-rails'
+
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem 'cssbundling-rails'
 
 # Use Tailwind CSS [https://github.com/rails/tailwindcss-rails]
 gem 'tailwindcss-rails'
@@ -35,6 +35,8 @@ gem 'jbuilder'
 
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 4.0'
+
+gem 'devise'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
