@@ -17,7 +17,7 @@ class GoalsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create goal" do
     assert_difference("Goal.count") do
-      post goals_url, params: { goal: { description: @goal.description, motivation: @goal.motivation, user_id: @goal.user_id } }
+      post goals_url, params: {goal: {description: @goal.description, motivation: @goal.motivation, user_id: @goal.user_id}}
     end
 
     assert_redirected_to goal_url(Goal.last)
@@ -34,7 +34,7 @@ class GoalsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update goal" do
-    patch goal_url(@goal), params: { goal: { description: @goal.description, motivation: @goal.motivation, user_id: @goal.user_id } }
+    patch goal_url(@goal), params: {goal: {description: @goal.description, motivation: @goal.motivation, user_id: @goal.user_id}}
     assert_redirected_to goal_url(@goal)
   end
 
