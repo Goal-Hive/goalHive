@@ -14,9 +14,16 @@
     <%= goal.user_id %>
   </p>
 
+  <p class="my-5">
+    <strong class="block font-medium mb-1">time:</strong>
+    <%= goal.created_at.to_fs(:short)  %>
+  </p>
   <% if action_name != "show" %>
     <%= link_to "Show this goal", goal, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to 'Edit this goal', edit_goal_path(goal), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <div class="inline-block ml-2">
+      <%= button_to 'Destroy this goal', goal_path(goal), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+    </div>
     <hr class="mt-6">
   <% end %>
 </div>
