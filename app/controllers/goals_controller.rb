@@ -1,13 +1,14 @@
 class GoalsController < ApplicationController
-  before_action :set_goal, only: %i[show edit update destroy]
+  before_action :set_goal, only: %i[ show edit update destroy ]
 
   # GET /goals or /goals.json
   def index
-    @goals = Goal.all
+    @goals = current_user.goals.order(created_at: :desc)
   end
 
   # GET /goals/1 or /goals/1.json
-  def show; end
+  def show
+  end
 
   # GET /goals/new
   def new
@@ -15,7 +16,8 @@ class GoalsController < ApplicationController
   end
 
   # GET /goals/1/edit
-  def edit; end
+  def edit
+  end
 
   # POST /goals or /goals.json
   def create
@@ -23,7 +25,20 @@ class GoalsController < ApplicationController
 
     respond_to do |format|
       if @goal.save
-        format.html { redirect_to goal_url(@goal), notice: 'Goal was successfully created.' }
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update('new_goal',
+                                partial: "goals/form",
+                                locals: { goal: Goal.new }),
+
+            turbo_stream.prepend('goals',
+                                 partial: "goals/goal",
+                                 locals: { goal: @goal }),
+            turbo_stream.update('goals_count', html: current_user.goals.count),
+            turbo_stream.update('notice', 'Message is created')
+          ]
+        end
+        format.html { redirect_to goal_url(@goal), notice: "Goal was successfully created." }
         format.json { render :show, status: :created, location: @goal }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -36,7 +51,7 @@ class GoalsController < ApplicationController
   def update
     respond_to do |format|
       if @goal.update(goal_params)
-        format.html { redirect_to goal_url(@goal), notice: 'Goal was successfully updated.' }
+        format.html { redirect_to goal_url(@goal), notice: "Goal was successfully updated." }
         format.json { render :show, status: :ok, location: @goal }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -50,7 +65,13 @@ class GoalsController < ApplicationController
     @goal.destroy
 
     respond_to do |format|
-      format.html { redirect_to goals_url, notice: 'Goal was successfully destroyed.' }
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.remove(@goal),
+          turbo_stream.update('goals_count', html: current_user.goals.count)
+        ]
+      end
+      format.html { redirect_to goals_url, notice: "Goal was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -64,6 +85,6 @@ class GoalsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def goal_params
-    params.require(:goal).permit(:description, :motivation)
+    params.require(:goal).permit(:description, :motivation, :user_id)
   end
 end
