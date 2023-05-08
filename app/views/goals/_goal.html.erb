@@ -1,12 +1,22 @@
 <div id="<%= dom_id goal %>">
-  <p>
-    <strong>Description:</strong>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Description:</strong>
     <%= goal.description %>
   </p>
 
-  <p>
-    <strong>Motivation:</strong>
-    <%= goal.motivation %>
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Motivaiton:</strong>
+    <%= goal.motivaiton %>
   </p>
 
+  <p class="my-5">
+    <strong class="block font-medium mb-1">User:</strong>
+    <%= goal.user_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this goal", goal, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this goal', edit_goal_path(goal), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
 </div>
