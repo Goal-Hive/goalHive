@@ -33,7 +33,7 @@ class GoalsController < ApplicationController
                                  partial: 'goals/goal',
                                  locals: { goal: @goal }),
             turbo_stream.update('goals_count', html: current_user.goals.count),
-            turbo_stream.update('notice', 'Message is created')
+            turbo_stream.update('notice', 'Goal is created')
           ]
         end
         format.html { redirect_to goal_url(@goal), notice: 'Goal was successfully created.' }
