@@ -1,29 +1,53 @@
-<div id="<%= dom_id goal %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= goal.description %>
-  </p>
+<div id="<%= dom_id goal %>"
+     class="w-80
+     p-3
+     border
+     shadow-md
+     border-gray-500
+     bg-white
+     border-opacity-10
+     rounded-lg
+     hover:border-indigo-200">
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Motivation:</strong>
-    <%= goal.motivation %>
-  </p>
+  <!--  Play/Pause - Options -->
+  <div class="flex justify-between">
+    <%= image_tag 'play.svg' %>
+    <%= image_tag 'dots.svg' %>
+  </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= goal.user_id %>
-  </p>
+  <!--  Delete, Category, Details-->
+  <div class="flex justify-end items-center []">
+    <%= button_to (image_tag 'delete.svg'),
+                  goal_path(goal), method: :delete,
+                  class: "w-9 h-9 flex justify-center items-center rounded-2xl py-2 px-2 bg-red-100" %>
+    <%= link_to (image_tag 'edit.svg'),
+                edit_goal_path(goal),
+                class: "w-9 h-9 flex justify-center items-center rounded-2xl py-2 ml-2 px-2 bg-gray-100 inline-block font-medium" %>
+    <%= link_to (image_tag 'category.svg'),
+                goal,
+                class: "w-9 h-9 flex justify-center items-center rounded-2xl py-1 ml-2 px-1 bg-gray-100 inline-block font-medium" %>
+  </div>
+  <!--end-->
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">time:</strong>
-    <%= goal.created_at.to_fs(:short)  %>
-  </p>
-  <% if action_name != "show" %>
-    <%= link_to "Show this goal", goal, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this goal', edit_goal_path(goal), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this goal', goal_path(goal), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+  <!--end-->
+
+
+  <div class="flex flex-col gap-y-5">
+
+    <div class="mt-3  text-xs  font-normal  text-slate-100 ">
+      Your goal
     </div>
-    <hr class="mt-6">
-  <% end %>
+
+    <h3 className="font-semibold  text-base "><%= goal.description %></h3>
+
+
+    <p>
+      <strong class="block font-medium">time:</strong>
+      <%= goal.created_at.to_fs(:short) %>
+    </p>
+
+    <%# if action_name != "show" %> <%# end %>
+
+  </div>
+
 </div>

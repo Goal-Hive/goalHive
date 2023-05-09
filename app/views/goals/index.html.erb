@@ -13,7 +13,7 @@
     <%= link_to 'New goal', new_goal_path, data:{turbo_frame: "modal"}, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="goals" class="min-w-full">
+   <div id="goals" class="min-w-full flex flex-wrap justify-around gap-y-10">
     <%= render @goals %>
   </div>
 </div>
