@@ -16,8 +16,17 @@ module.exports = {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        gray: {
-          light: "#717171"
+        body: {
+          "light-mode": "#FAFAFA"
+        },
+        header:{
+          "light-mode": "#FBEAC8"
+        },
+        btn:{
+          "light-mode":"#414FC7"
+        },
+        sideNav: {
+          "light-mode": "#FAFAFA"
         }
       }
     },
