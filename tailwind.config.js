@@ -22,9 +22,11 @@ module.exports = {
                         secondary: "#A5A3A3"
                     },
                     body: "#FAFAFA",
-                    header: "#FBEAC8",
+                    header: "rgba(251, 234, 200, 0.7)",
                     btn: "#414FC7",
-                    sideNav: "#FAFAFA"
+                    sideNav: "#FAFAFA",
+                    milestoneUpdate:"#F4F6FF",
+                    progressUpdate:"#F5F5F5"
                 },
             }
         },

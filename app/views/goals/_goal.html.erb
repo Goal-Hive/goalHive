@@ -12,42 +12,62 @@
   <!--  Play/Pause - Options -->
   <div class="flex justify-between">
     <%= image_tag 'play.svg' %>
-    <%= image_tag 'dots.svg' %>
+
+    <div class="flex items-center">
+      <!--  Delete, Category, Details-->
+      <div class="flex justify-end items-center []">
+        <%= button_to (image_tag 'delete.svg'),
+                      goal_path(goal), method: :delete,
+                      class: "w-9 h-9 flex justify-center items-center rounded-2xl py-2 px-2 bg-red-100" %>
+        <%= link_to (image_tag 'edit.svg'),
+                    edit_goal_path(goal),
+                    class: "w-9 h-9 flex justify-center items-center rounded-2xl py-2 ml-2 px-2 bg-gray-100 inline-block font-medium" %>
+        <%= link_to (image_tag 'category.svg'),
+                    goal,
+                    class: "w-9 h-9 flex justify-center items-center rounded-2xl py-1 ml-2 px-1 bg-gray-100 inline-block font-medium" %>
+      </div>
+      <%= image_tag 'dots.svg' %>
+      <!--end-->
+    </div>
   </div>
 
-  <!--  Delete, Category, Details-->
-  <div class="flex justify-end items-center []">
-    <%= button_to (image_tag 'delete.svg'),
-                  goal_path(goal), method: :delete,
-                  class: "w-9 h-9 flex justify-center items-center rounded-2xl py-2 px-2 bg-red-100" %>
-    <%= link_to (image_tag 'edit.svg'),
-                edit_goal_path(goal),
-                class: "w-9 h-9 flex justify-center items-center rounded-2xl py-2 ml-2 px-2 bg-gray-100 inline-block font-medium" %>
-    <%= link_to (image_tag 'category.svg'),
-                goal,
-                class: "w-9 h-9 flex justify-center items-center rounded-2xl py-1 ml-2 px-1 bg-gray-100 inline-block font-medium" %>
-  </div>
-  <!--end-->
+
 
   <!--end-->
 
 
-  <div class="flex flex-col gap-y-5">
+  <div class="flex flex-col gap-y-2">
 
-    <div class="mt-3  text-xs  font-normal  text-slate-100 ">
+    <div class="mt-3  text-xs  font-normal  text-light-text-secondary">
       Your goal
     </div>
 
-    <h3 className="font-semibold  text-base "><%= goal.description %></h3>
-
-
-    <p>
-      <strong class="block font-medium">time:</strong>
+    <h3 class="font-semibold  text-base "><%= goal.description %></h3>
+    <div class="flex gap-x-1">
+      <%= image_tag 'progress.svg', class:"w-5 h-5" %>
+      <span class="pl-2 text-xs font-normal light-light-text-main">  1/5 Milestones Reached </span>
+    </div>
+    <div class="mt-3 text-xs  font-medium  text-light-text-main pb-1">
+      Next Milestone
+    </div>
+    <div class="flex justify-begin items-center gap-x-1 bg-light-milestoneUpdate  rounded-xl p-3">
+      <div class="w-5 h-5 rounded-3xl bg-gray-200 ">  </div>
+      <p class="text-xs font-medium  flex items-center hover: cursor-pointer text-light-text-main">
+        Milestone 4: Lose 10 pounds by December</p>
+    </div>
+    <p class="text-xs text-light-text-main">
+      When you’ve completed your next milestone, you can check it as done to
+      update your goal
+    </p>
+    <p class="text-light-text-secondary">
+      <strong class="font-medium">Created At:</strong>
       <%= goal.created_at.to_fs(:short) %>
     </p>
 
     <%# if action_name != "show" %> <%# end %>
-
+    <Button class="w-full rounded-xl bg-light-progressUpdate text-sm font-semibold p-2 text-light-text-main" >
+      Update Progress
+    </Button>
   </div>
 
 </div>
