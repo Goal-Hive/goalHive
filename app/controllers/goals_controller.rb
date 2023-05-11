@@ -20,7 +20,7 @@ class GoalsController < ApplicationController
   # POST /goals or /goals.json
   def create
     @goal = Goal.new(goal_params)
-
+    @goal.user = current_user
     respond_to do |format|
       if @goal.save
         format.turbo_stream do
@@ -83,6 +83,6 @@ class GoalsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def goal_params
-    params.require(:goal).permit(:description, :motivation, :user_id)
+    params.require(:goal).permit(:description, :motivation)
   end
 end
