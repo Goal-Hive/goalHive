@@ -18,6 +18,7 @@ module.exports = {
             colors: {
                 light: {
                     text: {
+                        title: "#415472",
                         main: "#717171",
                         secondary: "#A5A3A3"
                     },
