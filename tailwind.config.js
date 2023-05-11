@@ -26,8 +26,10 @@ module.exports = {
                     header: "rgba(251, 234, 200, 0.7)",
                     btn: "#414FC7",
                     sideNav: "#FAFAFA",
-                    milestoneUpdate:"#F4F6FF",
-                    progressUpdate:"#F5F5F5"
+                    bg: {
+                        secondary: "#F4F6FF",
+                        progressUpdate: "#F5F5F5"
+                    }
                 },
             }
         },
