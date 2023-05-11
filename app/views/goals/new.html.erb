@@ -1,7 +1,11 @@
-<div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-4xl">New goal</h1>
+<%= turbo_frame_tag :modal do %>
+  <div data-controller="turbo-modal" data-action="turbo:submit-end->turbo-modal#submitEnd">
+    <div class="mx-auto md:w-2/3 w-full">
+      <h1 class="font-bold text-4xl">New goal</h1>
 
-  <%= render "form", goal: @goal %>
+      <%= render "form", goal: @goal %>
 
-  <%= link_to 'Back to goals', goals_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-</div>
+      <%#= link_to 'Back to goals', goals_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    </div>
+  </div>
+<% end %>

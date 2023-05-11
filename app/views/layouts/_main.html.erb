@@ -1,0 +1,12 @@
+<main class="w-screen h-full bg-white flex flex-col">
+  <%= render 'partials/common/notification' %>
+  <%= render 'partials/common/header' %>
+  <%= render 'partials/common/modal' %>
+
+  <div class="flex gap-x-5 top-24 h-[calc(100vh-80px)]]]">
+    <%= render 'partials/common/side_nav' %>
+    <div class="bg-gray-100 bg-light-body w-10/12">
+      <%= yield %>
+    </div>
+  </div>
+</main>
