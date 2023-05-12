@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[show edit update destroy]
 
@@ -23,6 +25,17 @@ class CategoriesController < ApplicationController
     @category.user = current_user
     respond_to do |format|
       if @category.save
+        format.turbo_stream do
+          render turbo_stream: [
+            # turbo_stream.update('new_category',
+            #                     partial: 'categories/form',
+            #                     locals: { category: Category.new }),
+            turbo_stream.append('categories',
+                                partial: 'categories/category',
+                                locals: { category: @category }),
+            turbo_stream.update('notice', 'Category is created')
+          ]
+        end
         format.html { redirect_to category_url(@category), notice: 'Category was successfully created.' }
         format.json { render :show, status: :created, location: @category }
       else
