@@ -1,4 +1,4 @@
 class Category < ApplicationRecord
-  belongs_to :goal
+  has_many :goals
   belongs_to :user
 end
