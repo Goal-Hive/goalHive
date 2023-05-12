@@ -3,8 +3,10 @@
   <%= render 'partials/common/header' %>
   <%= render 'partials/common/modal' %>
 
-  <div class="flex gap-x-5 top-24 h-[calc(100vh-80px)]]]">
-    <%= render 'partials/common/side_nav' %>
+  <div class="flex justify-around px-5 gap-x-5 top-24 h-[calc(100vh-80px)]]]">
+    <div class="w-2/12">
+      <%= render 'partials/common/side_nav' %>
+    </div>
     <div class="bg-gray-100 bg-light-body w-10/12">
       <%= yield %>
     </div>
