@@ -26,9 +26,9 @@ class GoalsController < ApplicationController
       if @goal.save
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.update('new_goal',
-                                partial: 'goals/form',
-                                locals: { goal: Goal.new }),
+            # turbo_stream.update('new_goal',
+            #                     partial: 'goals/form',
+            #                     locals: { goal: Goal.new }),
 
             turbo_stream.prepend('goals',
                                  partial: 'goals/goal',
