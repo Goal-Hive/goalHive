@@ -15,27 +15,20 @@
 
     </div>
     <!--      Categories-->
-    <!--        TODO Fix the layout when there is many categories-->
     <div id="categories" class="min-w-full px-2 flex flex-col justify-start items-center gap-y-2">
       <button
         class="bg-white border border-solid border-gray-200 p-3 w-full rounded flex justify-between">
         <p class="text-light-text-categories font-semibold">
           Active Goals
         </p>
-        <div data-action="click->toggle#toggleContent">
-          <%= image_tag 'dots.svg' %>
-        </div>
       </button>
       <button
         class="bg-white border border-solid border-gray-200 p-3 w-full rounded flex justify-between">
         <p class="text-light-text-categories font-semibold">
           Paused Goals
         </p>
-        <div data-action="click->toggle#toggleContent">
-          <%= image_tag 'dots.svg' %>
-        </div>
       </button>
-      <%= render current_user.categories %>
+        <%= render current_user.categories %>
     </div>
     <!--      end-->
 

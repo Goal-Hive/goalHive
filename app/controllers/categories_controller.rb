@@ -16,8 +16,18 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
 
-  # GET /categories/1/edit
-  def edit; end
+  # post /categories/1/edit
+  def edit
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update(@category,
+                              partial: 'categories/form',
+                              locals: { category: @category })
+        ]
+      end
+    end
+  end
 
   # POST /categories or /categories.json
   def create
@@ -49,9 +59,24 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace(@category,
+                                 partial: 'categories/category',
+                                 locals: { category: @category }),
+            turbo_stream.update('notice', 'Category is Updated')
+          ]
+        end
         format.html { redirect_to category_url(@category), notice: 'Category was successfully updated.' }
         format.json { render :show, status: :ok, location: @category }
       else
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace(@category,
+                                 partial: 'categories/form',
+                                 locals: { category: @category })
+          ]
+        end
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end

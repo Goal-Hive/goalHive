@@ -1,15 +1,30 @@
-<button
-  class="bg-white border border-solid border-gray-200 p-3 w-full rounded flex justify-between"
+<div
+  data-controller="toggle"
+  class="cursor-pointer bg-white border border-solid border-gray-200 p-3 w-full rounded flex justify-between items-center"
   id="<%= dom_id category %>">
   <p class="text-light-text-categories font-semibold">
     <%= category.name %>
   </p>
-  <div data-action="click->toggle#toggleContent">
-    <%= image_tag 'dots.svg' %>
+  <div class="flex items-center gap-x-2">
+    <!--  Delete, Category, Details-->
+    <div class="hidden flex justify-end items-center" data-toggle-target="toggledContent">
+      <%= button_to (image_tag 'delete.svg'),
+                    category_path(category),
+                    method: :delete,
+                    class: "w-7 h-7 flex justify-center items-center rounded-2xl py-2 px-2 bg-red-100" %>
+      <%= button_to (image_tag 'edit.svg'),
+                    edit_category_path(category),
+                    method: :post,
+                    class: "w-7 h-7 flex justify-center items-center rounded-2xl py-2 ml-2 px-2 bg-gray-100 inline-block font-medium" %>
+    </div>
+    <button data-action="click->toggle#toggleContent">
+      <%= image_tag 'dots.svg' %>
+    </button>
+    <!--end-->
   </div>
-</button>
+</div>
 
-  <%# if action_name != "show" %>
-    <%#= link_to "Show this category", category, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%#= link_to 'Edit this category', edit_category_path(category), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-  <%# end %>
+<%# if action_name != "show" %>
+<%#= link_to "Show this category", category, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+<%#= link_to 'Edit this category', edit_category_path(category), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+<%# end %>
