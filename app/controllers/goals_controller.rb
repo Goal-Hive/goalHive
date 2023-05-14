@@ -1,9 +1,24 @@
+# frozen_string_literal: true
+
 class GoalsController < ApplicationController
-  before_action :set_goal, only: %i[show edit update destroy]
+  before_action :set_goal, only: %i[show edit update destroy], except: %i[filter_by_category]
+  has_scope :by_category
 
   # GET /goals or /goals.json
   def index
-    @goals = current_user.goals.order(created_at: :desc)
+    @goals = apply_scopes(current_user.goals.order(created_at: :desc)).all
+  end
+
+  def filter_by_category
+    @goals = apply_scopes(current_user.goals.order(created_at: :desc)).all
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update('goals',
+                              template: 'goals/index')
+        ]
+      end
+    end
   end
 
   # GET /goals/1 or /goals/1.json
@@ -33,8 +48,8 @@ class GoalsController < ApplicationController
             turbo_stream.prepend('goals',
                                  partial: 'goals/goal',
                                  locals: { goal: @goal }),
-            turbo_stream.update('goals_count', html: current_user.goals.count),
-            turbo_stream.update('notice', 'Goal is created')
+            # turbo_stream.update('goals_count', html: current_user.goals.count),
+            turbo_stream.update('notice', 'Goal was successfully created.')
           ]
         end
         format.html { redirect_to goal_url(@goal), notice: 'Goal was successfully created.' }
