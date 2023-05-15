@@ -79,3 +79,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem "has_scope", "~> 0.8.1"

@@ -1,9 +1,24 @@
+# frozen_string_literal: true
+
 class GoalsController < ApplicationController
-  before_action :set_goal, only: %i[show edit update destroy]
+  before_action :set_goal, only: %i[show edit update destroy], except: %i[filter_by_category]
+  has_scope :by_category
 
   # GET /goals or /goals.json
   def index
-    @goals = current_user.goals.order(created_at: :desc)
+    @goals = apply_scopes(current_user.goals.order(created_at: :desc)).all
+  end
+
+  def filter_by_category
+    @goals = apply_scopes(current_user.goals.order(created_at: :desc)).all
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update('goals',
+                              template: 'goals/index')
+        ]
+      end
+    end
   end
 
   # GET /goals/1 or /goals/1.json
@@ -20,20 +35,21 @@ class GoalsController < ApplicationController
   # POST /goals or /goals.json
   def create
     @goal = Goal.new(goal_params)
-
+    @goal.user = current_user
+    # @goal.category = Category.first
     respond_to do |format|
       if @goal.save
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.update('new_goal',
-                                partial: 'goals/form',
-                                locals: { goal: Goal.new }),
+            # turbo_stream.update('new_goal',
+            #                     partial: 'goals/form',
+            #                     locals: { goal: Goal.new }),
 
             turbo_stream.prepend('goals',
                                  partial: 'goals/goal',
                                  locals: { goal: @goal }),
-            turbo_stream.update('goals_count', html: current_user.goals.count),
-            turbo_stream.update('notice', 'Goal is created')
+            # turbo_stream.update('goals_count', html: current_user.goals.count),
+            turbo_stream.update('notice', 'Goal was successfully created.')
           ]
         end
         format.html { redirect_to goal_url(@goal), notice: 'Goal was successfully created.' }
@@ -66,11 +82,11 @@ class GoalsController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@goal),
-          turbo_stream.update('goals_count', html: current_user.goals.count)
+          # turbo_stream.update('goals_count', html: current_user.goals.count)
         ]
       end
-      format.html { redirect_to goals_url, notice: 'Goal was successfully destroyed.' }
-      format.json { head :no_content }
+      # format.html { redirect_to goals_url, notice: 'Goal was successfully destroyed.' }
+      # format.json { head :no_content }
     end
   end
 
@@ -83,6 +99,6 @@ class GoalsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def goal_params
-    params.require(:goal).permit(:description, :motivation, :user_id)
+    params.require(:goal).permit(:description, :motivation, :category_id)
   end
 end

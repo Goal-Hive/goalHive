@@ -4,6 +4,7 @@ class CreateGoals < ActiveRecord::Migration[7.0]
       t.string :description
       t.string :motivation
       t.references :user, null: false, foreign_key: true
+      t.references :category, null: false, foreign_key: true
 
       t.timestamps
     end
