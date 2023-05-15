@@ -82,11 +82,11 @@ class GoalsController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@goal),
-          turbo_stream.update('goals_count', html: current_user.goals.count)
+          # turbo_stream.update('goals_count', html: current_user.goals.count)
         ]
       end
-      format.html { redirect_to goals_url, notice: 'Goal was successfully destroyed.' }
-      format.json { head :no_content }
+      # format.html { redirect_to goals_url, notice: 'Goal was successfully destroyed.' }
+      # format.json { head :no_content }
     end
   end
 
