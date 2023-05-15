@@ -37,20 +37,17 @@ class CategoriesController < ApplicationController
       if @category.save
         format.turbo_stream do
           render turbo_stream: [
-            # turbo_stream.update('new_category',
-            #                     partial: 'categories/form',
-            #                     locals: { category: Category.new }),
             turbo_stream.append('categories',
                                 partial: 'categories/category',
                                 locals: { category: @category }),
-            turbo_stream.update('notice', 'Category is created')
+            turbo_stream.update('notice', 'Category was successfully created.')
           ]
         end
-        format.html { redirect_to category_url(@category), notice: 'Category was successfully created.' }
-        format.json { render :show, status: :created, location: @category }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+        #   format.html { redirect_to category_url(@category), notice: 'Category was successfully created.' }
+        #   format.json { render :show, status: :created, location: @category }
+        # else
+        #   format.html { render :new, status: :unprocessable_entity }
+        #   format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -67,8 +64,8 @@ class CategoriesController < ApplicationController
             turbo_stream.update('notice', 'Category is Updated')
           ]
         end
-        format.html { redirect_to category_url(@category), notice: 'Category was successfully updated.' }
-        format.json { render :show, status: :ok, location: @category }
+        # format.html { redirect_to category_url(@category), notice: 'Category was successfully updated.' }
+        # format.json { render :show, status: :ok, location: @category }
       else
         format.turbo_stream do
           render turbo_stream: [
@@ -77,8 +74,8 @@ class CategoriesController < ApplicationController
                                  locals: { category: @category })
           ]
         end
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+        # format.html { render :edit, status: :unprocessable_entity }
+        # format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -86,10 +83,15 @@ class CategoriesController < ApplicationController
   # DELETE /categories/1 or /categories/1.json
   def destroy
     @category.destroy
-
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
-      format.json { head :no_content }
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.remove(@category),
+          turbo_stream.update('notice', 'Category is removed')
+        ]
+      end
+      # format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
+      # format.json { head :no_content }
     end
   end
 
