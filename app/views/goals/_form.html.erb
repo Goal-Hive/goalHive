@@ -11,22 +11,23 @@
     </div>
   <% end %>
 
-  <div class="my-5">
-    <%= form.label :description %>
-    <%= form.text_field :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+  <div class="flex flex-col gap-y-3 text-base text-light-text-main">
+    <h3 class="font-bold">Creating your new goal</h3>
 
-  <div class="my-5">
-    <%= form.label :motivation %>
-    <%= form.text_field :motivation, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
+    <%#= form.label :description %>
+    <p>What’s your goal?</p>
+    <%= form.text_field :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 w-full" %>
 
-  <div class="my-5">
+    <%#= form.label :motivation %>
+    <p>Why do you want to achieve this goal?</p>
+    <%= form.text_field :motivation, class: "block shadow rounded-md border border-gray-200 outline-none px-3 w-full" %>
+
     <%= form.label :category %>
-    <%= form.select :category_id, current_user.categories.all.pluck(:name, :id)%>
+    <%= form.select :category_id, current_user.categories.all.pluck(:name, :id) %>
+
+    <div class="inline">
+      <%= form.submit 'Create Goal', class: "rounded-lg px-5 bg-light-btn text-white inline-block font-medium cursor-pointer" %>
+    </div>
   </div>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
 <% end %>
