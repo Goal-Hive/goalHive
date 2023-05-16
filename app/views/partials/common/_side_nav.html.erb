@@ -1,22 +1,22 @@
 <!--Side navigation bar-->
 <div class="py-4
             bg-white
-            flex flex-col justify-between  items-center gap-y-5
+            flex flex-col justify-around  items-center gap-y-5
             w-full
             sticky
-            top-24
-            h-[calc(100vh-150px)]
+            top-16
+            h-[calc(100vh-5rem)]
             ">
   <!--  Create a Goal-->
   <%= link_to '+ Create a goal',
               new_goal_path,
               data: { turbo_frame: "modal" },
               class: "w-full rounded-3xl py-1 text-center bg-light-btn text-white block font-bold " %>
-  <div class="overflow-auto w-full">
+  <div class="overflow-auto w-full flex-1">
     <%= render partial: 'categories/index' %>
   </div>
   <!--  Account Settings, Sign Out, Logo-->
-  <div class="flex flex-col justify-start items-start gap-y-2  w-full text-light-text-categories font-semibold">
+  <div class="flex flex-col justify-start items-start gap-y-2  w-full text-light-text-categories font-semibold self-end">
     <% if user_signed_in? %>
       <p> Change Theme </p>
       <%= link_to 'Account Settings', edit_user_registration_path %>
