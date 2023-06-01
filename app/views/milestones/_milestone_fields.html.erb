@@ -1,0 +1,6 @@
+<div data-target="milestones.milestone">
+  <%= milestoneForm.label :description %>
+  <%= milestoneForm.text_field :description %>
+  <%= milestoneForm.hidden_field :_destroy %>
+  <%= link_to "Remove", "#", data: { action: "click->milestones#removeMilestone" } %>
+</div>

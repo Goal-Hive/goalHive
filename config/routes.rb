@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :goals do
+    post 'add_milestone' => 'milestones#add_milestone'
+    delete 'remove_milestone/:id' => 'milestones#remove_milestone', as: :remove_milestone
     collection do
       post :filter_by_category
     end

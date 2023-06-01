@@ -14,7 +14,7 @@ class GoalsController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.update('goals',
+          turbo_stream.replace('goals',
                               template: 'goals/index')
         ]
       end
@@ -27,6 +27,7 @@ class GoalsController < ApplicationController
   # GET /goals/new
   def new
     @goal = Goal.new
+    @goal.milestones.build
   end
 
   # GET /goals/1/edit
@@ -36,7 +37,6 @@ class GoalsController < ApplicationController
   def create
     @goal = Goal.new(goal_params)
     @goal.user = current_user
-    # @goal.category = Category.first
     respond_to do |format|
       if @goal.save
         format.turbo_stream do
@@ -99,6 +99,6 @@ class GoalsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def goal_params
-    params.require(:goal).permit(:description, :motivation, :category_id)
+    params.require(:goal).permit(:description, :motivation, :category_id, milestones_attributes: %i[id description])
   end
 end
