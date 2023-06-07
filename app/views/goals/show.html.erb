@@ -1,26 +1,54 @@
 <!--<div class="mx-auto md:w-2/3 w-full flex">-->
-    <%# if notice.present? %>
+<%# if notice.present? %>
 <!--      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%#= notice %></p>-->
-    <%# end %>
-  <%#= link_to 'Edit this goal', edit_goal_path(@goal), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+<%# end %>
+<%#= link_to 'Edit this goal', edit_goal_path(@goal), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 <!--  <div class="inline-block ml-2">-->
-    <%#= button_to 'Destroy this goal', goal_path(@goal), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+<%#= button_to 'Destroy this goal', goal_path(@goal), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
 <!--  </div>-->
-  <%#= link_to 'Back to goals', goals_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+<%#= link_to 'Back to goals', goals_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
 <!--</div>-->
 
-<div class='h-full w-full min-h-screen flex justify-between items-start p-5'>
-<!--  1st section-->
+<div class='h-full w-full min-h-screen flex justify-around items-start p-5'>
+  <!--  1st section-->
   <div class="">
     Your Motivation
   </div>
-<!--  2nd section-->
-  <div class="">
-    Goal milestones
-    <%= render @goal %>
+  <!--  2nd section-->
+  <div class="w-6/12">
+    <div data-controller="tabs" data-tabs-active-tab="-mb-px border rounded-3xl bg-white">
+      <ul class="list-reset flex border mb-5 rounded-3xl p-1 w-fit bg-slate-50">
+        <li class="-mb-px mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+          <a class="text-light-text-details-tabs rounded-3xl inline-block py-2 px-4 text-blue-500 hover:text-light-text-details-selectedTab font-semibold no-underline" href="#">All
+            milestones</a>
+        </li>
+        <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+          <a class="text-light-text-details-tabs rounded-3xl inline-block py-2 px-4 text-blue-500 hover:text-light-text-details-selectedTab font-semibold no-underline" href="#">Achieved
+            milestones</a>
+        </li>
+        <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+          <a class="text-light-text-details-tabs rounded-3xl inline-block py-2 px-4 text-blue-500 hover:text-light-text-details-selectedTab font-semibold no-underline" href="#">
+            In-progress milestones</a>
+        </li>
+      </ul>
+
+      <div class="hidden py-4 px-4 border-l border-b border-r" data-tabs-target="panel">
+        All milestones
+      </div>
+
+      <div class="hidden py-4 px-4 border-l border-b border-r" data-tabs-target="panel">
+        Achieved milestones
+      </div>
+
+      <div class="hidden py-4 px-4 border-l border-b border-r" data-tabs-target="panel">
+        In-progress milestones
+      </div>
+    </div>
+
   </div>
-<!--  3rd section-->
+  <!--  3rd section-->
   <div class="">
     Goal Details
+    <%= render @goal %>
   </div>
 </div>

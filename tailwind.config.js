@@ -21,7 +21,11 @@ module.exports = {
                         title: "#415472",
                         main: "#717171",
                         secondary: "#A5A3A3",
-                        categories: "#415472"
+                        categories: "#415472",
+                        details: {
+                            tabs: "rgba(65, 84, 114, 0.75)",
+                            selectedTab: "#415472"
+                        }
                     },
                     body: "#FAFAFA",
                     header: "rgba(251, 234, 200, 0.7)",
