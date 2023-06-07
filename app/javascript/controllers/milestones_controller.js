@@ -19,16 +19,16 @@ export default class extends Controller {
     addMilestone(event) {
         event.preventDefault()
         const content = this.constructor.template
+        const milestones = this.milestonesContainerTarget
         const index = new Date().getTime()
         const html = content.replace(/new_milestone/g, index)
-        this.milestonesContainerTarget.insertAdjacentHTML("beforeend", html)
+        milestones.insertAdjacentHTML("beforeend", html)
     }
 
     removeMilestone(event) {
         event.preventDefault()
         event.target.parentNode.remove()
         const milestone = event.target.closest("[data-target='milestones.milestone']")
-        console.log(milestone)
         const destroyInput = milestone.querySelector("input[name*='_destroy']")
         destroyInput.value = "true"
         milestone.classList.add("d-none")

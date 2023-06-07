@@ -4,7 +4,7 @@ class MilestonesController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         milestone = @goal.milestones.build
-        render turbo_stream: [turbo_stream.append(:milestones, partial: "milestone_fields", locals: { f: milestone })]
+        render turbo_stream: [turbo_stream.append(:milestones, partial: "milestone_fields", locals: { milestoneForm: milestone })]
       end
     end
   end
