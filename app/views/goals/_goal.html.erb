@@ -41,7 +41,9 @@
     <div class="mt-3  text-xs  font-medium  text-light-text-secondary">
       <%= goal.category.name %>
     </div>
-    <h3 class="font-semibold  text-base text-light-text-title "><%= goal.description %></h3>
+    <h3 class="font-semibold  text-base text-light-text-title ">
+      <%= link_to goal.description, goal %>
+    </h3>
 
     <!--    Progress-->
     <div class="flex gap-x-1">
