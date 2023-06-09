@@ -1,13 +1,36 @@
-<div id="<%= dom_id milestone %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= milestone.description %>
-  </p>
+<div id="<%= dom_id milestone %>" class="border bg-white p-3 flex flex-col gap-y-4">
+  <div class="flex justify-between" data-controller="toggle">
+<!--    Progress State-->
+    <div class="flex justify-center items-center bg-light-bg-secondary p-2 gap-x-2 rounded-xl text-light-text-darkPurple">
+      <%= image_tag 'inProgress' %>
+      <P>Work In Progress</P>
+    </div>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Goal:</strong>
-    <%= milestone.goal_id %>
-  </p>
+<!--    Toggle Menu-->
+    <div class="hidden flex justify-end items-center gap-x-1" data-toggle-target="toggledContent">
+      <%= button_to (image_tag 'delete.svg'),
+                    milestone_path(milestone), method: :delete,
+                    class: "w-9 h-9 flex justify-center items-center rounded-2xl p-2 bg-red-100" %>
+      <%= link_to '' do %>
+        <div class="flex justify-center items-center gap-x-2 bg-light-bg-secondary rounded-2xl p-2 text-light-text-darkPurple inline-block font-medium">
+          <%= image_tag 'markAchieved' %>
+          <p>Mark as achieved</p>
+        </div>
+      <% end %>
+      <button data-action="click->toggle#toggleContent"
+              class="flex justify-center items-center rounded-2xl bg-light-bg-secondary w-9 h-9 text-2xl text-light-text-darkPurple p-2 font-medium">
+        x
+      </button>
+    </div>
+    <button data-action="click->toggle#toggleContent" data-toggle-target="toggleBtn">
+      <%= image_tag 'dots.svg' %>
+    </button>
+  </div>
+
+
+  <P class="text-light-text-darkGray">
+    <%= milestone.description %>
+  </P>
 
   <% if action_name != "show" %>
     <%= link_to "Show this milestone", milestone, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
