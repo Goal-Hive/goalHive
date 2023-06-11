@@ -81,3 +81,4 @@ group :test do
 end
 
 gem "has_scope", "~> 0.8.1"
+gem "view_component"
