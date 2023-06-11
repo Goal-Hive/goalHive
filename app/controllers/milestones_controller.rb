@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class MilestonesController < ApplicationController
-  before_action :set_milestone, only: %i[show edit update destroy]
+  before_action :set_milestone, only: %i[show edit update destroy update_progress]
 
   def add_milestone
     respond_to do |format|
@@ -36,7 +36,6 @@ class MilestonesController < ApplicationController
 
   # GET /milestones/1/edit
   def edit
-    @milestone = Milestone.find(params[:id])
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
@@ -72,6 +71,18 @@ class MilestonesController < ApplicationController
     end
   end
 
+  def update_progress
+    @milestone.update_progress(params[:status])
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.update(@milestone,
+                              partial: '_milestone',
+                              locals: { milestone: @milestone })
+        ]
+      end
+    end
+  end
   def set_milestone
     @milestone = Milestone.find(params[:id])
   end
