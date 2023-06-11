@@ -76,7 +76,7 @@ class MilestonesController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.update(@milestone,
+          turbo_stream.replace(@milestone,
                               partial: 'milestone',
                               locals: { milestone: @milestone })
         ]
