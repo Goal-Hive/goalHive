@@ -1,12 +1,12 @@
 <div id="<%= dom_id milestone %>" class="border bg-white p-3 flex flex-col gap-y-4">
   <div class="flex justify-between" data-controller="toggle">
-<!--    Progress State-->
+    <!--    Progress State-->
     <div class="flex justify-center items-center bg-light-bg-secondary p-2 gap-x-2 rounded-xl text-light-text-darkPurple">
       <%= image_tag 'inProgress' %>
       <P>Work In Progress</P>
     </div>
 
-<!--    Toggle Menu-->
+    <!--    Toggle Menu-->
     <div class="hidden flex justify-end items-center gap-x-1" data-toggle-target="toggledContent">
       <%= button_to (image_tag 'delete.svg'),
                     milestone_path(milestone), method: :delete,
@@ -27,14 +27,14 @@
     </button>
   </div>
 
+  <div class="flex justify-between items-center">
+    <P class="text-light-text-darkGray">
+      <%= milestone.description %>
+    </P>
 
-  <P class="text-light-text-darkGray">
-    <%= milestone.description %>
-  </P>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this milestone", milestone, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this milestone', edit_milestone_path(milestone), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
-  <% end %>
+    <%= button_to (image_tag 'edit.svg'),
+                  edit_milestone_path(milestone),
+                  method: :post,
+                  class: "w-7 h-7 flex justify-center items-center rounded-2xl py-2 ml-2 px-2 bg-gray-100 inline-block font-medium" %>
+  </div>
 </div>
