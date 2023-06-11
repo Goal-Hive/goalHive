@@ -14,13 +14,15 @@ class MilestoneComponent < ViewComponent::Base
       @status = 'achieved'
       @message = "Work In Progress"
       @background = "bg-light-bg-secondary"
+      @text_color = "text-light-text-lightGray"
     elsif @milestone.status_achieved?
       @update_progress = "Undo"
       @update_progress_img = 'undoProgress'
-      @message_img = 'inProgress'
+      @message_img = 'achieved'
       @status = 'in_progress'
       @message = "Achieved"
       @background = "bg-light-bg-achieved"
+      @text_color = "text-light-text-darkGray"
     end
   end
 end
