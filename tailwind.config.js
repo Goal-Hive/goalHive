@@ -27,7 +27,8 @@ module.exports = {
                             selectedTab: "#415472"
                         },
                         darkPurple: "#415472",
-                        darkGray: "#152E40"
+                        darkGray: "#152E40",
+                        lightGray: "#5B5B66"
                     },
                     body: "#FAFAFA",
                     header: "rgba(251, 234, 200, 0.7)",
@@ -35,7 +36,8 @@ module.exports = {
                     sideNav: "#FAFAFA",
                     bg: {
                         secondary: "#F4F6FF",
-                        progressUpdate: "#F5F5F5",
+                        inProgress: "#F5F5F5",
+                        achieved: "#FFF7DC"
                     }
                 },
             }
