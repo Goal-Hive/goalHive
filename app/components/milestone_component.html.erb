@@ -11,7 +11,7 @@
     <%= button_to (image_tag 'delete.svg'),
                   milestone_path(@milestone), method: :delete,
                   class: "w-9 h-9 flex justify-center items-center rounded-2xl p-2 bg-red-100" %>
-    <%= link_to update_progress_milestone_path(id:@milestone.id, status: @status)  do %>
+    <%= button_to update_progress_milestone_path(id:@milestone.id, status: @status), method: :post do %>
       <div class="flex justify-center items-center gap-x-2 bg-light-bg-secondary rounded-2xl p-2 text-light-text-darkPurple inline-block font-medium">
         <%= image_tag @update_progress_img %>
         <p><%= @update_progress %></p>

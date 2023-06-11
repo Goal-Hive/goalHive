@@ -77,7 +77,7 @@ class MilestonesController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.update(@milestone,
-                              partial: '_milestone',
+                              partial: 'milestone',
                               locals: { milestone: @milestone })
         ]
       end
