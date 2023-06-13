@@ -2,12 +2,11 @@
   <div data-controller="turbo-modal" data-action="turbo:submit-end->turbo-modal#submitEnd">
     <div id="new_category">
       <div class="mx-auto md:w-2/3 w-full">
-        <h1 class="font-bold text-4xl">New category</h1>
+        <p class="font-bold">New category</p>
+
         <%= render "form", category: @category %>
         <button data-action="click->turbo-modal#hideModal"> close </button>
       </div>
     </div>
   </div>
 <% end %>
-
-<%#= link_to 'Back to categories', categories_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
