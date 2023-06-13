@@ -36,8 +36,9 @@ module.exports = {
                     sideNav: "#FAFAFA",
                     bg: {
                         secondary: "#F4F6FF",
-                        inProgress: "#F5F5F5",
-                        achieved: "#FFF7DC"
+                        lightGray: "#F5F5F5",
+                        achieved: "#FFF7DC",
+                        darkPurple:"#414FC7"
                     }
                 },
             }
