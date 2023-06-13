@@ -11,9 +11,12 @@
     </div>
   <% end %>
     <%= form.text_field :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  <div class="inline">
+    <div class="inline">
     <%= button_tag type: 'submit', class: "align-middle" do %>
       &#10003
+    <% end %>
+    <%= link_to :back do %>
+      &#10007
     <% end %>
   </div>
 <% end %>

@@ -1,7 +1,14 @@
 <header class="bg-light-header h-16 flex justify-between items-center sticky top-0 px-3">
   <%= link_to (image_tag 'logo.svg'), goals_path %>
+<% if action_name == "show" %>
+  <%= link_to new_milestone_path,
+              data: { turbo_frame: "modal" } do %>
+    <p class="text-white bg-light-bg-darkPurple p-2 rounded-3xl h-7 w-7 flex justify-center items-center text-3xl text-bold ">
+      +
+    </p>
+    <% end %>
+<% end %>
+
 </header>
 
-<p class="bg-light-bg-achieved text-light-text-darkGray text-light-text-lightGray">
-
-</p>
+<p class="bg-light-bg-achieved text-light-text-darkGray text-light-text-lightGray"></p>
