@@ -24,14 +24,9 @@
 
     <%= form.label :category %>
     <%= form.select :category_id, current_user.categories.all.pluck(:name, :id) %>
-    <div data-controller="milestones" >
-      <div id="milestones" data-milestones-target="milestonesContainer">
-        <%= form.fields_for :milestones do |m| %>
-          <%= render "milestones/milestone_fields", milestoneForm: m %>
-        <% end %>
-      </div>
-      <%= button_tag "Add Milestone", type: "button", data: { action: "click->milestones#addMilestone" } %>
-    </div>
+
+    <%= render 'partials/common/create_milestones', form: form %>
+
 
 
     <div class="inline">
