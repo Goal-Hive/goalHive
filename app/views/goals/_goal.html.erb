@@ -65,7 +65,8 @@
     <div class="flex justify-begin items-center gap-x-2 bg-light-bg-secondary  rounded-xl p-3">
       <div class="w-5 h-5 rounded-3xl bg-gray-200 "></div>
       <p class="text-xs font-medium  flex items-center hover: cursor-pointer text-light-text-main">
-        Milestone <%= goal.milestones.count - goal.milestones.where(status: 'achieved').count %>:
+        Milestone <%= goal.milestones.count -
+                      goal.milestones.where(status: 'in_progress').count + 1 %>:
         <%= goal.milestones.where(status: 'in_progress')&.first&.description %>
       </p>
     </div>
