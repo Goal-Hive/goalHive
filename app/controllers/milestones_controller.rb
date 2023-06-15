@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class MilestonesController < ApplicationController
-  before_action :set_milestone, only: %i[show edit update destroy update_progress]
+  before_action :set_milestone, only: %i[show edit update destroy update_progress achieve_milestone]
   before_action :set_goal, only: %i[new update]
 
   def create
@@ -115,6 +115,19 @@ class MilestonesController < ApplicationController
             turbo_stream.replace(@milestone, partial: 'milestone', locals: { milestone: @milestone }),
           ]
         end
+      end
+    end
+  end
+
+  def achieve_milestone
+    @milestone.status_achieved!
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace(@milestone.goal ,
+                               partial: 'goals/goal',
+                               locals: { goal: @milestone.goal }),
+        ]
       end
     end
   end

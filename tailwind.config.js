@@ -35,10 +35,12 @@ module.exports = {
                     btn: "#414FC7",
                     sideNav: "#FAFAFA",
                     bg: {
+                        darkpPurple: "#414FC7",
                         secondary: "#F4F6FF",
                         lightGray: "#F5F5F5",
                         achieved: "#FFF7DC",
-                        darkPurple:"#414FC7"
+                        darkPurple:"#414FC7",
+                        darkYellow: "#FFC700"
                     }
                 },
             }

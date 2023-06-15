@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :milestones do
     member do
       post 'update_progress(/:status)', to: 'milestones#update_progress', as: 'update_progress'
+      post 'achieve', to: 'milestones#achieve_milestone', as: 'achieve'
       post :edit, :new
     end
   end

@@ -38,4 +38,12 @@ export default class extends Controller {
         document.querySelector(`#achievedMilestones #milestone_${milestone_id}`).classList.add('hidden')
         document.querySelector(`#inProgressMilestones #milestone_${milestone_id}`).classList.add('hidden')
     }
+
+    markMilestone(event){
+        const goal_id = this.data.get("goal_id")
+        event.target.classList.toggle('bg-gray-200')
+        event.target.classList.toggle('bg-yellow-400')
+        const button = document.querySelector(`#goal_${goal_id} .updateBtn`)
+        button.disabled = !button.disabled
+    }
 }
