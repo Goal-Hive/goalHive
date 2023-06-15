@@ -108,13 +108,11 @@ class MilestonesController < ApplicationController
           render turbo_stream: [
             turbo_stream.prepend("achievedMilestones", @milestone),
             turbo_stream.replace(@milestone, partial: 'milestone', locals: { milestone: @milestone }),
-            # turbo_stream.remove("#in_progress #milestone_#{@milestone.id}"),
           ]
         elsif params[:status] == "in_progress"
           render turbo_stream: [
             turbo_stream.prepend("inProgressMilestones", @milestone),
             turbo_stream.replace(@milestone, partial: 'milestone', locals: { milestone: @milestone }),
-            # turbo_stream.remove("#achievedMilestones #milestone_#{@milestone.id}"),
           ]
         end
       end
