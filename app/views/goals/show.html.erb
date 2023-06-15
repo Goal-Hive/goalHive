@@ -40,11 +40,10 @@
           <%= render @goal.milestones %>
       </div>
 
-      <div class="hidden p-4 flex flex-col gap-y-3" data-tabs-target="panel">
+      <div id="achievedMilestones" class="hidden p-4 flex flex-col gap-y-3" data-tabs-target="panel">
         <%= render @goal.milestones.where(status: 'achieved') %>
       </div>
-
-      <div class="hidden p-4 flex flex-col gap-y-3" data-tabs-target="panel">
+      <div id="inProgressMilestones" class="hidden p-4 flex flex-col gap-y-3" data-tabs-target="panel">
         <%= render @goal.milestones.where(status: 'in_progress') %>
       </div>
 

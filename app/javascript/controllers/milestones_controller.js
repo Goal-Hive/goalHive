@@ -28,9 +28,14 @@ export default class extends Controller {
         event.preventDefault()
         event.target.parentNode.remove()
         const milestone = event.target.closest("[data-target='milestones.milestone']")
-        console.log(milestone)
         const destroyInput = milestone.querySelector("input[name*='_destroy']")
         destroyInput.value = "true"
         milestone.classList.add("d-none")
+    }
+
+    changeStatus(event){
+        const milestone_id = event.currentTarget.dataset.milestoneId
+        document.querySelector(`#achievedMilestones #milestone_${milestone_id}`).classList.add('hidden')
+        document.querySelector(`#inProgressMilestones #milestone_${milestone_id}`).classList.add('hidden')
     }
 }

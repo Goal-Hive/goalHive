@@ -7,11 +7,15 @@
   </div>
 
   <!--    Toggle Menu-->
-  <div class="hidden flex justify-end items-center gap-x-1" data-toggle-target="toggledContent">
+  <div class="hidden flex justify-end items-center gap-x-1" data-toggle-target="toggledContent" data-controller="milestones">
     <%= button_to (image_tag 'delete.svg'),
                   milestone_path(@milestone), method: :delete,
                   class: "w-9 h-9 flex justify-center items-center rounded-2xl p-2 bg-red-100" %>
-    <%= button_to update_progress_milestone_path(id:@milestone.id, status: @status), method: :post do %>
+    <%= button_to update_progress_milestone_path(id: @milestone.id, status: @status),
+                  method: :post,
+                  data: {
+                    milestone_id: @milestone.id,
+                    action: 'click->milestones#changeStatus' } do %>
       <div class="flex justify-center items-center gap-x-2 bg-light-bg-secondary rounded-2xl p-2 text-light-text-darkPurple inline-block font-medium">
         <%= image_tag @update_progress_img %>
         <p><%= @update_progress %></p>
