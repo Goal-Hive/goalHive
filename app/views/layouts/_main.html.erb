@@ -1,12 +1,14 @@
-<main class="w-screen h-full bg-white flex flex-col">
+<main class="w-full h-full bg-white flex flex-col">
   <%= render 'partials/common/notification' %>
   <%= render 'partials/common/header' %>
   <%= render 'partials/common/modal' %>
 
   <div class="flex justify-around top-16">
-    <div class="w-2/12">
-      <%= render 'partials/common/side_nav' %>
-    </div>
+    <% if content_for?(:side_nav) %>
+      <div class="w-2/12">
+        <%= yield(:side_nav) %>
+      </div>
+    <% end %>
     <div class="bg-light-body w-10/12 flex-1">
       <%= yield %>
     </div>
