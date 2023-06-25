@@ -7,4 +7,5 @@ class Goal < ApplicationRecord
   validates :description, presence: true
   scope :by_category, ->(category) { where(category:category) }
   accepts_nested_attributes_for :milestones
+  enum :status, [ :paused, :active, :achieved, :archived ], default: :paused, prefix: true
 end
