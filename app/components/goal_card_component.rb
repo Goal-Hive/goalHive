@@ -21,5 +21,7 @@ class GoalCardComponent < ViewComponent::Base
     elsif achievedCount == allMilestones
       @message = "Congratulations 🥳🎉🎊"
     end
+    @status_icon = 'resume' if @goal.status_paused?
+    @status_icon = 'pause' if @goal.status_active?
   end
 end

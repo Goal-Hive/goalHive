@@ -3,6 +3,7 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[show edit update destroy], except: %i[filter_by_category]
   has_scope :by_category
+  has_scope :by_status
 
   # GET /goals or /goals.json
   def index
@@ -16,6 +17,18 @@ class GoalsController < ApplicationController
         render turbo_stream: [
           turbo_stream.replace('goals',
                               template: 'goals/index')
+        ]
+      end
+    end
+  end
+
+  def filter_by_status
+    @goals = apply_scopes(current_user.goals.order(created_at: :desc))
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace('goals',
+                               template: 'goals/index')
         ]
       end
     end

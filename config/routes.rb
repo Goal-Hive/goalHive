@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     delete 'remove_milestone/:id' => 'milestones#remove_milestone', as: :remove_milestone
     collection do
       post :filter_by_category
+      post :filter_by_status
     end
   end
 
