@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GoalsController < ApplicationController
-  before_action :set_goal, only: %i[show edit update destroy], except: %i[filter_by_category]
+  before_action :set_goal, only: %i[show edit update destroy update_status], except: %i[filter_by_category]
   has_scope :by_category
   has_scope :by_status
 
@@ -16,7 +16,7 @@ class GoalsController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.replace('goals',
-                              template: 'goals/index')
+                               template: 'goals/index')
         ]
       end
     end
@@ -95,11 +95,24 @@ class GoalsController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@goal),
-          # turbo_stream.update('goals_count', html: current_user.goals.count)
+        # turbo_stream.update('goals_count', html: current_user.goals.count)
         ]
       end
       # format.html { redirect_to goals_url, notice: 'Goal was successfully destroyed.' }
       # format.json { head :no_content }
+    end
+  end
+
+  def update_status
+    @goal.toggle_status
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace(@goal,
+                              partial: 'goals/goal',
+                              locals: { goal: @goal }),
+        ]
+      end
     end
   end
 
