@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resources :goals do
     post 'add_milestone' => 'milestones#add_milestone'
     delete 'remove_milestone/:id' => 'milestones#remove_milestone', as: :remove_milestone
+    member do
+      post 'update_status(/:status)', to: 'goals#update_status', as: 'update_status'
+    end
     collection do
       post :filter_by_category
       post :filter_by_status
