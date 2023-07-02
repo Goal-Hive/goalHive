@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 class MilestonesController < ApplicationController
   before_action :set_milestone, only: %i[show edit update destroy update_progress achieve_milestone]
-  before_action :set_goal, only: %i[new update]
+  before_action :set_goal, only: %i[new edit update]
 
   def create
-    @milestone = Milestone.new(description: milestone_params[:description])
-    @goal = Goal.find(milestone_params[:goal][:goal_id])
+    @milestone = Milestone.new(description: create_milestone_params[:description])
+    @goal = Goal.find(create_milestone_params[:goal][:goal_id])
     @goal.milestones << @milestone
     respond_to do |format|
       if @milestone.save
@@ -137,10 +137,18 @@ class MilestonesController < ApplicationController
   end
 
   def set_goal
-    @goal = Goal.find(params[:goal_id])
+    if @milestone
+      @goal = @milestone.goal
+    else
+      @goal = Goal.find(params[:goal_id])
+    end
   end
 
   def milestone_params
-    params.require(:milestone).permit(:description, goal: [:goal_id])
+    params.require(:milestone).permit(:description, :goal_id)
+  end
+
+  def create_milestone_params
+     params.require(:milestone).permit(:description, goal: [:goal_id])
   end
 end

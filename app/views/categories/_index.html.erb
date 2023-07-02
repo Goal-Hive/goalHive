@@ -1,5 +1,5 @@
 <% if current_user %>
-<!--  Add Category, Categories-->
+  <!--  Add Category, Categories-->
   <div class="bg-light-sideNav pb-2 h-fit w-full flex flex-col justify-between gap-y-2 border border-solid border-gray-200 rounded-lg ">
     <!--      Add a category-->
     <div class="sticky top-0 flex justify-between items-center bg-white w-full p-2 rounded-t-xl">
@@ -10,21 +10,31 @@
 
     </div>
     <!--      Categories-->
-    <div id="categories" class="min-w-full px-2 flex flex-col justify-start items-center gap-y-2">
-      <button
-        class="bg-white border border-solid border-gray-200 p-3 w-full rounded flex justify-between">
-        <p class="text-light-text-categories font-semibold">
-          Active Goals
-        </p>
-      </button>
-      <button
-        class="bg-white border border-solid border-gray-200 p-3 w-full rounded flex justify-between">
-        <p class="text-light-text-categories font-semibold">
-          Paused Goals
-        </p>
-      </button>
-        <%= render current_user.categories %>
+    <div id="categories" class="w-full px-2 flex flex-col justify-start items-center gap-y-2">
+      <div
+        class="bg-white border border-solid border-gray-200 p-3 w-full rounded flex justify-between items-center">
+        <%= button_to "Active ",
+                      filter_by_status_goals_path(by_status: 'active'),
+                      method: :post,
+                      class: "text-light-text-categories font-semibold" %>
+      </div>
+      <div
+        class="bg-white border border-solid border-gray-200 p-3 w-full rounded flex justify-between items-center">
+        <%= button_to "Paused ",
+                      filter_by_status_goals_path(by_status: 'paused'),
+                      method: :post,
+                      class: "text-light-text-categories font-semibold" %>
+      </div>
+      <div
+        class="bg-white border border-solid border-gray-200 p-3 w-full rounded flex justify-between items-center">
+        <%= button_to "Achieved ",
+                      filter_by_status_goals_path(by_status: 'achieved'),
+                      method: :post,
+                      class: "text-light-text-categories font-semibold" %>
+      </div>
+
+      <%= render current_user.categories %>
     </div>
     <!--      end-->
-</div>
+  </div>
 <% end %>
