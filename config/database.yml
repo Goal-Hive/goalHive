@@ -81,6 +81,9 @@ test:
 #
 production:
   <<: *default
-  database: goalHive_production
-  username: goalHive
-  password: <%= ENV["GOALHIVE_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+
+#production:
+#  database: goalHive_production
+#  username: goalHive
+#  password: <%#= ENV["GOALHIVE_DATABASE_PASSWORD"] %>
