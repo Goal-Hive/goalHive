@@ -10,7 +10,7 @@ class MilestoneComponent < ViewComponent::Base
     if @milestone.status_in_progress?
       @update_progress = "Mark as achieved"
       @update_progress_img = 'markAchieved'
-      @message_img = 'markAchieved'
+      @message_img = 'markAchieved.svg'
       @status = 'achieved'
       @message = "Work In Progress"
       @background = "bg-light-bg-secondary"
@@ -18,7 +18,7 @@ class MilestoneComponent < ViewComponent::Base
     elsif @milestone.status_achieved?
       @update_progress = "Undo"
       @update_progress_img = 'undoProgress'
-      @message_img = 'achieved'
+      @message_img = 'achieved.svg'
       @status = 'in_progress'
       @message = "Achieved"
       @background = "bg-light-bg-achieved"
