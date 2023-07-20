@@ -36,7 +36,6 @@ module.exports = {
                     sideNav: "#FAFAFA",
                     bg: {
                         lightYellow: "#FFFCEF",
-                        darkpPurple: "#414FC7",
                         secondary: "#F4F6FF",
                         lightGray: "#F5F5F5",
                         achieved: "#FFF7DC",
