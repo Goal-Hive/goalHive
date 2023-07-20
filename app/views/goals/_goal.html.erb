@@ -1,6 +1,4 @@
-<div id="<%= dom_id goal %>"
-     class="w-80 p-3 border shadow-md border-gray-500 bg-white border-opacity-10 rounded-lg hover:border-indigo-200 flex flex-col"
-     data-controller="toggle">
+<div id="<%= dom_id goal %>">
     <%= render(GoalCardComponent.new(goal: goal)) do %>
     <% end %>
 </div>
