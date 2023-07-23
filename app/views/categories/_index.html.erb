@@ -1,18 +1,9 @@
 <% if current_user %>
-  <!--  Add Category, Categories-->
-  <div class="bg-light-sideNav pb-2 h-fit w-full flex flex-col justify-between gap-y-2 border border-solid border-gray-200 rounded-lg ">
-    <!--      Add a category-->
-    <div class="sticky top-0 flex justify-between items-center bg-white w-full p-2 rounded-t-xl">
-      <p class="font-semibold">Categories</p>
-      <%= link_to '+', new_category_path,
-                  data: { turbo_frame: "modal" },
-                  class: "border border-solid border-gray-200 h-5 w-5 flex justify-center items-center p-4 bg-light-bg-secondary rounded-2xl text-2xl text-light-text-main" %>
-
-    </div>
+  <div class="pb-2 h-fit w-full flex flex-col justify-between gap-y-2">
     <!--      Categories-->
     <div id="categories" class="w-full px-2 flex flex-col justify-start items-center gap-y-2">
     <!--      Fixed Categories-->
-      <% {active: "Active", paused: "Paused", "achieved":"Achieved"}.each do |key, value| %>
+      <% {active: "Active", paused: "Paused", achieved:"Achieved"}.each do |key, value| %>
         <div
           class="w-full ">
           <%= button_to value,
@@ -23,7 +14,6 @@
      <% end %>
       <%= render current_user.categories %>
     </div>
-    <!--      end-->
   </div>
 <% end %>
 
