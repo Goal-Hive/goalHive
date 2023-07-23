@@ -9,7 +9,7 @@ module.exports = {
         './public/*.html',
         './app/views/**/*.{erb,haml,html,slim}',
         './app/components/**/*.{erb,html}',
-        "./node_modules/flowbite/**/*.js"
+        // "./node_modules/flowbite/**/*.js"
     ],
     theme: {
         extend: {
@@ -24,7 +24,7 @@ module.exports = {
                         secondary: "#A5A3A3",
                         categories: "#415472",
                         details: {
-                            tab: "#415472",
+                            tabs: "rgba(65, 84, 114, 0.75)",
                             selectedTab: "#415472"
                         },
                         darkPurple: "#415472",
@@ -51,6 +51,6 @@ module.exports = {
         require('@tailwindcss/aspect-ratio'),
         require('@tailwindcss/typography'),
         require('@tailwindcss/container-queries'),
-        require('flowbite/plugin')
+        // require('flowbite/plugin')
     ]
 }
