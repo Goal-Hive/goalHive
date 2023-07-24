@@ -17,4 +17,8 @@
         @apply
         bg-light-bg-darkPurple text-white text-center rounded-xl py-1 shadow-md font-bold focus:ring-2
     }
+
+    #categories form {
+        width: 100%;
+    }
 }
