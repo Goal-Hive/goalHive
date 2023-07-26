@@ -9,6 +9,7 @@ module.exports = {
         './public/*.html',
         './app/views/**/*.{erb,haml,html,slim}',
         './app/components/**/*.{erb,html}',
+        // "./node_modules/flowbite/**/*.js"
     ],
     theme: {
         extend: {
@@ -32,15 +33,13 @@ module.exports = {
                     },
                     body: "#FAFAFA",
                     header: "rgba(251, 234, 200, 0.7)",
-                    btn: "#414FC7",
                     sideNav: "#FAFAFA",
                     bg: {
                         lightYellow: "#FFFCEF",
-                        darkpPurple: "#414FC7",
+                        darkPurple: "#414FC7",
                         secondary: "#F4F6FF",
                         lightGray: "#F5F5F5",
                         achieved: "#FFF7DC",
-                        darkPurple:"#414FC7",
                         darkYellow: "#FFC700"
                     }
                 },
@@ -52,5 +51,6 @@ module.exports = {
         require('@tailwindcss/aspect-ratio'),
         require('@tailwindcss/typography'),
         require('@tailwindcss/container-queries'),
+        // require('flowbite/plugin')
     ]
 }

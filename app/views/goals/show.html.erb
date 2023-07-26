@@ -19,25 +19,21 @@
     <p class="text-2xl">
       <%= @goal.description %>
     </p>
+    <!--    Tabs titles-->
     <div data-controller="tabs" data-tabs-active-tab="-mb-px border rounded-3xl bg-white">
-      <ul class="list-reset flex border mb-5 rounded-3xl p-1 w-fit bg-slate-50">
-        <li class="-mb-px mr-1" data-tabs-target="tab" data-action="click->tabs#change">
-          <a class="text-light-text-details-tabs rounded-3xl inline-block py-2 px-4 text-blue-500 hover:text-light-text-details-selectedTab font-semibold no-underline" href="#">All
-            milestones</a>
-        </li>
-        <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
-          <a class="text-light-text-details-tabs rounded-3xl inline-block py-2 px-4 text-blue-500 hover:text-light-text-details-selectedTab font-semibold no-underline" href="#">Achieved
-            milestones</a>
-        </li>
-        <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
-          <a class="text-light-text-details-tabs rounded-3xl inline-block py-2 px-4 text-blue-500 hover:text-light-text-details-selectedTab font-semibold no-underline" href="#">
-            In-progress milestones</a>
-        </li>
+      <ul class="text-light-text-main list-reset flex border mb-5 rounded-3xl p-1 w-fit bg-slate-50">
+
+        <% { all: "All Milestones", achieved: "Achieved Milestones", in_progress: "In-progress Milestones" }.each do |tab, text| %>
+          <li class="-mb-px mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+            <a class="rounded-3xl inline-block py-2 px-4 hover:text-light-text-details-selectedTab font-semibold no-underline" href="#">
+              <%= text %></a>
+          </li>
+        <% end %>
       </ul>
 
       <!--      Tab Content-->
       <div id="milestones" class="hidden p-4 flex flex-col gap-y-3" data-tabs-target="panel">
-          <%= render @goal.milestones %>
+        <%= render @goal.milestones %>
       </div>
 
       <div id="achievedMilestones" class="hidden p-4 flex flex-col gap-y-3" data-tabs-target="panel">
