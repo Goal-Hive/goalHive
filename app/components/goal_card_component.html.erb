@@ -9,7 +9,7 @@
                     action: 'click->goals#toggleStatus' } %>
     <div class="flex items-center gap-x-2">
       <!--  Delete, Category, Details-->
-      <div class="hidden flex justify-end items-center gap-x-1" data-toggle-target="toggledContent">
+      <div class="hidden flex justify-end items-center gap-x-3" data-toggle-target="toggledContent">
         <%= button_to (image_tag 'delete.svg'),
                       goal_path(@goal), method: :delete,
                       class: "w-9 h-9 flex justify-center items-center rounded-2xl p-2 bg-red-100" %>
@@ -21,7 +21,7 @@
                     class: "w-9 h-9 flex justify-center items-center rounded-2xl p-1 bg-gray-100 inline-block font-medium" %>
         <button data-action="click->toggle#toggleContent"
                 class="flex justify-center items-center rounded-2xl bg-light-bg-secondary w-9 h-9 text-2xl text-light-text-lightGray p-2">
-          x
+          <%= image_tag 'x.svg', class:"w-3 h-3" %>
         </button>
       </div>
       <button data-action="click->toggle#toggleContent" data-toggle-target="toggleBtn">
