@@ -3,13 +3,13 @@
   <%= render 'partials/common/header' %>
   <%= render 'partials/common/modal' %>
 
-  <div class="flex justify-around top-16 h-full">
+  <div class="flex justify-around top-16 h-full dark:text-white">
     <% if content_for?(:side_nav) %>
-      <div class="w-2/12">
+      <div class="w-2/12 dark:bg-dark-navbar">
         <%= yield(:side_nav) %>
       </div>
     <% end %>
-    <div class="bg-light-body w-10/12">
+    <div class="bg-light-body w-10/12 dark:bg-dark-body">
       <%= yield %>
     </div>
   </div>
