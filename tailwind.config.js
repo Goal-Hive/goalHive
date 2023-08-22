@@ -43,6 +43,16 @@ module.exports = {
                         darkYellow: "#FFC700"
                     }
                 },
+                dark: {
+                    header: "#2E2F34",
+                    navbar: "#36373D",
+                    navbarInsider: "#464653",
+                    body: "#3E3F45",
+                    goalCard: "#393A41",
+                    goalCardMilestones: "#464653",
+                    updateProgressText:"#A5A3A3",
+                    updateProgress:"#494747",
+                }
             }
         },
     },

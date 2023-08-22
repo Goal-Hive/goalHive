@@ -2,16 +2,15 @@
 
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[show edit update destroy update_status], except: %i[filter_by_category]
+  before_action :set_goals, only: %i[index filter_by_category filter_by_status]
   has_scope :by_category
   has_scope :by_status
 
   # GET /goals or /goals.json
-  def index
-    @goals = apply_scopes(current_user.goals.order(created_at: :desc)).all
-  end
+  def index; end
 
   def filter_by_category
-    @goals = apply_scopes(current_user.goals.order(created_at: :desc)).all
+
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
@@ -23,7 +22,6 @@ class GoalsController < ApplicationController
   end
 
   def filter_by_status
-    @goals = apply_scopes(current_user.goals.order(created_at: :desc))
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
@@ -54,14 +52,9 @@ class GoalsController < ApplicationController
       if @goal.save
         format.turbo_stream do
           render turbo_stream: [
-            # turbo_stream.update('new_goal',
-            #                     partial: 'goals/form',
-            #                     locals: { goal: Goal.new }),
-
             turbo_stream.prepend('goals',
                                  partial: 'goals/goal',
                                  locals: { goal: @goal }),
-            # turbo_stream.update('goals_count', html: current_user.goals.count),
             turbo_stream.update('notice', 'Goal was successfully created.')
           ]
         end
@@ -95,11 +88,8 @@ class GoalsController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@goal),
-        # turbo_stream.update('goals_count', html: current_user.goals.count)
         ]
       end
-      # format.html { redirect_to goals_url, notice: 'Goal was successfully destroyed.' }
-      # format.json { head :no_content }
     end
   end
 
@@ -122,6 +112,11 @@ class GoalsController < ApplicationController
   def set_goal
     @goal = Goal.find(params[:id])
   end
+
+  def set_goals
+    @goals = apply_scopes(current_user.goals.order(created_at: :desc)).all
+  end
+
 
   # Only allow a list of trusted parameters through.
   def goal_params

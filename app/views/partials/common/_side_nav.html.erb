@@ -1,5 +1,5 @@
 <!--Side navigation bar-->
-<div class="gap-y-4 py-4 px-4 bg-white flex flex-col justify-start  items-center w-full sticky top-16 h-[calc(100vh-16rem)] ">
+<div class="w-72 gap-y-4 py-4 px-4 flex flex-col justify-start items-center w-full sticky top-16 h-[calc(100vh-16rem)] ">
   <!--  Create a Goal-->
   <%= link_to '+ Create a goal',
               new_goal_path,
@@ -7,9 +7,9 @@
               class: "h-fit w-full rounded-3xl py-1 text-center bg-light-bg-darkPurple text-white block font-bold " %>
 
 <!--  Categories Section-->
-  <div class="flex flex-col h-full w-full border border-solid border-gray-200 rounded-lg  bg-light-sideNav ">
+  <div class="flex flex-col h-full w-full border border-solid dark:border-none border-gray-200 rounded-lg  bg-light-sideNav dark:bg-dark-navbarInsider">
     <!--      Add a category Button-->
-    <div class="flex justify-between items-center bg-white w-full  rounded-t-xl p-2">
+    <div class="flex justify-between items-center bg-white w-full  rounded-t-xl p-2 dark:bg-dark-navbar">
       <p class="font-semibold">Categories</p>
       <%= link_to '+', new_category_path,
                   data: { turbo_frame: "modal" },
@@ -21,7 +21,7 @@
     </div>
   </div>
   <!--  Account Settings, Sign Out, Logo-->
-  <div class="flex flex-col justify-start items-start gap-y-2 px-5 w-full text-light-text-categories font-semibold self-end">
+  <div class="flex flex-col justify-start items-start gap-y-2 px-5 w-full text-light-text-categories font-semibold self-end dark:text-white">
     <% if user_signed_in? %>
       <p> Change Theme </p>
       <%= link_to 'Account Settings', edit_user_registration_path %>

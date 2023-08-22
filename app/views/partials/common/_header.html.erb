@@ -1,5 +1,5 @@
 <% if current_user %>
-  <header class="bg-light-header h-16 flex justify-between items-center sticky top-0 px-3">
+  <header class="bg-light-header dark:bg-dark-header h-16 flex justify-between items-center sticky top-0 px-3">
     <%= link_to (image_tag 'logo.svg'), goals_path %>
     <% if action_name == "show" %>
       <%= button_to new_milestone_path(goal_id: @goal.id),
