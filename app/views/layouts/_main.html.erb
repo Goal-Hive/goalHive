@@ -3,14 +3,14 @@
   <%= render 'partials/common/header' %>
   <%= render 'partials/common/modal' %>
 
-  <div class="flex flex-grow justify-around top-16 h-full dark:text-white overflow-y-auto">
+  <div class="flex flex-grow justify-around top-16  dark:text-white overflow-y-auto h-screen  h-[calc(100vh-4rem)]">
 
     <% if content_for?(:side_nav) %>
-      <div class="w-2/12 dark:bg-dark-navbar">
+      <div class="w-2/12 dark:bg-dark-navbar flex justify-center items-center ">
         <%= yield(:side_nav) %>
       </div>
     <% end %>
-    <div class="bg-light-body w-10/12 dark:bg-dark-body">
+    <div class="bg-light-body w-10/12 dark:bg-dark-body overflow-y-auto">
       <%= yield %>
     </div>
   </div>
