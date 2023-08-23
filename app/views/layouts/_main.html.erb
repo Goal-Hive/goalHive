@@ -1,9 +1,10 @@
-<main class="w-full h-screen flex flex-col">
+<main class="w-full flex flex-col">
   <%= render 'partials/common/notification' %>
   <%= render 'partials/common/header' %>
   <%= render 'partials/common/modal' %>
 
-  <div class="flex justify-around top-16 h-full dark:text-white">
+  <div class="flex flex-grow justify-around top-16 h-full dark:text-white overflow-y-auto">
+
     <% if content_for?(:side_nav) %>
       <div class="w-2/12 dark:bg-dark-navbar">
         <%= yield(:side_nav) %>
