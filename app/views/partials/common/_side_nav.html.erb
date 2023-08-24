@@ -1,24 +1,24 @@
 <!--Side navigation bar-->
-<div class="gap-y-4 py-4 px-4 flex flex-col justify-start items-center fixed w-[inherit] top-16 h-[calc(100vh-16rem)] ">
+<div class="gap-y-4 py-4 px-4 flex flex-col justify-start items-center fixed w-[inherit] top-16 h-[calc(100vh-23rem)] ">
   <!--  Create a Goal-->
   <%= link_to '+ Create a goal',
               new_goal_path,
               data: { turbo_frame: "modal" },
               class: "h-fit w-full rounded-3xl py-1 text-center bg-light-bg-darkPurple text-white block font-bold " %>
+<!--  Create a new Category-->
+  <div class="flex justify-between items-center bg-white w-full  rounded-t-xl p-2 dark:bg-dark-navbar">
+    <p class="font-semibold">Categories</p>
+    <%= link_to '+', new_category_path,
+                data: { turbo_frame: "modal" },
+                class: "border border-solid border-gray-200 h-5 w-5 flex justify-center items-center p-4 bg-light-bg-secondary rounded-2xl text-2xl text-light-text-main" %>
+  </div>
 
 <!--  Categories Section-->
-  <div class="flex flex-col h-full w-full border border-solid dark:border-none border-gray-200 rounded-lg  bg-light-sideNav dark:bg-dark-navbarInsider">
+  <div class="flex flex-col h-[inherit] w-full border border-solid dark:border-none border-gray-200 rounded-lg  bg-light-sideNav dark:bg-dark-navbarInsider">
     <!--      Add a category Button-->
-    <div class="flex justify-between items-center bg-white w-full  rounded-t-xl p-2 dark:bg-dark-navbar">
-      <p class="font-semibold">Categories</p>
-      <%= link_to '+', new_category_path,
-                  data: { turbo_frame: "modal" },
-                  class: "border border-solid border-gray-200 h-5 w-5 flex justify-center items-center p-4 bg-light-bg-secondary rounded-2xl text-2xl text-light-text-main" %>
-    </div>
+
     <!--    Categories-->
-    <div class="overflow-auto w-full py-2">
       <%= render partial: 'categories/index' %>
-    </div>
   </div>
   <!--  Account Settings, Sign Out, Logo-->
   <div class="flex flex-col justify-start items-start gap-y-2 px-5 w-full text-light-text-categories font-semibold self-end dark:text-white">
