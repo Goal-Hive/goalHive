@@ -1,7 +1,14 @@
 <div
   data-controller="toggle"
-  class="dark:bg-inherit dark:text-white dark:border-slate-500  h-12 w-full flex justify-center items-center flex-row bg-white border border-solid border-gray-200 rounded text-light-text-categories font-semibold
-  hover:bg-gray-50"
+  class="
+  dark:bg-inherit
+  dark:text-white
+  dark:hover:border-slate-500
+  hover:border
+  hover:border-solid
+  hover:border-gray-200
+  h-12 w-full flex justify-center items-center bg-white
+  rounded text-light-text-categories font-semibold"
   id="<%= dom_id category %>">
     <%= button_to category.name,
                   filter_by_category_goals_path(by_category: category),

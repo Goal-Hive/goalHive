@@ -1,14 +1,60 @@
 <% if current_user %>
   <header class="bg-light-header dark:bg-dark-header h-[4rem] flex justify-between items-center sticky top-0 px-3">
     <%= link_to (image_tag 'logo.svg'), goals_path %>
-    <% if action_name == "show" %>
-      <%= button_to new_milestone_path(goal_id: @goal.id),
-                    method: :post,
-                    data: { turbo_frame: "modal" } do %>
-        <p class="text-white bg-light-bg-darkPurple p-2 rounded-3xl h-7 w-7 flex justify-center items-center text-3xl text-bold ">
-          +
-        </p>
+    <div class="text-3xl font-bold">
+      <span class="cursor-pointer sun text-yellow-400">&#9788;</span>
+      <span class="cursor-pointer moon">&#127769;</span>
+      <% if action_name == "show" %>
+        <%= button_to new_milestone_path(goal_id: @goal.id),
+                      method: :post,
+                      data: { turbo_frame: "modal" } do %>
+          <p class="text-white bg-light-bg-darkPurple p-2 rounded-3xl h-7 w-7 flex justify-center items-center text-3xl text-bold ">
+            +
+          </p>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </header>
 <% end %>
+<script>
+  const sunIcon = document.querySelector(".sun")
+  const moonIcon = document.querySelector(".moon")
+
+  const userTheme = localStorage.getItem("theme")
+  const systemTheme = window.matchMedia("(prefers-color-scheme: dark").matches
+
+  const iconToggle = () => {
+      moonIcon.classList.toggle("hidden");
+      sunIcon.classList.toggle("hidden");
+  }
+
+  const themeCheck = () => {
+      if (userTheme === "dark" || (!userTheme && systemTheme)) {
+          document.documentElement.classList.add('dark')
+          moonIcon.classList.add('hidden')
+          return
+      }
+      sunIcon.classList.add("hidden")
+  }
+
+  const themeSwitch = () => {
+      if (document.documentElement.classList.contains("dark")) {
+          document.documentElement.classList.remove('dark')
+          localStorage.setItem("theme", "light")
+          iconToggle()
+          return
+      }
+      document.documentElement.classList.add("dark")
+      localStorage.setItem("theme", "dark")
+      iconToggle()
+  }
+
+    moonIcon.addEventListener('click', ()=> {
+        themeSwitch()
+    })
+    sunIcon.addEventListener('click', ()=> {
+        themeSwitch()
+    })
+
+  themeCheck()
+</script>
