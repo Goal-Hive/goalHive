@@ -10,11 +10,11 @@ application.register("hello", HelloController)
 import MilestonesController from "./milestones_controller"
 application.register("milestones", MilestonesController)
 
+import StepperController from "./stepper_controller"
+application.register("stepper", StepperController)
+
 import ToggleController from "./toggle_controller"
 application.register("toggle", ToggleController)
 
 import TurboModalController from "./turbo_modal_controller"
 application.register("turbo-modal", TurboModalController)
-
-import { Tabs } from "tailwindcss-stimulus-components"
-application.register('tabs', Tabs)

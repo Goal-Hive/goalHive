@@ -11,25 +11,36 @@
     </div>
   <% end %>
 
-  <div class="flex flex-col gap-y-3 text-base text-light-text-main">
-    <h3 class="font-bold">Creating your new goal</h3>
-
-    <%#= form.label :description %>
-    <p>What’s your goal?</p>
-    <%= form.text_field :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 w-full" %>
-
-    <%#= form.label :motivation %>
-    <p>Why do you want to achieve this goal?</p>
-    <%= form.text_field :motivation, class: "block shadow rounded-md border border-gray-200 outline-none px-3 w-full" %>
-
-    <%= form.label :category %>
-    <%= form.select :category_id, current_user.categories.all.pluck(:name, :id) %>
-
-    <%= render 'partials/common/create_milestones', form: form %>
-
-    <div class="inline bg-light-bg-darkPurple w-fit rounded-2xl px-5 py-1 text-white inline-block font-medium cursor-pointer">
-      <%= form.submit 'Create Goal', class: "cursor-pointer" %>
+  <div data-controller="stepper" class="h-40v flex flex-col justify-between">
+<!--    ٍStep Number-->
+    <p data-stepper-target="number"> - </p>
+<!--    Content (Steps)-->
+    <div>
+      <div class="flex flex-col gap-y-3 text-base text-light-text-main" data-stepper-target="step">
+      <h3 class="font-bold">Creating your new goal</h3>
+      <p>What’s your goal?</p>
+      <%= form.text_field :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 w-full" %>
+      <p>Why do you want to achieve this goal?</p>
+      <%= form.text_field :motivation, class: "block shadow rounded-md border border-gray-200 outline-none px-3 w-full" %>
+      <%= form.label :category %>
+      <%= form.select :category_id, current_user.categories.all.pluck(:name, :id) %>
+    </div>
+      <div class="flex flex-col gap-y-3 text-base text-light-text-main" data-stepper-target="step">
+      <%= render 'partials/common/create_milestones', form: form %>
+    </div>
+      <div class="flex flex-col gap-y-3 text-base text-light-text-main" data-stepper-target="step">
+      <div class="inline bg-light-bg-darkPurple w-fit rounded-2xl px-5 py-1 text-white inline-block font-medium cursor-pointer">
+        <%= form.submit 'Create Goal', class: "cursor-pointer" %>
+      </div>
+    </div>
+    </div>
+<!--    Navigation Buttons-->
+    <div class="self-end flex gap-x-2 font-medium">
+      <button class="bg-light-bg-secondary rounded-3xl px-4 py-2 text-light-text-title" data-action="stepper#previous" data-stepper-target="next"> ← Back</button>
+      <button class="bg-light-bg-darkPurple rounded-3xl px-4 py-2 text-white" data-action="stepper#next" data-stepper-target="prev"> Next → </button>
     </div>
   </div>
 
 <% end %>
+
+
