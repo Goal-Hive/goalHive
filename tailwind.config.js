@@ -15,7 +15,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+                sans: ['Satoshi','Inter var', ...defaultTheme.fontFamily.sans],
             },
             height: {
                 "10v": "10vh",
