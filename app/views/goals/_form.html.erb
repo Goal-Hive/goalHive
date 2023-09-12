@@ -11,36 +11,53 @@
     </div>
   <% end %>
 
-  <div data-controller="stepper" class="h-40v flex flex-col justify-between">
-<!--    ٍStep Number-->
-    <p data-stepper-target="number"> - </p>
-<!--    Content (Steps)-->
-    <div>
-      <div class="flex flex-col gap-y-3 text-base text-light-text-main" data-stepper-target="step">
-      <h3 class="font-bold">Creating your new goal</h3>
-      <p>What’s your goal?</p>
-      <%= form.text_field :description, class: "block shadow rounded-md border border-gray-200 outline-none px-3 w-full" %>
-      <p>Why do you want to achieve this goal?</p>
-      <%= form.text_field :motivation, class: "block shadow rounded-md border border-gray-200 outline-none px-3 w-full" %>
-      <%= form.label :category %>
-      <%= form.select :category_id, current_user.categories.all.pluck(:name, :id) %>
+  <div data-controller="stepper" class="h-40v flex flex-col gap-y-3 justify-between"_>
+    <!--    ٍStep Number-->
+    <div class="bg-light-bg-lightGray flex items-center gap-x-3 w-fit p-3 text-fiord  font-medium rounded-md">
+      <%= image_tag 'stars' %>
+      <p> Step
+        <span data-stepper-target="stepNumber"> - </span> of
+        <span data-stepper-target="numberOfSteps"> - </span></p>
     </div>
-      <div class="flex flex-col gap-y-3 text-base text-light-text-main" data-stepper-target="step">
-      <%= render 'partials/common/create_milestones', form: form %>
-    </div>
-      <div class="flex flex-col gap-y-3 text-base text-light-text-main" data-stepper-target="step">
-      <div class="inline bg-light-bg-darkPurple w-fit rounded-2xl px-5 py-1 text-white inline-block font-medium cursor-pointer">
-        <%= form.submit 'Create Goal', class: "cursor-pointer" %>
+    <!--    Content (Steps)-->
+    <div class="flex-grow font-medium text-fiord text-lg">
+      <!--      Step 1: Goal, Motivation Category  -->
+      <div class="step_container" data-stepper-target="step">
+        <h3 class="font-bold">Creating your new goal</h3>
+        <div class="step_desc">
+          <%= image_tag 'achieved', class: "w-5 h-5" %>
+          <p>What’s your goal?</p>
+        </div>
+        <%= form.text_field :description, class: "goal_input" %>
+        <div class="step_desc">
+          <%= image_tag 'electric', class: "w-5 h-5" %>
+          <p>Why do you want to achieve this goal?</p>
+        </div>
+        <%= form.text_field :motivation, class: "goal_input" %>
+        <%= form.label :category %>
+        <%= form.select :category_id, current_user.categories.all.pluck(:name, :id) %>
+      </div>
+      <!--      Step 2: Developing Milestones step -->
+      <div class="step_container" data-stepper-target="step" data-controller="milestones">
+        <%= render 'partials/common/create_milestones', form: form %>
+      </div>
+      <!--      Step 3: Assign Begin date, End date-->
+      <div class="step_container" data-stepper-target="step">
+        <div class="inline bg-light-bg-darkPurple w-fit rounded-2xl px-5 py-1 text-white inline-block font-medium cursor-pointer">
+          <%= form.submit 'Create Goal', class: "cursor-pointer" %>
+        </div>
       </div>
     </div>
-    </div>
-<!--    Navigation Buttons-->
+    <!--    Navigation Buttons-->
     <div class="self-end flex gap-x-2 font-medium">
-      <button class="bg-light-bg-secondary rounded-3xl px-4 py-2 text-light-text-title" data-action="stepper#previous" data-stepper-target="next"> ← Back</button>
-      <button class="bg-light-bg-darkPurple rounded-3xl px-4 py-2 text-white" data-action="stepper#next" data-stepper-target="prev"> Next → </button>
+      <button class="bg-light-bg-secondary rounded-3xl px-4 py-2 text-light-text-title" data-action="stepper#previous" data-stepper-target="next">
+        ← Back
+      </button>
+      <button class="bg-light-bg-darkPurple rounded-3xl px-4 py-2 text-white" data-action="stepper#next" data-stepper-target="prev">
+        Next →
+      </button>
     </div>
   </div>
-
 <% end %>
 
 
