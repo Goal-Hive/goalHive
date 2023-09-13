@@ -8,7 +8,7 @@ export default class extends Controller {
 
     static targets = ["milestonesContainer"]
     static template = `
-    <div data-target="milestones.milestone" class="flex items-center gap-x-3">
+    <div data-target="newGoalMilestone" class="flex items-center gap-x-3">
       <input type="text" 
             name="goal[milestones_attributes][new_milestone][description]"
             id="goal_milestones_attributes_new_milestone_description" 
@@ -34,7 +34,7 @@ export default class extends Controller {
     removeMilestone(event) {
         event.preventDefault()
         event.target.parentNode.parentNode.remove()
-        const milestone = event.target.closest("[data-target='milestones.milestone']")
+        const milestone = event.target.closest("[data-target='newGoalMilestone']")
         const destroyInput = milestone.querySelector("input[name*='_destroy']")
         destroyInput.value = "true"
         milestone.classList.add("d-none")
