@@ -12,7 +12,7 @@ export default class extends Controller {
       <input type="text" 
             name="goal[milestones_attributes][new_milestone][description]"
             id="goal_milestones_attributes_new_milestone_description" 
-            class="w-full border border-grey-200">
+            class="w-full border">
       <input type="hidden" 
             name="goal[milestones_attributes][new_milestone][_destroy]"
             id="goal_milestones_attributes_new_milestone__destroy" 
@@ -33,7 +33,7 @@ export default class extends Controller {
 
     removeMilestone(event) {
         event.preventDefault()
-        event.target.parentNode.remove()
+        event.target.parentNode.parentNode.remove()
         const milestone = event.target.closest("[data-target='milestones.milestone']")
         const destroyInput = milestone.querySelector("input[name*='_destroy']")
         destroyInput.value = "true"

@@ -10,7 +10,7 @@
 
     .step_container {
         @apply
-        flex flex-col gap-y-3 text-base text-light-text-main
+        flex flex-col gap-y-3 text-base text-light-text-main h-full
     }
 
     .goal_input {
@@ -25,7 +25,7 @@
 
     .milestone_input {
         @apply
-        w-full border border-grey-200
+        w-full border border-gray-200
     }
     #categories form {
         width: 100%;
