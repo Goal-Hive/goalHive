@@ -14,10 +14,14 @@ export default class extends Controller {
         this.showCurrentStep()
         this.controlNavigation()
         this.updateNumber()
+        this.showStepsNumber()
+    }
+
+    showStepsNumber() {
+        this.numberOfStepsTarget.innerHTML = this.stepTargets.length
     }
 
     updateNumber() {
-        this.numberOfStepsTarget.innerHTML = this.stepTargets.length
         this.stepNumberTarget.innerHTML = this.index + 1
     }
 
