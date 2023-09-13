@@ -33,6 +33,7 @@ module.exports = {
                 fiord :"#415472",
                 wildSand: "#F5F5F5",
                 doveGray: "#717171",
+                zircon: "#F4F6FF",
                 light: {
                     text: {
                         title: "#415472",
