@@ -12,7 +12,7 @@ export default class extends Controller {
       <input type="text" 
             name="goal[milestones_attributes][new_milestone][description]"
             id="goal_milestones_attributes_new_milestone_description" 
-            class="w-full border">
+            class="w-full border bg-wildSand">
       <input type="hidden" 
             name="goal[milestones_attributes][new_milestone][_destroy]"
             id="goal_milestones_attributes_new_milestone__destroy" 
