@@ -23,7 +23,7 @@
     <div class="flex-grow font-medium text-fiord text-lg">
       <!--      Step 1: Goal, Motivation Category  -->
       <div class="step_container" data-stepper-target="step">
-        <h3 class="font-bold">Creating your new goal</h3>
+        <h3 class="step_title">Creating your new goal</h3>
         <div class="step_desc">
           <%= image_tag 'achieved', class: "w-5 h-5" %>
           <p>What’s your goal?</p>
@@ -43,19 +43,36 @@
       </div>
       <!--      Step 3: Assign Begin date, End date-->
       <div class="step_container" data-stepper-target="step">
-        <div class="inline bg-light-bg-darkPurple w-fit rounded-2xl px-5 py-1 text-white inline-block font-medium cursor-pointer">
-          <%= form.submit 'Create Goal', class: "cursor-pointer" %>
+        <div class="step_title">
+          Great, dates help keep momentum with our goals!
+        </div>
+        <div class="step_desc">
+          Pick a start and end date below
+        </div>
+        <div class="flex gap-x-5">
+          <div class="flex flex-col gap-y-3">
+            <%= form.label :begin_date, "Start Date" %>
+            <%= form.date_field :begin_date, class: "bg-zircon rounded-xl border-none" %>
+          </div>
+          <div class="flex flex-col gap-y-3">
+            <%= form.label :end_date, "End Date" %>
+            <%= form.date_field :end_date, class: "bg-zircon rounded-xl  border-none" %>
+          </div>
         </div>
       </div>
     </div>
     <!--    Navigation Buttons-->
-    <div class="self-end flex justify-end gap-x-2 font-medium">
+    <div class="self-end flex justify-end gap-x-4 font-medium">
       <button class="bg-light-bg-secondary rounded-3xl px-4 py-2 text-light-text-title" data-action="stepper#previous" data-stepper-target="next">
         ← Back
       </button>
       <button class="bg-light-bg-darkPurple rounded-3xl px-4 py-2 text-white" data-action="stepper#next" data-stepper-target="prev">
         Next →
       </button>
+      <div class="bg-light-bg-darkPurple w-fit flex justify-center items-center rounded-3xl px-5 py-1 text-white inline-block cursor-pointer hidden"
+           data-stepper-target="submit">
+        <%= form.submit 'Create Goal', class: "cursor-pointer" %>
+      </div>
     </div>
   </div>
 <% end %>

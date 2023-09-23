@@ -3,7 +3,7 @@ import {Controller} from "@hotwired/stimulus"
 // Connects to data-controller="stepper"
 export default class extends Controller {
 
-    static targets = ["stepNumber", "numberOfSteps", "step", "next", "prev"]
+    static targets = ["stepNumber", "numberOfSteps", "step", "next", "prev", "submit"]
 
     connect() {
         console.log("stepper controller is connected")
@@ -40,6 +40,7 @@ export default class extends Controller {
             this.nextTarget.classList.toggle('hidden')
         }
         if (this.index === this.stepTargets.length-2) {
+            this.submitTarget.classList.toggle('hidden')
             this.prevTarget.classList.toggle('hidden')
         }
     }

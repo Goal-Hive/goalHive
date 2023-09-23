@@ -34,6 +34,7 @@ module.exports = {
                 wildSand: "#F5F5F5",
                 doveGray: "#717171",
                 zircon: "#F4F6FF",
+                yankeesBlue: "#152E40",
                 light: {
                     text: {
                         title: "#415472",
