@@ -15,7 +15,7 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+                sans: ['Satoshi','Inter var', ...defaultTheme.fontFamily.sans],
             },
             height: {
                 "10v": "10vh",
@@ -47,7 +47,8 @@ module.exports = {
                         },
                         darkPurple: "#415472",
                         darkGray: "#152E40",
-                        lightGray: "#5B5B66"
+                        lightGray: "#5B5B66",
+                        lightPurple: "#414FC7"
                     },
                     body: "#FAFAFA",
                     header: "rgba(251, 234, 200, 0.7)",
