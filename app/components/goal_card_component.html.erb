@@ -47,10 +47,13 @@
     </h3>
 
     <!--    Progress-->
-    <div class="flex items-center gap-x-1 bg-gray-100 p-2 rounded dark:bg-dark-goalCardMilestones ">
-      <%= image_tag 'progress.svg', class: "w-5 h-5" %>
-      <span class="pl-2 text-xs font-normal text-light-text-main dark:text-white">
+    <div class="flex items-center justify-between gap-x-1 bg-gray-100 p-2 rounded dark:bg-dark-goalCardMilestones ">
+      <div class="flex items-center">
+        <%= image_tag 'progress.svg', class: "w-5 h-5" %>
+        <span class="pl-2 text-xs font-normal text-light-text-main dark:text-white">
         <%= @milestone_reached %> Milestones Reached </span>
+      </div>
+      <%= image_tag 'eye_dark.svg', class: "w-5 h-5" %>
     </div>
     <div class="flex flex-col gap-y-2">
       <small class="text-xs font-normal text-[#717171] dark:text-white">

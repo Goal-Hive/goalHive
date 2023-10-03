@@ -3,12 +3,12 @@
   <div
     class='mb-3 p-3  bg-white w-3/12 border-solid border border-gray-200 rounded-[8px]'
   >
-    <p className="font-bold text-sm text-[#415472]  leading-5 text-base mb-4">
+    <p class="font-bold text-sm text-light-text-darkPurple leading-5 text-base mb-4">
       Your Motivation
     </p>
     <blockquote
       suppressContentEditableWarning={true}
-      class='focus:border-0 bg-[#F5F5F5] p-3 text-[#717171] rounded-[8px]'
+      class='focus:border-0 bg-light-bg-lightGray p-3 text-doveGray rounded-[8px]'
       contentEditable='true'
     >
       <%= @goal.motivation %>
@@ -48,7 +48,6 @@
   </div>
   <!--  3rd section-->
   <div class="">
-    Goal Details
     <%= render @goal %>
   </div>
 </div>

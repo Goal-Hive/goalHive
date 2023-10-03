@@ -1,8 +1,20 @@
-<div data-controller="milestones" >
-  <div id="milestones" data-milestones-target="milestonesContainer">
+<p class="step_title">
+  Developing your new goal
+</p>
+<div class="step_desc">
+  <%= image_tag 'net.svg' %>
+  <p>To develop this goal, let’s break it down into smaller goals or as we like to call them, Milestones.</p>
+</div>
+<p class="text-sm font-light text-doveGray"> Visualize the end result of the goal you are working on to a high standard. Work backwards to plan each step you need to take to increase the chances of achieving this goal. Have a go at setting a few milestones you think would be worth celebrating towards your goal and don’t worry you can always add or reduce milestones later. </p>
+
+<div data-controller="milestones" class="flex flex-col gap-y-3 h-full" >
+  <div id="milestones" class="flex flex-col gap-y-3 flex-grow overflow-y-auto h-48" data-milestones-target="milestonesContainer">
     <%= form.fields_for :milestones do |m| %>
       <%= render "milestones/milestone_fields", milestoneForm: m %>
     <% end %>
   </div>
-  <%= button_tag "Add Milestone", type: "button", data: { action: "click->milestones#addMilestone" } %>
+  <%= button_tag "Add Milestone",
+                 type: "button",
+                 data: { action: "click->milestones#addMilestone" },
+                 class:"self-center w-full bg-zircon rounded-3xl py-1 "%>
 </div>

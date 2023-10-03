@@ -11,8 +11,8 @@ class MilestonesController < ApplicationController
       if @milestone.save
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.append(:milestones, partial: "milestone", locals: { milestone: @milestone }),
-            turbo_stream.append(:inProgressMilestones, partial: "milestone", locals: { milestone: @milestone }),
+            turbo_stream.append(:milestones, partial: 'milestone', locals: { milestone: @milestone }),
+            turbo_stream.append(:inProgressMilestones, partial: 'milestone', locals: { milestone: @milestone })
           ]
         end
       end
@@ -94,7 +94,7 @@ class MilestonesController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.remove(@milestone),
+          turbo_stream.remove(@milestone)
         ]
       end
     end
@@ -104,15 +104,15 @@ class MilestonesController < ApplicationController
     @milestone.update_progress(params[:status])
     respond_to do |format|
       format.turbo_stream do
-        if params[:status] == "achieved"
+        if params[:status] == 'achieved'
           render turbo_stream: [
-            turbo_stream.prepend("achievedMilestones", @milestone),
-            turbo_stream.replace(@milestone, partial: 'milestone', locals: { milestone: @milestone }),
+            turbo_stream.prepend('achievedMilestones', @milestone),
+            turbo_stream.replace(@milestone, partial: 'milestone', locals: { milestone: @milestone })
           ]
-        elsif params[:status] == "in_progress"
+        elsif params[:status] == 'in_progress'
           render turbo_stream: [
-            turbo_stream.prepend("inProgressMilestones", @milestone),
-            turbo_stream.replace(@milestone, partial: 'milestone', locals: { milestone: @milestone }),
+            turbo_stream.prepend('inProgressMilestones', @milestone),
+            turbo_stream.replace(@milestone, partial: 'milestone', locals: { milestone: @milestone })
           ]
         end
       end
@@ -124,9 +124,9 @@ class MilestonesController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.replace(@milestone.goal ,
+          turbo_stream.replace(@milestone.goal,
                                partial: 'goals/goal',
-                               locals: { goal: @milestone.goal }),
+                               locals: { goal: @milestone.goal })
         ]
       end
     end
@@ -137,11 +137,11 @@ class MilestonesController < ApplicationController
   end
 
   def set_goal
-    if @milestone
-      @goal = @milestone.goal
-    else
-      @goal = Goal.find(params[:goal_id])
-    end
+    @goal = if @milestone
+              @milestone.goal
+            else
+              Goal.find(params[:goal_id])
+            end
   end
 
   def milestone_params
@@ -149,6 +149,6 @@ class MilestonesController < ApplicationController
   end
 
   def create_milestone_params
-     params.require(:milestone).permit(:description, goal: [:goal_id])
+    params.require(:milestone).permit(:description, goal: [:goal_id])
   end
 end

@@ -30,6 +30,11 @@ module.exports = {
                 "100v": "100vh",
             },
             colors: {
+                fiord :"#415472",
+                wildSand: "#F5F5F5",
+                doveGray: "#717171",
+                zircon: "#F4F6FF",
+                yankeesBlue: "#152E40",
                 light: {
                     text: {
                         title: "#415472",
