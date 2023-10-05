@@ -35,6 +35,8 @@ module.exports = {
                 doveGray: "#717171",
                 zircon: "#F4F6FF",
                 yankeesBlue: "#152E40",
+                philippineYellow: "#FFC700",
+                peach: "#FFEDAC",
                 light: {
                     text: {
                         title: "#415472",

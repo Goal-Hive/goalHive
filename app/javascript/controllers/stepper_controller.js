@@ -6,7 +6,7 @@ export default class extends Controller {
     static targets = ["stepNumber", "numberOfSteps", "step", "next", "prev", "submit"]
 
     connect() {
-        console.log("stepper controller is connected")
+        // console.log("stepper controller is connected")
     }
 
     initialize() {
