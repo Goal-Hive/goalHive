@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["toggledContent", "toggleBtn"]
   connect() {
-    console.log('toggle connected')
+    // console.log('toggle connected')
   }
 
   toggleContent() {

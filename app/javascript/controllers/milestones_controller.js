@@ -3,7 +3,7 @@ import {Controller} from "@hotwired/stimulus"
 // Connects to data-controller="milestones"
 export default class extends Controller {
     connect() {
-        console.log('milestones controller is connected')
+        // console.log('milestones controller is connected')
     }
 
     static targets = ["milestonesContainer"]
