@@ -1,9 +1,11 @@
 <% if current_user %>
-  <header class="bg-light-header dark:bg-dark-header h-[4rem] flex justify-between items-center sticky top-0 px-3">
+  <header class="bg-light-header dark:bg-dark-header h-[5rem] flex justify-between items-center sticky top-0 px-3 py-3">
     <%= link_to (image_tag 'logo.svg'), goals_path %>
-    <div class="text-3xl font-bold">
-      <span class="cursor-pointer sun text-yellow-400">&#9788;</span>
-      <span class="cursor-pointer moon">&#127769;</span>
+    <div class="flex justify-center items-center gap-x-10">
+      <button data-controller="theme-switcher" data-action="click->theme-switcher#toggle" class="text-3xl font-bold bg-white rounded-3xl py-1 px-4 flex items-center justify-center gap-x-5">
+        <span class="cursor-pointer dark:text-fiord text-philippineYellow bg-peach dark:bg-white rounded-3xl p-2">&#9788;</span>
+        <span class="cursor-pointer dark:text-philippineYellow text-fiord dark:bg-yankeesBlue  rounded-3xl p-2">&#x1F313;</span>
+      </button>
       <% if action_name == "show" %>
         <%= button_to new_milestone_path(goal_id: @goal.id),
                       method: :post,
@@ -13,48 +15,54 @@
           </p>
         <% end %>
       <% end %>
+      <p class="dark:text-white font-bold text-xl"> Welcome back :)
+        <%#= current_user.first_name %>
+      </p>
     </div>
   </header>
 <% end %>
-<script>
-  const sunIcon = document.querySelector(".sun")
-  const moonIcon = document.querySelector(".moon")
+<!--<script>-->
+<!--    const sunIcon = document.querySelector(".sun")-->
+<!--    const moonIcon = document.querySelector(".moon")-->
 
-  const userTheme = localStorage.getItem("theme")
-  const systemTheme = window.matchMedia("(prefers-color-scheme: dark").matches
+<!--    const userTheme = localStorage.getItem("theme")-->
+<!--    const systemTheme = window.matchMedia("(prefers-color-scheme: dark").matches-->
 
-  const iconToggle = () => {
-      moonIcon.classList.toggle("hidden");
-      sunIcon.classList.toggle("hidden");
-  }
+<!--    const iconToggle = () => {-->
+<!--        moonIcon.classList.toggle("bg-blue-300");-->
+<!--        sunIcon.classList.toggle("bg-blue-300");-->
+<!--    }-->
 
-  const themeCheck = () => {
-      if (userTheme === "dark" || (!userTheme && systemTheme)) {
-          document.documentElement.classList.add('dark')
-          moonIcon.classList.add('hidden')
-          return
-      }
-      sunIcon.classList.add("hidden")
-  }
+<!--    const themeCheck = () => {-->
+<!--        if (userTheme === "dark" || (!userTheme && systemTheme)) {-->
+<!--            document.documentElement.classList.add('dark')-->
+<!--            moonIcon.classList.add('bg-blue-300')-->
+<!--            return-->
+<!--        }-->
+<!--        sunIcon.classList.add("bg-blue-300")-->
+<!--    }-->
 
-  const themeSwitch = () => {
-      if (document.documentElement.classList.contains("dark")) {
-          document.documentElement.classList.remove('dark')
-          localStorage.setItem("theme", "light")
-          iconToggle()
-          return
-      }
-      document.documentElement.classList.add("dark")
-      localStorage.setItem("theme", "dark")
-      iconToggle()
-  }
+<!--    const themeSwitch = () => {-->
+<!--        if (document.documentElement.classList.contains("dark")) {-->
+<!--            document.documentElement.classList.remove('dark')-->
+<!--            localStorage.setItem("theme", "light")-->
+<!--            iconToggle()-->
+<!--            return-->
+<!--        }-->
+<!--        document.documentElement.classList.add("dark")-->
+<!--        localStorage.setItem("theme", "dark")-->
+<!--        iconToggle()-->
+<!--    }-->
 
-    moonIcon.addEventListener('click', ()=> {
-        themeSwitch()
-    })
-    sunIcon.addEventListener('click', ()=> {
-        themeSwitch()
-    })
+<!--    moonIcon.addEventListener('click', () => {-->
+<!--        themeSwitch()-->
+<!--    })-->
+<!--    sunIcon.addEventListener('click', () => {-->
+<!--        themeSwitch()-->
+<!--    })-->
 
-  themeCheck()
-</script>
+<!--    themeCheck()-->
+<!--    document.addEventListener('DOMContentLoaded', (event) => {-->
+
+<!--    })-->
+<!--</script>-->
