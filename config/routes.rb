@@ -11,14 +11,13 @@ Rails.application.routes.draw do
       post 'update_status(/:status)', to: 'goals#update_status', as: 'update_status'
     end
     collection do
-      post :filter_by_category
-      post :filter_by_status
+      post :filter_by_category, :filter_by_status
     end
   end
 
   resources :categories do
     member do
-      post :edit
+      post :edit, :new
     end
   end
 

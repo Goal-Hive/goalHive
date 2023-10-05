@@ -14,6 +14,15 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   def new
     @category = Category.new
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.prepend('categories',
+                              partial: 'categories/form',
+                              locals: { category: @category }),
+        ]
+      end
+    end
   end
 
   # post /categories/1/edit
@@ -40,7 +49,8 @@ class CategoriesController < ApplicationController
             turbo_stream.append('categories',
                                 partial: 'categories/category',
                                 locals: { category: @category }),
-            turbo_stream.update('notice', 'Category was successfully created.')
+            turbo_stream.update('notice', 'Category was successfully created.'),
+            turbo_stream.remove('new_category')
           ]
         end
         #   format.html { redirect_to category_url(@category), notice: 'Category was successfully created.' }
