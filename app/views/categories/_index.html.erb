@@ -1,6 +1,6 @@
 <% if current_user %>
   <!--      Categories-->
-  <div id="categories" class="overflow-auto w-full px-2 py-3 flex flex-col  justify-start items-center gap-y-2 pb-2 h-[inherit] ">
+  <div class="overflow-auto w-full px-2 py-3 flex flex-col  justify-start items-center gap-y-2 pb-2 h-[inherit] ">
     <!--      Fixed Categories-->
     <% { active: "Active", paused: "Paused", achieved: "Achieved" }.each do |key, value| %>
       <div
@@ -21,6 +21,8 @@
                        " %>
       </div>
     <% end %>
-    <%= render current_user.categories %>
+    <div id="categories" class="w-full ">
+      <%= render current_user.categories %>
+    </div>
   </div>
 <% end %>
