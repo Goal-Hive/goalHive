@@ -1,6 +1,6 @@
 <% if current_user %>
   <!--      Categories-->
-  <div class="overflow-auto w-full px-2 py-3 flex flex-col  justify-start items-center gap-y-2 pb-2 h-[inherit] ">
+  <div class="scroll-smooth overflow-auto w-full px-2 py-3 flex flex-col  justify-start items-center gap-y-2 pb-2 h-[inherit] ">
     <!--      Fixed Categories-->
     <% { active: "Active", paused: "Paused", achieved: "Achieved" }.each do |key, value| %>
       <div

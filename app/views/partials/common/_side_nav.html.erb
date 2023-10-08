@@ -1,7 +1,7 @@
 <!--Side navigation bar-->
 <div class="gap-y-4 py-4 px-4 flex flex-col justify-start items-center fixed w-[inherit] h-[inherit] ">
   <!--  Create a Goal-->
-  <%#= link_to '+ Create a goal',
+  <%= link_to '+ Create a goal',
               new_goal_path,
               data: { turbo_frame: "modal" },
               class: "h-fit w-full rounded-3xl py-1 text-center bg-light-bg-darkPurple text-white block font-bold " %>
@@ -12,10 +12,6 @@
                   new_category_path(@milestone),
                   method: :post,
                   class: "border border-solid border-gray-200 h-5 w-5 flex justify-center items-center p-4 bg-light-bg-secondary rounded-2xl text-2xl text-light-text-main" %>
-
-    <%#= link_to '+', new_category_path,
-                 data: { turbo_frame: "modal" },
-                class: "border border-solid border-gray-200 h-5 w-5 flex justify-center items-center p-4 bg-light-bg-secondary rounded-2xl text-2xl text-light-text-main" %>
   </div>
 
   <!--  Categories Section-->
