@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import Categories__NavbarController from "./categories/navbar_controller"
+application.register("categories--navbar", Categories__NavbarController)
+
 import FormController from "./form_controller"
 application.register("form", FormController)
 

@@ -33,6 +33,35 @@
         w-full border border-gray-200
     }
 
+    .navbar_category_hover {
+        @apply
+        hover: border
+        hover: border-solid
+        hover: border-gray-200
+    }
+
+    .navbar_category {
+        @apply
+        text-fiord
+        font-semibold
+        /*dark:bg-inherit*/
+        /*dark:text-white*/
+        /*dark:hover:border-slate-500*/
+        h-12 w-full flex justify-start items-center
+        rounded
+    }
+
+
+
+    .selected_category {
+        @apply
+        border
+        border-solid
+        border-gray-200
+        bg-white text-fiord
+        dark:bg-onyx
+    }
+
     #categories form {
         width: 100%;
     }

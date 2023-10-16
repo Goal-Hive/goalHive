@@ -2,10 +2,10 @@
   <header class="bg-light-header dark:bg-dark-header h-[5rem] flex justify-between items-center sticky top-0 px-4 py-3">
     <%= link_to (image_tag 'logo.svg'), goals_path %>
     <div class="flex justify-center items-center gap-x-10">
-      <button data-controller="theme-switcher" data-action="click->theme-switcher#toggle" class="text-3xl font-bold bg-white rounded-3xl py-1 px-1 flex items-center justify-center gap-x-5">
+<!--      <button data-controller="theme-switcher" data-action="click->theme-switcher#toggle" class="text-3xl font-bold bg-white rounded-3xl p-1 flex items-center justify-center gap-x-5">-->
 <!--        <span class="cursor-pointer dark:text-fiord text-philippineYellow bg-peach dark:bg-white rounded-3xl">&#9788;</span>-->
-        <span class="cursor-pointer dark:text-philippineYellow text-fiord   rounded-3xl">&#x1F313;</span>
-      </button>
+<!--        <span class="cursor-pointer dark:text-philippineYellow text-fiord">&#x1F313;</span>-->
+<!--      </button>-->
       <% if action_name == "show" %>
         <%= button_to new_milestone_path(goal_id: @goal.id),
                       method: :post,

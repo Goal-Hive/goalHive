@@ -1,27 +1,18 @@
 <% if current_user %>
   <!--      Categories-->
-  <div class="scroll-smooth overflow-auto w-full px-2 py-3 flex flex-col  justify-start items-center gap-y-2 pb-2 h-[inherit] ">
+  <div class="scroll-smooth overflow-auto w-full px-2 py-3 flex flex-col  justify-start items-center pb-2 h-[inherit] gap-y-1 ">
     <!--      Fixed Categories-->
     <% { active: "Active", paused: "Paused", achieved: "Achieved" }.each do |key, value| %>
-      <div
-        class="w-full ">
+      <%= render layout: 'partials/common/navbar_category_container' do %>
         <%= button_to value,
                       filter_by_status_goals_path(by_status: key),
                       method: :post,
                       class: "
-                        dark:bg-inherit
-                        dark:text-white
-                        dark:hover:border-slate-500
-                        hover:border
-                        hover:border-solid
-                        hover:border-gray-200
-                        h-12 w-full flex justify-start items-center  bg-white
-                        rounded text-light-text-categories font-semibold
-                        py-3 pl-3
-                       " %>
-      </div>
+                      navbar_category_hover
+                      navbar_category py-3 pl-3" %>
+      <% end %>
     <% end %>
-    <div id="categories" class="w-full ">
+    <div id="categories" class="w-full flex flex-col gap-y-1">
       <%= render current_user.categories %>
     </div>
   </div>
