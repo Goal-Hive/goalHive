@@ -1,5 +1,6 @@
 <!--Side navigation bar-->
-<div class="gap-y-4 py-4 px-4 flex flex-col justify-start items-center fixed w-[inherit] h-[inherit] ">
+<div class="gap-y-2 py-4 px-4 flex flex-col justify-start items-center fixed w-[inherit] h-[inherit]"
+  data-controller="categories--navbar">
   <!--  Create a Goal-->
   <%= link_to '+ Create a goal',
               new_goal_path,
@@ -7,11 +8,14 @@
               class: "h-fit w-full rounded-3xl py-1 text-center bg-light-bg-darkPurple text-white block font-bold " %>
   <!--  Create a new Category-->
   <div class="flex justify-between items-center bg-white w-full rounded-t-xl p-2 dark:bg-dark-navbar">
-    <p class="font-semibold">Categories</p>
-    <%= button_to '+',
-                  new_category_path(@milestone),
+    <p class="font-semibold text-yankeesBlue dark:text-white">Categories</p>
+    <%= button_to new_category_path(@milestone),
                   method: :post,
-                  class: "border border-solid border-gray-200 h-5 w-5 flex justify-center items-center p-4 bg-light-bg-secondary rounded-2xl text-2xl text-light-text-main" %>
+                  class: "border border-solid border-gray-200 flex justify-center items-center h-7 w-7 p-2 bg-light-bg-secondary rounded-3xl text-2xl text-light-text-main" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M8 1V15M1 8H15" stroke="#415472" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    <% end %>
   </div>
 
   <!--  Categories Section-->

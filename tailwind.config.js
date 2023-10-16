@@ -37,6 +37,8 @@ module.exports = {
                 yankeesBlue: "#152E40",
                 philippineYellow: "#FFC700",
                 peach: "#FFEDAC",
+                onyx: "#36373D",
+                independence: "#415472",
                 light: {
                     text: {
                         title: "#415472",
