@@ -35,9 +35,9 @@
 
     .navbar_category_hover {
         @apply
-        hover: border
-        hover: border-solid
-        hover: border-gray-200
+        hover:border
+        hover:border-solid
+        hover:border-gray-200
     }
 
     .navbar_category {

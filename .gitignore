@@ -37,3 +37,6 @@
 /.idea
 /.idea/*
 /.idea
+/config/credentials/staging.key
+
+/config/credentials/development.key
