@@ -37,3 +37,4 @@
 /.idea
 /.idea/*
 /.idea
+/config/credentials/staging.key

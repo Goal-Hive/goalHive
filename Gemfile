@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -80,5 +82,6 @@ group :test do
   gem 'webdrivers'
 end
 
-gem "has_scope", "~> 0.8.1"
-gem "view_component"
+gem 'foreman', '~> 0.87.2'
+gem 'has_scope', '~> 0.8.1'
+gem 'view_component'
