@@ -3,7 +3,7 @@ import {Controller} from "@hotwired/stimulus"
 // Connects to data-controller="stepper"
 export default class extends Controller {
 
-    static targets = ["stepNumber", "numberOfSteps", "step", "next", "prev", "submit"]
+    static targets = ["stepNumber", "numberOfSteps", "step", "next", "prev", "submit", "goalInput", "goalReplica"]
 
     connect() {
         // console.log("stepper controller is connected")
@@ -56,6 +56,7 @@ export default class extends Controller {
     }
 
     previous(e) {
+        console.log('hey')
         e.preventDefault()
         if (this.index > 0) {
             this.index--
@@ -63,5 +64,13 @@ export default class extends Controller {
             this.showCurrentStep()
             this.controlNavigation()
         }
+    }
+
+    reflectGoal(e){
+        this.goalReplicaTarget.textContent = this.goal
+    }
+
+    get goal() {
+        return this.goalInputTarget.value
     }
 }

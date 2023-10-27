@@ -18,8 +18,8 @@ class CategoriesController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.prepend('categories',
-                              partial: 'categories/form',
-                              locals: { category: @category }),
+                               partial: 'categories/form',
+                               locals: { category: @category })
         ]
       end
     end
@@ -53,6 +53,8 @@ class CategoriesController < ApplicationController
             turbo_stream.remove('new_category')
           ]
         end
+        format.html
+        format.json
         #   format.html { redirect_to category_url(@category), notice: 'Category was successfully created.' }
         #   format.json { render :show, status: :created, location: @category }
         # else
