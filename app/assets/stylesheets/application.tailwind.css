@@ -20,7 +20,7 @@
 
     .step_desc {
         @apply
-        flex items-center gap-x-2
+        flex items-center gap-x-2 text-fiord
     }
 
     .step_title {
