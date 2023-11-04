@@ -1,5 +1,8 @@
 <div>
-  <%= form.radio_button :category_id, category.id, class: "sr-only peer" %>
+  <%= form.radio_button :category_id,
+                        category.id,
+                        'data-stepper-target': "newGoalCategoryOption",
+                        class: "sr-only peer" %>
   <label class="flex px-3 py-1 bg-zircon  text-fiord rounded-md border border-gray-300 cursor-pointer focus:outline-none hover:bg-gray-50
               peer-checked:ring-green-500
               peer-checked:ring-2

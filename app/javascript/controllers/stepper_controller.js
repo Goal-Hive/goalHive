@@ -3,7 +3,17 @@ import {Controller} from "@hotwired/stimulus"
 // Connects to data-controller="stepper"
 export default class extends Controller {
 
-    static targets = ["stepNumber", "numberOfSteps", "step", "next", "prev", "submit", "goalInput", "goalReplica"]
+    static targets = [
+        "stepNumber",
+        "numberOfSteps",
+        "step",
+        "next",
+        "prev",
+        "submit",
+        "goalInput",
+        "goalReplica",
+        "newGoalCategoryOption",
+        "newGoalCategoryInput"]
 
     connect() {
         // console.log("stepper controller is connected")
@@ -36,10 +46,10 @@ export default class extends Controller {
     }
 
     controlNavigation() {
-        if (this.index === 0){
+        if (this.index === 0) {
             this.nextTarget.classList.toggle('hidden')
         }
-        if (this.index === this.stepTargets.length-2) {
+        if (this.index === this.stepTargets.length - 2) {
             this.submitTarget.classList.toggle('hidden')
             this.prevTarget.classList.toggle('hidden')
         }
@@ -56,7 +66,6 @@ export default class extends Controller {
     }
 
     previous(e) {
-        console.log('hey')
         e.preventDefault()
         if (this.index > 0) {
             this.index--
@@ -66,11 +75,28 @@ export default class extends Controller {
         }
     }
 
-    reflectGoal(e){
+    reflectGoal(e) {
         this.goalReplicaTarget.textContent = this.goal
     }
 
     get goal() {
         return this.goalInputTarget.value
+    }
+
+    unselectCategoriesOptions(e) {
+        this.newGoalCategoryOptionTargets.forEach(radio => {
+            radio.checked = false;
+            radio.disabled = true
+        });
+    }
+
+    enableCategoriesOptions(e) {
+        this.newGoalCategoryOptionTargets.forEach(radio => {
+            radio.disabled = false
+        });
+    }
+
+    resetnewGoalCategoryInput() {
+        this.newGoalCategoryInputTarget.value=''
     }
 }

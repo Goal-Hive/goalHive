@@ -49,8 +49,7 @@
             <%= render  'categories/new_goal_category', form:, category:%>
           <% end %>
         </div>
-        <%#= button_to '', new_category_path(@milestone),  method: :post %>
-        <%= render  'categories/new_goal_category_form' %>
+        <%= render  'categories/new_goal_category_form', form: %>
       </div>
       <!--      Step 4: Assign Begin date, End date-->
       <div class="step_container" data-stepper-target="step">
@@ -87,5 +86,3 @@
     </div>
   </div>
 <% end %>
-
-

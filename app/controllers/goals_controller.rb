@@ -10,7 +10,6 @@ class GoalsController < ApplicationController
   def index; end
 
   def filter_by_category
-
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
@@ -39,6 +38,7 @@ class GoalsController < ApplicationController
   def new
     @goal = Goal.new
     @goal.milestones.build
+    @goal.build_category
   end
 
   # GET /goals/1/edit
@@ -47,6 +47,7 @@ class GoalsController < ApplicationController
   # POST /goals or /goals.json
   def create
     @goal = Goal.new(goal_params)
+    @goal.category = find_or_create_category
     @goal.user = current_user
     respond_to do |format|
       if @goal.save
@@ -64,6 +65,14 @@ class GoalsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @goal.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def find_or_create_category
+    if goal_params[:category_id].present?
+      Category.find(goal_params[:category_id])
+    elsif goal_params.dig(:category_attributes, :name).present?
+      current_user.categories.build(name: goal_params[:category_attributes][:name])
     end
   end
 
@@ -87,7 +96,7 @@ class GoalsController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.remove(@goal),
+          turbo_stream.remove(@goal)
         ]
       end
     end
@@ -99,8 +108,8 @@ class GoalsController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.replace(@goal,
-                              partial: 'goals/goal',
-                              locals: { goal: @goal }),
+                               partial: 'goals/goal',
+                               locals: { goal: @goal })
         ]
       end
     end
@@ -117,9 +126,14 @@ class GoalsController < ApplicationController
     @goals = apply_scopes(current_user.goals.order(created_at: :desc)).all
   end
 
-
   # Only allow a list of trusted parameters through.
   def goal_params
-    params.require(:goal).permit(:description, :motivation, :category_id, :begin_date, :end_date, milestones_attributes: %i[id description _destroy])
+    params.require(:goal).permit(:description,
+                                 :motivation,
+                                 :category_id,
+                                 :begin_date,
+                                 :end_date,
+                                 milestones_attributes: %i[id description _destroy],
+                                 category_attributes: [:name])
   end
 end

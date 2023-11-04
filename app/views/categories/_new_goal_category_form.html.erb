@@ -1,20 +1,19 @@
 <div data-controller="toggle">
   <div class="hidden flex justify-start items-center gap-x-3" data-toggle-target="toggledContent">
-    <form></form>
-    <%= form_with(model: Category, url: categories_path, class: "contents", data: { turbo_stream: true }) do |form| %>
+    <%= form.fields_for :category_attributes do |category_fields| %>
       <div class="flex gap-x-3 w-full">
-        <%= form.text_field :name,
-                            name: "category[name]",
+        <%= category_fields.text_field :name,
                             class: "text-doveGray shadow rounded-md outline-none w-full font-base",
                             placeholder: "Type your new category name.....",
-                            value: '' %>
+                            value: '',
+                            'data-stepper-target':'newGoalCategoryInput'%>
         <div class="text-light-text-categories dark:text-white flex gap-x-3">
-          <%= button_tag type: 'submit', class: "align-middle bg-green-100 p-2 text-green-500  whitespace-nowrap" do %>
-            &#10003 confirm
-          <% end %>
-          <button data-controller="form"
-                  data-form-id-value="new_category"
-                  data-action="click->toggle#toggleContent"
+          <%#= button_tag type: 'submit', class: "align-middle bg-green-100 p-2 text-green-500  whitespace-nowrap" do %>
+<!--            &#10003 confirm-->
+          <%# end %>
+          <button data-action="click->toggle#toggleContent
+                              click->stepper#enableCategoriesOptions
+                              click->stepper#resetnewGoalCategoryInput"
                   class="bg-red-100 p-2 text-red-500 whitespace-nowrap">
             &#10007 cancel
           </button>
@@ -22,9 +21,10 @@
       </div>
     <% end %>
   </div>
-  <button data-action="click->toggle#toggleContent"
+  <button data-action="click->toggle#toggleContent click->stepper#unselectCategoriesOptions"
           data-toggle-target="toggleBtn"
           class="text-ceruleanBlue bg-zircon p-2 flex justify-start w-fit rounded-md">
     <p>Create New Category?</p>
   </button>
 </div>
+
