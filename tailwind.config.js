@@ -39,6 +39,9 @@ module.exports = {
                 peach: "#FFEDAC",
                 onyx: "#36373D",
                 independence: "#415472",
+                lotion: "#FAFAFA",
+                cultured: "#F5F5F5",
+                ceruleanBlue: "#414FC7",
                 light: {
                     text: {
                         title: "#415472",

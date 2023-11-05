@@ -18,8 +18,8 @@ class CategoriesController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.prepend('categories',
-                              partial: 'categories/form',
-                              locals: { category: @category }),
+                               partial: 'categories/form',
+                               locals: { category: @category })
         ]
       end
     end

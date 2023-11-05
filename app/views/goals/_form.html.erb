@@ -1,4 +1,4 @@
-<%= form_with(model: goal, class: "contents") do |form| %>
+<%= form_with(model: goal, url: goals_path, class: "contents") do |form| %>
   <% if goal.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(goal.errors.count, "error") %> prohibited this goal from being saved:</h2>
@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <div data-controller="stepper" class="h-50v flex flex-col gap-y-3 justify-between"_>
+  <div data-controller="stepper" class="h-50v flex flex-col gap-y-3 justify-between">
     <!--    ٍStep Number-->
     <div class="bg-light-bg-lightGray flex items-center gap-x-3 w-fit p-3 text-fiord  font-medium rounded-md">
       <%= image_tag 'stars' %>
@@ -28,20 +28,30 @@
           <%= image_tag 'achieved', class: "w-5 h-5" %>
           <p>What’s your goal?</p>
         </div>
-        <%= form.text_field :description, class: "goal_input" %>
+        <%= form.text_field :description, class: "goal_input", 'data-stepper-target': "goalInput", 'data-action': "input->stepper#reflectGoal" %>
         <div class="step_desc">
           <%= image_tag 'electric', class: "w-5 h-5" %>
           <p>Why do you want to achieve this goal?</p>
         </div>
         <%= form.text_field :motivation, class: "goal_input" %>
-        <%= form.label :category %>
-        <%= form.select :category_id, current_user.categories.all.pluck(:name, :id) %>
       </div>
       <!--      Step 2: Developing Milestones step -->
       <div class="step_container" data-stepper-target="step" data-controller="milestones">
         <%= render 'partials/common/create_milestones', form: form %>
       </div>
-      <!--      Step 3: Assign Begin date, End date-->
+      <!--      Step 3: Choosing Category step -->
+      <div class="step_container" data-stepper-target="step" data-controller="milestones">
+        <h3 class="step_title">Choose a category to add your goal to</h3>
+        <div class="step_desc"><p data-stepper-target="goalReplica"></p></div>
+        <p> Your recent categories </p>
+        <div class="flex gap-x-5 flex-wrap gap-y-3 pb-4" id="new_goal_categories">
+          <% current_user.categories.each do |category| %>
+            <%= render  'categories/new_goal_category', form:, category:%>
+          <% end %>
+        </div>
+        <%= render  'categories/new_goal_category_form', form: %>
+      </div>
+      <!--      Step 4: Assign Begin date, End date-->
       <div class="step_container" data-stepper-target="step">
         <div class="step_title">
           Great, dates help keep momentum with our goals!
@@ -76,5 +86,3 @@
     </div>
   </div>
 <% end %>
-
-
