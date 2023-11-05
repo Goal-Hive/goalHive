@@ -53,8 +53,6 @@ class CategoriesController < ApplicationController
             turbo_stream.remove('new_category')
           ]
         end
-        format.html
-        format.json
         #   format.html { redirect_to category_url(@category), notice: 'Category was successfully created.' }
         #   format.json { render :show, status: :created, location: @category }
         # else
