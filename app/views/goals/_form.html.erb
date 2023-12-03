@@ -25,12 +25,12 @@
       <div class="step_container" data-stepper-target="step">
         <h3 class="step_title">Creating your new goal</h3>
         <div class="step_desc">
-          <%= image_tag 'achieved', class: "w-5 h-5" %>
+          <%= image_tag 'achieved.svg', class: "w-5 h-5" %>
           <p>What’s your goal?</p>
         </div>
         <%= form.text_field :description, class: "goal_input", 'data-stepper-target': "goalInput", 'data-action': "input->stepper#reflectGoal" %>
         <div class="step_desc">
-          <%= image_tag 'electric', class: "w-5 h-5" %>
+          <%= image_tag 'electric.svg', class: "w-5 h-5" %>
           <p>Why do you want to achieve this goal?</p>
         </div>
         <%= form.text_field :motivation, class: "goal_input" %>
