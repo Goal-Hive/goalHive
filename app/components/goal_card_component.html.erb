@@ -1,7 +1,6 @@
 <%#= link_to @goal do %>
-<div class="p-3 dark:bg-dark-goalCard border shadow-md border-gray-100 bg-white border-opacity-10 rounded-lg hover:border-indigo-200 flex flex-col"
+<div class="h-96 p-3 border shadow-md border-gray-100 bg-white border-opacity-10 rounded-lg hover:border-indigo-200 flex flex-col"
      data-controller="toggle">
-
   <div class="flex items-center justify-end gap-x-2 h-8">
     <!--  Pause/Resume, Delete, Category, Details-->
     <div class="hidden flex justify-end items-center gap-x-3"
@@ -36,8 +35,8 @@
 
   <!--  Goal Card Details-->
   <div class="flex flex-col gap-y-2" data-controller="milestones" data-milestones-goal_id=<%= @goal.id %>>
-
-    <div class="w-fit mt-3 text-xs font-medium text-light-text-secondary dark:text-white">
+  <!--    Name  &   Description-->
+    <div class="w-fit text-sm font-medium text-light-text-secondary dark:text-white">
       <%= @goal.category.name %>
     </div>
     <h3 class="w-full font-semibold text-xl dark:text-white text-light-text-title">
@@ -55,7 +54,7 @@
           </span>
         </div>
         <%= image_tag 'eye.svg',
-                      class: "w-5 h-5",
+                      class: "w-5 h-5 hover:cursor-pointer ",
                       data: {
                         controller: "toggle",
                         action: "click->toggle#toggleById",
@@ -73,9 +72,12 @@
       </div>
     </div>
     <!--    end-->
-
+    <p class="text-xs text-light-text-secondary">
+      <strong class="font-medium">Created At:</strong>
+      <%= @goal.created_at.to_fs(:short) %>
+    </p>
     <!--    Milestones-->
-    <div class="mt-3 text-xs  font-medium  text-light-text-main pb-1 dark:text-white">
+    <div class="mt-2 text-xs  font-medium  text-light-text-main pb-1 dark:text-white">
       Next Milestone
     </div>
     <p class="hidden text-xs text-light-text-main">
@@ -100,12 +102,6 @@
         </p>
       </div>
     <% end %>
-
-
-    <p class="hidden text-light-text-secondary">
-      <strong class="font-medium">Created At:</strong>
-      <%= @goal.created_at.to_fs(:short) %>
-    </p>
 
     <%# if action_name != "show" %> <%# end %>
     <%= button_to achieve_milestone_path(id: @goal.milestones.where(status: 'in_progress')&.first&.id || 0),
