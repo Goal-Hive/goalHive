@@ -35,7 +35,7 @@
 
   <!--  Goal Card Details-->
   <div class="flex flex-col gap-y-2" data-controller="milestones" data-milestones-goal_id=<%= @goal.id %>>
-  <!--    Name  &   Description-->
+    <!--    Name  &   Description-->
     <div class="w-fit text-sm font-medium text-light-text-secondary dark:text-white">
       <%= @goal.category.name %>
     </div>
@@ -56,9 +56,11 @@
         <%= image_tag 'eye.svg',
                       class: "w-5 h-5 hover:cursor-pointer ",
                       data: {
-                        controller: "toggle",
-                        action: "click->toggle#toggleById",
+                        controller: "toggle goal-card--progress",
+                        action: "click->toggle#toggleById click->goal-card--progress#toggleImage",
                         toggle_id_value: "progress-#{@goal.id}",
+                        goal_card__progress_original_img_value: asset_path("eye.svg"),
+                        goal_card__progress_toggle_img_value: asset_path("coveredEye.svg"),
                       }
         %>
       </div>

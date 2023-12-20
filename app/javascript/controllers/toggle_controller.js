@@ -18,8 +18,6 @@ export default class extends Controller {
     }
 
     toggleById(e) {
-        console.log(this.idValue)
-        console.log(this.element.closest(`#${this.idValue}`))
         document.querySelector(`#${this.idValue}`).classList.toggle('hidden')
     }
 }
