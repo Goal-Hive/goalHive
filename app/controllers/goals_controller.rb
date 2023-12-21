@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
 class GoalsController < ApplicationController
-  before_action :set_goal, only: %i[show edit update destroy update_status], except: %i[filter_by_category]
-  before_action :set_goals, only: %i[index filter_by_category filter_by_status]
+  before_action :set_goal, only: %i[show edit update destroy update_status]
+  before_action :set_goals, only: %i[filter_by_category filter_by_status]
   has_scope :by_category
   has_scope :by_status
 
   # GET /goals or /goals.json
-  def index; end
+  def index
+    @goals = Goal.status_active
+  end
 
   def filter_by_category
     respond_to do |format|
