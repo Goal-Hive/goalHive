@@ -48,8 +48,8 @@ export default class extends Controller {
 
     markMilestone(event){
         const goal_id = this.data.get("goal_id")
-        event.target.classList.toggle('bg-gray-200')
-        event.target.classList.toggle('bg-yellow-400')
+        event.target.querySelector('div').classList.toggle('bg-gray-200')
+        event.target.querySelector('div').classList.toggle('bg-yellow-400')
         const button = document.querySelector(`#goal_${goal_id} .updateBtn`)
         button.disabled = !button.disabled
     }
