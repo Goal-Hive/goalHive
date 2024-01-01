@@ -10,6 +10,9 @@ application.register("categories--navbar", Categories__NavbarController)
 import FormController from "./form_controller"
 application.register("form", FormController)
 
+import GoalCard__ProgressController from "./goal_card/progress_controller"
+application.register("goal-card--progress", GoalCard__ProgressController)
+
 import MilestonesController from "./milestones_controller"
 application.register("milestones", MilestonesController)
 
