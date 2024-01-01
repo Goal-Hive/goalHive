@@ -93,16 +93,16 @@
         </p>
       </div>
     <% else %>
-      <div class="flex items-center gap-x-2 bg-light-bg-secondary rounded-xl p-3 dark:bg-dark-goalCardMilestones">
-        <button class="w-5 h-5 rounded-3xl bg-gray-200 text-white flex justify-center items-center hover: cursor-pointer"
-                data-action="click->milestones#markMilestone">
+      <button class="flex items-center gap-x-2 bg-light-bg-secondary rounded-xl p-3 dark:bg-dark-goalCardMilestones hover: cursor-pointer"
+           data-action="click->milestones#markMilestone">
+        <div class="w-5 h-5 rounded-3xl bg-gray-200 text-white flex justify-center items-center">
           &#10003
-        </button>
+        </div>
         <p class="text-base font-medium text-light-text-main dark:text-white">
           Milestone <%= @milestone_number %>:
-          <%= @goal.milestones.where(status: 'in_progress')&.first&.description %>
+          <%= @next_milestone&.description %>
         </p>
-      </div>
+      </button>
     <% end %>
 
     <%# if action_name != "show" %> <%# end %>
