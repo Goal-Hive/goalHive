@@ -36,10 +36,10 @@
   <!--  Goal Card Details-->
   <div class="flex flex-col gap-y-2" data-controller="milestones" data-milestones-goal_id=<%= @goal.id %>>
     <!--    Name  &   Description-->
-    <div class="w-fit text-sm font-medium text-light-text-secondary dark:text-white">
+    <div class="text-sm font-medium text-light-text-secondary dark:text-white truncate">
       <%= @goal.category.name %>
     </div>
-    <h3 class="w-full font-semibold text-xl dark:text-white text-light-text-title">
+    <h3 class="w-full font-semibold text-xl dark:text-white text-light-text-title truncate">
       <%= link_to @goal.description, @goal, class: "w-full block" %>
     </h3>
 
