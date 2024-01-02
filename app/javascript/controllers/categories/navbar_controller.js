@@ -10,15 +10,18 @@ export default class extends Controller {
     }
 
     select(e) {
-        const currCategory = e.currentTarget.firstElementChild
-
+        let currCategory
+        if (e.target.dataset.categorytype === 'status') {
+            currCategory = e.currentTarget.querySelector('button')
+        } else {
+            currCategory = e.currentTarget.firstElementChild
+        }
         if (this.hasCurrIdValue && currCategory.id != this.currIdValue) {
             const category = document.querySelector(`#${this.currIdValue}`)
             category.classList.remove('selected_category')
             category.querySelector(`[data-category-element="btn"]`)?.classList.add('hidden')
             category.querySelector(`[data-category-element="options"]`)?.classList.add('hidden')
         }
-
 
         this.currIdValue = currCategory.id
 
