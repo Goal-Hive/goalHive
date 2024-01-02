@@ -38,7 +38,10 @@ gem 'jbuilder'
 # Use Redis adapter to run Action Cable in production
 gem 'redis', '~> 4.0'
 
+# Authentication
 gem 'devise'
+gem 'omniauth-google-oauth2'
+gem "omniauth-rails_csrf_protection", "~> 1.0"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -85,3 +88,4 @@ end
 gem 'foreman', '~> 0.87.2'
 gem 'has_scope', '~> 0.8.1'
 gem 'view_component'
+
