@@ -8,7 +8,7 @@ class Goal < ApplicationRecord
   scope :by_category, ->(category) { where(category: category) }
   scope :by_status, ->(status) { where(status: status) }
   accepts_nested_attributes_for :milestones, :category
-  enum :status, %i[paused active achieved archived], default: :paused, prefix: true
+  enum :status, %i[paused active achieved archived], default: :active, prefix: true
 
   def toggle_status
     if status_paused?

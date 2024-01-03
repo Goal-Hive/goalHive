@@ -3,6 +3,7 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[show edit update destroy update_status]
   before_action :set_goals, only: %i[filter_by_category filter_by_status]
+  before_action :set_current_category, only: %i[create filter_by_category]
   has_scope :by_category
   has_scope :by_status
 
@@ -12,6 +13,8 @@ class GoalsController < ApplicationController
   end
 
   def filter_by_category
+    @current_category = params[:by_category]
+    session[:current_category] = @current_category
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
@@ -23,6 +26,8 @@ class GoalsController < ApplicationController
   end
 
   def filter_by_status
+    @current_status = params[:by_status]
+    session[:current_status] = @current_status
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
@@ -55,9 +60,13 @@ class GoalsController < ApplicationController
       if @goal.save
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.prepend('goals',
-                                 partial: 'goals/goal',
-                                 locals: { goal: @goal }),
+            if !@current_category || @current_category.to_i == @goal.category_id || @current_status == 'active'
+              turbo_stream.prepend('goals',
+                                   partial: 'goals/goal',
+                                   locals: { goal: @goal })
+            else
+              turbo_stream.remove('')
+            end,
             turbo_stream.update('notice', 'Goal was successfully created.')
           ]
         end
@@ -137,5 +146,10 @@ class GoalsController < ApplicationController
                                  :end_date,
                                  milestones_attributes: %i[id description _destroy],
                                  category_attributes: [:name])
+  end
+
+  def set_current_category
+    @current_status = session[:current_status] || 'active'
+    @current_category ||= session[:current_category]
   end
 end

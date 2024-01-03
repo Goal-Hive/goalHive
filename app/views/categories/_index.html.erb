@@ -7,9 +7,9 @@
         <%= button_to value,
                       filter_by_status_goals_path(by_status: key),
                       method: :post,
-                      class: "
-                      navbar_category_hover
-                      navbar_category py-3 pl-3" %>
+                      class: " navbar_category_hover navbar_category py-3 pl-3",
+                      id: "#{value}_category",
+                      "data-category-type": "status" %>
       <% end %>
     <% end %>
     <div id="categories" class="w-full flex flex-col gap-y-1">
