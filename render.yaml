@@ -5,7 +5,7 @@ databases:
 
 services:
   - type: web
-    name: goalHive
+    name: goal_hive
     runtime: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
