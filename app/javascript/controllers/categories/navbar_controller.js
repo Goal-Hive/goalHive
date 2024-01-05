@@ -16,16 +16,19 @@ export default class extends Controller {
 
     select(e) {
         let selectedCategory
+        // If the user selected category status => Assign it to selected category status [active, paused, achieved]
         if (e.target.dataset.categoryType === 'status') {
             selectedCategory = e.currentTarget.querySelector('button')
-        } else {
-            selectedCategory = e.currentTarget.firstElementChild
+        } else { // Else => Assign whatever category they clicked in to selectedCategory
+            selectedCategory = e.currentTarget.parentNode
         }
 
-        if (this.hasCurrIdValue && selectedCategory.id != this.currIdValue) {
+        // If selectedCategory different than the current => styleUnselected previous
+        if (selectedCategory.id != this.currIdValue) {
             const previous = document.querySelector(`#${this.currIdValue}`)
             this.styleUnselected(previous)
         }
+        // console.log("hey2", selectedCategory.id)
         this.currIdValue = selectedCategory.id
         this.styleSelected(selectedCategory)
     }
