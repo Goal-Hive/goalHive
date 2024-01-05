@@ -1,35 +1,36 @@
-<%= render layout: 'partials/common/navbar_category_container' do %>
-  <div
-    class="navbar_category navbar_category_hover py-3 px-2"
-    id="<%= dom_id category %>">
-    <%= button_to filter_by_category_goals_path(by_category: category),
-                  method: :post,
-                  class: "w-full" do %>
-          <p class="w-36 flex justify-start items-center truncate"><%= category.name %></p>
+<div id="<%= dom_id category %>">
+  <%= render layout: 'partials/common/navbar_category_container' do %>
+    <div
+      class="navbar_category navbar_category_hover py-3 px-2">
+      <%= button_to filter_by_category_goals_path(by_category: category),
+                    method: :post,
+                    class: "w-full" do %>
+        <p class="w-36 flex justify-start items-center truncate"><%= category.name %></p>
       <% end %>
 
-    <div class="flex justify-center items-center gap-x-2">
-      <!--      Delete, Category, Details-->
-      <div class="hidden flex justify-end items-center gap-x-2" data-toggle-target="toggledContent" data-category-element="options">
-        <%= button_to (image_tag 'delete.svg'),
-                      category_path(category),
-                      method: :delete,
-                      form: { data: { turbo_confirm: 'Are you sure you want to delete this category?' } },
-                      class: "w-7 h-7 flex justify-center items-center rounded-2xl py-2 px-2 bg-red-100" %>
-        <%= button_to (image_tag 'edit.svg'),
-                      edit_category_path(category),
-                      method: :post,
-                      class: "w-7 h-7 flex justify-center items-center rounded-2xl py-2 px-2 bg-gray-100 inline-block font-medium" %>
-        <button data-action="click->toggle#toggleContent"
-                class="flex justify-center items-center rounded-2xl bg-light-bg-secondary w-7 h-7 text-xl text-light-text-darkPurple p-2 font-medium">
-          x
-        </button>
+      <div class="flex justify-center items-center gap-x-2">
+        <!--      Delete, Category, Details-->
+        <div class="hidden flex justify-end items-center gap-x-2" data-toggle-target="toggledContent" data-category-element="options">
+          <%= button_to (image_tag 'delete.svg'),
+                        category_path(category),
+                        method: :delete,
+                        form: { data: { turbo_confirm: 'Are you sure you want to delete this category?' } },
+                        class: "w-7 h-7 flex justify-center items-center rounded-2xl py-2 px-2 bg-red-100" %>
+          <%= button_to (image_tag 'edit.svg'),
+                        edit_category_path(category),
+                        method: :post,
+                        class: "w-7 h-7 flex justify-center items-center rounded-2xl py-2 px-2 bg-gray-100 inline-block font-medium" %>
+          <button data-action="click->toggle#toggleContent"
+                  class="flex justify-center items-center rounded-2xl bg-light-bg-secondary w-7 h-7 text-xl text-light-text-darkPurple p-2 font-medium">
+            x
+          </button>
+        </div>
+        <button data-action="click->toggle#toggleContent" data-toggle-target="toggleBtn"
+                data-category-element="btn" class="hidden"> <%= image_tag 'dots.svg' %> </button>
       </div>
-      <button data-action="click->toggle#toggleContent" data-toggle-target="toggleBtn"
-              data-category-element="btn" class="hidden"> <%= image_tag 'dots.svg' %> </button>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 <%# if action_name != "show" %>
 <%#= link_to "Show this category", category, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
