@@ -6,7 +6,7 @@
 <!--        <span class="cursor-pointer dark:text-fiord text-philippineYellow bg-peach dark:bg-white rounded-3xl">&#9788;</span>-->
 <!--        <span class="cursor-pointer dark:text-philippineYellow text-fiord">&#x1F313;</span>-->
 <!--      </button>-->
-      <% if action_name == "show" %>
+      <% if controller_name == "goals"  && action_name == "show" %>
         <%= button_to new_milestone_path(goal_id: @goal.id),
                       method: :post,
                       data: { turbo_frame: "modal" } do %>
