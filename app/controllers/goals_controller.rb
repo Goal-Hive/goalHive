@@ -2,14 +2,14 @@
 
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[show edit update destroy update_status]
-  before_action :set_goals, only: %i[filter_by_category filter_by_status]
+  before_action :set_goals, only: %i[index filter_by_category filter_by_status]
   before_action :set_current_category, only: %i[create filter_by_category]
   has_scope :by_category
   has_scope :by_status
 
   # GET /goals or /goals.json
   def index
-    @goals = Goal.status_active
+    @goals = @goals.status_active
   end
 
   def filter_by_category
