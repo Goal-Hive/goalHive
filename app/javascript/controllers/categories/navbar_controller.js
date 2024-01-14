@@ -7,15 +7,11 @@ export default class extends Controller {
     }
 
     connect() {
-        if (!this.currIdValue) {
-            const activeCategory = document.querySelector(`[data-category-type="status"]`)
-            this.styleSelected(activeCategory)
-            this.currIdValue = activeCategory.id
-        }
+        this.initiateSelectedCategory()
     }
 
     select(e) {
-        let selectedCategory
+        let selectedCategory, previous
         // If the user selected category status => Assign it to selected category status [active, paused, achieved]
         if (e.target.dataset.categoryType === 'status') {
             selectedCategory = e.currentTarget.querySelector('button')
@@ -25,14 +21,21 @@ export default class extends Controller {
 
         // If selectedCategory different than the current => styleUnselected previous
         if (selectedCategory.id != this.currIdValue) {
-            const previous = document.querySelector(`#${this.currIdValue}`)
+            previous = document.querySelector(`#${this.currIdValue}`)
             this.styleUnselected(previous)
         }
-        // console.log("hey2", selectedCategory.id)
+
         this.currIdValue = selectedCategory.id
         this.styleSelected(selectedCategory)
     }
 
+    initiateSelectedCategory = () => {
+        if (!this.currIdValue) {
+            const activeCategory = document.querySelector(`[data-category-type="status"]`)
+            this.styleSelected(activeCategory)
+            this.currIdValue = activeCategory.id
+        }
+    }
     styleSelected = (currCategory) => {
         currCategory.classList.add('selected_category')
         currCategory.classList.remove('navbar_category_hover')
@@ -40,8 +43,8 @@ export default class extends Controller {
     }
 
     styleUnselected = (category) => {
-        category.classList.remove('selected_category')
-        category.querySelector(`[data-category-element="btn"]`)?.classList.add('hidden')
-        category.querySelector(`[data-category-element="options"]`)?.classList.add('hidden')
+        category?.classList.remove('selected_category')
+        category?.querySelector(`[data-category-element="btn"]`)?.classList.add('hidden')
+        category?.querySelector(`[data-category-element="options"]`)?.classList.add('hidden')
     }
 }
