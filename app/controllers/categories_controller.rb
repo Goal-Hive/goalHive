@@ -30,9 +30,9 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.update(@category,
-                              partial: 'categories/form',
-                              locals: { category: @category })
+          turbo_stream.replace(@category,
+                               partial: 'categories/form',
+                               locals: { category: @category })
         ]
       end
     end
