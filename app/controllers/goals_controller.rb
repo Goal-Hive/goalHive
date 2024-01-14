@@ -64,6 +64,9 @@ class GoalsController < ApplicationController
               turbo_stream.prepend('goals',
                                    partial: 'goals/goal',
                                    locals: { goal: @goal })
+              turbo_stream.append('categories',
+                                  partial: 'categories/category',
+                                  locals: { category: @goal.category })
             else
               turbo_stream.remove('')
             end,
