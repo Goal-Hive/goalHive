@@ -11,15 +11,15 @@
         </ul>
       </div>
     <% end %>
-    <div class=" flex gap-x-3">
-      <%= form.text_field :name, class: "shadow rounded-md  outline-none w-full text-light-text-categories font-semibold", placeholder:"New Category"%>
+    <div class="flex gap-x-3">
+      <%= form.text_field :name, class: "shadow rounded-md  outline-none w-full text-light-text-categories font-semibold", placeholder: "New Category" %>
       <div class="text-light-text-categories dark:text-white">
         <%= button_tag type: 'submit', class: "align-middle" do %>
           &#10003
         <% end %>
         <button data-controller="form"
-             data-form-id-value="new_category"
-             data-action="click->form#remove">
+                data-form-id-value="new_category"
+                data-action="click->form#remove">
           &#10007
         </button>
       </div>
