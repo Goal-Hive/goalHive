@@ -30,9 +30,9 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.update(@category,
-                              partial: 'categories/form',
-                              locals: { category: @category })
+          turbo_stream.replace(@category,
+                               partial: 'categories/form',
+                               locals: { category: @category })
         ]
       end
     end
@@ -97,7 +97,10 @@ class CategoriesController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@category),
-          turbo_stream.update('notice', 'Category is removed')
+          turbo_stream.update('notice', 'Category is removed'),
+          turbo_stream.replace('goals',
+                               template: 'goals/index',
+                               locals: { goals: current_user.goals.status_active.all })
         ]
       end
       # format.html { redirect_to categories_url, notice: 'Category was successfully destroyed.' }
