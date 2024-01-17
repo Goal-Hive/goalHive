@@ -24,7 +24,6 @@ export default class extends Controller {
             previous = document.querySelector(`#${this.currIdValue}`)
             this.styleUnselected(previous)
         }
-
         this.currIdValue = selectedCategory.id
         this.styleSelected(selectedCategory)
     }
