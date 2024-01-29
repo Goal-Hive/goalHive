@@ -8,6 +8,16 @@
         bg-light-bg-darkPurple text-white text-center rounded-xl py-1 shadow-md font-bold focus:ring-2
     }
 
+    .milestone_tab {
+        @apply
+        rounded-3xl inline-block py-2 px-4 hover:text-light-text-details-selectedTab font-semibold
+    }
+
+    .milestone_tab_content {
+        @apply
+        p-4 flex flex-col gap-y-3
+    }
+
     .step_container {
         @apply
         flex flex-col gap-y-4 text-base text-light-text-main h-full

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class MilestonesController < ApplicationController
   before_action :set_milestone, only: %i[show edit update destroy update_progress achieve_milestone]
   before_action :set_goal, only: %i[new edit update]
@@ -17,6 +18,12 @@ class MilestonesController < ApplicationController
         end
       end
     end
+  end
+
+  def sort_milestones
+    @milestone = Milestone.find(params[:id])
+    @milestone.update(row_order_position: params[:row_order_position])
+    head :no_content
   end
 
   def add_milestone
@@ -40,7 +47,7 @@ class MilestonesController < ApplicationController
 
   # GET /milestones
   def index
-    @milestones = Milestone.all
+    @milestones = Milestone.rank(:row_order).all
   end
 
   # GET /milestones/1
@@ -104,12 +111,13 @@ class MilestonesController < ApplicationController
     @milestone.update_progress(params[:status])
     respond_to do |format|
       format.turbo_stream do
-        if params[:status] == 'achieved'
+        case params[:status]
+        when 'achieved'
           render turbo_stream: [
             turbo_stream.prepend('achievedMilestones', @milestone),
             turbo_stream.replace(@milestone, partial: 'milestone', locals: { milestone: @milestone })
           ]
-        elsif params[:status] == 'in_progress'
+        when 'in_progress'
           render turbo_stream: [
             turbo_stream.prepend('inProgressMilestones', @milestone),
             turbo_stream.replace(@milestone, partial: 'milestone', locals: { milestone: @milestone })

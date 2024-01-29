@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   root 'goals#index'
   devise_for :users
-             # ,controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  # ,controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :goals do
     post 'add_milestone' => 'milestones#add_milestone'
@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       post 'update_progress(/:status)', to: 'milestones#update_progress', as: 'update_progress'
       post 'achieve', to: 'milestones#achieve_milestone', as: 'achieve'
       post :edit, :new
+      put 'sort_milestones', to: 'milestones#sort_milestones', as: 'sort_milestone'
     end
   end
 

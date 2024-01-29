@@ -89,3 +89,7 @@ gem 'foreman', '~> 0.87.2'
 gem 'has_scope', '~> 0.8.1'
 gem 'view_component'
 
+
+gem "ranked-model", "~> 0.4.9"
+
+gem "requestjs-rails", "~> 0.0.11"
