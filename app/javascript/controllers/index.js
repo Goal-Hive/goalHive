@@ -16,6 +16,9 @@ application.register("goal-card--progress", GoalCard__ProgressController)
 import MilestonesController from "./milestones_controller"
 application.register("milestones", MilestonesController)
 
+import SortableController from "./sortable_controller"
+application.register("sortable", SortableController)
+
 import StepperController from "./stepper_controller"
 application.register("stepper", StepperController)
 
@@ -27,6 +30,3 @@ application.register("toggle", ToggleController)
 
 import TurboModalController from "./turbo_modal_controller"
 application.register("turbo-modal", TurboModalController)
-
-import { Tabs } from "tailwindcss-stimulus-components"
-application.register('tabs', Tabs)
