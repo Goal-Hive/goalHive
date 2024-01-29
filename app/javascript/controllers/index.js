@@ -22,6 +22,9 @@ application.register("sortable", SortableController)
 import StepperController from "./stepper_controller"
 application.register("stepper", StepperController)
 
+import TabsController from "./tabs_controller"
+application.register("tabs", TabsController)
+
 import ThemeSwitcherController from "./theme_switcher_controller"
 application.register("theme-switcher", ThemeSwitcherController)
 
