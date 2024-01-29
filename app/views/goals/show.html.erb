@@ -19,39 +19,33 @@
     <p class="text-2xl">
       <%= @goal.description %>
     </p>
+    <!--    Tabs titles-->
+    <div data-controller="tabs" data-tabs-active-tab="-mb-px border rounded-3xl bg-white">
+      <ul class="text-light-text-main list-reset flex border mb-5 rounded-3xl p-1 w-fit bg-slate-50">
 
-    <div
-      data-controller="tabs"
-      data-tabs-active-class="border rounded-3xl bg-white"
-      data-tabs-default-tab-value="In-progress Milestones"
-    >
-      <!-- buttons to toggle between tabs -->
-      <div class="text-light-text-main list-reset flex border mb-5 rounded-3xl p-1 w-fit bg-slate-50">
-        <button id="In-progress Milestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">In-progress Milestones</button>
-        <button id="Achieved Milestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">Achieved Milestones</button>
-        <button id="All Milestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">All Milestones</button>
+        <% { all: "All Milestones", achieved: "Achieved Milestones", in_progress: "In-progress Milestones" }.each do |tab, text| %>
+          <li class="-mb-px mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+            <a class="rounded-3xl inline-block py-2 px-4 hover:text-light-text-details-selectedTab font-semibold no-underline" href="#">
+              <%= text %></a>
+          </li>
+        <% end %>
+      </ul>
+
+      <!--      Tab Content-->
+      <div id="milestones" class=" p-4 flex flex-col gap-y-3" data-tabs-target="panel" data-controller="sortable">
+        <%= render @goal.milestones.rank(:row_order).all %>
       </div>
 
-      <!-- the tabs -->
-      <div class="rounded-lg">
-        <div data-tabs-target="tab default" id="In-progress Milestones" class="hidden milestone_tab_content" data-controller="sortable">
-          <%= render @goal.milestones.where(status: 'in_progress').rank(:row_order).all %>
-        </div>
-
-        <!-- tab 2 is hidden by default, to prevent 'flashing in' -->
-        <div data-tabs-target="tab" id="Achieved Milestones" class='hidden milestone_tab_content'>
-          <%= render @goal.milestones.where(status: 'achieved') %>
-        </div>
-
-        <div data-tabs-target="tab" id="All Milestones" class='hidden milestone_tab_content' data-controller="sortable">
-          <%= render @goal.milestones.rank(:row_order).all %>
-        </div>
+      <div id="achievedMilestones" class="hidden p-4 flex flex-col gap-y-3" data-tabs-target="panel">
+        <%= render @goal.milestones.where(status: 'achieved') %>
       </div>
+      <div id="inProgressMilestones" class="hidden p-4 flex flex-col gap-y-3" data-tabs-target="panel">
+        <%= render @goal.milestones.where(status: 'in_progress') %>
+      </div>
+
     </div>
 
   </div>
-
-
   <!--  3rd section-->
   <div class="">
     <%= render @goal %>
