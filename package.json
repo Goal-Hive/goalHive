@@ -4,6 +4,7 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^7.3.0",
+    "@rails/request.js": "^0.0.9",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.3",
@@ -13,6 +14,7 @@
     "flowbite": "^1.7.0",
     "forman": "^0.3.0",
     "postcss": "^8.4.24",
+    "sortablejs": "^1.15.2",
     "tailwind": "^4.0.0",
     "tailwindcss": "^3.3.2",
     "tailwindcss-stimulus-components": "^4.0.4"
