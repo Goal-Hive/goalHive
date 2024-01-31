@@ -34,15 +34,15 @@
 
       <!-- the tabs -->
       <div class="rounded-lg">
-        <div data-tabs-target="tab defaultTab" id="In-progress Milestones" class="hidden milestone_tab_content" data-controller="sortable">
-          <%= render @goal.milestones.where(status: 'in_progress').rank(:row_order).all %>
+        <div data-tabs-target="tab defaultTab"  id="In-progress Milestones" class="hidden milestone_tab_content" data-controller="sortable" data-sortable-url="<%= sort_in_progress_milestones_path %>" data-sortable-list="in-progress" data-sortable-position="in_progress_row_order_position">
+          <%= render @goal.milestones.where(status: 'in_progress').rank(:in_progress_row_order).all %>
         </div>
 
-        <div data-tabs-target="tab" id="Achieved Milestones" class='hidden milestone_tab_content'>
+        <div data-tabs-target="tab"  id="Achieved Milestones" class='hidden milestone_tab_content'>
           <%= render @goal.milestones.where(status: 'achieved') %>
         </div>
 
-        <div data-tabs-target="tab" id="All Milestones" class='hidden milestone_tab_content' data-controller="sortable">
+        <div data-tabs-target="tab" id="All Milestones" class='hidden milestone_tab_content' data-controller="sortable" data-sortable-url="<%= sort_all_milestones_path %>" data-sortable-position="row_order_position">
           <%= render @goal.milestones.rank(:row_order).all %>
         </div>
       </div>
