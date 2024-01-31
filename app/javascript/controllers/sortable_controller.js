@@ -1,6 +1,6 @@
 import {Controller} from "@hotwired/stimulus"
 import Sortable from 'sortablejs';
-import { put } from '@rails/request.js'
+import {put} from '@rails/request.js'
 
 
 // Connects to data-controller="sortable"
@@ -14,9 +14,10 @@ export default class extends Controller {
 
 
     onEnd(e) {
-        console.log(e.item.dataset.sortableId)
-        put(`/milestones/${e.item.dataset.sortableId}/sort_milestones`,{
-            body: JSON.stringify({row_order_position: e.newIndex})
+        var url = e.target.dataset.sortableUrl
+        var position = e.target.dataset.sortablePosition
+        put(url, {
+            body: JSON.stringify({[position]: e.newIndex, id: e.item.dataset.sortableId})
         })
     }
 }
