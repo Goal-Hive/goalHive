@@ -27,11 +27,12 @@ Rails.application.routes.draw do
       post 'update_progress(/:status)', to: 'milestones#update_progress', as: 'update_progress'
       post 'achieve', to: 'milestones#achieve_milestone', as: 'achieve'
       post :edit, :new
-      put 'sort_milestones', to: 'milestones#sort_milestones', as: 'sort_milestone'
+    end
+
+    collection do
+      put 'sort_all', to: 'milestones#sort_all'
+      put 'sort_in_progress', to: 'milestones#sort_in_progress'
     end
   end
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
 end

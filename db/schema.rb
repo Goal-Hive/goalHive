@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_27_151842) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_31_220225) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_27_151842) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
     t.integer "row_order"
+    t.integer "in_progress_row_order"
     t.index ["goal_id"], name: "index_milestones_on_goal_id"
   end
 
