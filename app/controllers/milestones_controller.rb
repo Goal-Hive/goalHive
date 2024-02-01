@@ -20,9 +20,17 @@ class MilestonesController < ApplicationController
     end
   end
 
-  def sort_milestones
+  def sort_all
     @milestone = Milestone.find(params[:id])
-    @milestone.update(row_order_position: params[:row_order_position])
+    @milestone.update(row_order_position:
+                        params[:row_order_position])
+    head :no_content
+  end
+
+  def sort_in_progress
+    @milestone = Milestone.find(params[:id])
+    @milestone.update(in_progress_row_order_position:
+                        params[:in_progress_row_order_position])
     head :no_content
   end
 

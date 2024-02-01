@@ -3,18 +3,17 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="tabs"
 export default class extends Controller {
   static classes = ['active']
-  static targets = ["btn", "tab", "default"]
+  static targets = ["btn", "tab", "defaultTab", "defaultBtn"]
 
   connect() {
     // first, hide all tabs
     this.tabTargets.map(x => x.hidden = true)
 
     // then, show the default tab
-    this.defaultTarget.classList.remove('hidden')
+    this.defaultTabTarget.classList.remove('hidden')
 
-    // and activate the selected button
-    let selectedBtn = this.btnTargets.find(element => element.id === this.defaultTabValue)
-    selectedBtn.classList.add(...this.activeClasses)
+    // and activate the default selected button
+    this.defaultBtnTarget.classList.add(...this.activeClasses)
   }
 
   // switch between tabs
