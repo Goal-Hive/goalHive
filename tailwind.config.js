@@ -42,6 +42,7 @@ module.exports = {
                 lotion: "#FAFAFA",
                 cultured: "#F5F5F5",
                 ceruleanBlue: "#414FC7",
+                cornsilk:"#FFF7DC",
                 light: {
                     text: {
                         title: "#415472",
@@ -65,7 +66,6 @@ module.exports = {
                         darkPurple: "#414FC7",
                         secondary: "#F4F6FF",
                         lightGray: "#F5F5F5",
-                        achieved: "#FFF7DC",
                         darkYellow: "#FFC700"
                     }
                 },

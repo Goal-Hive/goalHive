@@ -21,7 +21,7 @@ class MilestoneComponent < ViewComponent::Base
       @message_img = 'achieved.svg'
       @status = 'in_progress'
       @message = "Achieved"
-      @background = "bg-light-bg-achieved"
+      @background = "bg-cornsilk"
       @text_color = "text-light-text-darkGray"
     end
   end
