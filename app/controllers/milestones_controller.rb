@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class MilestonesController < ApplicationController
-  before_action :set_milestone, only: %i[show edit update destroy update_progress achieve_milestone]
+  before_action :set_milestone, only: %i[show edit update destroy
+                                         update_progress achieve_milestone sort_all sort_in_progress]
   before_action :set_goal, only: %i[new edit update]
 
   def create
@@ -21,14 +22,12 @@ class MilestonesController < ApplicationController
   end
 
   def sort_all
-    @milestone = Milestone.find(params[:id])
     @milestone.update(row_order_position:
                         params[:row_order_position])
     head :no_content
   end
 
   def sort_in_progress
-    @milestone = Milestone.find(params[:id])
     @milestone.update(in_progress_row_order_position:
                         params[:in_progress_row_order_position])
     head :no_content

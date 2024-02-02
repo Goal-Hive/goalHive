@@ -14,10 +14,14 @@ export default class extends Controller {
 
 
     onEnd(e) {
-        var url = e.target.dataset.sortableUrl
-        var position = e.target.dataset.sortablePosition
+        const url = e.target.dataset.sortableUrl
+        const position = e.target.dataset.sortablePosition
         put(url, {
-            body: JSON.stringify({[position]: e.newIndex, id: e.item.dataset.sortableId})
+            body: JSON.stringify(
+                {
+                    [position]: e.newIndex,
+                    id: e.item.dataset.sortableId
+                })
         })
     }
 }
