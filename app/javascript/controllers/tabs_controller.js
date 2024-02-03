@@ -13,7 +13,7 @@ export default class extends Controller {
     }
 
     select(event) {
-        let selectedTab = this.tabTargets.find(element => element.id === event.currentTarget.id)
+        let selectedTab = this.tabTargets.find(element => element.id === event.currentTarget.dataset.tabId)
         if (selectedTab.classList.contains('hidden')) {
             this.hideAllTabs()
             this.deactivateAllBtns()

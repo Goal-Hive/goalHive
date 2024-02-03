@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Milestone < ApplicationRecord
-  belongs_to :goal, class_name: 'Goal', foreign_key: 'goal_id'
+  belongs_to :goal
 
   enum :status, %i[in_progress achieved archived], default: :in_progress, prefix: true
 

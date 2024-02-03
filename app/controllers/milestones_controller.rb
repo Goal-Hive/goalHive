@@ -13,8 +13,11 @@ class MilestonesController < ApplicationController
       if @milestone.save
         format.turbo_stream do
           render turbo_stream: [
+            # in case of the milestone creation form
             turbo_stream.append(:milestones, partial: 'milestone', locals: { milestone: @milestone }),
-            turbo_stream.append(:inProgressMilestones, partial: 'milestone', locals: { milestone: @milestone })
+            # in case of the milestone creation in the goal details page
+            turbo_stream.append(:inProgressMilestones, partial: 'milestone', locals: { milestone: @milestone }),
+            turbo_stream.append(:allMilestones, partial: 'milestone', locals: { milestone: @milestone })
           ]
         end
       end

@@ -59,19 +59,19 @@ class GoalsController < ApplicationController
     respond_to do |format|
       if @goal.save
         format.turbo_stream do
-          render turbo_stream: [
+          render turbo_stream:
             if !@current_category || @current_category.to_i == @goal.category_id || @current_status == 'active'
-              turbo_stream.prepend('goals',
-                                   partial: 'goals/goal',
-                                   locals: { goal: @goal })
-              turbo_stream.append('categories',
-                                  partial: 'categories/category',
-                                  locals: { category: @goal.category })
+              [turbo_stream.prepend('goals',
+                                    partial: 'goals/goal',
+                                    locals: { goal: @goal }),
+               turbo_stream.append('categories',
+                                   partial: 'categories/category',
+                                   locals: { category: @goal.category })]
             else
-              turbo_stream.remove('')
-            end,
-            turbo_stream.update('notice', 'Goal was successfully created.')
-          ]
+              [turbo_stream.append('categories',
+                                   partial: 'categories/category',
+                                   locals: { category: @goal.category })]
+            end
         end
         format.html { redirect_to goal_url(@goal), notice: 'Goal was successfully created.' }
         format.json { render :show, status: :created, location: @goal }
