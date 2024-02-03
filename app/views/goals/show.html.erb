@@ -23,26 +23,26 @@
     <div
       data-controller="tabs"
       data-tabs-active-class="border rounded-3xl bg-white"
-      data-tabs-default-tab-value="In-progress Milestones"
+      data-tabs-default-tab-value="inProgressMilestones"
     >
       <!-- buttons to toggle between tabs -->
       <div class="text-light-text-main list-reset flex border mb-5 rounded-3xl p-1 w-fit bg-slate-50">
-        <button id="In-progress Milestones" data-tabs-target="btn defaultBtn" data-action="click->tabs#select" class="milestone_tab">In-progress Milestones</button>
-        <button id="Achieved Milestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">Achieved Milestones</button>
-        <button id="All Milestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">All Milestones</button>
+        <button data-tab-id="inProgressMilestones" data-tabs-target="btn defaultBtn" data-action="click->tabs#select" class="milestone_tab">In-progress Milestones</button>
+        <button data-tab-id="achievedMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">Achieved Milestones</button>
+        <button data-tab-id="allMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">All Milestones</button>
       </div>
 
       <!-- the tabs -->
       <div class="rounded-lg">
-        <div data-tabs-target="tab defaultTab"  id="In-progress Milestones" class="hidden milestone_tab_content" data-controller="sortable" data-sortable-url="<%= sort_in_progress_milestones_path %>" data-sortable-list="in-progress" data-sortable-position="in_progress_row_order_position">
+        <div data-tabs-target="tab defaultTab"  id="inProgressMilestones" class="hidden milestone_tab_content" data-controller="sortable" data-sortable-url="<%= sort_in_progress_milestones_path %>" data-sortable-list="in-progress" data-sortable-position="in_progress_row_order_position">
           <%= render @goal.milestones.where(status: 'in_progress').rank(:in_progress_row_order).all %>
         </div>
 
-        <div data-tabs-target="tab"  id="Achieved Milestones" class='hidden milestone_tab_content'>
+        <div data-tabs-target="tab"  id="achievedMilestones" class='hidden milestone_tab_content'>
           <%= render @goal.milestones.where(status: 'achieved') %>
         </div>
 
-        <div data-tabs-target="tab" id="All Milestones" class='hidden milestone_tab_content' data-controller="sortable" data-sortable-url="<%= sort_all_milestones_path %>" data-sortable-position="row_order_position">
+        <div data-tabs-target="tab" id="allMilestones" class='hidden milestone_tab_content' data-controller="sortable" data-sortable-url="<%= sort_all_milestones_path %>" data-sortable-position="row_order_position">
           <%= render @goal.milestones.rank(:row_order).all %>
         </div>
       </div>
