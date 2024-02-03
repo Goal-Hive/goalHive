@@ -1,19 +1,17 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+# GoalHive
 
 * Ruby version
-
+  - Ruby '3.2.2'
+  - Rails '7.0.8'
 * System dependencies
 
 * Configuration
-
+    - `yarn`
+    - `bundle`
 * Database creation
-
+    - `rails db:create`
 * Database initialization
+    - `rails db:migrate`
 
 * How to run the test suite
 
