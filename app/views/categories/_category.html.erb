@@ -1,12 +1,12 @@
 <div id="<%= dom_id category %>">
-  <%= render layout: 'partials/common/navbar_category_container' do %>
     <div
-      class="navbar_category navbar_category_hover py-3 px-2">
-      <%= button_to filter_by_category_goals_path(by_category: category),
-                    method: :post,
-                    class: "w-full" do %>
-        <p class="w-36 flex justify-start items-center truncate"><%= category.name %></p>
-      <% end %>
+      data-controller="toggle"
+      data-action="click->categories--navbar#select click->goals-filter#filterByCategory"
+      data-category-id="<%= category.id %>"
+      data-categories--navbar-target="category"
+      class="navbar_category navbar_category_hover py-3 px-2 w-full">
+        <button class="w-full flex justify-start items-center truncate"><%= category.name %></button>
+
 
       <div class="flex justify-center items-center gap-x-2">
         <!--      Delete, Category, Details-->
@@ -29,5 +29,4 @@
                 data-category-element="btn" class="hidden"> <%= image_tag 'dots.svg' %> </button>
       </div>
     </div>
-  <% end %>
 </div>
