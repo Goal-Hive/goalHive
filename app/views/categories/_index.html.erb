@@ -1,17 +1,6 @@
 <% if current_user %>
   <!--      Categories-->
-  <div class="scroll-smooth overflow-auto w-full px-2 py-3 flex flex-col  justify-start items-center pb-2 h-[inherit] gap-y-1 ">
-    <!--      Fixed Categories-->
-    <% { active: "Active", paused: "Paused", achieved: "Achieved" }.each do |key, value| %>
-      <%= render layout: 'partials/common/navbar_category_container' do %>
-        <%= button_to value,
-                      filter_by_status_goals_path(by_status: key),
-                      method: :post,
-                      class: " navbar_category_hover navbar_category py-3 pl-3",
-                      id: "#{value}_category",
-                      "data-category-type": "status" %>
-      <% end %>
-    <% end %>
+  <div class="scroll-smooth overflow-auto w-full px-2 py-3 flex flex-col justify-start items-center pb-2 h-[inherit] gap-y-1 ">
     <div id="categories" class="w-full flex flex-col gap-y-1">
       <%= render current_user.categories %>
     </div>
