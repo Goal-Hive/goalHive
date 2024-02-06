@@ -7,11 +7,17 @@ import { application } from "./application"
 import Categories__NavbarController from "./categories/navbar_controller"
 application.register("categories--navbar", Categories__NavbarController)
 
+import DropdownController from "./dropdown_controller"
+application.register("dropdown", DropdownController)
+
 import FormController from "./form_controller"
 application.register("form", FormController)
 
 import GoalCard__ProgressController from "./goal_card/progress_controller"
 application.register("goal-card--progress", GoalCard__ProgressController)
+
+import GoalsFilterController from "./goals_filter_controller"
+application.register("goals-filter", GoalsFilterController)
 
 import MilestonesController from "./milestones_controller"
 application.register("milestones", MilestonesController)
