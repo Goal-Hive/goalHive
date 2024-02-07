@@ -1,5 +1,5 @@
-<div id="<%= dom_id category %>">
     <div
+      id="<%= dom_id category %>"
       data-controller="toggle"
       data-action="click->categories--navbar#select click->goals-filter#filterByCategory"
       data-category-id="<%= category.id %>"
@@ -29,4 +29,3 @@
                 data-category-element="btn" class="hidden"> <%= image_tag 'dots.svg' %> </button>
       </div>
     </div>
-</div>

@@ -6,35 +6,20 @@ export default class extends Controller {
         currId: String,
     }
 
+    static targets = ['default']
+
     connect() {
+        console.log()
         this.initiateSelectedCategory()
-    }
-
-    select(e) {
-        let selectedCategory, previous
-        // If the user selected category status => Assign it to selected category status [active, paused, achieved]
-        if (e.target.dataset.categoryType === 'status') {
-            selectedCategory = e.currentTarget.querySelector('button')
-        } else { // Else => Assign whatever category they clicked in to selectedCategory
-            selectedCategory = e.currentTarget.parentNode
-        }
-
-        // If selectedCategory different than the current => styleUnselected previous
-        if (selectedCategory.id != this.currIdValue) {
-            previous = document.querySelector(`#${this.currIdValue}`)
-            this.styleUnselected(previous)
-        }
-        this.currIdValue = selectedCategory.id
-        this.styleSelected(selectedCategory)
     }
 
     initiateSelectedCategory = () => {
         if (!this.currIdValue) {
-            const activeCategory = document.querySelector(`[data-category-type="status"]`)
-            this.styleSelected(activeCategory)
-            this.currIdValue = activeCategory.id
+            this.styleSelected(this.defaultTarget)
+            this.currIdValue = this.defaultTarget.id
         }
     }
+
     styleSelected = (currCategory) => {
         currCategory.classList.add('selected_category')
         currCategory.classList.remove('navbar_category_hover')
@@ -45,5 +30,18 @@ export default class extends Controller {
         category?.classList.remove('selected_category')
         category?.querySelector(`[data-category-element="btn"]`)?.classList.add('hidden')
         category?.querySelector(`[data-category-element="options"]`)?.classList.add('hidden')
+    }
+
+    select(e) {
+        let selectedCategory, previous
+        selectedCategory = e.currentTarget
+        console.log(selectedCategory)
+        // If selectedCategory different than the current => styleUnselected previous
+        if (selectedCategory.id != this.currIdValue) {
+            previous = document.querySelector(`#${this.currIdValue}`)
+            this.styleUnselected(previous)
+        }
+        this.currIdValue = selectedCategory.id
+        this.styleSelected(selectedCategory)
     }
 }
