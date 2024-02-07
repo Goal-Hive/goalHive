@@ -10,6 +10,16 @@ class Goal < ApplicationRecord
   scope :by_category, ->(category) { where(category: category) }
   scope :by_status, ->(status) { where(status: status) }
 
+  scope :by_category_and_status, lambda { |status, category|
+    scope = if status.present?
+              by_status(status)
+            else
+              by_status('active')
+            end
+    scope = scope.by_category(category) if category.present?
+    scope
+  }
+
   accepts_nested_attributes_for :milestones, :category
 
   enum :status, %i[paused active achieved archived], default: :active, prefix: true

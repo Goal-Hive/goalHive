@@ -99,7 +99,7 @@ class CategoriesController < ApplicationController
           turbo_stream.remove(@category),
           turbo_stream.update('notice', 'Category is removed'),
           turbo_stream.replace('goals',
-                               template: 'goals/index',
+                               partial: 'goals/list',
                                locals: { goals: current_user.goals.status_active.all })
         ]
       end

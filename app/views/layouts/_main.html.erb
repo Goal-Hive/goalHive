@@ -5,13 +5,13 @@
   <%= render 'partials/common/modal' %>
 
   <div class="flex w-full justify-around dark:text-white overflow-y-auto
-<%= user_signed_in? ? 'top-16 h-[calc(100vh-5.01rem)]' : '' %>">
+<%= user_signed_in? ? 'top-16 h-[calc(100vh-5.01rem)]' : '' %>" data-controller="goals-filter">
     <% if content_for?(:side_nav) %>
       <div class="w-2/12 dark:bg-dark-navbar flex justify-center items-center h-[inherit]">
         <%= yield(:side_nav) %>
       </div>
     <% end %>
-    <div class="w-10/12 bg-light-body flex-grow dark:bg-dark-body overflow-y-auto py-6">
+    <div class="bg-light-body flex-grow overflow-y-auto py-6">
       <%= yield %>
     </div>
   </div>
