@@ -3,7 +3,7 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[show edit update destroy update_status]
   before_action :set_goals, only: %i[index]
-  before_action :set_current_category, only: %i[create filter_by_category]
+  before_action :set_current_category, only: %i[create filter]
   before_action :filter_params, only: %i[filter]
 
   # GET /goals or /goals.json
@@ -48,7 +48,9 @@ class GoalsController < ApplicationController
       if @goal.save
         format.turbo_stream do
           render turbo_stream:
-                   if !@current_category || @current_category.to_i == @goal.category_id || @current_status == 'active'
+                   if (@current_category == 'all' ||
+                     @current_category.to_i == @goal.category_id) &&
+                      @current_status == 'active'
                      [turbo_stream.prepend('goals',
                                            partial: 'goals/goal',
                                            locals: { goal: @goal }),
@@ -144,7 +146,12 @@ class GoalsController < ApplicationController
   end
 
   def set_current_category
-    @current_status = session[:current_status] || 'active'
-    @current_category ||= session[:current_category]
+    case action_name
+    when 'filter'
+      session[:current_category] = filter_params[:category]
+      session[:current_status] = filter_params[:status]
+    end
+    @current_category = session[:current_category].empty? ? 'all' : session[:current_category]
+    @current_status = session[:current_status].empty? ? 'active' : session[:current_status]
   end
 end
