@@ -1,11 +1,8 @@
-<div data-controller="dropdown" class="w-full flex justify-end px-7 py-7">
-  <!--    dropdown-->
-  <div class="flex items-center gap-x-5">
-    <label for="cars" class="text-sm font-medium text-light-text-secondary">Goal Status</label>
-    <select name="cars" id="cars" class="bg-indigo-50 rounded-full border-none">
-      <option value="active">Active</option>
-      <option value="paused">Paused</option>
-      <option value="achieved">Achieved</option>
-    </select>
+<div class="flex justify-between items-center border-b border-gray-200 px-6 py-5">
+  <div class="text-2xl font-semibold text-yankeesBlue">
+    <%= page_name %>
   </div>
+  <% if controller_name == "goals"  && action_name == "index" %>
+    <%= render template: 'goals/dropdown_filter' %>
+  <% end %>
 </div>

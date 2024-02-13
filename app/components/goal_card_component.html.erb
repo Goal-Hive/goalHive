@@ -1,5 +1,6 @@
 <%#= link_to @goal do %>
-<div class="h-96 p-3 border shadow-md border-gray-100 bg-white border-opacity-10 rounded-lg hover:border-indigo-200 flex flex-col"
+<div class="h-96 p-3 border shadow-md border-gray-100 bg-white border-opacity-10 rounded-lg h
+over:border-indigo-200 flex flex-col"
      data-controller="toggle">
   <div class="flex items-center justify-end gap-x-2 h-8">
     <!--  Pause/Resume, Delete, Category, Details-->
@@ -34,7 +35,7 @@
   <!--end-->
 
   <!--  Goal Card Details-->
-  <div class="flex flex-col gap-y-2" data-controller="milestones" data-milestones-goal_id=<%= @goal.id %>>
+  <div class="flex flex-col gap-y-2 h-full" data-controller="milestones" data-milestones-goal_id=<%= @goal.id %>>
     <!--    Name  &   Description-->
     <div class="text-sm font-medium text-light-text-secondary dark:text-white truncate">
       <%= @goal.category.name %>
@@ -106,17 +107,20 @@
     <% end %>
 
     <%# if action_name != "show" %> <%# end %>
+
     <%= button_to achieve_milestone_path(id: @goal.milestones.where(status: 'in_progress')&.first&.id || 0),
                   method: :post,
                   disabled: true,
-
-                  class: "updateBtn w-full rounded-2xl bg-light-bg-darkPurple dark:bg-dark-updateProgress dark:text-dark-updateProgressText text-sm font-semibold p-2 text-white mt-2
+                  class: "
+                  flex-grow
+                  updateBtn w-full rounded-2xl bg-light-bg-darkPurple dark:bg-dark-updateProgress dark:text-dark-updateProgressText text-sm font-semibold p-2 text-white mt-2
       disabled:bg-light-bg-lightGray
       disabled:cursor-not-allowed
       disabled:opacity-60
       disabled:text-light-text-main" do %>
       Update Progress
     <% end %>
+
   </div>
 </div>
 <%# end %>

@@ -1,11 +1,14 @@
-<div data-controller="dropdown" class="w-full flex items-center gap-x-5 justify-end px-7 py-7">
+<div data-controller="dropdown" class="w-full flex items-center gap-x-5 justify-end">
   <label for="status" class="text-sm font-medium text-light-text-secondary">Goal Status</label>
-  <div class="inline-block items-end relative w-44">
+  <div class="inline-block items-end relative w-40">
     <button data-action="click->dropdown#toggle" class="h-full flex justify-between items-center gap-x-1 bg-indigo-50 rounded-full w-full">
       <span data-dropdown-target="selectedText" class="px-5 w-7/12 flex justify-start  text-fiord font-semibold">Active</span>
-      <span class="bg-indigo-100 h-full p-3 rounded-r-full w-4/12 text-fiord ">&#11167;</span>
+      <div class="bg-indigo-100  rounded-r-full p-5  ">
+        <%= image_tag 'arrow_down.svg' %>
+      </div>
     </button>
-    <div data-dropdown-target="dropdownContent" class="w-44 absolute right-0 top-14 bg-indigo-50 text-fiord font-semibold" hidden>
+
+    <div data-dropdown-target="dropdownContent" class="w-40 absolute right-0 top-14 bg-indigo-50 text-fiord font-semibold" hidden>
       <% { active: "Active", paused: "Paused", achieved: "Achieved" }.each do |key, value| %>
         <button data-option-text="<%= value %>"
                 data-option-value="<%= key %>"
