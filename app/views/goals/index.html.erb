@@ -2,9 +2,11 @@
   <%= render 'partials/common/side_nav' %>
 <% end %>
 
-<div class="flex flex-col ">
-  <!--  header-->
-  <%= render partial: 'partials/common/page_header', locals: {page_name: 'Dashboard'} %>
-<!--  Body-->
-  <%= render partial: 'goals/list', goals:@goals||goals%>
-</div>
+<% content_for :goals_list do %>
+  <div class="flex flex-col flex-grow w-8/12 md:w-9/12 lg:w-10/12 bg-gray-50">
+    <!--  header-->
+    <%= render partial: 'partials/common/page_header', locals: {page_name: 'Dashboard'} %>
+    <!--  Body-->
+    <%= render partial: 'goals/list', goals:@goals||goals%>
+  </div>
+<% end %>

@@ -7,12 +7,14 @@
   <div class="flex w-full justify-around dark:text-white overflow-y-auto
 <%= user_signed_in? ? 'top-16 h-[calc(100vh-5.01rem)]' : '' %>" data-controller="goals-filter">
     <% if content_for?(:side_nav) %>
-      <div class="lg:w-2/12 dark:bg-dark-navbar flex justify-center items-center h-[inherit]">
-        <%= yield(:side_nav) %>
+      <%= yield(:side_nav) %>
+    <% end %>
+    <% if content_for?(:goals_list) %>
+      <%= yield(:goals_list) %>
+    <% else content_for?(:goal_details)%>
+      <div class="bg-light-body overflow-y-auto flex-grow">
+        <%= yield (:goal_details)%>
       </div>
     <% end %>
-    <div class="bg-light-body flex-grow overflow-y-auto">
-      <%= yield %>
-    </div>
   </div>
 </main>
