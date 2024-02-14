@@ -1,7 +1,16 @@
 <%#= link_to @goal do %>
   <div id="<%= dom_id @goal %>"
-    class="col-span-1 w-full h-96 p-3 border shadow-md border-gray-100 bg-white border-opacity-10 rounded-lg h
-over:border-indigo-200 flex flex-col"
+    class="col-span-1
+          w-full
+          h-fit
+          p-3
+          border
+          shadow-md
+          border-gray-100
+          bg-white
+          border-opacity-10
+          rounded-lg
+          hover:border-indigo-200 flex flex-col"
        data-controller="toggle">
     <div class="flex items-center justify-end gap-x-2 h-8">
       <!--  Pause/Resume, Delete, Category, Details-->
