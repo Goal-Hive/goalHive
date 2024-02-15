@@ -5,8 +5,7 @@ export default class extends Controller {
     static targets = ['unfoldBtn', 'foldBtn', 'sideNav']
 
     connect() {
-        console.log('toggle side nav is connected')
-        console.log(this.unfoldBtnTarget, this.foldBtnTarget, this.sideNavTarget)
+        // console.log('toggle side nav is connected')
     }
 
     fold(e) {
