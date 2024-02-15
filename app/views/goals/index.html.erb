@@ -2,11 +2,24 @@
   <%= render 'partials/common/side_nav' %>
 <% end %>
 
+<% content_for :toggle_side_nav_btns do %>
+    <button class="block lg:hidden bg-zircon rounded-full p-2 h-fit"
+            data-toggle-side-nav-target="unfoldBtn"
+            data-action="toggle-side-nav#unfold">
+      <%= image_tag 'toggle.svg', class: 'h-4 h-4' %>
+    </button>
+    <button class="hidden lg:block bg-zircon rounded-full p-2 self-end"
+            data-toggle-side-nav-target="foldBtn"
+            data-action="toggle-side-nav#fold">
+      <%= image_tag 'collapse.svg', class: ' h-5 h-5' %>
+    </button>
+<% end %>
+
 <% content_for :goals_list do %>
-  <div class="flex flex-col flex-grow w-8/12 md:w-9/12 lg:w-10/12 bg-gray-50">
+  <section class="flex flex-col flex-grow w-8/12 md:w-9/12 lg:w-10/12 bg-gray-50 h-fit" id="goals_section">
     <!--  header-->
     <%= render partial: 'partials/common/page_header', locals: {page_name: 'Dashboard'} %>
     <!--  Body-->
     <%= render partial: 'goals/list', goals:@goals||goals%>
-  </div>
+  </section>
 <% end %>
