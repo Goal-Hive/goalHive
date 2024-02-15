@@ -1,12 +1,12 @@
-
-<div class="w-1/12 lg:hidden px-1 py-7 md:px-4 md:py-7 lg:p-7 bg-gray-50 border-r border-gray-200 flex justify-center">
-  <button class="bg-zircon rounded-full md:p-2 h-fit" data-action="toggle#spread">
-    <%= image_tag 'spread.svg', class: 'h-5 h-5' %>
-  </button>
-</div>
+<!--<div class="hidden w-1/12  px-1 py-7 md:px-4 md:py-7 lg:p-7 bg-gray-50 border-r border-gray-200 flex justify-center">-->
+<!--  <button class="bg-zircon rounded-full md:p-2 h-fit" data-action="toggle#spread">-->
+<%#= image_tag 'spread.svg', class: 'h-5 h-5' %>
+<!--  </button>-->
+<!--</div>-->
 <!--Side navigation bar-->
-<div class="hidden lg:block w-2/12 h-[inherit] bg-gray-50">
-  <div class="
+<div class="hidden lg:block w-2/12 h-[inherit] bg-gray-50 z-10 z-50"
+     data-toggle-side-nav-target="sideNav">
+  <div class=" bg-gray-50
 flex flex-col gap-y-4 py-6 px-4  justify-start items-center fixed w-[inherit] h-[inherit] border-r border-gray-200"
        data-controller="categories--navbar">
     <!--  Create a Goal-->
@@ -32,9 +32,11 @@ flex flex-col gap-y-4 py-6 px-4  justify-start items-center fixed w-[inherit] h-
     </div>
     <!--  Account Settings, Sign Out, Logo-->
     <div class="flex flex-col justify-start items-start gap-y-2  w-full text-light-text-categories font-semibold self-end dark:text-white">
-      <button class="bg-zircon rounded-full p-2 self-end">
-        <%= image_tag 'collapse.svg', class: ' h-5 h-5' %>
-      </button>
+<!--      <button class="lg:hidden bg-zircon rounded-full p-2 self-end"-->
+<!--              data-toggle-side-nav-target="foldBtn"-->
+<!--              data-action="toggle-side-nav#fold">-->
+        <%#= image_tag 'collapse.svg', class: ' h-5 h-5' %>
+<!--      </button>-->
       <%= link_to edit_user_registration_path do %>
         <div class="flex items-center gap-x-4 ">
           <%= image_tag 'settings.svg' %>
