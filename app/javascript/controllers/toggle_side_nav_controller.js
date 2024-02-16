@@ -3,34 +3,53 @@ import {Controller} from "@hotwired/stimulus"
 // Connects to data-controller="toggle-side-nav"
 export default class extends Controller {
     static targets = ['unfoldBtn', 'foldBtn', 'sideNav']
+    static values = {
+        // mobileFolded: {type: Boolean, default: true},
+        // desktopFolded: {type: Boolean, default: false}
+    }
 
     connect() {
         // console.log('toggle side nav is connected')
     }
 
-    fold(e) {
+    toggle(e) {
         this.toggleClasses()
     }
 
-    unfold(e) {
-        this.toggleClasses()
+    siwtchToBigScreen() {
+        // If it is small screen and the side nav is toggled if it contains hidden that target small screens
+        if (!isSmallScreen() && !this.sideNavTarget.classList.contains('hidden')) {
+            this.toggleMobileClasses()
+        }
     }
 
     toggleClasses() {
-        const isMobile = window.innerWidth <= 1022;
-        if (isMobile) {
-            this.unfoldBtnTarget.classList.toggle('hidden')
-            this.foldBtnTarget.classList.toggle('hidden')
-
-            this.sideNavTarget.classList.toggle('hidden')
-            this.sideNavTarget.classList.toggle('absolute')
-            this.sideNavTarget.classList.toggle('left-0')
-            this.sideNavTarget.classList.toggle('w-80')
-            document.querySelector('#goals_section').classList.toggle('brightness-50');
+        if (isSmallScreen()) {
+            this.toggleMobileClasses()
         } else {
-            this.unfoldBtnTarget.classList.toggle('lg:hidden')
-            this.foldBtnTarget.classList.toggle('lg:hidden')
-            this.sideNavTarget.classList.toggle('lg:hidden')
+            this.toggleLargeScreenClasses()
         }
     }
+
+    toggleMobileClasses() {
+        document.querySelector('#goals_section').classList.toggle('brightness-50');
+        document.querySelector('#goals_section').classList.toggle('h-fit');
+        document.querySelector('#goals_section').classList.toggle('overflow-hidden');
+        this.unfoldBtnTarget.classList.toggle('hidden')
+        this.foldBtnTarget.classList.toggle('hidden')
+        this.sideNavTarget.classList.toggle('hidden')
+        this.sideNavTarget.classList.toggle('absolute')
+        this.sideNavTarget.classList.toggle('left-0')
+        this.sideNavTarget.classList.toggle('w-80')
+    }
+
+    toggleLargeScreenClasses() {
+        this.unfoldBtnTarget.classList.toggle('lg:hidden')
+        this.foldBtnTarget.classList.toggle('lg:hidden')
+        this.sideNavTarget.classList.toggle('lg:hidden')
+    }
+}
+
+const isSmallScreen = () => {
+    return window.innerWidth <= 1022;
 }

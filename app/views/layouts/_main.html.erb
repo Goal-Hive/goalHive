@@ -1,12 +1,14 @@
 <main class="w-full flex flex-col bg-gray-50"
-      data-controller="toggle-side-nav">
+      data-controller="toggle-side-nav"
+      data-action="resize@window->toggle-side-nav#siwtchToBigScreen">
   <%#= debug(params) if Rails.env.development? %>
   <%= render 'partials/common/notification' %>
   <%= render 'partials/common/header' %>
   <%= render 'partials/common/modal' %>
 
   <div class="flex w-full justify-around overflow-y-auto relative top-[0]
-<%= user_signed_in? ? 'top-16 h-[calc(100vh-7rem)]' : '' %>" data-controller="goals-filter">
+<%= user_signed_in? ? 'top-16 h-[calc(100vh-7rem)]' : '' %>"
+       data-controller="goals-filter">
     <% if content_for?(:side_nav) %>
       <%= yield(:side_nav) %>
     <% end %>

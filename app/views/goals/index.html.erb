@@ -5,12 +5,12 @@
 <% content_for :toggle_side_nav_btns do %>
     <button class="block lg:hidden bg-zircon rounded-full p-2 h-fit"
             data-toggle-side-nav-target="unfoldBtn"
-            data-action="toggle-side-nav#unfold">
+            data-action="toggle-side-nav#toggle">
       <%= image_tag 'toggle.svg', class: 'h-4 h-4' %>
     </button>
     <button class="hidden lg:block bg-zircon rounded-full p-2 self-end"
             data-toggle-side-nav-target="foldBtn"
-            data-action="toggle-side-nav#fold">
+            data-action="toggle-side-nav#toggle">
       <%= image_tag 'collapse.svg', class: ' h-5 h-5' %>
     </button>
 <% end %>
