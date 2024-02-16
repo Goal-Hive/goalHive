@@ -1,8 +1,7 @@
-<div class='h-full w-full min-h-screen flex justify-around items-start py-5 px-2'>
+<% content_for :goal_details do %>
+<div class='h-full w-full min-h-screen flex justify-around gap-x-5 items-start py-5 px-5'>
   <!--  1st section-->
-  <div
-    class='mb-3 p-3  bg-white w-3/12 border-solid border border-gray-200 rounded-[8px]'
-  >
+  <div class='mb-3 p-3  bg-white w-3/12 border-solid border border-gray-200 rounded-[8px]'>
     <p class="font-bold text-sm text-light-text-darkPurple leading-5 text-base mb-4">
       Your Motivation
     </p>
@@ -16,7 +15,7 @@
   </div>
   <!--  2nd section-->
   <div class="w-6/12 flex flex-col gap-y-5">
-    <p class="text-2xl">
+    <p class="text-2xl truncate">
       <%= @goal.description %>
     </p>
 
@@ -49,10 +48,10 @@
     </div>
 
   </div>
-
-
   <!--  3rd section-->
-  <div class="">
+  <div class="w-3/12">
     <%= render @goal %>
   </div>
 </div>
+
+<% end %>

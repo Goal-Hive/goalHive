@@ -37,5 +37,8 @@ application.register("theme-switcher", ThemeSwitcherController)
 import ToggleController from "./toggle_controller"
 application.register("toggle", ToggleController)
 
+import ToggleSideNavController from "./toggle_side_nav_controller"
+application.register("toggle-side-nav", ToggleSideNavController)
+
 import TurboModalController from "./turbo_modal_controller"
 application.register("turbo-modal", TurboModalController)

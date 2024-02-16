@@ -1,18 +1,23 @@
-<main class="w-full flex flex-col">
+<main class="w-full flex flex-col bg-gray-50"
+      data-controller="toggle-side-nav">
   <%#= debug(params) if Rails.env.development? %>
   <%= render 'partials/common/notification' %>
   <%= render 'partials/common/header' %>
   <%= render 'partials/common/modal' %>
 
-  <div class="flex w-full justify-around dark:text-white overflow-y-auto
-<%= user_signed_in? ? 'top-16 h-[calc(100vh-5.01rem)]' : '' %>" data-controller="goals-filter">
+  <div class="flex w-full justify-around overflow-y-auto relative top-[0]
+<%= user_signed_in? ? 'top-16 h-[calc(100vh-7rem)]' : '' %>" data-controller="goals-filter">
     <% if content_for?(:side_nav) %>
-      <div class="w-2/12 dark:bg-dark-navbar flex justify-center items-center h-[inherit]">
-        <%= yield(:side_nav) %>
-      </div>
+      <%= yield(:side_nav) %>
     <% end %>
-    <div class="bg-light-body flex-grow overflow-y-auto py-6">
+    <% if content_for?(:goals_list) %>
+      <%= yield(:goals_list) %>
+    <% elsif content_for?(:goal_details)%>
+      <div class="bg-light-body overflow-y-auto flex-grow">
+        <%= yield (:goal_details)%>
+      </div>
+    <% else %>
       <%= yield %>
-    </div>
+    <% end %>
   </div>
 </main>

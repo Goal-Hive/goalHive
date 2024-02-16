@@ -1,24 +1,45 @@
 <% if current_user %>
-  <header class="bg-light-header dark:bg-dark-header h-[5rem] flex justify-between items-center sticky top-0 px-4 py-3">
-    <%= link_to (image_tag 'logo.svg'), goals_path %>
-    <div class="flex justify-center items-center gap-x-10">
-<!--      <button data-controller="theme-switcher" data-action="click->theme-switcher#toggle" class="text-3xl font-bold bg-white rounded-3xl p-1 flex items-center justify-center gap-x-5">-->
-<!--        <span class="cursor-pointer dark:text-fiord text-philippineYellow bg-peach dark:bg-white rounded-3xl">&#9788;</span>-->
-<!--        <span class="cursor-pointer dark:text-philippineYellow text-fiord">&#x1F313;</span>-->
-<!--      </button>-->
-      <% if controller_name == "goals"  && action_name == "show" %>
-        <%= button_to new_milestone_path(goal_id: @goal.id),
-                      method: :post,
-                      data: { turbo_frame: "modal" } do %>
-          <p class="text-white bg-light-bg-darkPurple p-2 rounded-3xl h-7 w-7 flex justify-center items-center text-3xl text-bold ">
-            +
-          </p>
-        <% end %>
+  <header class="flex flex-col sticky top-0 h-[7rem]">
+    <!--    First Row-->
+    <div class="
+  bg-light-header flex justify-between items-center px-4 py-3">
+      <%= link_to goals_path do %>
+        <div class="text-3xl font-semibold flex relative">
+          <span class="text-fiord">Goal</span><span class="text-ceruleanBlue ">Hive</span>
+          <%= image_tag 'hive_logo', class: "absolute left-[125px] top-1 w-8 h-8" %>
+        </div>
       <% end %>
-      <p class="font-medium text-xl text-indigo-900"> Welcome
-        <%= current_user.email %>
-      </p>
-      <span class="bg-cornsilk"></span>
+
+      <div class="flex justify-center items-center gap-x-10">
+        <!--      <button data-controller="theme-switcher" data-action="click->theme-switcher#toggle" class="text-3xl font-bold bg-white rounded-3xl p-1 flex items-center justify-center gap-x-5">-->
+        <!--        <span class="cursor-pointer dark:text-fiord text-philippineYellow bg-peach dark:bg-white rounded-3xl">&#9788;</span>-->
+        <!--        <span class="cursor-pointer dark:text-philippineYellow text-fiord">&#x1F313;</span>-->
+        <!--      </button>-->
+        <% if controller_name == "goals" && action_name == "show" %>
+          <%= button_to new_milestone_path(goal_id: @goal.id),
+                        method: :post,
+                        data: { turbo_frame: "modal" } do %>
+            <p class="text-white bg-light-bg-darkPurple p-2 rounded-3xl h-7 w-7 flex justify-center items-center text-3xl text-bold ">
+              +
+            </p>
+          <% end %>
+        <% end %>
+        <p class="font-medium text-xl text-indigo-900 whitespace-nowrap truncate w-36">
+          <%= current_user.email %>
+        </p>
+
+      </div>
+    </div>
+    <!--    Second Row-->
+    <div class="flex items-center gap-x-10 bg-gray-100 py-2 px-4 font-semibold text-fiord flex-grow">
+      <% if content_for?(:toggle_side_nav_btns) %>
+        <%= yield(:toggle_side_nav_btns) %>
+      <% end %>
+      <%= link_to goals_path do %>
+        <button>Goals</button>
+      <% end %>
+      <button>Hives</button>
     </div>
   </header>
 <% end %>
+
