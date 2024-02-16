@@ -1,8 +1,8 @@
 <% if current_user %>
-  <header class="flex flex-col sticky top-0 h-[7rem]">
+  <header class="flex flex-col sticky top-0 h-[9rem] z-50">
     <!--    First Row-->
     <div class="
-  bg-light-header flex justify-between items-center px-4 py-3">
+  bg-light-header flex h-[6rem]  justify-between items-center px-8 py-3">
       <%= link_to goals_path do %>
         <div class="text-3xl font-semibold flex relative">
           <span class="text-fiord">Goal</span><span class="text-ceruleanBlue ">Hive</span>
@@ -24,14 +24,34 @@
             </p>
           <% end %>
         <% end %>
-        <p class="font-medium text-xl text-indigo-900 whitespace-nowrap truncate w-36">
-          <%= current_user.email %>
-        </p>
+        <div data-controller="dropdown" class="w-full flex items-center gap-x-3 justify-end">
+          <div class="items-end relative">
+            <button data-action="click->dropdown#toggle"
+                    class="rounded-full w-14 h-14 bg-gray-50"></button>
+
+            <div data-dropdown-target="dropdownContent" class="w-80 fixed right-8 top-20 text-fiord font-semibold z-[100] " hidden>
+              <%= link_to edit_user_registration_path,
+                          class: "flex items-center gap-x-4 p-5 bg-gray-50 w-full",
+                          "data-action": "dropdown#select" do %>
+                <%= image_tag 'settings.svg' %>
+                <span> Account Settings </span>
+              <% end %>
+
+              <%= link_to destroy_user_session_path,
+                          method: :delete,
+                          data: { turbo: "false" },
+                          class: "flex items-center gap-x-4 p-5 bg-gray-50 w-full", "data-action": "dropdown#select" do %>
+                <%= image_tag 'log_out.svg' %>
+                <span> Sign Out </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
     <!--    Second Row-->
-    <div class="flex items-center gap-x-10 bg-gray-100 py-2 px-4 font-semibold text-fiord flex-grow">
+    <div class="flex h-[3rem] items-center gap-x-10 bg-gray-100 py-2 px-4 font-semibold text-fiord ">
       <% if content_for?(:toggle_side_nav_btns) %>
         <%= yield(:toggle_side_nav_btns) %>
       <% end %>
