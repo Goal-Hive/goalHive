@@ -12,10 +12,12 @@
     <% end %>
     <% if content_for?(:goals_list) %>
       <%= yield(:goals_list) %>
-    <% else content_for?(:goal_details)%>
+    <% elsif content_for?(:goal_details)%>
       <div class="bg-light-body overflow-y-auto flex-grow">
         <%= yield (:goal_details)%>
       </div>
+    <% else %>
+      <%= yield %>
     <% end %>
   </div>
 </main>
