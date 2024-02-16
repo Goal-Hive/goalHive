@@ -23,6 +23,14 @@ export default class extends Controller {
         }
     }
 
+    closeWithKeyboard(e) {
+        if (e.key === "Escape" &&
+            isSmallScreen() &&
+            !this.sideNavTarget.classList.contains('hidden')) {
+            this.toggleMobileClasses()
+        }
+    }
+
     toggleClasses() {
         if (isSmallScreen()) {
             this.toggleMobileClasses()
