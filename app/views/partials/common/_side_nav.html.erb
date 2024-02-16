@@ -32,24 +32,6 @@ flex flex-col gap-y-4 py-6 px-4  justify-start items-center fixed w-[inherit] h-
     </div>
     <!--  Account Settings, Sign Out, Logo-->
     <div class="flex flex-col justify-start items-start gap-y-2  w-full text-light-text-categories font-semibold self-end dark:text-white">
-<!--      <button class="lg:hidden bg-zircon rounded-full p-2 self-end"-->
-<!--              data-toggle-side-nav-target="foldBtn"-->
-<!--              data-action="toggle-side-nav#fold">-->
-        <%#= image_tag 'collapse.svg', class: ' h-5 h-5' %>
-<!--      </button>-->
-      <%= link_to edit_user_registration_path do %>
-        <div class="flex items-center gap-x-4 ">
-          <%= image_tag 'settings.svg' %>
-          <span> Account Settings </span>
-        </div>
-      <% end %>
-
-      <%= button_to destroy_user_session_path, method: :delete, data: { turbo: "false" } do %>
-        <div class="flex items-center gap-x-4 ">
-          <%= image_tag 'log_out.svg' %>
-          <span> Sign Out </span>
-        </div>
-      <% end %>
       <p class="font-black mt-6">GoalHive.Inc ™</p>
     </div>
   </div>
