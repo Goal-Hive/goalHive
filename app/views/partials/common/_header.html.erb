@@ -37,7 +37,7 @@
                 <span> Account Settings </span>
               <% end %>
 
-              <%= link_to destroy_user_session_path,
+              <%= button_to destroy_user_session_path,
                           method: :delete,
                           data: { turbo: "false" },
                           class: "flex items-center gap-x-4 p-5 bg-gray-50 w-full", "data-action": "dropdown#select" do %>
