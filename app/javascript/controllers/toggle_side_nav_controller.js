@@ -3,9 +3,9 @@ import { useClickOutside } from 'stimulus-use'
 
 // Connects to data-controller="toggle-side-nav"
 export default class extends Controller {
-    static targets = ['unfoldBtn', 'foldBtn', 'sideNav']
+    static targets = ['unfoldBtn', 'foldBtn', 'sideNav', 'hidden']
     static values = {
-        // mobileFolded: {type: Boolean, default: true},
+        mobileFolded: {type: Boolean, default: true},
         // desktopFolded: {type: Boolean, default: false}
     }
 
@@ -18,7 +18,7 @@ export default class extends Controller {
         this.toggleClasses()
     }
 
-    siwtchToBigScreen() {
+    handleBigScreen() {
         // If it is small screen and the side nav is toggled if it contains hidden that target small screens
         if (!isSmallScreen() && !this.sideNavTarget.classList.contains('hidden')) {
             this.toggleMobileClasses()
@@ -28,7 +28,7 @@ export default class extends Controller {
     closeWithKeyboard(e) {
         if (e.key === "Escape" &&
             isSmallScreen() &&
-            !this.sideNavTarget.classList.contains('hidden')) {
+            !this.mobileFoldedValue) {
             this.toggleMobileClasses()
         }
     }
@@ -37,7 +37,8 @@ export default class extends Controller {
         const button = event.target.closest('button')
         if (button !== this.foldBtnTarget &&
             isSmallScreen() &&
-            !this.sideNavTarget.classList.contains('hidden')) {
+            !this.mobileFoldedValue
+            ) {
             this.toggleMobileClasses()
         }
     }
@@ -45,17 +46,20 @@ export default class extends Controller {
     toggleClasses() {
         if (isSmallScreen()) {
             this.toggleMobileClasses()
+            this.mobileFoldedValue = this.sideNavTarget.classList.contains('hidden')
         } else {
             this.toggleLargeScreenClasses()
         }
     }
 
     toggleMobileClasses() {
-        document.querySelector('#goals_section').classList.toggle('brightness-50');
-        document.querySelector('#goals_section').classList.toggle('h-fit');
-        document.querySelector('#goals_section').classList.toggle('overflow-hidden');
+        this.hiddenTarget.classList.toggle('brightness-50');
+        this.hiddenTarget.classList.toggle('h-fit');
+        this.hiddenTarget.classList.toggle('overflow-hidden');
+
         this.unfoldBtnTarget.classList.toggle('hidden')
         this.foldBtnTarget.classList.toggle('hidden')
+
         this.sideNavTarget.classList.toggle('hidden')
         this.sideNavTarget.classList.toggle('absolute')
         this.sideNavTarget.classList.toggle('left-0')
