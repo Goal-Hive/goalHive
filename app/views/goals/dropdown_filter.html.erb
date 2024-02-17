@@ -1,9 +1,9 @@
-<div data-controller="dropdown" class="w-full flex items-center gap-x-3 justify-end">
+<div data-controller="dropdown" class="flex items-center gap-x-3 ml-auto">
   <label for="status" class="hidden md:block text-sm font-medium text-light-text-secondary whitespace-nowrap">Goal Status</label>
-  <div class="inline-block items-end relative w-40">
+  <div class="inline-block items-end relative w-36 md:w-40">
     <button data-action="click->dropdown#toggle" class="h-full flex justify-between items-center gap-x-1 bg-indigo-50 rounded-full w-full">
       <span data-dropdown-target="selectedText" class="px-5 w-7/12 flex justify-start  text-fiord font-semibold">Active</span>
-      <div class="bg-indigo-100  rounded-r-full p-5  ">
+      <div class="bg-indigo-100  rounded-r-full p-4  ">
         <%= image_tag 'arrow_down.svg' %>
       </div>
     </button>

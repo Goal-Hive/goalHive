@@ -1,8 +1,8 @@
 <% if current_user %>
-  <header class="flex flex-col sticky top-0 h-[7rem]">
+  <header class="flex flex-col sticky top-0 h-[7.5rem] md:h-[8.5rem] z-50">
     <!--    First Row-->
     <div class="
-  bg-light-header flex justify-between items-center px-4 py-3">
+  bg-light-header flex h-[4rem] md:h-[5rem] justify-between items-center px-2 md:px-6 py-3">
       <%= link_to goals_path do %>
         <div class="text-3xl font-semibold flex relative">
           <span class="text-fiord">Goal</span><span class="text-ceruleanBlue ">Hive</span>
@@ -24,21 +24,48 @@
             </p>
           <% end %>
         <% end %>
-        <p class="font-medium text-xl text-indigo-900 whitespace-nowrap truncate w-36">
-          <%= current_user.email %>
-        </p>
+        <div data-controller="dropdown" class="w-full flex items-center gap-x-3 justify-end">
+          <div class="items-end relative flex items-center">
+<!--            Header profile image-->
+            <button data-action="click->dropdown#toggle"
+                    class="rounded-full w-10 h-10 md:w-14 md:h-14 bg-gray-50"></button>
+
+            <div data-dropdown-target="dropdownContent" class="w-80 fixed right-4 top-14 md:top-20 text-fiord font-semibold z-[100] " hidden>
+              <%= link_to edit_user_registration_path,
+                          class: "flex items-center gap-x-4 p-5 bg-gray-50 w-full",
+                          "data-action": "dropdown#select" do %>
+                <%= image_tag 'settings.svg' %>
+                <span> Account Settings </span>
+              <% end %>
+
+              <%= button_to destroy_user_session_path,
+                          method: :delete,
+                          data: { turbo: "false" },
+                          class: "flex items-center gap-x-4 p-5 bg-gray-50 w-full", "data-action": "dropdown#select" do %>
+                <%= image_tag 'log_out.svg' %>
+                <span> Sign Out </span>
+              <% end %>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
     <!--    Second Row-->
-    <div class="flex items-center gap-x-10 bg-gray-100 py-2 px-4 font-semibold text-fiord flex-grow">
+    <div class="flex h-[3.5rem] items-center gap-x-3 md:gap-x-5 bg-gray-100 px-3 md:px-6 py-3 md:py-4 md:px-4 font-semibold text-fiord bg-gray-50 border-b border-gray-200">
       <% if content_for?(:toggle_side_nav_btns) %>
         <%= yield(:toggle_side_nav_btns) %>
       <% end %>
-      <%= link_to goals_path do %>
-        <button>Goals</button>
-      <% end %>
+<!--      TODO: Make it dynamic depends on the current link-->
+      <div class="xs:hidden sm:block">
+        <%= link_to goals_path do %>
+          <button>Dashboard</button>
+        <% end %>
+      </div>
       <button>Hives</button>
+      <% if content_for?(:dropdown_filter) %>
+        <%= yield(:dropdown_filter) %>
+      <% end %>
     </div>
   </header>
 <% end %>

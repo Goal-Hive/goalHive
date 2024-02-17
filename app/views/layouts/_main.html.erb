@@ -1,20 +1,22 @@
 <main class="w-full flex flex-col bg-gray-50"
-      data-controller="toggle-side-nav">
+      data-controller="toggle-side-nav goals-filter"
+      data-action="resize@window->toggle-side-nav#handleBigScreen
+keyup@window->toggle-side-nav#closeWithKeyboard">
   <%#= debug(params) if Rails.env.development? %>
   <%= render 'partials/common/notification' %>
   <%= render 'partials/common/header' %>
   <%= render 'partials/common/modal' %>
 
   <div class="flex w-full justify-around overflow-y-auto relative top-[0]
-<%= user_signed_in? ? 'top-16 h-[calc(100vh-7rem)]' : '' %>" data-controller="goals-filter">
+<%= user_signed_in? ? 'top-16 h-[calc(100vh-7.5rem)] md:h-[calc(100vh-8.5rem)]' : '' %>">
     <% if content_for?(:side_nav) %>
       <%= yield(:side_nav) %>
     <% end %>
     <% if content_for?(:goals_list) %>
       <%= yield(:goals_list) %>
-    <% elsif content_for?(:goal_details)%>
+    <% elsif content_for?(:goal_details) %>
       <div class="bg-light-body overflow-y-auto flex-grow">
-        <%= yield (:goal_details)%>
+        <%= yield (:goal_details) %>
       </div>
     <% else %>
       <%= yield %>

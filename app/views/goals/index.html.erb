@@ -2,24 +2,31 @@
   <%= render 'partials/common/side_nav' %>
 <% end %>
 
+<% content_for :dropdown_filter do %>
+  <%= render template: 'goals/dropdown_filter' %>
+<% end %>
+
 <% content_for :toggle_side_nav_btns do %>
-    <button class="block lg:hidden bg-zircon rounded-full p-2 h-fit"
-            data-toggle-side-nav-target="unfoldBtn"
-            data-action="toggle-side-nav#unfold">
-      <%= image_tag 'toggle.svg', class: 'h-4 h-4' %>
-    </button>
-    <button class="hidden lg:block bg-zircon rounded-full p-2 self-end"
-            data-toggle-side-nav-target="foldBtn"
-            data-action="toggle-side-nav#fold">
-      <%= image_tag 'collapse.svg', class: ' h-5 h-5' %>
-    </button>
+  <!--  Fold Button-->
+  <button class="block lg:hidden w-5 justify-center items-center"
+          data-toggle-side-nav-target="unfoldBtn"
+          data-action="toggle-side-nav#toggle">
+    <%= image_tag 'toggle.svg', class: 'h-4 w-4 md:h-4 md:h-4' %>
+  </button>
+  <!--  Unfold Button-->
+  <button class="hidden lg:block w-5 flex justify-center items-center"
+          data-toggle-side-nav-target="foldBtn"
+          data-action="toggle-side-nav#toggle">
+    <%= image_tag 'collapse.svg', class: 'h-4 w-4 md:h-5 md:h-5' %>
+  </button>
 <% end %>
 
 <% content_for :goals_list do %>
-  <section class="flex flex-col flex-grow w-8/12 md:w-9/12 lg:w-10/12 bg-gray-50 h-fit" id="goals_section">
+  <section class="flex flex-col flex-grow w-8/12 md:w-9/12 lg:w-10/12 bg-gray-50 h-fit"
+           data-toggle-side-nav-target="hidden">
     <!--  header-->
-    <%= render partial: 'partials/common/page_header', locals: {page_name: 'Dashboard'} %>
+    <%#= render partial: 'partials/common/page_header', locals: { page_name: 'Dashboard' } %>
     <!--  Body-->
-    <%= render partial: 'goals/list', goals:@goals||goals%>
+    <%= render partial: 'goals/list', goals: @goals || goals %>
   </section>
 <% end %>

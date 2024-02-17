@@ -1,23 +1,30 @@
-import { Controller } from "@hotwired/stimulus"
-import {post} from '@rails/request.js'
+import {Controller} from "@hotwired/stimulus"
+import {useClickOutside} from 'stimulus-use'
 
 // Connects to data-controller="dropdown"
 export default class extends Controller {
-  static targets = ["dropdownContent", "selectedText"]
-  static values = {contentToggled: Boolean}
-  connect() {
-    // console.log('dropdown is connected ')
-  }
+    static targets = ["dropdownContent", "selectedText"]
+    static values = {contentToggled: Boolean}
 
-  toggle() {
-    this.dropdownContentTarget.hidden = !this.dropdownContentTarget.hidden
-  }
+    connect() {
+        // console.log('dropdown is connected ')
+        useClickOutside(this)
+    }
 
-  replaceSelectedText(text){
-    this.selectedTextTarget.textContent = text;
-  }
-  select(e){
-      this.toggle()
-      this.replaceSelectedText(e.target.dataset.optionText)
-  }
+    clickOutside(e) {
+        if (!this.dropdownContentTarget.hidden) this.toggle()
+    }
+
+    toggle() {
+        this.dropdownContentTarget.hidden = !this.dropdownContentTarget.hidden
+    }
+
+    replaceSelectedText(text) {
+        this.selectedTextTarget.textContent = text;
+    }
+
+    select(e) {
+        this.toggle()
+        this.replaceSelectedText(e.target.dataset.optionText)
+    }
 }
