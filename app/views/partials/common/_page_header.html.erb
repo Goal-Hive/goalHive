@@ -1,16 +1,5 @@
 <div class="flex justify-between items-center border-b border-gray-200 pr-6 py-5 sticky top-[0] right-0 w-full bg-gray-50 z-10">
-<!--  <div class="pl-2"-->
-<!--       data-toggle-side-nav-target="unfoldBtn"-->
-<!--  >-->
-<!--    <button class="lg:hidden bg-zircon rounded-full p-2 h-fit"-->
-<!--            data-action="toggle-side-nav#unfold">-->
-      <%#= image_tag 'spread.svg', class: 'h-6 h-6' %>
-<!--    </button>-->
-<!--  </div>-->
   <div class="hidden md:block text-2xl font-semibold text-yankeesBlue pl-6">
     <%= page_name %>
   </div>
-  <% if controller_name == "goals" && action_name == "index" %>
-    <%= render template: 'goals/dropdown_filter' %>
-  <% end %>
 </div>

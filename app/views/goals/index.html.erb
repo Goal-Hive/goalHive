@@ -2,18 +2,22 @@
   <%= render 'partials/common/side_nav' %>
 <% end %>
 
+<% content_for :dropdown_filter do %>
+  <%= render template: 'goals/dropdown_filter' %>
+<% end %>
+
 <% content_for :toggle_side_nav_btns do %>
   <!--  Fold Button-->
-  <button class="block lg:hidden w-7 justify-center items-center"
+  <button class="block lg:hidden w-5 justify-center items-center"
           data-toggle-side-nav-target="unfoldBtn"
           data-action="toggle-side-nav#toggle">
-    <%= image_tag 'toggle.svg', class: 'h-4 h-4' %>
+    <%= image_tag 'toggle.svg', class: 'h-4 w-4 md:h-4 md:h-4' %>
   </button>
   <!--  Unfold Button-->
-  <button class="hidden lg:block w-7 flex justify-center items-center"
+  <button class="hidden lg:block w-5 flex justify-center items-center"
           data-toggle-side-nav-target="foldBtn"
           data-action="toggle-side-nav#toggle">
-    <%= image_tag 'collapse.svg', class: ' h-5 h-5' %>
+    <%= image_tag 'collapse.svg', class: 'h-4 w-4 md:h-5 md:h-5' %>
   </button>
 <% end %>
 
@@ -21,7 +25,7 @@
   <section class="flex flex-col flex-grow w-8/12 md:w-9/12 lg:w-10/12 bg-gray-50 h-fit"
            data-toggle-side-nav-target="hidden">
     <!--  header-->
-    <%= render partial: 'partials/common/page_header', locals: { page_name: 'Dashboard' } %>
+    <%#= render partial: 'partials/common/page_header', locals: { page_name: 'Dashboard' } %>
     <!--  Body-->
     <%= render partial: 'goals/list', goals: @goals || goals %>
   </section>

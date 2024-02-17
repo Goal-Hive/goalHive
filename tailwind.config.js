@@ -13,6 +13,10 @@ module.exports = {
         // "./node_modules/flowbite/**/*.js"
     ],
     theme: {
+        screens: {
+            'xs': {'max': '375px'},
+            ...defaultTheme.screens,
+        },
         extend: {
             fontFamily: {
                 sans: ['Satoshi','Inter var', ...defaultTheme.fontFamily.sans],
