@@ -52,6 +52,13 @@ export default class extends Controller {
         }
     }
 
+    selectCategory() {
+        if (isSmallScreen()) {
+            this.toggleMobileClasses()
+            this.mobileFoldedValue = this.sideNavTarget.classList.contains('hidden')
+        }
+    }
+
     toggleMobileClasses() {
         this.hiddenTarget.classList.toggle('brightness-50');
         this.hiddenTarget.classList.toggle('h-fit');

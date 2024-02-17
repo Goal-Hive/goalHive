@@ -5,7 +5,8 @@
   data-category-id="<%= category.id %>"
   data-categories--navbar-target="category"
   class="navbar_category navbar_category_hover py-3 px-2 w-full flex justify-between ">
-  <button class="flex justify-start items-center w-48">
+  <button class="flex justify-start items-center w-48"
+  data-action="toggle-side-nav#selectCategory">
     <p class="truncate"><%= category.name %></p>
   </button>
 
