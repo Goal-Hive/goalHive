@@ -1,5 +1,5 @@
 import {Controller} from "@hotwired/stimulus"
-import { useClickOutside } from 'stimulus-use'
+import {useClickOutside} from 'stimulus-use'
 
 // Connects to data-controller="toggle-side-nav"
 export default class extends Controller {
@@ -11,7 +11,7 @@ export default class extends Controller {
 
     connect() {
         // console.log('toggle side nav is connected')
-        useClickOutside(this, { element: this.sideNavTarget })
+        useClickOutside(this, {element: this.sideNavTarget})
     }
 
     toggle(e) {
@@ -35,10 +35,8 @@ export default class extends Controller {
 
     clickOutside(event) {
         const button = event.target.closest('button')
-        if (button !== this.foldBtnTarget &&
-            isSmallScreen() &&
-            !this.mobileFoldedValue
-            ) {
+        if (button !== this.foldBtnTarget && isSmallScreen() && !this.mobileFoldedValue) {
+            event.preventDefault()
             this.toggleMobileClasses()
         }
     }
@@ -52,7 +50,7 @@ export default class extends Controller {
         }
     }
 
-    selectCategory() {
+    hideSideNav() {
         if (isSmallScreen()) {
             this.toggleMobileClasses()
             this.mobileFoldedValue = this.sideNavTarget.classList.contains('hidden')
