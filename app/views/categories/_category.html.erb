@@ -1,14 +1,15 @@
 <div
   id="<%= dom_id category %>"
   data-controller="toggle"
-  data-action="click->categories--navbar#select click->goals-filter#filterByCategory"
+  data-action="click->categories--navbar#select
+               click->goals-filter#filterByCategory
+               click->toggle-side-nav#hideSideNav"
   data-category-id="<%= category.id %>"
   data-categories--navbar-target="category"
   class="navbar_category navbar_category_hover py-3 px-2 w-full flex justify-between ">
-  <button class="flex justify-start items-center w-[inherit]"
-  data-action="toggle-side-nav#selectCategory">
+  <div class="flex justify-start items-center w-[inherit]">
     <p class="truncate"><%= category.name %></p>
-  </button>
+  </div>
 
 
   <div class="flex justify-center items-center gap-x-2 ">
