@@ -9,7 +9,6 @@ export default class extends Controller {
     static targets = ['default']
 
     connect() {
-        console.log()
         this.initiateSelectedCategory()
     }
 
@@ -35,10 +34,13 @@ export default class extends Controller {
     select(e) {
         let selectedCategory, previous
         selectedCategory = e.currentTarget
-        console.log(selectedCategory)
         // If selectedCategory different than the current => styleUnselected previous
         if (selectedCategory.id != this.currIdValue) {
             previous = document.querySelector(`#${this.currIdValue}`)
+            // If the form exist and the user already selected another element
+            if (previous.querySelector('#submit_category')) {
+                previous.querySelector('#selected').value = false;
+            }
             this.styleUnselected(previous)
         }
         this.currIdValue = selectedCategory.id

@@ -2,17 +2,17 @@
   id="<%= dom_id category %>"
   data-controller="toggle"
   data-action="click->categories--navbar#select
-               click->goals-filter#filterByCategory
-               turbo:submit:end->categories--navbar#handleUpdate"
+               click->goals-filter#filterByCategory"
   data-category-id="<%= category.id %>"
   data-categories--navbar-target="category"
-  class="navbar_category navbar_category_hover py-3 px-2 w-full flex justify-between gap-x-2">
+  class="navbar_category navbar_category_hover py-3 px-2 w-full flex justify-between gap-x-2
+        <%= action_name == 'update' && selected ? 'selected_category' : '' %>">
   <div class="flex justify-start items-center w-full cursor-pointer truncate">
     <%= category.name %>
   </div>
 
 
-  <div class="flex justify-end items-center gap-x-2 bg-gray-50">
+  <div class="flex justify-end items-center gap-x-2 ">
     <!--      Delete, Category, Details-->
     <div class="hidden flex justify-end items-center gap-x-2" data-toggle-target="toggledContent" data-category-element="options">
       <%= button_to (image_tag 'delete.svg'),
@@ -30,7 +30,11 @@
         <span>&#10007;</span>
       </button>
     </div>
-    <button data-action="click->toggle#toggleContent" data-toggle-target="toggleBtn"
-            data-category-element="btn" class="hidden"> <%= image_tag 'dots.svg' %> </button>
+    <button data-action="click->toggle#toggleContent"
+            data-toggle-target="toggleBtn"
+            data-category-element="btn"
+            class="<%= action_name == 'update' && selected ? '' : 'hidden' %>">
+      <%= image_tag 'dots.svg' %>
+    </button>
   </div>
 </div>

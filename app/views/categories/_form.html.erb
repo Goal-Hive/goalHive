@@ -12,14 +12,18 @@
         </ul>
       </div>
     <% end %>
+
+    <%= hidden_field_tag :selected, true %>
+
     <div class="flex gap-x-3">
       <%= form.text_field :name,
                           class: "shadow rounded-md  outline-none w-full text-light-text-categories font-semibold",
                           placeholder: "New Category" %>
       <div class="text-light-text-categories dark:text-white">
-        <%= form.submit '✓', class: "cursor-pointer align-middle" %>
-        <button data-controller="form"
-                data-form-id-value="new_category">
+        <%= form.submit '✓',
+                        id: 'submit_category',
+                        class: "cursor-pointer align-middle"%>
+        <button>
           ✗
         </button>
       </div>
