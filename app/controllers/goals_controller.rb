@@ -111,9 +111,7 @@ class GoalsController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.replace(@goal,
-                               partial: 'goals/goal',
-                               locals: { goal: @goal })
+          turbo_stream.remove(@goal)
         ]
       end
     end
