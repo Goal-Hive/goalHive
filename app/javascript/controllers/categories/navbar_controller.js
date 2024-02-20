@@ -38,12 +38,19 @@ export default class extends Controller {
         if (selectedCategory.id != this.currIdValue) {
             previous = document.querySelector(`#${this.currIdValue}`)
             // If the form exist and the user already selected another element
-            if (previous.querySelector('#submit_category')) {
+            if (previous?.querySelector('#submit_category')) {
                 previous.querySelector('#selected').value = false;
             }
             this.styleUnselected(previous)
         }
         this.currIdValue = selectedCategory.id
         this.styleSelected(selectedCategory)
+    }
+
+    deleteCategorySubmitEnd(e){
+        if (e.detail.success) {
+           this.styleSelected(this.defaultTarget)
+            this.currIdValue = this.defaultTarget.id
+        }
     }
 }

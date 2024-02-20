@@ -15,11 +15,13 @@
   <div class="flex justify-end items-center gap-x-2 ">
     <!--      Delete, Category, Details-->
     <div class="hidden flex justify-end items-center gap-x-2" data-toggle-target="toggledContent" data-category-element="options">
-      <%= button_to (image_tag 'delete.svg'),
-                    category_path(category),
-                    method: :delete,
-                    form: { data: { turbo_confirm: 'Are you sure you want to delete this category?' } },
-                    class: "w-7 h-7 flex justify-center items-center rounded-2xl py-2 px-2 bg-red-100" %>
+      <div data-action="turbo:submit-end->categories--navbar#deleteCategorySubmitEnd">
+        <%= button_to (image_tag 'delete.svg'),
+                      category_path(category),
+                      method: :delete,
+                      form: { data: { turbo_confirm: 'Are you sure you want to delete this category?' } },
+                      class: "w-7 h-7 flex justify-center items-center rounded-2xl py-2 px-2 bg-red-100" %>
+      </div>
       <%= button_to (image_tag 'edit.svg'),
                     edit_category_path(category),
                     method: :post,
