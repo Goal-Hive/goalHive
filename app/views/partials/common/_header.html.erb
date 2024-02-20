@@ -53,15 +53,17 @@
       </div>
     </div>
     <!--    Second Row-->
-    <div class="flex h-[3.5rem] items-center gap-x-3 md:gap-x-5 bg-gray-100 px-3 md:px-6 py-3 md:py-4 md:px-4 font-semibold text-fiord bg-gray-50 border-b border-gray-200">
-      <% if content_for?(:toggle_side_nav_btns) %>
-        <%= yield(:toggle_side_nav_btns) %>
-      <% end %>
+    <div class="flex h-[3.5rem] items-center gap-x-5 md:gap-x-5 bg-gray-100 px-3 md:px-6 py-3 md:py-4 md:px-4 font-semibold text-fiord bg-gray-50 border-b border-gray-200">
+      <div class="w-6">
+        <% if content_for?(:toggle_side_nav_btns) %>
+          <%= yield(:toggle_side_nav_btns) %>
+        <% end %>
+      </div>
       <!--      TODO: Make it dynamic depends on the current link-->
-      <%= active_link_to goals_path do %>
+      <%= active_link_to root_path do %>
           <button class="hover:underline underline-offset-4 select-none"> Dashboard</button>
       <% end %>
-      <%= active_link_to '', class:'pointer-events-none' do %>
+      <%= active_link_to '/hives', class:'pointer-events-none' do %>
         <button class="hover:underline underline-offset-4 select-none"> Hives</button>
       <% end %>
       <% if content_for?(:dropdown_filter) %>
