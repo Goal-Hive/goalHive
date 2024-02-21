@@ -1,6 +1,7 @@
 import {Controller} from "@hotwired/stimulus"
 import {useClickOutside} from 'stimulus-use'
 
+
 // Connects to data-controller="toggle-side-nav"
 export default class extends Controller {
     static targets = ['unfoldBtn', 'foldBtn', 'sideNav', 'hidden']
