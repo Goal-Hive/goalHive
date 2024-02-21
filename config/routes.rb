@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   end
 
   resources :categories do
+    collection do
+      put 'sort', to: 'categories#sort'
+    end
+
     member do
       post :edit, :new
     end

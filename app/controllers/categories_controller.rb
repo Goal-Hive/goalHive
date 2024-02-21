@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[show edit update destroy]
+  before_action :set_category, only: %i[show edit update destroy sort]
 
   # GET /categories or /categories.json
   def index
-    @categories = Category.all
+    @categories = current_user.categories
+  end
+
+  def sort
+    @category.update(row_order_position:
+                        params[:row_order_position])
+    head :no_content
   end
 
   # GET /categories/1 or /categories/1.json
@@ -18,19 +24,6 @@ class CategoriesController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.prepend('categories',
-                               partial: 'categories/form',
-                               locals: { category: @category })
-        ]
-      end
-    end
-  end
-
-  # post /categories/1/edit
-  def edit
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.replace(@category,
                                partial: 'categories/form',
                                locals: { category: @category })
         ]
@@ -62,6 +55,19 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # post /categories/1/edit
+  def edit
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.replace(@category,
+                               partial: 'categories/form',
+                               locals: { category: @category })
+        ]
+      end
+    end
+  end
+
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
     respond_to do |format|
@@ -70,7 +76,9 @@ class CategoriesController < ApplicationController
           render turbo_stream: [
             turbo_stream.replace(@category,
                                  partial: 'categories/category',
-                                 locals: { category: @category }),
+                                 locals: { category: @category,
+                                           selected: params[:selected].to_boolean
+                                 }),
             turbo_stream.update('notice', 'Category is Updated')
           ]
         end
@@ -119,4 +127,5 @@ class CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:name)
   end
+
 end

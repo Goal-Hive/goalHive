@@ -4,7 +4,7 @@
 <!--  </button>-->
 <!--</div>-->
 <!--Side navigation bar-->
-<div class="hidden lg:block w-2/12 h-[inherit] bg-gray-50 z-10 z-50"
+<div class="hidden lg:block w-2/12 h-[inherit] bg-gray-50 z-50 lg:z-auto"
      data-toggle-side-nav-target="sideNav">
   <div class=" bg-gray-50
 flex flex-col gap-y-4 py-6 px-4  justify-start items-center fixed w-[inherit] h-[inherit] border-r border-gray-200"
@@ -13,7 +13,9 @@ flex flex-col gap-y-4 py-6 px-4  justify-start items-center fixed w-[inherit] h-
     <%= link_to '+ Create a goal',
                 new_goal_path,
                 data: { turbo_frame: "modal" },
-                class: "h-fit w-full rounded-3xl py-1 text-center bg-light-bg-darkPurple text-white block font-bold " %>
+                class: "h-fit w-full rounded-3xl py-1 text-center bg-light-bg-darkPurple text-white block font-bold",
+                "data-action": "click->toggle-side-nav#hideSideNav"
+    %>
     <!--  Categories Section-->
     <div class="flex flex-col h-[inherit] flex-grow  w-full border border-solid dark:border-none border-gray-300 rounded-lg  bg-light-sideNav dark:bg-dark-navbarInsider overflow-y-auto">
       <!--  Create a new Category-->

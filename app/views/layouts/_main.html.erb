@@ -3,9 +3,9 @@
       data-action="resize@window->toggle-side-nav#handleBigScreen
 keyup@window->toggle-side-nav#closeWithKeyboard">
   <%#= debug(params) if Rails.env.development? %>
+  <%= render 'partials/common/modal' %>
   <%= render 'partials/common/notification' %>
   <%= render 'partials/common/header' %>
-  <%= render 'partials/common/modal' %>
 
   <div class="flex w-full justify-around overflow-y-auto relative top-[0]
 <%= user_signed_in? ? 'top-16 h-[calc(100vh-7.5rem)] md:h-[calc(100vh-8.5rem)]' : '' %>">

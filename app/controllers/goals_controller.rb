@@ -42,29 +42,26 @@ class GoalsController < ApplicationController
   # POST /goals or /goals.json
   def create
     @goal = Goal.new(goal_params)
-    @goal.category = find_or_create_category
+    @goal.category = find_or_create_category[:category]
+    new_category = find_or_create_category[:new_category]
     @goal.user = current_user
     respond_to do |format|
       if @goal.save
         format.turbo_stream do
-          render turbo_stream:
-                   if (@current_category == 'all' ||
-                     @current_category.to_i == @goal.category_id) &&
-                      @current_status == 'active'
-                     [turbo_stream.prepend('goals',
-                                           partial: 'goals/goal',
-                                           locals: { goal: @goal }),
-                      turbo_stream.append('categories',
-                                          partial: 'categories/category',
-                                          locals: { category: @goal.category })]
-                   else
-                     [turbo_stream.append('categories',
-                                          partial: 'categories/category',
-                                          locals: { category: @goal.category })]
-                   end
+          actions = []
+          # if it is all category or same category and 'active status'
+          if (@current_category == 'all' || @current_category.to_i == @goal.category_id) && @current_status == 'active'
+            actions << turbo_stream.prepend('goals', partial: 'goals/goal',
+                                            locals: { goal: @goal })
+          end
+          if new_category
+            actions << turbo_stream.append('categories', partial: 'categories/category',
+                                           locals: { category: @goal.category })
+          end
+          render turbo_stream: actions
         end
-        format.html { redirect_to goal_url(@goal), notice: 'Goal was successfully created.' }
-        format.json { render :show, status: :created, location: @goal }
+        # format.html { redirect_to goal_url(@goal), notice: 'Goal was successfully created.' }
+        # format.json { render :show, status: :created, location: @goal }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @goal.errors, status: :unprocessable_entity }
@@ -73,11 +70,15 @@ class GoalsController < ApplicationController
   end
 
   def find_or_create_category
+    new_category = false
+    category = nil
     if goal_params[:category_id].present?
-      Category.find(goal_params[:category_id])
+      category = Category.find(goal_params[:category_id])
     elsif goal_params.dig(:category_attributes, :name).present?
-      current_user.categories.build(name: goal_params[:category_attributes][:name])
+      new_category = true
+      category = current_user.categories.build(name: goal_params[:category_attributes][:name])
     end
+    { category: category, new_category: new_category }
   end
 
   # PATCH/PUT /goals/1 or /goals/1.json
@@ -111,9 +112,7 @@ class GoalsController < ApplicationController
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
-          turbo_stream.replace(@goal,
-                               partial: 'goals/goal',
-                               locals: { goal: @goal })
+          turbo_stream.remove(@goal)
         ]
       end
     end

@@ -13,13 +13,17 @@ export default class extends Controller {
     }
 
     filterByStatus(e) {
-        this.currentStatusValue = e.currentTarget.dataset.optionValue
-        this.filterGoals()
+        if (this.currentStatusValue !== e.currentTarget.dataset.optionValue){
+            this.currentStatusValue = e.currentTarget.dataset.optionValue
+            this.filterGoals()
+        }
     }
 
     filterByCategory(e) {
-        this.currentCategoryValue = e.currentTarget.dataset.categoryId
-        this.filterGoals()
+        if (this.currentCategoryValue !== e.currentTarget.dataset.categoryId){
+            this.currentCategoryValue = e.currentTarget.dataset.categoryId
+            this.filterGoals()
+        }
     }
 
     filterGoals() {

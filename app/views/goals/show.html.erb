@@ -1,57 +1,74 @@
 <% content_for :goal_details do %>
-<div class='h-full w-full min-h-screen flex justify-around gap-x-5 items-start py-5 px-5'>
-  <!--  1st section-->
-  <div class='mb-3 p-3  bg-white w-3/12 border-solid border border-gray-200 rounded-[8px]'>
-    <p class="font-bold text-sm text-light-text-darkPurple leading-5 text-base mb-4">
-      Your Motivation
-    </p>
-    <blockquote
-      suppressContentEditableWarning={true}
-      class='focus:border-0 bg-light-bg-lightGray p-3 text-doveGray rounded-[8px]'
-      contentEditable='true'
-    >
-      <%= @goal.motivation %>
-    </blockquote>
-  </div>
-  <!--  2nd section-->
-  <div class="w-6/12 flex flex-col gap-y-5">
-    <p class="text-2xl truncate">
-      <%= @goal.description %>
-    </p>
-
-    <div
-      data-controller="tabs"
-      data-tabs-active-class="border rounded-3xl bg-white"
-      data-tabs-default-tab-value="inProgressMilestones"
-    >
-      <!-- buttons to toggle between tabs -->
-      <div class="text-light-text-main list-reset flex border mb-5 rounded-3xl p-1 w-fit bg-slate-50">
-        <button data-tab-id="inProgressMilestones" data-tabs-target="btn defaultBtn" data-action="click->tabs#select" class="milestone_tab">In-progress Milestones</button>
-        <button data-tab-id="achievedMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">Achieved Milestones</button>
-        <button data-tab-id="allMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">All Milestones</button>
-      </div>
-
-      <!-- the tabs -->
-      <div class="rounded-lg">
-        <div data-tabs-target="tab defaultTab"  id="inProgressMilestones" class="hidden milestone_tab_content" data-controller="sortable" data-sortable-url="<%= sort_in_progress_milestones_path %>" data-sortable-list="in-progress" data-sortable-position="in_progress_row_order_position">
-          <%= render @goal.milestones.where(status: 'in_progress').rank(:in_progress_row_order).all %>
-        </div>
-
-        <div data-tabs-target="tab"  id="achievedMilestones" class='hidden milestone_tab_content'>
-          <%= render @goal.milestones.where(status: 'achieved') %>
-        </div>
-
-        <div data-tabs-target="tab" id="allMilestones" class='hidden milestone_tab_content' data-controller="sortable" data-sortable-url="<%= sort_all_milestones_path %>" data-sortable-position="row_order_position">
-          <%= render @goal.milestones.rank(:row_order).all %>
-        </div>
-      </div>
+  <div class='h-full w-full min-h-screen flex justify-around gap-x-5 items-start py-5 px-5'>
+    <!--  1st section-->
+    <div class='mb-3 p-3  bg-white w-3/12 border-solid border border-gray-200 rounded-[8px]'>
+      <p class="font-bold text-sm text-light-text-darkPurple leading-5 text-base mb-4">
+        Your Motivation
+      </p>
+      <blockquote
+        suppressContentEditableWarning={true}
+        class='focus:border-0 bg-light-bg-lightGray p-3 text-doveGray rounded-[8px]'
+        contentEditable='true'
+      >
+        <%= @goal.motivation %>
+      </blockquote>
     </div>
+    <!--  2nd section-->
+    <div class="w-6/12 flex flex-col gap-y-5">
+      <p class="text-2xl truncate">
+        <%= @goal.description %>
+      </p>
 
+      <div
+        data-controller="tabs"
+        data-tabs-active-class="border rounded-3xl bg-white"
+        data-tabs-default-tab-value="inProgressMilestones"
+      >
+        <!-- buttons to toggle between tabs -->
+        <div class="text-light-text-main list-reset flex border mb-5 rounded-3xl p-1 w-fit bg-slate-50">
+          <button data-tab-id="inProgressMilestones" data-tabs-target="btn defaultBtn" data-action="click->tabs#select" class="milestone_tab">In-progress
+            Milestones
+          </button>
+          <button data-tab-id="achievedMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">Achieved
+            Milestones
+          </button>
+          <button data-tab-id="allMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">All
+            Milestones
+          </button>
+        </div>
+
+        <!-- the tabs -->
+        <div class="rounded-lg">
+          <div data-tabs-target="tab defaultTab"
+               id="inProgressMilestones"
+               class="hidden milestone_tab_content"
+               data-controller="sortable"
+               data-sortable-url="<%= sort_in_progress_milestones_path %>"
+               data-sortable-list="in-progress"
+               data-sortable-position="in_progress_row_order_position">
+            <%= render @goal.milestones.where(status: 'in_progress').rank(:in_progress_row_order).all %>
+          </div>
+
+          <div data-tabs-target="tab" id="achievedMilestones" class='hidden milestone_tab_content'>
+            <%= render @goal.milestones.where(status: 'achieved') %>
+          </div>
+
+          <div data-tabs-target="tab"
+               id="allMilestones"
+               class='hidden milestone_tab_content'
+               data-controller="sortable"
+               data-sortable-url="<%= sort_all_milestones_path %>"
+               data-sortable-position="row_order_position">
+            <%= render @goal.milestones.rank(:row_order).all %>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!--  3rd section-->
+    <div class="w-3/12">
+      <%= render @goal %>
+    </div>
   </div>
-  <!--  3rd section-->
-  <div class="w-3/12">
-    <%= render @goal %>
-  </div>
-</div>
 
 <% end %>

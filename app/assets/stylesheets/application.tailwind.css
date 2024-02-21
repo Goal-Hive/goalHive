@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 @layer components {
+    .active-header-link {
+        @apply
+        text-ceruleanBlue font-bold xs:hidden sm:block
+        pointer-events-none
+    }
+
     .btn-primary {
         @apply
         bg-light-bg-darkPurple text-white text-center rounded-xl py-1 shadow-md font-bold focus:ring-2
