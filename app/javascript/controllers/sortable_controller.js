@@ -8,7 +8,8 @@ export default class extends Controller {
     connect() {
         // console.log('sortable controller is connected')
         Sortable.create(this.element, {
-            onEnd: this.onEnd.bind(this)
+            onEnd: this.onEnd.bind(this),
+            handle: ".my-handle"
         });
     }
 
