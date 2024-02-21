@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[show edit update destroy]
+  before_action :set_category, only: %i[show edit update destroy sort]
 
   # GET /categories or /categories.json
   def index
     @categories = current_user.categories
+  end
+
+  def sort
+    @category.update(row_order_position:
+                        params[:row_order_position])
+    head :no_content
   end
 
   # GET /categories/1 or /categories/1.json
@@ -121,4 +127,5 @@ class CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:name)
   end
+
 end
