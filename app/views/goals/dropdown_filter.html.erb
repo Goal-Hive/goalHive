@@ -12,7 +12,7 @@
       <% { active: "Active", paused: "Paused", achieved: "Achieved" }.each do |key, value| %>
         <button data-option-text="<%= value %>"
                 data-option-value="<%= key %>"
-                class="bg-indigo-50 py-3 px-3 w-full flex justify-start hover:font-semibold"
+                class="bg-indigo-50 py-3 px-3 w-full flex justify-start hover:font-semibold hover:bg-indigo-100"
                 data-action="dropdown#select goals-filter#filterByStatus">
           <%= value %>
         </button>
