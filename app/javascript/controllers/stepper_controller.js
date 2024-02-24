@@ -96,7 +96,7 @@ export default class extends Controller {
         });
     }
 
-    resetnewGoalCategoryInput() {
+    resetNewGoalCategoryInput() {
         this.newGoalCategoryInputTarget.value=''
     }
 }

@@ -4,16 +4,13 @@
       <div class="flex gap-x-3 w-full">
         <%= category_fields.text_field :name,
                             class: "text-doveGray shadow rounded-md outline-none w-full font-base",
-                            placeholder: "Type your new category name.....",
+                            placeholder: "Type your new category name...",
                             value: '',
                             'data-stepper-target':'newGoalCategoryInput'%>
         <div class="text-light-text-categories dark:text-white flex gap-x-3">
-          <%#= button_tag type: 'submit', class: "align-middle bg-green-100 p-2 text-green-500  whitespace-nowrap" do %>
-<!--            &#10003 confirm-->
-          <%# end %>
           <button data-action="click->toggle#toggleContent
                               click->stepper#enableCategoriesOptions
-                              click->stepper#resetnewGoalCategoryInput"
+                              click->stepper#resetNewGoalCategoryInput"
                   class="bg-red-100 p-2 text-red-500 whitespace-nowrap">
             &#10007 cancel
           </button>

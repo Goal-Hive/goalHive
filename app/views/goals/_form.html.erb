@@ -36,11 +36,11 @@
         <%= form.text_field :motivation, class: "goal_input" %>
       </div>
       <!--      Step 2: Developing Milestones step -->
-      <div class="step_container" data-stepper-target="step" data-controller="milestones">
+      <div class="step_container" data-stepper-target="step">
         <%= render 'partials/common/create_milestones', form: form %>
       </div>
       <!--      Step 3: Choosing Category step -->
-      <div class="step_container" data-stepper-target="step" data-controller="milestones">
+      <div class="step_container" data-stepper-target="step">
         <h3 class="step_title">Choose a category to add your goal to</h3>
         <div class="step_desc"><p data-stepper-target="goalReplica"></p></div>
         <p> Your recent categories </p>
