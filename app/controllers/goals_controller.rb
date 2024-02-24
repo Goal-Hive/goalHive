@@ -3,7 +3,7 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[show edit update destroy update_status]
   before_action :set_goals, only: %i[index]
-  before_action :set_current_category, only: %i[create filter]
+  before_action :set_current_filters, only: %i[create filter index]
   before_action :filter_params, only: %i[filter]
 
   # GET /goals or /goals.json
@@ -126,7 +126,7 @@ class GoalsController < ApplicationController
   end
 
   def set_goals
-    @goals = apply_scopes(current_user.goals.order(created_at: :desc)).all
+    @goals = current_user.goals.order(created_at: :desc)
   end
 
   # Only allow a list of trusted parameters through.
@@ -144,13 +144,17 @@ class GoalsController < ApplicationController
     params.require(:by_category_and_status).permit(:category, :status)
   end
 
-  def set_current_category
+  def set_current_filters
     case action_name
     when 'filter'
       session[:current_category] = filter_params[:category]
       session[:current_status] = filter_params[:status]
+    when 'index'
+      session[:current_category] = 'all'
+      session[:current_status] = 'active'
+    else
+      @current_category = session[:current_category].empty? ? 'all' : session[:current_category]
+      @current_status = session[:current_status].empty? ? 'active' : session[:current_status]
     end
-    @current_category = session[:current_category].empty? ? 'all' : session[:current_category]
-    @current_status = session[:current_status].empty? ? 'active' : session[:current_status]
   end
 end
