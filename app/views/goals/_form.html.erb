@@ -23,60 +23,35 @@
     <div class="flex-grow font-medium text-fiord text-lg">
       <!--      Step 1: Goal, Motivation Category  -->
       <div class="step_container" data-stepper-target="step">
-        <h3 class="step_title">Creating your new goal</h3>
-        <div class="step_desc">
-          <%= image_tag 'achieved.svg', class: "w-5 h-5" %>
-          <p>What’s your goal?</p>
-        </div>
-        <%= form.text_field :description, class: "goal_input", 'data-stepper-target': "goalInput", 'data-action': "input->stepper#reflectGoal" %>
-        <div class="step_desc">
-          <%= image_tag 'electric.svg', class: "w-5 h-5" %>
-          <p>Why do you want to achieve this goal?</p>
-        </div>
-        <%= form.text_field :motivation, class: "goal_input" %>
+        <%= render 'partials/new_goal_stepper/step_1_goal_details', form: form %>
       </div>
       <!--      Step 2: Developing Milestones step -->
       <div class="step_container" data-stepper-target="step">
-        <%= render 'partials/common/create_milestones', form: form %>
+        <%= render 'partials/new_goal_stepper/step_2_create_milestones', form: form %>
       </div>
       <!--      Step 3: Choosing Category step -->
       <div class="step_container" data-stepper-target="step">
-        <h3 class="step_title">Choose a category to add your goal to</h3>
-        <div class="step_desc"><p data-stepper-target="goalReplica"></p></div>
-        <p> Your recent categories </p>
-        <div class="flex gap-x-5 flex-wrap gap-y-3 pb-4" id="new_goal_categories">
-          <% current_user.categories.each do |category| %>
-            <%= render  'categories/new_goal_category', form:, category:%>
-          <% end %>
-        </div>
-        <%= render  'categories/new_goal_category_form', form: %>
+        <%= render 'partials/new_goal_stepper/step_3_choose_category', form: form %>
       </div>
       <!--      Step 4: Assign Begin date, End date-->
       <div class="step_container" data-stepper-target="step">
-        <div class="step_title">
-          Great, dates help keep momentum with our goals!
-        </div>
-        <div class="step_desc">
-          Pick a start and end date below
-        </div>
-        <div class="flex gap-x-5">
-          <div class="flex flex-col gap-y-3">
-            <%= form.label :begin_date, "Start Date" %>
-            <%= form.date_field :begin_date, class: "bg-zircon rounded-xl border-none" %>
-          </div>
-          <div class="flex flex-col gap-y-3">
-            <%= form.label :end_date, "End Date" %>
-            <%= form.date_field :end_date, class: "bg-zircon rounded-xl  border-none" %>
-          </div>
-        </div>
+        <%= render 'partials/new_goal_stepper/step_4_choose_dates', form: form %>
       </div>
     </div>
     <!--    Navigation Buttons-->
     <div class="self-end flex justify-end gap-x-4 font-medium">
-      <button class="bg-light-bg-secondary rounded-3xl px-4 py-2 text-light-text-title" data-action="stepper#previous" data-stepper-target="next">
+      <button class="bg-light-bg-secondary rounded-3xl px-4 py-2 text-light-text-title"
+              data-action="stepper#previous"
+              data-stepper-target="prev">
         ← Back
       </button>
-      <button class="bg-light-bg-darkPurple rounded-3xl px-4 py-2 text-white" data-action="stepper#next" data-stepper-target="prev">
+      <button class="bg-light-bg-darkPurple rounded-3xl px-4 py-2 text-white
+                     disabled:bg-light-bg-lightGray
+                     disabled:cursor-not-allowed
+                     disabled:text-light-text-main"
+              data-action="stepper#next"
+              data-stepper-target="next"
+              disabled= "true">
         Next →
       </button>
       <div class="bg-light-bg-darkPurple w-fit flex justify-center items-center rounded-3xl px-5 py-1 text-white inline-block cursor-pointer hidden"

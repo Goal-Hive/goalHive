@@ -13,28 +13,29 @@
 <div data-controller="new-goal-milestones" class="flex flex-col gap-y-3 h-full">
   <div class="flex flex-col gap-y-3 flex-grow overflow-y-auto h-48"
        data-new-goal-milestones-target="milestonesContainer">
-    <!--    <div data-milestones-target="newGoalMilestone">-->
-    <%#= form.fields_for :milestones do |milestoneForm| %>
-    <!--        <div class="flex gap-x-3 items-center">-->
-    <%#= milestoneForm.text_field :description,
-                                       class: "w-full border border-grey-200 bg-wildSand" %>
-    <%#= milestoneForm.hidden_field :_destroy %>
-    <%# end %>
-    <!--    </div>-->
-
-    <div data-new-goal-milestones-target="newGoalMilestone">
+    <div data-new-goal-milestones-target="firstMilestone">
       <div class="flex gap-x-3 items-center">
+        <%#= form.fields_for :milestones do |milestoneForm| %>
+
+        <%#= milestoneForm.text_field :description %>
         <input class="w-full border border-grey-200 bg-wildSand"
                type="text"
                name="goal[milestones_attributes][new_milestone][description]"
-               id="goal_milestones_attributes_new_milestone_description">
+               id="goal_milestones_attributes_new_milestone_description"
+               data-action="stepper#enableNext"
+               data-stepper-target="milestoneInput"
+        >
+
+        <%#= milestoneForm.hidden_field :_destroy %>
         <input autocomplete="off"
                type="hidden"
                value="false"
                name="goal[milestones_attributes][new_milestone][_destroy]"
                id="goal_milestones_attributes_new_milestone__destroy">
         <%= image_tag 'x.svg',
-                    data: { action: "click->new-goal-milestones#removeMilestone" } %>
+                      class: 'removeMilestone',
+                    data: { action: "click->new-goal-milestones#removeMilestone"  }
+        %>
       </div>
     </div>
   </div>

@@ -1,0 +1,17 @@
+
+        <div class="step_title">
+          Great, dates help keep momentum with our goals!
+        </div>
+        <div class="step_desc">
+          Pick a start and end date below
+        </div>
+        <div class="flex gap-x-5">
+          <div class="flex flex-col gap-y-3">
+            <%= form.label :begin_date, "Start Date" %>
+            <%= form.date_field :begin_date, class: "bg-zircon rounded-xl border-none" %>
+          </div>
+          <div class="flex flex-col gap-y-3">
+            <%= form.label :end_date, "End Date" %>
+            <%= form.date_field :end_date, class: "bg-zircon rounded-xl  border-none" %>
+          </div>
+        </div>
