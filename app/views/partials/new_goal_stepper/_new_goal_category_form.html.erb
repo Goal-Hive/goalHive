@@ -3,14 +3,16 @@
     <%= form.fields_for :category_attributes do |category_fields| %>
       <div class="flex gap-x-3 w-full">
         <%= category_fields.text_field :name,
-                            class: "text-doveGray shadow rounded-md outline-none w-full font-base",
-                            placeholder: "Type your new category name...",
-                            value: '',
-                            'data-stepper-target':'newGoalCategoryInput'%>
+                                       class: "text-doveGray shadow rounded-md outline-none w-full font-base",
+                                       placeholder: "Type your new category name...",
+                                       value: '',
+                                       'data-stepper-target': 'newGoalCategoryInput',
+                                       'data-action':'stepper#enableNext'
+        %>
         <div class="text-light-text-categories dark:text-white flex gap-x-3">
           <button data-action="click->toggle#toggleContent
-                              click->stepper#enableCategoriesOptions
-                              click->stepper#resetNewGoalCategoryInput"
+                               click->stepper#enableCategoriesOptions
+                               click->stepper#resetNewGoalCategoryInput"
                   class="bg-red-100 p-2 text-red-500 whitespace-nowrap">
             &#10007 cancel
           </button>
@@ -18,7 +20,9 @@
       </div>
     <% end %>
   </div>
-  <button data-action="click->toggle#toggleContent click->stepper#unselectCategoriesOptions"
+  <button data-action="click->toggle#toggleContent
+                       click->stepper#unselectCategoriesOptions
+                       click->stepper#disableNext"
           data-toggle-target="toggleBtn"
           class="text-ceruleanBlue bg-zircon p-2 flex justify-start w-fit rounded-md">
     <p>Create New Category?</p>

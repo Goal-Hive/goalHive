@@ -11,9 +11,15 @@ export default class extends Controller {
         "prev",
         "submit",
         "goalInput",
+        "milestoneInput",
         "goalReplica",
         "newGoalCategoryOption",
         "newGoalCategoryInput"]
+
+    static values = {
+        categorySelected: {type: Boolean, default: false},
+        categoryTyped: {type: Boolean, default: false},
+    }
 
     connect() {
         // console.log("stepper controller is connected")
@@ -47,12 +53,37 @@ export default class extends Controller {
 
     controlNavigation() {
         if (this.index === 0) {
-            this.nextTarget.classList.toggle('hidden')
+            this.prevTarget.classList.toggle('hidden')
         }
         if (this.index === this.stepTargets.length - 2) {
             this.submitTarget.classList.toggle('hidden')
-            this.prevTarget.classList.toggle('hidden')
+            this.nextTarget.classList.toggle('hidden')
         }
+    }
+
+    enableNext(e) {
+        const step = this.index
+        console.log(step)
+        switch (step) {
+            case 0: {
+                this.nextTarget.disabled = this.goalInputTarget.value.length <= 0;
+                break;
+            }
+            case 1: {
+                this.nextTarget.disabled = this.milestoneInputTarget.value.length <= 0;
+                break;
+            }
+            case 2: {
+                let categoryExist = !(this.categoryTypedValue || this.categorySelectedValue);
+                this.nextTarget.disabled = categoryExist
+                this.categorySelectedValue = e?.target.checked
+                this.categoryTypedValue = e?.target.value.length > 0
+                this.nextTarget.disabled = categoryExist.
+                break;
+            }
+        }
+
+
     }
 
     next(e) {
@@ -62,6 +93,7 @@ export default class extends Controller {
             this.index++
             this.updateNumber()
             this.showCurrentStep()
+            this.enableNext()
         }
     }
 
@@ -72,6 +104,7 @@ export default class extends Controller {
             this.updateNumber()
             this.showCurrentStep()
             this.controlNavigation()
+            this.enableNext()
         }
     }
 
@@ -84,6 +117,7 @@ export default class extends Controller {
     }
 
     unselectCategoriesOptions(e) {
+        this.categorySelectedValue = false
         this.newGoalCategoryOptionTargets.forEach(radio => {
             radio.checked = false;
             radio.disabled = true
@@ -97,6 +131,11 @@ export default class extends Controller {
     }
 
     resetNewGoalCategoryInput() {
-        this.newGoalCategoryInputTarget.value=''
+        this.categoryTypedValue = false
+        this.newGoalCategoryInputTarget.value = ''
+    }
+
+    disableNext() {
+        this.nextTarget.disabled = true
     }
 }
