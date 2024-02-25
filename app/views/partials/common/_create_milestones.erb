@@ -5,16 +5,42 @@
   <%= image_tag 'net.svg' %>
   <p>To develop this goal, let’s break it down into smaller goals or as we like to call them, Milestones.</p>
 </div>
-<p class="text-sm font-light text-doveGray"> Visualize the end result of the goal you are working on to a high standard. Work backwards to plan each step you need to take to increase the chances of achieving this goal. Have a go at setting a few milestones you think would be worth celebrating towards your goal and don’t worry you can always add or reduce milestones later. </p>
+<p class="text-sm font-light text-doveGray"> Visualize the end result of the goal you are working on to a high standard.
+  Work backwards to plan each step you need to take to increase the chances of achieving this goal. Have a go at setting
+  a few milestones you think would be worth celebrating towards your goal and don’t worry you can always add or reduce
+  milestones later. </p>
 
-<div data-controller="milestones" class="flex flex-col gap-y-3 h-full" >
-  <div id="milestones" class="flex flex-col gap-y-3 flex-grow overflow-y-auto h-48" data-milestones-target="milestonesContainer">
-    <%= form.fields_for :milestones do |m| %>
-      <%= render "milestones/milestone_fields", milestoneForm: m %>
-    <% end %>
+<div data-controller="new-goal-milestones" class="flex flex-col gap-y-3 h-full">
+  <div class="flex flex-col gap-y-3 flex-grow overflow-y-auto h-48"
+       data-new-goal-milestones-target="milestonesContainer">
+    <!--    <div data-milestones-target="newGoalMilestone">-->
+    <%#= form.fields_for :milestones do |milestoneForm| %>
+    <!--        <div class="flex gap-x-3 items-center">-->
+    <%#= milestoneForm.text_field :description,
+                                       class: "w-full border border-grey-200 bg-wildSand" %>
+    <%#= milestoneForm.hidden_field :_destroy %>
+    <%# end %>
+    <!--    </div>-->
+
+    <div data-new-goal-milestones-target="newGoalMilestone">
+      <div class="flex gap-x-3 items-center">
+        <input class="w-full border border-grey-200 bg-wildSand"
+               type="text"
+               name="goal[milestones_attributes][new_milestone][description]"
+               id="goal_milestones_attributes_new_milestone_description">
+        <input autocomplete="off"
+               type="hidden"
+               value="false"
+               name="goal[milestones_attributes][new_milestone][_destroy]"
+               id="goal_milestones_attributes_new_milestone__destroy">
+        <%= image_tag 'x.svg',
+                    data: { action: "click->new-goal-milestones#removeMilestone" } %>
+      </div>
+    </div>
   </div>
+
   <%= button_tag "Add Milestone",
                  type: "button",
-                 data: { action: "click->milestones#addMilestone" },
-                 class:"self-center w-full bg-zircon rounded-3xl py-1 "%>
+                 data: { action: "click->new-goal-milestones#addMilestone" },
+                 class: "self-center w-full bg-zircon rounded-3xl py-1 " %>
 </div>
