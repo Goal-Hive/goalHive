@@ -2,15 +2,23 @@ import {Controller} from "@hotwired/stimulus"
 
 // Connects to data-controller="new-goal-milestones"
 export default class extends Controller {
-    static targets = ["milestonesContainer", "firstMilestone", "milestoneNumber", "milestoneInput"]
+    static targets = ["milestonesContainer", "firstMilestone", "milestoneNumber", "milestoneInput", "newMilestone"]
     static values = {
         'newGoalMilestoneTemplate': String
     }
 
     connect() {
+        this.copyTemplate()
+        this.replaceFirstMilestonePlaceHolderWithTime()
+        this.handleRemoveMilestoneBtn()
+    }
+
+    copyTemplate() {
         this.newGoalMilestoneTemplateValue = this.firstMilestoneTarget.innerHTML
+    }
+
+    replaceFirstMilestonePlaceHolderWithTime() {
         this.firstMilestoneTarget.innerHTML = this.replaceNewMilestoneWithTime(this.firstMilestoneTarget.innerHTML)
-        this.firstMilestoneTarget.querySelector('.removeMilestone').remove()
     }
 
     addMilestone(e) {
@@ -19,13 +27,14 @@ export default class extends Controller {
         const fragment = document.createRange().createContextualFragment(html);
         // this.milestonesContainerTarget.insertAdjacentHTML("beforeend", html)
         this.milestonesContainerTarget.append(fragment)
-        this.milestoneInputTargets[this.milestoneInputTargets.length-1].focus()
+        this.milestoneInputTargets[this.milestoneInputTargets.length - 1].focus()
         this.updateMilestoneNumber()
+        this.handleRemoveMilestoneBtn()
     }
 
-    addWithKeyboard(e){
+    addWithKeyboard(e) {
         if (e.key === "Enter") {
-           this.addMilestone(e)
+            this.addMilestone(e)
         }
     }
 
@@ -45,7 +54,16 @@ export default class extends Controller {
         // const destroyInput = milestone.querySelector("input[name*='_destroy']")
         // destroyInput.value = "true"
         // milestone.classList.add("d-none")
+        this.handleRemoveMilestoneBtn()
         this.resetMilestoneNumbers()
+    }
+
+    handleRemoveMilestoneBtn() {
+        if (this.milestoneInputTargets.length > 1) {
+            this.newMilestoneTarget.querySelector('.removeMilestone').classList.remove('invisible')
+        } else {
+            this.newMilestoneTarget.querySelector('.removeMilestone').classList.add('invisible')
+        }
     }
 
     resetMilestoneNumbers() {
