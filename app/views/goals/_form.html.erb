@@ -48,10 +48,14 @@
       <button class="bg-light-bg-darkPurple rounded-3xl px-4 py-2 text-white
                      disabled:bg-light-bg-lightGray
                      disabled:cursor-not-allowed
-                     disabled:text-light-text-main"
+                     disabled:text-light-text-main
+                     disabled:has-tooltip
+                     disabled:cursor-help"
               data-action="stepper#next"
               data-stepper-target="next"
               disabled= "true">
+        <span class='tooltip rounded shadow-lg p-1 bg-gray-500 text-white bottom-24 -ml-[10%] text-sm font-light w-72'
+              data-stepper-target="nextTooltip"></span>
         Next →
       </button>
       <div class="bg-light-bg-darkPurple w-fit flex justify-center items-center rounded-3xl px-5 py-1 text-white inline-block cursor-pointer hidden"

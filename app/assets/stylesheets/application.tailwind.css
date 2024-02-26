@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer components {
+    .tooltip {
+        @apply invisible absolute;
+    }
+
+    .has-tooltip:hover .tooltip {
+        @apply md:visible z-50;
+    }
+
     .active-header-link {
         @apply
         text-ceruleanBlue font-bold xs:hidden sm:block

@@ -14,15 +14,20 @@ export default class extends Controller {
         "milestoneInput",
         "goalReplica",
         "newGoalCategoryOption",
-        "newGoalCategoryInput"]
+        "newGoalCategoryInput",
+        "nextTooltip"
+    ]
 
     static values = {
         categorySelected: {type: Boolean, default: false},
         categoryTyped: {type: Boolean, default: false},
-    }
-
-    connect() {
-        // console.log("stepper controller is connected")
+        nextTooltip: {
+            type: Object, default: {
+                0: 'Your goal needs a clear objective.',
+                1: 'Ensure your goal has measurable progress by adding milestones.',
+                2: 'Categorize your goal to better track your objectives.',
+            }
+        }
     }
 
     initialize() {
@@ -31,6 +36,11 @@ export default class extends Controller {
         this.controlNavigation()
         this.updateNumber()
         this.showStepsNumber()
+    }
+
+    connect() {
+        // console.log("stepper controller is connected")
+        this.reflectToolTip()
     }
 
     showStepsNumber() {
@@ -63,7 +73,6 @@ export default class extends Controller {
 
     enableNext(e) {
         const step = this.index
-        console.log(step)
         switch (step) {
             case 0: {
                 this.nextTarget.disabled = this.goalInputTarget.value.length <= 0;
@@ -74,17 +83,16 @@ export default class extends Controller {
                 break;
             }
             case 2: {
-                let categoryExist = !(this.categoryTypedValue || this.categorySelectedValue);
-                this.nextTarget.disabled = categoryExist
+                this.nextTarget.disabled = !this.categoryExist()
                 this.categorySelectedValue = e?.target.checked
                 this.categoryTypedValue = e?.target.value.length > 0
-                this.nextTarget.disabled = categoryExist.
+                this.nextTarget.disabled = !this.categoryExist();
                 break;
             }
         }
-
-
     }
+
+    categoryExist(){return (this.categoryTypedValue || this.categorySelectedValue)}
 
     next(e) {
         e.preventDefault()
@@ -94,6 +102,7 @@ export default class extends Controller {
             this.updateNumber()
             this.showCurrentStep()
             this.enableNext()
+            this.reflectToolTip()
         }
     }
 
@@ -105,11 +114,16 @@ export default class extends Controller {
             this.showCurrentStep()
             this.controlNavigation()
             this.enableNext()
+            this.reflectToolTip()
         }
     }
 
     reflectGoal(e) {
         this.goalReplicaTarget.textContent = this.goal
+    }
+
+    reflectToolTip(){
+        this.nextTooltipTarget.textContent = this.nextTooltipValue[this.index]
     }
 
     get goal() {

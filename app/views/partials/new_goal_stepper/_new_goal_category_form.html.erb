@@ -10,9 +10,10 @@
                                        'data-action':'stepper#enableNext'
         %>
         <div class="text-light-text-categories dark:text-white flex gap-x-3">
-          <button data-action="click->toggle#toggleContent
-                               click->stepper#enableCategoriesOptions
-                               click->stepper#resetNewGoalCategoryInput"
+          <button data-action="toggle#toggleContent
+                               stepper#enableCategoriesOptions
+                               stepper#resetNewGoalCategoryInput
+                               stepper#disableNext"
                   class="bg-red-100 p-2 text-red-500 whitespace-nowrap">
             &#10007 cancel
           </button>
