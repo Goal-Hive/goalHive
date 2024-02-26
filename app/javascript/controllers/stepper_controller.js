@@ -63,7 +63,6 @@ export default class extends Controller {
     }
 
     controlNavigation() {
-        console.log(this.index, this.stepTargets.length )
         if (this.index === 0) {
             this.prevTarget.classList.toggle('hidden')
         }
@@ -86,8 +85,8 @@ export default class extends Controller {
             }
             case 2: {
                 this.nextTarget.disabled = !this.categoryExist()
-                this.categorySelectedValue = e?.target.checked
-                this.categoryTypedValue = e?.target.value.length > 0
+                if (e) this.categorySelectedValue = e.target.checked
+                if (e) this.categoryTypedValue = e.target.value.length > 0
                 this.nextTarget.disabled = !this.categoryExist();
                 break;
             }
