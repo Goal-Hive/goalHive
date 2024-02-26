@@ -3,11 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-    .form-input {
-        @apply w-full border-none focus:border-none border-grey-200 bg-wildSand
-        appearance-none border-none rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-none
-    }
-
     .tooltip {
         @apply invisible absolute;
     }
@@ -44,7 +39,7 @@
 
     .goal_input {
         @apply
-        w-full border-none focus:border-none border-grey-200 bg-wildSand appearance-none border-none rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-none
+        w-full border-none focus:border-none border-gray-200 bg-wildSand appearance-none border-none rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-none
     }
 
     .step_desc {

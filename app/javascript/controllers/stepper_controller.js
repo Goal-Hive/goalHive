@@ -34,6 +34,7 @@ export default class extends Controller {
         this.index = 0
         this.showCurrentStep()
         this.controlNavigation()
+        this.controlFocus()
         this.updateNumber()
         this.showStepsNumber()
     }
@@ -72,6 +73,18 @@ export default class extends Controller {
         }
     }
 
+    controlFocus(){
+        const step = this.index
+        switch (step) {
+            case 0: {
+                this.goalInputTarget.focus()
+                break;
+            }
+            case 1: {
+                this.milestoneInputTarget.focus()
+            }
+        }
+    }
     enableNext(e) {
         const step = this.index
         switch (step) {
@@ -105,6 +118,7 @@ export default class extends Controller {
             this.enableNext()
             this.reflectToolTip()
         }
+        this.controlFocus()
     }
 
     previous(e) {
