@@ -41,6 +41,7 @@ export default class extends Controller {
     connect() {
         // console.log("stepper controller is connected")
         this.reflectToolTip()
+        this.enableNext()
     }
 
     showStepsNumber() {
@@ -62,6 +63,7 @@ export default class extends Controller {
     }
 
     controlNavigation() {
+        console.log(this.index, this.stepTargets.length )
         if (this.index === 0) {
             this.prevTarget.classList.toggle('hidden')
         }
