@@ -2,7 +2,7 @@ import {Controller} from "@hotwired/stimulus"
 
 // Connects to data-controller="new-goal-milestones"
 export default class extends Controller {
-    static targets = ["milestonesContainer", "firstMilestone"]
+    static targets = ["milestonesContainer", "firstMilestone", "milestoneNumber"]
     static values = {
         'newGoalMilestoneTemplate': String
     }
@@ -17,6 +17,11 @@ export default class extends Controller {
         event.preventDefault()
         const html = this.replaceNewMilestoneWithTime(this.newGoalMilestoneTemplateValue)
         this.milestonesContainerTarget.insertAdjacentHTML("beforeend", html)
+        this.updateMilestoneNumber()
+    }
+
+    updateMilestoneNumber() {
+        this.milestoneNumberTargets[this.milestoneNumberTargets.length - 1].textContent = this.milestoneNumberTargets.length
     }
 
     replaceNewMilestoneWithTime(content = this.firstMilestoneTarget) {
@@ -31,6 +36,12 @@ export default class extends Controller {
         // const destroyInput = milestone.querySelector("input[name*='_destroy']")
         // destroyInput.value = "true"
         // milestone.classList.add("d-none")
+        this.resetMilestoneNumbers()
     }
 
+    resetMilestoneNumbers(){
+        this.milestoneNumberTargets.forEach((n, i)=> {
+            n.textContent = i+1
+        })
+    }
 }

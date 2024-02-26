@@ -1,15 +1,15 @@
-        <h3 class="step_title">Creating your new goal</h3>
-        <div class="step_desc">
-          <%= image_tag 'achieved.svg', class: "w-5 h-5" %>
-          <p>What’s your goal?</p>
-        </div>
-        <%= form.text_field :description,
-                            class: "goal_input",
-                            'data-stepper-target': "goalInput",
-                            'data-action': "stepper#reflectGoal
+<h3 class="step_title">Creating your new goal</h3>
+<div class="step_desc">
+  <%= image_tag 'achieved.svg', class: "w-5 h-5" %>
+  <p>What’s your goal?</p>
+</div>
+<%= form.text_field :description,
+                    class: "goal_input focus:outline-none focus:bg-white focus:border-none",
+                    'data-stepper-target': "goalInput",
+                    'data-action': "stepper#reflectGoal
                                             stepper#enableNext" %>
-        <div class="step_desc">
-          <%= image_tag 'electric.svg', class: "w-5 h-5" %>
-          <p>Why do you want to achieve this goal?</p>
-        </div>
-        <%= form.text_field :motivation, class: "goal_input" %>
+<div class="step_desc">
+  <%= image_tag 'electric.svg', class: "w-5 h-5" %>
+  <p>Why do you want to achieve this goal?</p>
+</div>
+<%= form.text_field :motivation, class: "goal_input focus:outline-none focus:bg-white focus:border-none" %>
