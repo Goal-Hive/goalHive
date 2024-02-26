@@ -17,6 +17,14 @@ export default class extends Controller {
         this.toggleBtnTarget.classList.toggle('hidden')
     }
 
+    hideContent(e){
+        e.preventDefault()
+        this.toggledContentTargets.forEach(part => {
+            part.classList.add('hidden')
+        })
+        this.toggleBtnTarget.classList.remove('hidden')
+    }
+
     toggleById(e) {
         document.querySelector(`#${this.idValue}`).classList.toggle('hidden')
     }

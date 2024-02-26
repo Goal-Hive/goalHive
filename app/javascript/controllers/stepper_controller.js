@@ -149,7 +149,7 @@ export default class extends Controller {
         this.categorySelectedValue = false
         this.newGoalCategoryOptionTargets.forEach(radio => {
             radio.checked = false;
-            radio.disabled = true
+            // radio.disabled = true
         });
     }
 
