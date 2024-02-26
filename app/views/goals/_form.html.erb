@@ -27,21 +27,13 @@
     <!--    Content (Steps)-->
     <div class="flex-grow font-medium text-fiord text-lg">
       <!--      Step 1: Goal, Motivation Category  -->
-      <div class="step_container" data-stepper-target="step">
         <%= render 'partials/new_goal_stepper/step_1_goal_details', form: form %>
-      </div>
       <!--      Step 2: Developing Milestones step -->
-      <div class="step_container" data-stepper-target="step">
-        <%= render 'partials/new_goal_stepper/step_2_create_milestones', form: form %>
-      </div>
+         <%= render 'partials/new_goal_stepper/step_2_create_milestones', form: form %>
       <!--      Step 3: Choosing Category step -->
-      <div class="step_container" data-stepper-target="step">
         <%= render 'partials/new_goal_stepper/step_3_choose_category', form: form %>
-      </div>
       <!--      Step 4: Assign Begin date, End date-->
-      <div class="step_container" data-stepper-target="step">
         <%= render 'partials/new_goal_stepper/step_4_choose_dates', form: form %>
-      </div>
     </div>
     <!--    Navigation Buttons-->
     <div class="self-end flex justify-end gap-x-4 font-medium">
