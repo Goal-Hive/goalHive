@@ -13,11 +13,20 @@ export default class extends Controller {
         this.firstMilestoneTarget.querySelector('.removeMilestone').remove()
     }
 
-    addMilestone(event) {
-        event.preventDefault()
+    addMilestone(e) {
+        e.preventDefault()
         const html = this.replaceNewMilestoneWithTime(this.newGoalMilestoneTemplateValue)
-        this.milestonesContainerTarget.insertAdjacentHTML("beforeend", html)
+        const fragment = document.createRange().createContextualFragment(html);
+        // this.milestonesContainerTarget.insertAdjacentHTML("beforeend", html)
+        this.milestonesContainerTarget.append(fragment)
+        this.milestoneInputTargets[this.milestoneInputTargets.length-1].focus()
         this.updateMilestoneNumber()
+    }
+
+    addWithKeyboard(e){
+        if (e.key === "Enter") {
+           this.addMilestone(e)
+        }
     }
 
     updateMilestoneNumber() {

@@ -18,19 +18,17 @@
         <%#= form.fields_for :milestones do |milestoneForm| %>
 
         <span class="rounded-full bg-white border border-gray-200 p-4 w-10 h-10 flex justify-center items-center"
-              data-new-goal-milestones-target="milestoneNumber"
-        >
-          1
-        </span>
+              data-new-goal-milestones-target="milestoneNumber"> 1 </span>
 
         <%#= milestoneForm.text_field :description %>
         <input class="goal_input focus:outline-none focus:bg-white focus:border-none"
                type="text"
                name="goal[milestones_attributes][new_milestone][description]"
                id="goal_milestones_attributes_new_milestone_description"
-               data-action="stepper#enableNext"
                data-stepper-target="milestoneInput"
                data-new-goal-milestones-target="milestoneInput"
+               data-action="stepper#enableNext
+                            keydown.enter->new-goal-milestones#addWithKeyboard"
         >
 
         <%#= milestoneForm.hidden_field :_destroy %>
