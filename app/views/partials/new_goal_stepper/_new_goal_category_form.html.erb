@@ -3,20 +3,20 @@
     <%= form.fields_for :category_attributes do |category_fields| %>
       <div class="flex gap-x-3 w-full">
         <%= category_fields.text_field :name,
-                                       class: "text-doveGray shadow rounded-md outline-none w-full font-base",
-                                       placeholder: "Type your new category name...",
+                                       class: "goal_input text-doveGray shadow rounded-md outline-none w-4/12 font-base",
+                                       placeholder: "Your new category name!",
                                        value: '',
                                        'data-stepper-target': 'newGoalCategoryInput',
                                        'data-action':'stepper#enableNext'
         %>
         <div class="text-light-text-categories dark:text-white flex gap-x-3">
-          <button data-action="toggle#toggleContent
-                               stepper#enableCategoriesOptions
-                               stepper#resetNewGoalCategoryInput
-                               stepper#disableNext"
-                  class="bg-red-100 p-2 text-red-500 whitespace-nowrap">
-            &#10007 cancel
-          </button>
+<!--          <button data-action="toggle#toggleContent-->
+<!--                               stepper#enableCategoriesOptions-->
+<!--                               stepper#resetNewGoalCategoryInput-->
+<!--                               stepper#disableNext"-->
+<!--                  class="bg-red-100 p-2 text-red-500 whitespace-nowrap">-->
+<!--            &#10007 cancel-->
+<!--          </button>-->
         </div>
       </div>
     <% end %>
