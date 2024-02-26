@@ -10,7 +10,7 @@
   a few milestones you think would be worth celebrating towards your goal and don’t worry you can always add or reduce
   milestones later. </p>
 
-<div data-controller="new-goal-milestones" class="flex flex-col gap-y-3 h-full">
+<div class="flex flex-col gap-y-3 h-full">
   <div class="flex flex-col gap-y-3 flex-grow overflow-y-auto h-48 p-2"
        data-new-goal-milestones-target="milestonesContainer">
     <div data-new-goal-milestones-target="firstMilestone">
@@ -30,6 +30,7 @@
                id="goal_milestones_attributes_new_milestone_description"
                data-action="stepper#enableNext"
                data-stepper-target="milestoneInput"
+               data-new-goal-milestones-target="milestoneInput"
         >
 
         <%#= milestoneForm.hidden_field :_destroy %>

@@ -2,7 +2,7 @@ import {Controller} from "@hotwired/stimulus"
 
 // Connects to data-controller="new-goal-milestones"
 export default class extends Controller {
-    static targets = ["milestonesContainer", "firstMilestone", "milestoneNumber"]
+    static targets = ["milestonesContainer", "firstMilestone", "milestoneNumber", "milestoneInput"]
     static values = {
         'newGoalMilestoneTemplate': String
     }
@@ -39,9 +39,17 @@ export default class extends Controller {
         this.resetMilestoneNumbers()
     }
 
-    resetMilestoneNumbers(){
-        this.milestoneNumberTargets.forEach((n, i)=> {
-            n.textContent = i+1
+    resetMilestoneNumbers() {
+        this.milestoneNumberTargets.forEach((n, i) => {
+            n.textContent = i + 1
         })
+    }
+
+    filterEmptyMilestones() {
+        console.log(this.milestoneInputTargets[1].value.length)
+        this.milestoneInputTargets.forEach(i => {
+            if (i.value.length == 0) i.parentNode.remove()
+        })
+        console.log(this.milestoneInputTargets)
     }
 }

@@ -1,4 +1,8 @@
-<%= form_with(model: goal, url: goals_path, class: "contents") do |form| %>
+<%= form_with(model: goal,
+              url: goals_path,
+              class: "contents",
+              data: { controller: 'new-goal-milestones',
+                      action: 'new-goal-milestones#filterEmptyMilestones' }) do |form| %>
   <% if goal.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(goal.errors.count, "error") %> prohibited this goal from being saved:</h2>
@@ -11,7 +15,8 @@
     </div>
   <% end %>
 
-  <div data-controller="stepper" class="h-50v flex flex-col gap-y-3 justify-between">
+  <div data-controller="stepper"
+       class="h-50v flex flex-col gap-y-3 justify-between">
     <!--    ٍStep Number-->
     <div class="bg-light-bg-lightGray flex items-center gap-x-3 w-fit p-3 text-fiord  font-medium rounded-md">
       <%= image_tag 'stars.svg' %>
@@ -53,7 +58,7 @@
                      disabled:cursor-help"
               data-action="stepper#next"
               data-stepper-target="next"
-              disabled= "true">
+              disabled="true">
         <span class='tooltip rounded shadow-lg p-1 bg-gray-500 text-white bottom-24 -ml-[10%] text-sm font-light w-72'
               data-stepper-target="nextTooltip"></span>
         Next →
