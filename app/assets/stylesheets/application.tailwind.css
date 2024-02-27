@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer components {
+    .tooltip {
+        @apply invisible absolute;
+    }
+
+    .has-tooltip:hover .tooltip {
+        @apply md:visible z-50;
+    }
+
     .active-header-link {
         @apply
         text-ceruleanBlue font-bold xs:hidden sm:block
@@ -31,7 +39,7 @@
 
     .goal_input {
         @apply
-        bg-wildSand block shadow rounded-md border border-gray-200 outline-none px-3 w-full
+        w-full border-none focus:border-none border-gray-100 bg-wildSand appearance-none border-none rounded py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-none
     }
 
     .step_desc {
@@ -60,13 +68,12 @@
         @apply
         text-fiord
         font-semibold
-        /*dark:bg-inherit*/
-        /*dark:text-white*/
-        /*dark:hover:border-slate-500*/
+            /*dark:bg-inherit*/
+            /*dark:text-white*/
+            /*dark:hover:border-slate-500*/
         h-12 w-full flex justify-start items-center
         rounded
     }
-
 
 
     .selected_category {

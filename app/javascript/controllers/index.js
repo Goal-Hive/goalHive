@@ -22,6 +22,9 @@ application.register("goals-filter", GoalsFilterController)
 import MilestonesController from "./milestones_controller"
 application.register("milestones", MilestonesController)
 
+import NewGoalMilestonesController from "./new_goal_milestones_controller"
+application.register("new-goal-milestones", NewGoalMilestonesController)
+
 import SortableController from "./sortable_controller"
 application.register("sortable", SortableController)
 

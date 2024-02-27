@@ -3,6 +3,8 @@
 class Milestone < ApplicationRecord
   belongs_to :goal
 
+  validates :description, presence: true
+
   enum :status, %i[in_progress achieved archived], default: :in_progress, prefix: true
 
   include RankedModel

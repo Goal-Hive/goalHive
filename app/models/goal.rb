@@ -6,6 +6,7 @@ class Goal < ApplicationRecord
   has_many :milestones, class_name: 'Milestone', dependent: :destroy
 
   validates :description, presence: true
+  validates :milestones, presence: { message: 'must have at least one milestone' }, on: :create
 
   scope :by_category, ->(category) { where(category: category) }
   scope :by_status, ->(status) { where(status: status) }
