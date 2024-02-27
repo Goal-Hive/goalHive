@@ -56,9 +56,7 @@ export default class extends Controller {
         // milestone.classList.add("d-none")
         this.handleRemoveMilestoneBtn()
         this.resetMilestoneNumbers()
-        if (this.milestoneInputTargets.length === 1){
-            this.dispatch("removeMilestone")
-        }
+        this.dispatch("removeMilestone")
     }
 
     handleRemoveMilestoneBtn() {

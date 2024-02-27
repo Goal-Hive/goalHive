@@ -11,11 +11,13 @@ export default class extends Controller {
         "prev",
         "submit",
         "goalInput",
+        "goalMotivation",
         "milestoneInput",
         "goalReplica",
         "newGoalCategoryOption",
+        'newGoalCategoryBtn',
         "newGoalCategoryInput",
-        "nextTooltip"
+        "nextTooltip",
     ]
 
     static values = {
@@ -24,19 +26,27 @@ export default class extends Controller {
         nextTooltip: {
             type: Object, default: {
                 0: 'Your goal needs a clear objective.',
-                1: 'Ensure your goal has measurable progress by adding milestones.',
+                1: 'Ensure your goal has measurable progress by adding the first milestone.',
                 2: 'Categorize your goal to better track your objectives.',
+            }
+        },
+        targetChain: {
+            type: Object, default: {
+                'goalInput': 'goalMotivation',
+                'goalMotivation': 'next',
+                'newGoalCategoryBtn': 'newGoalCategoryInput',
+                'newGoalCategoryInput': 'next'
             }
         }
     }
 
     initialize() {
         this.index = 0
+        this.showStepsNumber()
+        this.updateNumber()
         this.showCurrentStep()
         this.controlNavigation()
         this.controlFocus()
-        this.updateNumber()
-        this.showStepsNumber()
     }
 
     connect() {
@@ -73,7 +83,7 @@ export default class extends Controller {
         }
     }
 
-    controlFocus(){
+    controlFocus() {
         const step = this.index
         switch (step) {
             case 0: {
@@ -85,6 +95,7 @@ export default class extends Controller {
             }
         }
     }
+
     enableNext(e) {
         const step = this.index
         switch (step) {
@@ -106,7 +117,9 @@ export default class extends Controller {
         }
     }
 
-    categoryExist(){return (this.categoryTypedValue || this.categorySelectedValue)}
+    categoryExist() {
+        return (this.categoryTypedValue || this.categorySelectedValue)
+    }
 
     next(e) {
         e.preventDefault()
@@ -137,7 +150,7 @@ export default class extends Controller {
         this.goalReplicaTarget.textContent = this.goal
     }
 
-    reflectToolTip(){
+    reflectToolTip() {
         this.nextTooltipTarget.textContent = this.nextTooltipValue[this.index]
     }
 
@@ -166,5 +179,14 @@ export default class extends Controller {
 
     disableNext() {
         this.nextTarget.disabled = true
+    }
+
+    FocusOnNextTarget(e){
+        e.preventDefault()
+        const target = e.currentTarget.dataset.stepperTarget
+        const nextTarget = this.targetChainValue[target]
+        console.log(target)
+        console.log(nextTarget)
+        this[`${nextTarget}Target`].focus()
     }
 }
