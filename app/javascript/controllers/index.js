@@ -7,6 +7,9 @@ import { application } from "./application"
 import Categories__NavbarController from "./categories/navbar_controller"
 application.register("categories--navbar", Categories__NavbarController)
 
+import DialogController from "./dialog_controller"
+application.register("dialog", DialogController)
+
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 

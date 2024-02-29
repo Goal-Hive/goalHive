@@ -1,5 +1,11 @@
-<div class="w-full flex justify-center fixed translate-y-40 z-30  ">
-  <div class="w-8/12 bg-white">
-    <%= turbo_frame_tag :modal %>
-  </div>
-</div>
+<dialog data-dialog-target="modal"
+        class="backdrop:bg-black backdrop:bg-opacity-60
+        w-full h-full md:w-8/12 lg:w-6/12 md:h-[80%]"
+        data-action="click->dialog#clickOutside">
+  <%= turbo_frame_tag :modal %>
+  <!--    x button to close the dialog-->
+  <form method="dialog"
+        class="absolute right-3 top-3 text-light-text-main text-2xl">
+    <button formmethod="dialog"> &#10007 </button>
+  </form>
+</dialog>
