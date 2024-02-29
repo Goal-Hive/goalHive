@@ -1,6 +1,6 @@
 <%= turbo_frame_tag :modal do %>
-  <div data-controller="turbo-modal" data-action="turbo:submit-end->turbo-modal#submitEnd" class="relative p-10">
+  <div data-action="turbo:submit-end->dialog#submitEnd"
+       class="relative p-10 h-full">
       <%= render "form", goal: @goal %>
-    <button data-action="click->turbo-modal#hideModal" class="absolute right-3 top-3 text-light-text-main text-2xl">  &#10007 </button>
   </div>
 <% end %>
