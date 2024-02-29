@@ -1,6 +1,6 @@
 <%= form_with(model: goal,
               url: goals_path,
-              class: "contents",
+              class: 'h-full',
               data: { controller: 'new-goal-milestones stepper',
                       action: 'new-goal-milestones#filterEmptyMilestones
                                new-goal-milestones:removeMilestone@window->stepper#enableNext' }) do |form| %>
@@ -16,7 +16,7 @@
     </div>
   <% end %>
 
-  <div class="h-50v flex flex-col gap-y-3 justify-between">
+  <div class="flex h-full flex-col gap-y-3 justify-between">
     <!--    ٍStep Number-->
     <div class="bg-light-bg-lightGray flex items-center gap-x-3 w-fit p-3 text-fiord  font-medium rounded-md">
       <%= image_tag 'stars.svg' %>
@@ -25,7 +25,7 @@
         <span data-stepper-target="numberOfSteps"> - </span></p>
     </div>
     <!--    Content (Steps)-->
-    <div class="flex-grow font-medium text-fiord text-lg">
+    <div class="flex-1 overflow-auto  font-medium text-fiord text-lg">
       <!--      Step 1: Goal, Motivation Category  -->
         <%= render 'partials/new_goal_stepper/step_1_goal_details', form: form %>
       <!--      Step 2: Developing Milestones step -->
@@ -51,7 +51,7 @@
               data-action="stepper#next"
               data-stepper-target="next"
               disabled="true">
-        <span class='tooltip rounded shadow-lg p-1 bg-gray-500 text-white bottom-24 -ml-[10%] text-sm font-light w-72'
+        <span class='tooltip rounded shadow-lg p-1 bg-gray-500 text-white bottom-24 -ml-[10%] text-sm font-light'
               data-stepper-target="nextTooltip"></span>
         Next →
       </button>

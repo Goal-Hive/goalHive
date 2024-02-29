@@ -34,7 +34,7 @@
 
     .step_container {
         @apply
-        flex flex-col gap-y-4 text-base text-light-text-main h-full
+        flex flex-col gap-y-4 text-base text-light-text-main h-full p-2
     }
 
     .goal_input {
