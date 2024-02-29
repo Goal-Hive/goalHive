@@ -18,25 +18,36 @@
       <p class="text-2xl truncate">
         <%= @goal.description %>
       </p>
-
       <div
         data-controller="tabs"
         data-tabs-active-class="border rounded-3xl bg-white"
         data-tabs-default-tab-value="inProgressMilestones"
       >
         <!-- buttons to toggle between tabs -->
-        <div class="text-light-text-main list-reset flex border mb-5 rounded-3xl p-1 w-fit bg-slate-50">
-          <button data-tab-id="inProgressMilestones" data-tabs-target="btn defaultBtn" data-action="click->tabs#select" class="milestone_tab">In-progress
-            Milestones
-          </button>
-          <button data-tab-id="achievedMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">Achieved
-            Milestones
-          </button>
-          <button data-tab-id="allMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">All
-            Milestones
-          </button>
+        <div class="flex justify-between items-center">
+<!--          Buttons-->
+          <div class="text-light-text-main list-reset flex justify-center items-center border rounded-3xl p-1 w-fit bg-slate-50">
+            <button data-tab-id="inProgressMilestones" data-tabs-target="btn defaultBtn" data-action="click->tabs#select" class="milestone_tab">In-progress
+              Milestones
+            </button>
+            <button data-tab-id="achievedMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">Achieved
+              Milestones
+            </button>
+            <button data-tab-id="allMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">All
+              Milestones
+            </button>
+          </div>
+<!--          Add a new Milestone-->
+          <%= button_to new_milestone_path(goal_id: @goal.id),
+                        method: :post,
+                        class: ' gap-x-2 text-white bg-light-bg-darkPurple rounded flex justify-between items-center py-1 px-4  rounded-3xl',
+                        data: { turbo_frame: "modal",
+                                action: 'dialog#open' } do %>
+            <p class="flex justify-center items-center text-2xl font-base">
+              +
+            </p> <span> Add Milestone </span>
+          <% end %>
         </div>
-
         <!-- the tabs -->
         <div class="rounded-lg">
           <div data-tabs-target="tab defaultTab"
@@ -63,7 +74,6 @@
           </div>
         </div>
       </div>
-
     </div>
     <!--  3rd section-->
     <div class="w-3/12">

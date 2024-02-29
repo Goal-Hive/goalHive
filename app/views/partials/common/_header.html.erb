@@ -16,16 +16,6 @@
         <!--        <span class="cursor-pointer dark:text-fiord text-philippineYellow bg-peach dark:bg-white rounded-3xl">&#9788;</span>-->
         <!--        <span class="cursor-pointer dark:text-philippineYellow text-fiord">&#x1F313;</span>-->
         <!--      </button>-->
-        <% if controller_name == "goals" && action_name == "show" %>
-          <%= button_to new_milestone_path(goal_id: @goal.id),
-                        method: :post,
-                        data: { turbo_frame: "modal",
-                                action: 'dialog#open' } do %>
-            <p class="text-white bg-light-bg-darkPurple p-2 rounded-3xl h-7 w-7 flex justify-center items-center text-3xl text-bold ">
-              +
-            </p>
-          <% end %>
-        <% end %>
         <div data-controller="dropdown" class="w-full flex items-center gap-x-3 justify-end">
           <div class="items-end relative flex items-center">
             <!--            Header profile image-->
