@@ -16,7 +16,7 @@ class GoalCardComponent < ViewComponent::Base
                   end
     @milestone_reached = "#{achievedCount}/#{allMilestones}"
     @milestone_number = @goal.milestones.count - @goal.milestones.where(status: 'in_progress').count + 1
-    @next_milestone = @goal.milestones.where(status: 'in_progress')&.first
+    @next_milestone = @goal.milestones.where(status: 'in_progress')&.rank(:in_progress_row_order)&.first
     case allMilestones
     when 0
       @message = "You've not set milestones for this goal."
