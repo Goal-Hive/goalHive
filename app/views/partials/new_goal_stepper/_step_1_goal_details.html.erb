@@ -4,19 +4,25 @@
     <%= image_tag 'achieved.svg', class: "w-5 h-5" %>
     <p>What’s your goal?</p>
   </div>
-  <%= form.text_field :description,
-                      class: "goal_input",
-                      'data-stepper-target': "goalInput",
-                      'data-action': "stepper#reflectGoal
+  <%= form.text_area :description,
+                     class: "goal_input resize-none",
+                     'data-stepper-target': "goalInput",
+                     'data-form-target': "textArea",
+                     data: { controller: 'form' },
+                     'data-action': "stepper#reflectGoal
                                       stepper#enableNext
-                                      keydown.enter->stepper#FocusOnNextTarget" %>
+                                      keydown.enter->stepper#FocusOnNextTarget
+                                      form#autoExpand" %>
   <div class="step_desc">
     <%= image_tag 'electric.svg', class: "w-5 h-5" %>
     <p>Why do you want to achieve this goal?</p>
   </div>
-  <%= form.text_field :motivation,
-                      class: "goal_input focus:outline-none focus:bg-white focus:border-none",
-                      'data-stepper-target': "goalMotivation",
-                      'data-action': "keydown.enter->stepper#FocusOnNextTarget"
+  <%= form.text_area :motivation,
+                     class: "goal_input resize-none",
+                     'data-stepper-target': "goalMotivation",
+                     'data-form-target': "textArea",
+                     data: { controller: 'form' },
+                     'data-action': "keydown.enter->stepper#FocusOnNextTarget
+                                      form#autoExpand"
   %>
 </div>
