@@ -1,6 +1,6 @@
 <%= turbo_frame_tag :modal do %>
   <div data-action="turbo:submit-end->dialog#submitEnd"
-       class="relative p-10 h-full">
+       class="relative p-5 w-90v h-90v md:w-70v md:h-80v lg:w-60v ">
       <%= render "form", goal: @goal %>
   </div>
 <% end %>

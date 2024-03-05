@@ -1,6 +1,6 @@
 <%= form_with(model: goal,
               url: goals_path,
-              class: 'h-full',
+              class: 'w-full h-full',
               data: { controller: 'new-goal-milestones stepper',
                       action: 'new-goal-milestones#filterEmptyMilestones
                                new-goal-milestones:removeMilestone@window->stepper#enableNext' }) do |form| %>
