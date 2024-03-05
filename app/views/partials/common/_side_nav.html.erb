@@ -19,12 +19,15 @@ flex flex-col gap-y-4 py-6 px-4  justify-start items-center fixed w-[inherit] h-
       <span>Create a goal</span>
     <% end %>
     <!--  Categories Section-->
-    <div class="flex flex-col h-[inherit] flex-grow  w-full border border-solid dark:border-none border-gray-300 rounded-lg  bg-light-sideNav dark:bg-dark-navbarInsider overflow-y-auto">
+    <div class="flex flex-col h-[inherit] flex-grow  w-full border border-solid dark:border-none border-gray-300 rounded-lg  bg-light-sideNav dark:bg-dark-navbarInsider overflow-y-auto"
+         data-controller="form"
+    >
       <!--  Create a new Category-->
       <div class="flex justify-between items-center bg-white w-full rounded-t-xl p-2 dark:bg-dark-navbar">
         <p class="font-semibold text-yankeesBlue dark:text-white">Categories</p>
         <%= button_to new_category_path(@milestone),
                       method: :post,
+                      data:{action: 'form#scrollToTop'},
                       class: "border border-solid border-gray-200 flex justify-center items-center h-7 w-7 p-2 bg-light-bg-secondary rounded-3xl text-2xl text-light-text-main" do %>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M8 1V15M1 8H15" stroke="#415472" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

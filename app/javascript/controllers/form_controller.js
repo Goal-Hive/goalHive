@@ -3,16 +3,20 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="form"
 export default class extends Controller {
   static values = { element: String }
+  static targets = ['scrollableParent']
   connect() {
     // console.log('Form controller is connected')
   }
 
-  // remove(e) {
+  scrollToTop(){
+    console.log('hey', this.scrollableParentTarget)
+    this.scrollableParentTarget.scrollTo({
+      top: 0,
+      behavior: "smooth" // Optional: Smooth scrolling animation
+    });
+  }
+  // cancel(e) {
   //   e.preventDefault()
-  //   console.log("hey")
-  //   console.log(this.elementValue)
-  //   console.log(e.target.closest("[data-Form-type='category']"))
-  //   console.log(e.target.closest(eval(this.elementValue)))
-  //   e.target.closest("[data-Form-type='category']").querySelector('form').remove()
+  //   this.formTarget.remove()
   // }
 }
