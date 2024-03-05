@@ -104,6 +104,7 @@ export default class extends Controller {
                 break;
             }
             case 1: {
+                console.log(this.milestoneInputTarget)
                 this.nextTarget.disabled = this.milestoneInputTarget.value.length <= 0;
                 break;
             }

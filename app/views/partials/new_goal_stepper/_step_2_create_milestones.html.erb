@@ -43,22 +43,25 @@
                   data-new-goal-milestones-target="milestoneNumber"> 1 </span>
 
             <%#= milestoneForm.text_field :description %>
-            <input class="goal_input"
+            <textarea class="goal_input resize-none"
                    type="text"
                    name="goal[milestones_attributes][new_milestone][description]"
                    id="goal_milestones_attributes_new_milestone_description"
                    data-stepper-target="milestoneInput"
                    data-new-goal-milestones-target="milestoneInput"
+                   data-form-target="textArea"
+                   data-controller='form'
                    data-action="stepper#enableNext
-                            keydown.enter->new-goal-milestones#addWithKeyboard"
-            >
+                    keydown.enter->new-goal-milestones#addWithKeyboard
+                    form#autoExpand"
+            ></textarea>
 
             <%#= milestoneForm.hidden_field :_destroy %>
-            <input autocomplete="off"
-                   type="hidden"
-                   value="false"
-                   name="goal[milestones_attributes][new_milestone][_destroy]"
-                   id="goal_milestones_attributes_new_milestone__destroy">
+            <input autocomplete=" off"
+            type="hidden"
+            value="false"
+            name="goal[milestones_attributes][new_milestone][_destroy]"
+            id="goal_milestones_attributes_new_milestone__destroy">
             <%= image_tag 'x.svg',
                           class: 'removeMilestone w-8 h-8 rounded-full bg-gray-100 p-2 flex justify-center items-center',
                           data: { action: "click->new-goal-milestones#removeMilestone" }
