@@ -9,7 +9,6 @@ export default class extends Controller {
   }
 
   scrollToTop(){
-    console.log('hey', this.scrollableParentTarget)
     this.scrollableParentTarget.scrollTo({
       top: 0,
       behavior: "smooth" // Optional: Smooth scrolling animation
@@ -19,6 +18,10 @@ export default class extends Controller {
   autoExpand(){
     this.textAreaTarget.style.height = 'auto';
     this.textAreaTarget.style.height = `${this.textAreaTarget.scrollHeight}px`;
+  }
+
+  autofocus(){
+
   }
   // cancel(e) {
   //   e.preventDefault()
