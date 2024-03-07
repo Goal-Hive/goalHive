@@ -40,7 +40,7 @@
 <!--          Add a new Milestone-->
           <%= button_to new_milestone_path(goal_id: @goal.id),
                         method: :post,
-                        class: ' gap-x-2 text-white bg-independence rounded flex justify-between items-center py-1 px-4  rounded-3xl',
+                        class: ' gap-x-2 text-white bg-ceruleanBlue rounded flex justify-between items-center py-1 px-4  rounded-3xl',
                         data: { turbo_frame: "modal",
                                 action: 'dialog#open' } do %>
             <%= image_tag 'plus.svg' %>

@@ -19,12 +19,13 @@
     <div class="flex gap-x-3 text-lgx">
       <%= form.text_field :name,
                           class: "shadow rounded-md  outline-none w-full text-independence font-semibold",
-                          placeholder: "New Category" %>
+                          placeholder: "New Category",
+                          autofocus: true  %>
       <div class="text-independence dark:text-white ">
         <%= form.submit '✓',
                         id: 'submit_category',
-                        class: "rounded-full align-middle bg-gray-100 w-full"%>
-        <button  class= "rounded-full align-middle bg-gray-100 w-full">
+                        class: "rounded-full align-middle bg-gray-100 w-full" %>
+        <button class="rounded-full align-middle bg-gray-100 w-full">
           ✗
         </button>
       </div>
