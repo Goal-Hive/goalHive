@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AutohideController from "./autohide_controller"
+application.register("autohide", AutohideController)
+
 import Categories__NavbarController from "./categories/navbar_controller"
 application.register("categories--navbar", Categories__NavbarController)
 

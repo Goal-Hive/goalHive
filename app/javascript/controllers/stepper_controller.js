@@ -104,7 +104,6 @@ export default class extends Controller {
                 break;
             }
             case 1: {
-                console.log(this.milestoneInputTarget)
                 this.nextTarget.disabled = this.milestoneInputTarget.value.length <= 0;
                 break;
             }
@@ -163,7 +162,6 @@ export default class extends Controller {
         this.categorySelectedValue = false
         this.newGoalCategoryOptionTargets.forEach(radio => {
             radio.checked = false;
-            // radio.disabled = true
         });
     }
 
@@ -186,8 +184,6 @@ export default class extends Controller {
         e.preventDefault()
         const target = e.currentTarget.dataset.stepperTarget
         const nextTarget = this.targetChainValue[target]
-        console.log(target)
-        console.log(nextTarget)
         this[`${nextTarget}Target`].focus()
     }
 }
