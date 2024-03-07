@@ -1,6 +1,6 @@
 <%#= link_to @goal do %>
-  <div id="<%= dom_id @goal %>"
-    class="col-span-1
+<div id="<%= dom_id @goal %>"
+     class="col-span-1
           w-full
           h-fit
           p-3
@@ -11,126 +11,125 @@
           border-opacity-10
           rounded-lg
           hover:border-indigo-200 flex flex-col"
-       data-controller="toggle">
-    <div class="flex items-center justify-end gap-x-2 h-8">
-      <!--  Pause/Resume, Delete, Category, Details-->
-      <div class="hidden flex justify-end items-center gap-x-3"
-           data-toggle-target="toggledContent">
-        <%= button_to (image_tag "#{@status_icon}.svg"),
-                      update_status_goal_path(id: @goal.id),
-                      method: :post,
-                      data: {
-                        goal_id: @goal.id,
-                        action: 'click->goals#toggleStatus' },
-                      class: "flex justify-center items-center" %>
-        <%= button_to (image_tag 'delete.svg'),
-                      goal_path(@goal), method: :delete,
-                      class: "flex justify-center items-center rounded-2xl p-2 bg-red-100" %>
-        <%#= link_to (image_tag 'edit.svg'),
+     data-controller="toggle">
+  <div class="flex items-center justify-end gap-x-2 h-8">
+    <!--  Pause/Resume, Delete, Category, Details-->
+    <div class="hidden flex justify-end items-center gap-x-3"
+         data-toggle-target="toggledContent">
+      <%= button_to (image_tag "#{@status_icon}.svg"),
+                    update_status_goal_path(id: @goal.id),
+                    method: :post,
+                    data: {
+                      goal_id: @goal.id,
+                      action: 'click->goals#toggleStatus' },
+                    class: "flex justify-center items-center" %>
+      <%= button_to (image_tag 'delete.svg'),
+                    goal_path(@goal), method: :delete,
+                    class: "flex justify-center items-center rounded-2xl p-2 bg-red-100" %>
+      <%#= link_to (image_tag 'edit.svg'),
                     edit_goal_path(@goal),
                     class: "w-9 h-9 flex justify-center items-center rounded-2xl p-2 bg-gray-100 inline-block font-medium" %>
-        <%#= link_to (image_tag 'category.svg'),
+      <%#= link_to (image_tag 'category.svg'),
                     @goal,
                     class: "w-9 h-9 flex justify-center items-center rounded-2xl p-1 bg-gray-100 inline-block font-medium" %>
-        <button data-action="click->toggle#toggleContent"
-                class="flex justify-center items-center rounded-2xl bg-zircon text-2xl text-blackCoral p-2">
-          <%= image_tag 'x.svg', class: "w-4 h-4" %>
-        </button>
-      </div>
-      <button data-action="click->toggle#toggleContent" data-toggle-target="toggleBtn">
-        <%= image_tag 'dots.svg' %>
+      <button data-action="click->toggle#toggleContent"
+              class="flex justify-center items-center rounded-2xl bg-zircon text-2xl text-blackCoral p-2">
+        <%= image_tag 'x.svg', class: "w-4 h-4" %>
       </button>
-      <!--end-->
     </div>
+    <button data-action="click->toggle#toggleContent" data-toggle-target="toggleBtn">
+      <%= image_tag 'dots.svg' %>
+    </button>
     <!--end-->
+  </div>
+  <!--end-->
 
-    <!--  Goal Card Details-->
-    <div class="flex flex-col gap-y-2 h-full w-full" data-controller="milestones" data-milestones-goal_id=<%= @goal.id %>>
-      <!--    Name  &   Description-->
-      <div class="text-sm font-medium text-quickSilver dark:text-white truncate">
-        <%= @goal.category.name %>
-      </div>
-      <h3 class="w-full font-semibold text-xl dark:text-white text-independence">
-        <%= link_to @goal.description, @goal, class: "w-full block truncate" %>
-      </h3>
+  <!--  Goal Card Details-->
+  <div class="flex flex-col gap-y-2 h-full w-full" data-controller="milestones" data-milestones-goal_id=<%= @goal.id %>>
+    <!--    Name  &   Description-->
+    <div class="text-sm font-medium text-quickSilver dark:text-white truncate">
+      <%= @goal.category.name %>
+    </div>
+    <h3 class="w-full font-semibold text-xl dark:text-white text-independence">
+      <%= link_to @goal.description, @goal, class: "w-full block truncate" %>
+    </h3>
 
-      <!--    Progress-->
-      <div class="flex flex-col bg-gray-50 gap-y-2 p-3 rounded">
-        <!--    Milestones progress & Eye toggle  -->
-        <div class="flex items-center justify-between gap-x-1">
-          <div class="flex items-center">
-            <%= image_tag 'progress.svg', class: "w-5 h-5" %>
-            <span class="pl-2 text-xs font-medium text-doveGray dark:text-white">
+    <!--    Progress-->
+    <div class="flex flex-col bg-gray-50 gap-y-2 p-3 rounded">
+      <!--    Milestones progress & Eye toggle  -->
+      <div class="flex items-center justify-between gap-x-1">
+        <div class="flex items-center">
+          <%= image_tag 'progress.svg', class: "w-5 h-5" %>
+          <span class="pl-2 text-xs font-medium text-doveGray dark:text-white">
             <%= @milestone_reached %> Milestones Reached
           </span>
-          </div>
-          <%= image_tag 'eye.svg',
-                        class: "w-5 h-5 hover:cursor-pointer ",
-                        data: {
-                          controller: "toggle goal-card--progress",
-                          action: "click->toggle#toggleById click->goal-card--progress#toggleImage",
-                          toggle_id_value: "progress-#{@goal.id}",
-                          goal_card__progress_original_img_value: asset_path("eye.svg"),
-                          goal_card__progress_toggle_img_value: asset_path("coveredEye.svg"),
-                        }
-          %>
         </div>
-        <!--    Progress Percentage -->
-        <div id="progress-<%= @goal.id %>" class="hidden flex flex-col gap-y-2">
-          <small class="text-xs font-normal text-[#717171] dark:text-white">
-            You’ve met <span class="font-bold"><%= @percentage %>% </span> of your goal</small>
-          <div class="w-full bg-indigo-200 rounded h-1 flex items-center">
-            <div class="bg-independence rounded h-1 my-2 w-[<%= @percentage %>%]" style="width: <%= @percentage %>%"></div>
-          </div>
-          <p class="text-xs text-quickSilver">
-            <strong class="font-medium">Created At:</strong>
-            <%= @goal.created_at.to_fs(:short) %>
-          </p>
-        </div>
+        <%= image_tag 'eye.svg',
+                      class: "w-5 h-5 hover:cursor-pointer ",
+                      data: {
+                        controller: "toggle goal-card--progress",
+                        action: "click->toggle#toggleById click->goal-card--progress#toggleImage",
+                        toggle_id_value: "progress-#{@goal.id}",
+                        goal_card__progress_original_img_value: asset_path("eye.svg"),
+                        goal_card__progress_toggle_img_value: asset_path("coveredEye.svg"),
+                      }
+        %>
       </div>
-      <!--    end-->
-      <!--    Milestones-->
-      <div class="mt-2 text-xs  font-medium  text-doveGray pb-1 dark:text-white">
-        Next Milestone
-      </div>
-      <p class="hidden text-xs text-doveGray">
-        When you’ve completed your next milestone, you can check it as done to
-        update your goal
-      </p>
-      <% if @message %>
-        <div class="flex justify-center items-center gap-x-2 bg-zircon rounded-xl p-3">
-          <p class="text-xs font-medium text-doveGray text-center">
-            <%= @message %>
-          </p>
+      <!--    Progress Percentage -->
+      <div id="progress-<%= @goal.id %>" class="hidden flex flex-col gap-y-2">
+        <small class="text-xs font-normal text-[#717171] dark:text-white">
+          You’ve met <span class="font-bold"><%= @percentage %>% </span> of your goal</small>
+        <div class="w-full bg-indigo-200 rounded h-1 flex items-center">
+          <div class="bg-independence rounded h-1 my-2 w-[<%= @percentage %>%]" style="width: <%= @percentage %>%"></div>
         </div>
-      <% else %>
-        <button class="flex items-center gap-x-2 bg-zircon rounded-xl p-3 hover:cursor-pointer"
-                data-action="click->milestones#markMilestone">
-          <div class="rounded-full relative w-5 h-5 bg-gray-200 text-white  flex justify-center items-center text-center p-1 shadow-xl">
-            &#10003
-          </div>
-          <p class="text-base font-medium text-doveGray dark:text-white truncate">
-            Milestone <%= @milestone_number %>:
-            <%= @next_milestone&.description %>
-          </p>
-        </button>
-      <% end %>
+        <p class="text-xs text-quickSilver">
+          <strong class="font-medium">Created At:</strong>
+          <%= @goal.created_at.to_fs(:short) %>
+        </p>
+      </div>
+    </div>
+    <!--    end-->
+    <!--    Milestones-->
+    <div class="mt-2 text-xs  font-medium  text-doveGray pb-1 dark:text-white">
+      Next Milestone
+    </div>
+    <p class="hidden text-xs text-doveGray">
+      When you’ve completed your next milestone, you can check it as done to
+      update your goal
+    </p>
+    <% if @message %>
+      <div class="flex justify-center items-center gap-x-2 bg-zircon rounded-xl p-3">
+        <p class="text-xs font-medium text-doveGray text-center">
+          <%= @message %>
+        </p>
+      </div>
+    <% else %>
+      <button class="flex items-center gap-x-2 bg-zircon rounded-xl p-3 hover:cursor-pointer"
+              data-action="click->milestones#markMilestone">
+        <div class="rounded-full relative w-5 h-5 bg-gray-200 text-white flex justify-center items-center text-center p-1 shadow-xl">
+          &#10003
+        </div>
+        <p class="text-base font-medium text-doveGray dark:text-white truncate">
+          Milestone <%= @milestone_number %>:
+          <%= @next_milestone&.description %>
+        </p>
+      </button>
+    <% end %>
 
-      <%# if action_name != "show" %> <%# end %>
 
-      <%= button_to achieve_milestone_path(id: @goal.milestones.where(status: 'in_progress')&.first&.id || 0),
-                    method: :post,
-                    disabled: true,
-                    class: "
+    <%= button_to achieve_milestone_path(id: @goal.milestones.where(status: 'in_progress')&.first&.id || 0),
+                  method: :post,
+                  disabled: true,
+                  class: "
                   flex-grow
                   updateBtn w-full rounded-2xl bg-independence dark:bg-dark-updateProgress dark:text-dark-updateProgressText text-sm font-semibold p-2 text-white mt-2
-      disabled:bg-wildSand
-      disabled:cursor-not-allowed
-      disabled:opacity-60
-      disabled:text-doveGray" do %>
-        Update Progress
-      <% end %>
+                  disabled:bg-wildSand
+                  disabled:cursor-not-allowed
+                  disabled:opacity-60
+                  disabled:text-doveGray" do %>
+      Update Progress
+    <% end %>
 
-    </div>
   </div>
+</div>
 <%# end %>

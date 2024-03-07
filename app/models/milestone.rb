@@ -15,13 +15,14 @@ class Milestone < ApplicationRecord
         with_same: :goal_id,
         scope: :status_in_progress
 
-
   def update_progress(status)
     case status
     when 'achieved'
       status_achieved!
     when 'in_progress'
       status_in_progress!
+      goal.status_active!
     end
+    goal.mark_complete
   end
 end

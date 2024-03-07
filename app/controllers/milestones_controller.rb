@@ -142,8 +142,7 @@ class MilestonesController < ApplicationController
   end
 
   def achieve_milestone
-    @milestone.status_achieved!
-    # @milestone.update_progress('achieved')
+    @milestone.update_progress('achieved')
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [

@@ -32,4 +32,8 @@ class Goal < ApplicationRecord
       status_paused!
     end
   end
+
+  def mark_complete
+    status_achieved! if milestones.status_in_progress.empty?
+  end
 end
