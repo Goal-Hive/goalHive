@@ -21,7 +21,7 @@ class MilestonesController < ApplicationController
             turbo_stream.append(:inProgressMilestones, partial: 'milestone', locals: { milestone: @milestone }),
             turbo_stream.append(:allMilestones, partial: 'milestone', locals: { milestone: @milestone }),
 
-            turbo_stream.prepend(:flash, partial: 'partials/common/notification', locals: {style: 'green-flash'})
+            turbo_stream.prepend(:flash, partial: 'partials/common/notification', locals: { style: 'green-flash' })
           ]
         end
       end
@@ -123,13 +123,16 @@ class MilestonesController < ApplicationController
 
   def update_progress
     @milestone.update_progress(params[:status])
+    flash.now[:notice] = 'Goal Complete!' if @milestone.goal.status_achieved?
+
     respond_to do |format|
       format.turbo_stream do
         case params[:status]
         when 'achieved'
           render turbo_stream: [
             turbo_stream.prepend('achievedMilestones', @milestone),
-            turbo_stream.replace(@milestone, partial: 'milestone', locals: { milestone: @milestone })
+            turbo_stream.replace(@milestone, partial: 'milestone', locals: { milestone: @milestone }),
+            turbo_stream.prepend(:flash, partial: 'partials/common/notification', locals: { style: 'yellow-flash' })
           ]
         when 'in_progress'
           render turbo_stream: [
@@ -143,12 +146,15 @@ class MilestonesController < ApplicationController
 
   def achieve_milestone
     @milestone.update_progress('achieved')
+    flash.now[:notice] = 'Goal Complete!' if @milestone.goal.status_achieved?
+
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.replace(@milestone.goal,
                                partial: 'goals/goal',
-                               locals: { goal: @milestone.goal })
+                               locals: { goal: @milestone.goal }),
+          turbo_stream.prepend(:flash, partial: 'partials/common/notification', locals: { style: 'yellow-flash' })
         ]
       end
     end
