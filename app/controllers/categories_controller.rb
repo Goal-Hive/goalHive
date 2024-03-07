@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
 
   def sort
     @category.update(row_order_position:
-                        params[:row_order_position])
+                       params[:row_order_position])
     head :no_content
   end
 
@@ -37,13 +37,14 @@ class CategoriesController < ApplicationController
     @category.user = current_user
     respond_to do |format|
       if @category.save
+        flash.now[:notice] = "Category #{@category.name} is created"
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.append('categories',
                                 partial: 'categories/category',
                                 locals: { category: @category }),
-            turbo_stream.update('notice', 'Category was successfully created.'),
-            turbo_stream.remove('new_category')
+            turbo_stream.remove('new_category'),
+            turbo_stream.prepend(:flash, partial: 'partials/common/notification')
           ]
         end
         #   format.html { redirect_to category_url(@category), notice: 'Category was successfully created.' }

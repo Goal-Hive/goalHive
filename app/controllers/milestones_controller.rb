@@ -11,13 +11,17 @@ class MilestonesController < ApplicationController
     @goal.milestones << @milestone
     respond_to do |format|
       if @milestone.save
+        flash.now[:notice] = "Milestone #{@milestone.goal.milestones.count} is created"
         format.turbo_stream do
           render turbo_stream: [
             # in case of the milestone creation form
-            turbo_stream.append(:milestones, partial: 'milestone', locals: { milestone: @milestone }),
+            # turbo_stream.append(:milestones, partial: 'milestone', locals: { milestone: @milestone }),
+
             # in case of the milestone creation in the goal details page
             turbo_stream.append(:inProgressMilestones, partial: 'milestone', locals: { milestone: @milestone }),
-            turbo_stream.append(:allMilestones, partial: 'milestone', locals: { milestone: @milestone })
+            turbo_stream.append(:allMilestones, partial: 'milestone', locals: { milestone: @milestone }),
+
+            turbo_stream.prepend(:flash, partial: 'partials/common/notification')
           ]
         end
       end

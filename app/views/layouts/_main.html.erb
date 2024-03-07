@@ -6,7 +6,7 @@
                    keyup@window->toggle-side-nav#closeWithKeyboard">
   <%#= debug(params) if Rails.env.development? %>
   <%= render 'partials/common/modal' %>
-  <div id="flash" class="absolute bottom-5 right-5 flex flex-col gap-y-2">
+  <div id="flash" class="z-[100] absolute bottom-5 right-5 flex flex-col gap-y-2">
     <%= render 'partials/common/notification' %>
   </div>
   <%= render 'partials/common/header' %>
