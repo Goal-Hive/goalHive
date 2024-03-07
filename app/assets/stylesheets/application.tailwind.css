@@ -3,6 +3,27 @@
 @tailwind utilities;
 
 @layer components {
+    .flash {
+        @apply py-2 px-6
+        font-medium rounded-full
+    }
+
+    .green-flash {
+        @apply bg-nyanza text-deepMossGreen
+    }
+
+    .red-flash {
+        @apply bg-red-50 text-red-500
+    }
+
+    .blue-flash {
+        @apply bg-slate-100 text-slate-500
+    }
+
+    .blue-flash {
+        @apply bg-cornsilk text-orange-900
+    }
+
     .tooltip {
         @apply invisible absolute;
     }

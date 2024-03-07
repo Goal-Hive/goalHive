@@ -21,7 +21,7 @@ class MilestonesController < ApplicationController
             turbo_stream.append(:inProgressMilestones, partial: 'milestone', locals: { milestone: @milestone }),
             turbo_stream.append(:allMilestones, partial: 'milestone', locals: { milestone: @milestone }),
 
-            turbo_stream.prepend(:flash, partial: 'partials/common/notification')
+            turbo_stream.prepend(:flash, partial: 'partials/common/notification', locals: {style: 'green-flash'})
           ]
         end
       end
@@ -143,6 +143,7 @@ class MilestonesController < ApplicationController
 
   def achieve_milestone
     @milestone.status_achieved!
+    # @milestone.update_progress('achieved')
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
