@@ -59,32 +59,13 @@ module.exports = {
                 cultured: "#F5F5F5",
                 ceruleanBlue: "#414FC7",
                 cornsilk:"#FFF7DC",
-                light: {
-                    text: {
-                        title: "#415472",
-                        main: "#717171",
-                        secondary: "#A5A3A3",
-                        categories: "#415472",
-                        details: {
-                            tabs: "rgba(65, 84, 114, 0.75)",
-                            selectedTab: "#415472"
-                        },
-                        darkPurple: "#415472",
-                        darkGray: "#152E40",
-                        lightGray: "#5B5B66",
-                        lightPurple: "#414FC7"
-                    },
-                    body: "#FAFAFA",
-                    header: "rgba(251, 234, 200, 0.7)",
-                    sideNav: "#FAFAFA",
-                    bg: {
-                        lightYellow: "#FFFCEF",
-                        darkPurple: "#414FC7",
-                        secondary: "#F4F6FF",
-                        lightGray: "#F5F5F5",
-                        darkYellow: "#FFC700"
-                    }
-                }
+                nyanza: "#E3FFE7",
+                deepMossGreen: '#2E643A',
+                blackCoral: '#5B5B66',
+                quickSilver: '#A5A3A3',
+                floralWhite: '#FFFCEF',
+                header: "rgba(251, 234, 200, 0.7)",
+                tabs: "rgba(65, 84, 114, 0.75)",
             }
         },
     },

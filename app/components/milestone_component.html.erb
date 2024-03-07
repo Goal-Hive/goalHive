@@ -1,7 +1,7 @@
 <div class="flex justify-between" data-controller="toggle">
   <%= content %>
   <!--    Progress State-->
-  <div class="flex justify-center items-center  <%= @background %> p-2 gap-x-2 rounded-xl text-light-text-darkPurple ">
+  <div class="flex justify-center items-center  <%= @background %> p-2 gap-x-2 rounded-xl text-independence ">
     <%= image_tag @message_img %>
     <P class="<%= @text_color %>"><%= @message %></P>
   </div>
@@ -16,13 +16,13 @@
                   data: {
                     milestone_id: @milestone.id,
                     action: 'click->milestones#changeStatus' } do %>
-      <div class="flex justify-center items-center gap-x-2 bg-light-bg-secondary rounded-2xl p-2 text-light-text-darkPurple inline-block font-medium">
+      <div class="flex justify-center items-center gap-x-2 bg-zircon rounded-2xl p-2 text-independence inline-block font-medium">
         <%= image_tag @update_progress_img %>
         <p><%= @update_progress %></p>
       </div>
     <% end %>
     <button data-action="click->toggle#toggleContent"
-            class="flex justify-center items-center rounded-2xl bg-light-bg-secondary w-7 h-7 text-xl text-light-text-darkPurple p-2 font-medium">
+            class="flex justify-center items-center rounded-2xl bg-zircon w-7 h-7 text-xl text-independence p-2 font-medium">
       <span>&#10007;</span>
     </button>
   </div>
@@ -32,7 +32,7 @@
 </div>
 
 <div class="flex justify-between items-center">
-  <P class="text-light-text-darkGray">
+  <P class="text-yankeesBlue">
     <%= @milestone.description %>
   </P>
 

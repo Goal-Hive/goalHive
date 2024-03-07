@@ -13,13 +13,13 @@ flex flex-col gap-y-4 py-6 px-4  justify-start items-center fixed w-[inherit] h-
     <!--  Create a Goal-->
       <%= link_to new_goal_path,
                   data: { turbo_frame: "modal" },
-                  class: "h-fit w-full rounded-3xl py-1.5 text-center bg-light-bg-darkPurple text-white block font-semibold flex justify-center items center gap-x-3",
+                  class: "h-fit w-full rounded-3xl py-1.5 text-center bg-ceruleanBlue text-white block font-semibold flex justify-center items center gap-x-3",
                   "data-action": "click->toggle-side-nav#hideSideNav dialog#open" do %>
     <%= image_tag 'plus.svg' %>
       <span>Create a goal</span>
     <% end %>
     <!--  Categories Section-->
-    <div class="flex flex-col h-[inherit] flex-grow  w-full border border-solid dark:border-none border-gray-300 rounded-lg  bg-light-sideNav dark:bg-dark-navbarInsider overflow-y-auto"
+    <div class="flex flex-col h-[inherit] flex-grow  w-full border border-solid dark:border-none border-gray-300 rounded-lg  bg-lotion dark:bg-dark-navbarInsider overflow-y-auto"
          data-controller="form"
     >
       <!--  Create a new Category-->
@@ -28,7 +28,7 @@ flex flex-col gap-y-4 py-6 px-4  justify-start items-center fixed w-[inherit] h-
         <%= button_to new_category_path(@milestone),
                       method: :post,
                       data:{action: 'form#scrollToTop'},
-                      class: "border border-solid border-gray-200 flex justify-center items-center h-7 w-7 p-2 bg-light-bg-secondary rounded-3xl text-2xl text-light-text-main" do %>
+                      class: "border border-solid border-gray-200 flex justify-center items-center h-7 w-7 p-2 bg-zircon rounded-3xl text-2xl text-doveGray" do %>
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M8 1V15M1 8H15" stroke="#415472" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -38,7 +38,7 @@ flex flex-col gap-y-4 py-6 px-4  justify-start items-center fixed w-[inherit] h-
       <%= render partial: 'categories/index' %>
     </div>
     <!--  Account Settings, Sign Out, Logo-->
-    <div class="flex flex-col justify-start items-start gap-y-2  w-full text-light-text-categories font-semibold self-end dark:text-white">
+    <div class="flex flex-col justify-start items-start gap-y-2  w-full text-independence font-semibold self-end dark:text-white">
       <p class="font-black mt-6">GoalHive.Inc ™</p>
     </div>
   </div>

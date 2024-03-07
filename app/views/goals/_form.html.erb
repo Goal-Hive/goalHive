@@ -18,7 +18,7 @@
 
   <div class="flex h-full flex-col gap-y-3 justify-between">
     <!--    ٍStep Number-->
-    <div class="bg-light-bg-lightGray flex items-center gap-x-3 w-fit p-3 text-fiord  font-medium rounded-md">
+    <div class="bg-wildSand flex items-center gap-x-3 w-fit p-3 text-fiord  font-medium rounded-md">
       <%= image_tag 'stars.svg' %>
       <p> Step
         <span data-stepper-target="stepNumber"> - </span> of
@@ -37,15 +37,15 @@
     </div>
     <!--    Navigation Buttons-->
     <div class="self-end flex justify-end gap-x-4 font-medium">
-      <button class="bg-light-bg-secondary rounded-3xl px-4 py-2 text-light-text-title"
+      <button class="bg-zircon rounded-3xl px-4 py-2 text-independence"
               data-action="stepper#previous"
               data-stepper-target="prev">
         ← Back
       </button>
-      <button class="bg-light-bg-darkPurple rounded-3xl px-4 py-2 text-white
-                     disabled:bg-light-bg-lightGray
+      <button class="bg-independence rounded-3xl px-4 py-2 text-white
+                     disabled:bg-wildSand
                      disabled:cursor-not-allowed
-                     disabled:text-light-text-main
+                     disabled:text-doveGray
                      disabled:has-tooltip
                      disabled:cursor-help"
               data-action="stepper#next"
@@ -55,7 +55,7 @@
               data-stepper-target="nextTooltip"></span>
         Next →
       </button>
-      <div class="bg-light-bg-darkPurple w-fit flex justify-center items-center rounded-3xl px-5 py-1 text-white inline-block cursor-pointer hidden"
+      <div class="bg-independence w-fit flex justify-center items-center rounded-3xl px-5 py-1 text-white inline-block cursor-pointer hidden"
            data-stepper-target="submit">
         <%= form.submit 'Create Goal', class: "cursor-pointer" %>
       </div>
