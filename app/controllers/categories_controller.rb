@@ -44,7 +44,9 @@ class CategoriesController < ApplicationController
                                 partial: 'categories/category',
                                 locals: { category: @category }),
             turbo_stream.remove('new_category'),
-            turbo_stream.prepend(:flash, partial: 'partials/common/notification')
+            turbo_stream.prepend(:flash,
+                                 partial: 'partials/common/notification',
+                                 locals: {style: 'green-flash'})
           ]
         end
         #   format.html { redirect_to category_url(@category), notice: 'Category was successfully created.' }

@@ -1,6 +1,9 @@
 <% flash.each do |key, value| %>
-  <div class="flash <%= style %>"
+  <div class="flash <%= defined?(style) ? style : 'green-flash'  %>"
        data-controller="autohide">
+    <% if defined?image %>
+      <%= image_tag "flash/#{image}.svg" %>
+    <% end %>
     <%= value %>
   </div>
 <% end %>

@@ -59,7 +59,9 @@ class GoalsController < ApplicationController
             actions << turbo_stream.append('categories', partial: 'categories/category',
                                                          locals: { category: @goal.category })
           end
-          actions << turbo_stream.prepend(:flash, partial: 'partials/common/notification', locals: {style: 'green-flash'})
+          actions << turbo_stream.prepend(:flash,
+                                          partial: 'partials/common/notification',
+                                          locals: {style: 'green-flash'})
 
           render turbo_stream: actions
         end
@@ -107,7 +109,9 @@ class GoalsController < ApplicationController
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@goal),
-          turbo_stream.prepend(:flash, partial: 'partials/common/notification', locals: {style: 'red-flash'})
+          turbo_stream.prepend(:flash,
+                               partial: 'partials/common/notification',
+                               locals: {style: 'red-flash', image:'flashRemove'})
         ]
       end
     end

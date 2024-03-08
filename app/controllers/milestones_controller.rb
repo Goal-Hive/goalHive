@@ -132,7 +132,9 @@ class MilestonesController < ApplicationController
           render turbo_stream: [
             turbo_stream.prepend('achievedMilestones', @milestone),
             turbo_stream.replace(@milestone, partial: 'milestone', locals: { milestone: @milestone }),
-            turbo_stream.prepend(:flash, partial: 'partials/common/notification', locals: { style: 'yellow-flash' })
+            turbo_stream.prepend(:flash,
+                                 partial: 'partials/common/notification',
+                                 locals: { style: 'yellow-flash', image: 'flashCup' })
           ]
         when 'in_progress'
           render turbo_stream: [
@@ -154,7 +156,9 @@ class MilestonesController < ApplicationController
           turbo_stream.replace(@milestone.goal,
                                partial: 'goals/goal',
                                locals: { goal: @milestone.goal }),
-          turbo_stream.prepend(:flash, partial: 'partials/common/notification', locals: { style: 'yellow-flash' })
+          turbo_stream.prepend(:flash,
+                               partial: 'partials/common/notification',
+                               locals: { style: 'yellow-flash', image: 'flashCup' })
         ]
       end
     end
