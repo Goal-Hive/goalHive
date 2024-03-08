@@ -53,15 +53,15 @@ class GoalsController < ApplicationController
           # if it is all category or same category and 'active status'
           if (@current_category == 'all' || @current_category.to_i == @goal.category_id) && @current_status == 'active'
             actions << turbo_stream.prepend('goals', partial: 'goals/goal',
-                                                     locals: { goal: @goal })
+                                            locals: { goal: @goal })
           end
           if new_category
             actions << turbo_stream.append('categories', partial: 'categories/category',
-                                                         locals: { category: @goal.category })
+                                           locals: { category: @goal.category })
           end
           actions << turbo_stream.prepend(:flash,
                                           partial: 'partials/common/notification',
-                                          locals: {style: 'green-flash'})
+                                          locals: { style: 'green-flash' })
 
           render turbo_stream: actions
         end
@@ -104,14 +104,13 @@ class GoalsController < ApplicationController
     @goal.destroy
     flash.now[:notice] = "Goal Deleted"
 
-
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@goal),
           turbo_stream.prepend(:flash,
                                partial: 'partials/common/notification',
-                               locals: {style: 'red-flash', image:'flashRemove'})
+                               locals: { style: 'red-flash', image: 'flashRemove' })
         ]
       end
     end
@@ -120,12 +119,15 @@ class GoalsController < ApplicationController
   def update_status
     @goal.toggle_status
     flash.now[:notice] = "Goal #{@goal.status.capitalize}"
+    image = @goal.status_paused? ? 'flashPause' : 'flashResume'
 
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.remove(@goal),
-          turbo_stream.prepend(:flash, partial: 'partials/common/notification', locals: {style: 'blue-flash'})
+          turbo_stream.prepend(:flash,
+                               partial: 'partials/common/notification',
+                               locals: { style: 'blue-flash', image:  })
         ]
       end
     end
