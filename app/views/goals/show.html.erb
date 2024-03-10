@@ -8,10 +8,10 @@
           Motivating Media
         </p>
         <div class="grid border-solid border border-gray-200 flex-grow ">
-            <button class="flex gap-x-2 font-semibold text-fiord place-self-center bg-zircon px-3 py-2 rounded-full">
-              <%= image_tag 'upload_image.svg' %>
-              Add Media
-            </button>
+          <button class="flex gap-x-2 font-semibold text-fiord place-self-center bg-zircon px-3 py-2 rounded-full">
+            <%= image_tag 'upload_image.svg' %>
+            Add Media
+          </button>
         </div>
       </div>
       <!--      Motivation Text-->
@@ -54,9 +54,9 @@
             <button data-tab-id="achievedMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">Achieved
               Milestones
             </button>
-<!--            <button data-tab-id="allMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">All-->
-<!--              Milestones-->
-<!--            </button>-->
+            <!--            <button data-tab-id="allMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">All-->
+            <!--              Milestones-->
+            <!--            </button>-->
           </div>
           <!--          Add a new Milestone-->
           <%= button_to new_milestone_path(goal_id: @goal.id),

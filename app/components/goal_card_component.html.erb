@@ -82,10 +82,22 @@
         <div class="w-full bg-indigo-200 rounded h-1 flex items-center">
           <div class="bg-independence rounded h-1 my-2 w-[<%= @percentage %>%]" style="width: <%= @percentage %>%"></div>
         </div>
-        <p class="text-xs text-quickSilver">
-          <strong class="font-medium">Created At:</strong>
-          <%= @goal.created_at.to_fs(:short) %>
+        <p class="text-xs text-quickSilver flex">
+          <strong class="font-medium w-24">Goal created:</strong>
+          <span><%= @goal.created_at.strftime("%B %e, %Y") %></span>
         </p>
+        <% if @goal.begin_date %>
+          <p class="text-xs text-quickSilver flex">
+            <strong class="font-medium w-24">Goal started:</strong>
+            <span><%= @goal.begin_date.strftime("%B %e, %Y") %></span>
+          </p>
+        <% end %>
+        <% if @goal.end_date %>
+          <p class="text-xs text-quickSilver flex">
+            <strong class="font-medium w-24">Goal ends:</strong>
+            <span><%= @goal.end_date.strftime("%B %e, %Y") %></span>
+          </p>
+        <% end %>
       </div>
     </div>
     <!--    end-->
