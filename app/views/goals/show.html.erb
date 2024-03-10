@@ -28,28 +28,35 @@
       </div>
     </div>
     <!--  2nd section-->
-    <div class="w-6/12 flex flex-col gap-y-5">
-      <p class="text-2xl truncate text-yankeesBlue font-semibold">
-        <%= @goal.description %>
-      </p>
+    <div class="w-6/12 flex flex-col gap-y-5 ">
+      <div class="flex justify-between">
+        <p class="text-2xl truncate text-yankeesBlue font-semibold">
+          <%= @goal.description %>
+        </p>
+        <div class="flex gap-x-5">
+          <button> <%= image_tag 'edit.svg' %></button>
+          <button> <%= image_tag 'folder.svg' %> </button>
+        </div>
+      </div>
+
       <div
         data-controller="tabs"
-        data-tabs-active-class="border rounded-3xl bg-white"
+        data-tabs-active-class="border border-gray-400 rounded-3xl bg-white text-independence"
         data-tabs-default-tab-value="inProgressMilestones"
       >
         <!-- buttons to toggle between tabs -->
         <div class="flex justify-between items-center">
           <!--          Buttons-->
-          <div class="text-doveGray list-reset flex justify-center items-center border rounded-3xl p-1 w-fit bg-slate-50">
+          <div class="text-doveGray list-reset flex gap-x-3 justify-center items-center border rounded-3xl p-1 w-fit bg-slate-50">
             <button data-tab-id="inProgressMilestones" data-tabs-target="btn defaultBtn" data-action="click->tabs#select" class="milestone_tab">In-progress
               Milestones
             </button>
             <button data-tab-id="achievedMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">Achieved
               Milestones
             </button>
-            <button data-tab-id="allMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">All
-              Milestones
-            </button>
+<!--            <button data-tab-id="allMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">All-->
+<!--              Milestones-->
+<!--            </button>-->
           </div>
           <!--          Add a new Milestone-->
           <%= button_to new_milestone_path(goal_id: @goal.id),
@@ -58,7 +65,7 @@
                         data: { turbo_frame: "modal",
                                 action: 'dialog#open' } do %>
             <%= image_tag 'plus.svg' %>
-            <span class="text-bold"> Add Milestone </span>
+            <span class="font-semibold text-md"> Add Milestone </span>
           <% end %>
         </div>
         <!-- the tabs -->
@@ -90,7 +97,7 @@
     </div>
     <!--  3rd section-->
     <div class="w-3/12">
-      <%= render @goal %>
+
     </div>
   </div>
 
