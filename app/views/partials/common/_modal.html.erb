@@ -1,7 +1,8 @@
 <dialog data-dialog-target="modal"
         class="backdrop:bg-black backdrop:bg-opacity-60
-        w-fit h-fit"
+        w-fit h-fit rounded-2xl"
         data-action="click->dialog#clickOutside">
+<!--  Modal Content-->
   <%= turbo_frame_tag :modal %>
   <!--    x button to close the dialog-->
   <form method="dialog"
