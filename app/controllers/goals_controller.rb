@@ -151,6 +151,7 @@ class GoalsController < ApplicationController
                                  :category_id,
                                  :begin_date,
                                  :end_date,
+                                 :motivation_media,
                                  milestones_attributes: %i[id description _destroy],
                                  category_attributes: [:name])
   end

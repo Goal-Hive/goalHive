@@ -3,7 +3,10 @@
 class Goal < ApplicationRecord
   belongs_to :user
   belongs_to :category
+
   has_many :milestones, class_name: 'Milestone', dependent: :destroy
+
+  has_one_attached :motivation_media
 
   validates :description, presence: true
   validates :milestones, presence: { message: 'must have at least one milestone' }, on: :create

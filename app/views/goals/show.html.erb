@@ -1,17 +1,39 @@
 <% content_for :goal_details do %>
   <div class='h-full w-full min-h-screen flex justify-around gap-x-16 items-start py-5 px-5'>
     <!--  1st section-->
-    <div class=' w-3/12 flex flex-col gap-y-5'>
+    <div class=' w-3/12 flex flex-col gap-y-5 sticky top-5'>
       <!--      Motivation Media-->
-      <div class="p-3 bg-white border-solid border border-gray-200 rounded-md h-64  flex flex-col">
+      <div class="p-3 bg-white border-solid border border-gray-200 rounded-md min-h-[400px]  flex flex-col">
         <p class="font-bold text-sm text-fiord leading-5 text-base mb-4">
           Motivating Media
         </p>
-        <div class="grid border-solid border border-gray-200 flex-grow ">
-          <button class="flex gap-x-2 font-semibold text-fiord place-self-center bg-zircon px-3 py-2 rounded-full">
-            <%= image_tag 'upload_image.svg' %>
-            Add Media
-          </button>
+        <div class="flex flex-col justify-center items-center  border-solid border border-gray-200 flex-grow" data-controller="form">
+          <%= form_with(model: @goal, class: "relative flex flex-col justify-between items-center gap-y-5 p-3") do |form| %>
+            <% if @goal.motivation_media.attached? %>
+              <%= form.label :motivation_media,
+                             class: "w-fit flex gap-x-2 font-semibold text-fiord  bg-zircon px-3 py-2 rounded-full cursor-pointer self-end absolute right-5 top-5" do %>
+                <%= form.file_field :motivation_media,
+                                    class: "hidden",
+                                    data: { action: 'change->form#autoSubmit' }
+
+                %>
+                <%= image_tag 'edit.svg'%>
+              <% end %>
+              <%= image_tag @goal.motivation_media %>
+            <% else %>
+              <%= form.label :motivation_media,
+                             class: "flex gap-x-2 font-semibold text-fiord  bg-zircon px-3 py-2 rounded-full cursor-pointer" do %>
+                <%= image_tag 'upload_image.svg' %>
+                Add Media
+                <%= form.file_field :motivation_media,
+                                    style: "display: none;",
+                                    data: { action: 'change->form#autoSubmit' }
+
+                %>
+              <% end %>
+            <% end %>
+          <% end %>
+
         </div>
       </div>
       <!--      Motivation Text-->
@@ -45,9 +67,9 @@
         data-tabs-default-tab-value="inProgressMilestones"
       >
         <!-- buttons to toggle between tabs -->
-        <div class="flex justify-between items-center">
+        <div class="flex justify-between items-center sticky top-0 py-2 bg-gray-50">
           <!--          Buttons-->
-          <div class="text-doveGray list-reset flex gap-x-3 justify-center items-center border rounded-3xl p-1 w-fit bg-slate-50">
+          <div class="text-doveGray list-reset flex gap-x-3 justify-center items-center border rounded-3xl p-1 w-fit bg-slate-50 ">
             <button data-tab-id="inProgressMilestones" data-tabs-target="btn defaultBtn" data-action="click->tabs#select" class="milestone_tab">In-progress
               Milestones
             </button>
