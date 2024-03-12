@@ -23,15 +23,15 @@
                       goal_id: @goal.id,
                       action: 'click->goals#toggleStatus' },
                     class: "flex justify-center items-center" %>
+      <%= link_to (image_tag 'category.svg'),
+                  @goal,
+                  class: "w-9 h-9 flex justify-center items-center rounded-2xl p-1 bg-gray-100 inline-block font-medium" %>
       <%= button_to (image_tag 'delete.svg'),
                     goal_path(@goal), method: :delete,
                     class: "flex justify-center items-center rounded-2xl p-2 bg-red-100" %>
       <%#= link_to (image_tag 'edit.svg'),
                     edit_goal_path(@goal),
                     class: "w-9 h-9 flex justify-center items-center rounded-2xl p-2 bg-gray-100 inline-block font-medium" %>
-      <%#= link_to (image_tag 'category.svg'),
-                    @goal,
-                    class: "w-9 h-9 flex justify-center items-center rounded-2xl p-1 bg-gray-100 inline-block font-medium" %>
       <button data-action="click->toggle#toggleContent"
               class="flex justify-center items-center rounded-2xl bg-zircon text-2xl text-blackCoral p-2">
         <%= image_tag 'x.svg', class: "w-4 h-4" %>
@@ -76,25 +76,22 @@
         %>
       </div>
       <!--    Progress Percentage -->
-      <div id="progress-<%= @goal.id %>" class="hidden flex flex-col gap-y-2">
-        <small class="text-xs font-normal text-[#717171] dark:text-white">
-          You’ve met <span class="font-bold"><%= @percentage %>% </span> of your goal</small>
-        <div class="w-full bg-indigo-200 rounded h-1 flex items-center">
-          <div class="bg-independence rounded h-1 my-2 w-[<%= @percentage %>%]" style="width: <%= @percentage %>%"></div>
-        </div>
+      <div id="progress-<%= @goal.id %>"
+           class="hidden flex flex-col gap-y-2">
+        <%= render GoalProgressComponent.new(percentage: @percentage) %>
         <p class="text-xs text-quickSilver flex">
-          <strong class="font-medium w-24">Goal created:</strong>
+          <strong class="font-medium w-20">Goal created:</strong>
           <span><%= @goal.created_at.strftime("%B %e, %Y") %></span>
         </p>
         <% if @goal.begin_date %>
           <p class="text-xs text-quickSilver flex">
-            <strong class="font-medium w-24">Goal started:</strong>
+            <strong class="font-medium w-20">Goal started:</strong>
             <span><%= @goal.begin_date.strftime("%B %e, %Y") %></span>
           </p>
         <% end %>
         <% if @goal.end_date %>
           <p class="text-xs text-quickSilver flex">
-            <strong class="font-medium w-24">Goal ends:</strong>
+            <strong class="font-medium w-20">Goal ends:</strong>
             <span><%= @goal.end_date.strftime("%B %e, %Y") %></span>
           </p>
         <% end %>
