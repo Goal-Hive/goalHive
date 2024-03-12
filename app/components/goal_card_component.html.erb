@@ -79,26 +79,16 @@
                       }
         %>
       </div>
-      <!--    Progress Percentage -->
       <div id="progress-<%= @goal.id %>"
            class="hidden flex flex-col gap-y-2">
+        <!--        Progress Bar-->
         <%= render GoalProgressComponent.new(percentage: @percentage) %>
-        <p class="text-xs text-quickSilver flex">
-          <strong class="font-medium w-20">Goal created:</strong>
-          <span><%= @goal.created_at.strftime("%B %e, %Y") %></span>
-        </p>
-        <% if @goal.begin_date %>
-          <p class="text-xs text-quickSilver flex">
-            <strong class="font-medium w-20">Goal started:</strong>
-            <span><%= @goal.begin_date.strftime("%B %e, %Y") %></span>
-          </p>
-        <% end %>
-        <% if @goal.end_date %>
-          <p class="text-xs text-quickSilver flex">
-            <strong class="font-medium w-20">Goal ends:</strong>
-            <span><%= @goal.end_date.strftime("%B %e, %Y") %></span>
-          </p>
-        <% end %>
+        <!--        Dates-->
+        <%= render GoalDatesComponent.new(dates: {
+          created_at: @goal.created_at,
+          begin_date: @goal.begin_date,
+          end_date: @goal.end_date
+        }) %>
       </div>
     </div>
     <!--    end-->
