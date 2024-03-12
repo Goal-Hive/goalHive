@@ -1,7 +1,7 @@
 <% content_for :goal_details do %>
   <div class='h-full w-full min-h-screen flex justify-around gap-x-16 items-start py-5 px-5'>
     <!--  1st section-->
-    <div class=' w-3/12 flex flex-col gap-y-5 sticky top-5'>
+    <div class='w-3/12 hidden md:flex flex-col gap-y-5 sticky top-5'>
       <!--      Motivation Media-->
       <div class="p-3 bg-white border-solid border border-gray-200 rounded-md min-h-[400px]  flex flex-col">
         <p class="font-bold text-sm text-fiord leading-5 text-base mb-4">
@@ -17,7 +17,7 @@
                                     data: { action: 'change->form#autoSubmit' }
 
                 %>
-                <%= image_tag 'edit.svg'%>
+                <%= image_tag 'edit.svg' %>
               <% end %>
               <%= image_tag @goal.motivation_media %>
             <% else %>
@@ -50,14 +50,14 @@
       </div>
     </div>
     <!--  2nd section-->
-    <div class="w-6/12 flex flex-col gap-y-5 ">
+    <div class="w-full md:w-6/12 flex flex-col gap-y-5 ">
       <div class="flex justify-between">
         <p class="text-2xl truncate text-yankeesBlue font-semibold">
           <%= @goal.description %>
         </p>
-        <div class="flex gap-x-5">
-          <button> <%= image_tag 'edit.svg' %></button>
-          <button> <%= image_tag 'folder.svg' %> </button>
+        <div class="flex  gap-x-1">
+          <button class='h-10 w-10 flex justify-center items-center'> <%= image_tag 'edit.svg' %></button>
+          <button class='h-10 w-10 flex justify-center items-center'> <%= image_tag 'folder.svg' %> </button>
         </div>
       </div>
 
@@ -71,10 +71,10 @@
           <!--          Buttons-->
           <div class="text-doveGray list-reset flex gap-x-3 justify-center items-center border rounded-3xl p-1 w-fit bg-slate-50 ">
             <button data-tab-id="inProgressMilestones" data-tabs-target="btn defaultBtn" data-action="click->tabs#select" class="milestone_tab">In-progress
-              Milestones
+              <span class="hidden md:block">Milestones</span>
             </button>
             <button data-tab-id="achievedMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">Achieved
-              Milestones
+              <span class="hidden md:block">Milestones</span>
             </button>
             <!--            <button data-tab-id="allMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">All-->
             <!--              Milestones-->
@@ -83,11 +83,11 @@
           <!--          Add a new Milestone-->
           <%= button_to new_milestone_path(goal_id: @goal.id),
                         method: :post,
-                        class: ' gap-x-2 text-white bg-ceruleanBlue rounded flex justify-between items-center py-1 px-4  rounded-3xl',
+                        class: 'gap-x-2 bg-ceruleanBlue flex justify-between items-center p-2 md:py-1 md:px-4 rounded-full  md:rounded-3xl',
                         data: { turbo_frame: "modal",
                                 action: 'dialog#open' } do %>
             <%= image_tag 'plus.svg' %>
-            <span class="font-semibold text-md"> Add Milestone </span>
+            <span class="hidden md:block font-semibold text-md text-white"> Add Milestone </span>
           <% end %>
         </div>
         <!-- the tabs -->
@@ -118,7 +118,7 @@
       </div>
     </div>
     <!--  3rd section-->
-    <div class="w-3/12">
+    <div class="w-3/12 hidden md:flex">
 
     </div>
   </div>
