@@ -1,5 +1,5 @@
 <% content_for :goal_details do %>
-  <div class='h-full w-full min-h-screen flex justify-around gap-x-16 items-start py-5 px-5'>
+  <div class='h-full w-full min-h-screen flex justify-around gap-x-16 items-start p-2 md:p-5'>
     <!--  1st section-->
     <div class='w-3/12 hidden md:flex flex-col gap-y-5 sticky top-5'>
       <!--      Motivation Media-->
@@ -8,7 +8,7 @@
           Motivating Media
         </p>
         <div class="flex flex-col justify-center items-center  border-solid border border-gray-200 flex-grow" data-controller="form">
-          <%= form_with(model: @goal, class: "relative flex flex-col justify-between items-center gap-y-5 p-3") do |form| %>
+          <%= form_with(model: @goal, class: "relative flex flex-col justify-between items-center gap-y-5") do |form| %>
             <% if @goal.motivation_media.attached? %>
               <%= form.label :motivation_media,
                              class: "w-fit flex gap-x-2 font-semibold text-fiord  bg-zircon px-3 py-2 rounded-full cursor-pointer self-end absolute right-5 top-5" do %>
@@ -42,7 +42,7 @@
           Your Motivation
         </p>
         <blockquote
-          class='focus:border-0 bg-wildSand p-3 text-doveGray rounded-md'
+          class='focus:border-0 bg-wildSand p-3 text-doveGray rounded-md min-h-[50px]'
           contentEditable='true'
         >
           <%= @goal.motivation %>
@@ -50,7 +50,12 @@
       </div>
     </div>
     <!--  2nd section-->
-    <div class="w-full md:w-6/12 flex flex-col gap-y-5 ">
+    <div class="w-full md:w-6/12 flex flex-col gap-y-2 md:gap-y-5 ">
+      <!--      Motivation & Activity for mobile-->
+      <div class="md:hidden flex justify-start items-center gap-x-5 ">
+        <button class="text-yankeesBlue bg-zircon rounded-xl px-3 py-2 font-medium"> Motivation </button>
+        <button class="text-yankeesBlue bg-zircon rounded-xl px-3 py-2 font-medium"> Activity </button>
+      </div>
       <div class="flex justify-between">
         <p class="text-2xl truncate text-yankeesBlue font-semibold">
           <%= @goal.description %>
@@ -71,10 +76,10 @@
           <!--          Buttons-->
           <div class="text-doveGray list-reset flex gap-x-3 justify-center items-center border rounded-3xl p-1 w-fit bg-slate-50 ">
             <button data-tab-id="inProgressMilestones" data-tabs-target="btn defaultBtn" data-action="click->tabs#select" class="milestone_tab">In-progress
-              <span class="hidden md:block">Milestones</span>
+              <span class="hidden md:inline">Milestones</span>
             </button>
             <button data-tab-id="achievedMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">Achieved
-              <span class="hidden md:block">Milestones</span>
+              <span class="hidden md:inline">Milestones</span>
             </button>
             <!--            <button data-tab-id="allMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">All-->
             <!--              Milestones-->
