@@ -43,6 +43,13 @@
         bg-ceruleanBlue text-white text-center rounded-xl py-1 shadow-md font-bold focus:ring-2
     }
 
+    .btn-active {
+        @apply
+        btn-primary
+        flex-grow
+        w-full rounded-2xl text-sm font-semibold p-2
+    }
+
     .milestone_tab {
         @apply
         rounded-3xl inline-block py-2 px-4 hover:text-independence hover:bg-white font-semibold
