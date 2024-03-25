@@ -43,7 +43,7 @@
         bg-ceruleanBlue text-white text-center rounded-xl py-1 shadow-md font-bold focus:ring-2
     }
 
-    .btn-active {
+    .btn-update {
         @apply
         btn-primary
         flex-grow

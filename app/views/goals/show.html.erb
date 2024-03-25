@@ -1,7 +1,7 @@
 <% content_for :goal_details do %>
   <div class='h-full w-full min-h-screen flex justify-around gap-x-16 items-start p-2 md:p-5'>
     <!--  1st section-->
-    <div class='w-3/12 hidden md:flex flex-col gap-y-5 sticky top-5'>
+    <div class='w-3/12 hidden md:flex flex-col gap-y-5 sticky top-5' data-controller="form update-motivation">
       <!--      Motivation Media-->
       <div class="p-3 bg-white border-solid border border-gray-200 rounded-md min-h-[400px]  flex flex-col">
         <p class="font-bold text-sm text-fiord leading-5 text-base mb-4">
@@ -28,25 +28,42 @@
                 <%= form.file_field :motivation_media,
                                     style: "display: none;",
                                     data: { action: 'change->form#autoSubmit' }
-
                 %>
               <% end %>
             <% end %>
           <% end %>
-
         </div>
       </div>
       <!--      Motivation Text-->
-      <div class="p-3 bg-white border-solid border border-gray-200 rounded-md">
-        <p class="font-bold text-sm text-fiord leading-5 text-base mb-4">
+      <div class="p-3 bg-white border-solid border border-gray-200 rounded-md flex flex-col gap-y-3">
+        <p class="font-bold text-sm text-fiord leading-5 text-base">
           Your Motivation
         </p>
-        <blockquote
-          class='focus:border-0 bg-wildSand p-3 text-doveGray rounded-md min-h-[50px]'
+        <textarea
+          class='focus:border-0 bg-wildSand p-3 text-doveGray rounded-md'
           contentEditable='true'
+          data-action = 'update-motivation#enableUpdateBtm form#autoExpand',
+          data-update-motivation-target = 'text',
+          data-form-target = "textArea"
         >
           <%= @goal.motivation %>
-        </blockquote>
+        </textarea>
+        <%= button_to achieve_milestone_path(id: @goal.milestones.where(status: 'in_progress')&.first&.id || 0),
+                      'data-update-motivation-target':  'updateBtn',
+                      'data-action': 'update-motivation#updateMotivation',
+                      'data-goal_id': @goal.id,
+                      method: :post,
+                      disabled: true,
+                      class: "
+                  btn-update
+                  w-fit
+                  disabled:hidden
+                  disabled:bg-wildSand
+                  disabled:cursor-not-allowed
+                  disabled:opacity-60
+                  disabled:text-doveGray" do %>
+          Save Changes
+        <% end %>
       </div>
     </div>
     <!--  2nd section-->
@@ -81,8 +98,8 @@
             <button data-tab-id="achievedMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">Achieved
               <span class="hidden md:inline">Milestones</span>
             </button>
-            <!--            <button data-tab-id="allMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab">All-->
-            <!--              Milestones-->
+            <!--            <button data-tab-id="allMilestones" data-tabs-target="btn" data-action="click->tabs#select" class="milestone_tab"> -->
+            <!--             All Milestones-->
             <!--            </button>-->
           </div>
           <!--          Add a new Milestone-->

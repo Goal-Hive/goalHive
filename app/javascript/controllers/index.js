@@ -51,3 +51,6 @@ application.register("toggle-side-nav", ToggleSideNavController)
 
 import TurboModalController from "./turbo_modal_controller"
 application.register("turbo-modal", TurboModalController)
+
+import UpdateMotivationController from "./update_motivation_controller"
+application.register("update-motivation", UpdateMotivationController)
