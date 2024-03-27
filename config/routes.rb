@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     delete 'remove_milestone/:id' => 'milestones#remove_milestone', as: :remove_milestone
     member do
       post 'update_status(/:status)', to: 'goals#update_status', as: 'update_status'
+      post 'update_motivation(/:motivation)', to: 'goals#update_motivation', as: 'update_motivation'
     end
     collection do
       post :filter
@@ -39,4 +40,7 @@ Rails.application.routes.draw do
     end
   end
 
+  if Rails.env.development?
+    mount Lookbook::Engine, at: "/lookbook"
+  end
 end

@@ -20,7 +20,12 @@ export default class extends Controller {
     this.textAreaTarget.style.height = `${this.textAreaTarget.scrollHeight}px`;
   }
 
-  autofocus(){
+  autoSubmit(e){
+    e.preventDefault()
+    e.target.closest('form').submit()
+  }
+
+  autoFocus(){
 
   }
   // cancel(e) {

@@ -3,7 +3,7 @@
      class="col-span-1
           w-full
           h-fit
-          p-3
+          p-4
           border
           shadow-md
           border-gray-100
@@ -16,24 +16,28 @@
     <!--  Pause/Resume, Delete, Category, Details-->
     <div class="hidden flex justify-end items-center gap-x-3"
          data-toggle-target="toggledContent">
-      <%= button_to (image_tag "#{@status_icon}.svg"),
-                    update_status_goal_path(id: @goal.id),
+      <%= button_to update_status_goal_path(id: @goal.id),
                     method: :post,
                     data: {
                       goal_id: @goal.id,
                       action: 'click->goals#toggleStatus' },
-                    class: "flex justify-center items-center" %>
-      <%= button_to (image_tag 'delete.svg'),
-                    goal_path(@goal), method: :delete,
-                    class: "flex justify-center items-center rounded-2xl p-2 bg-red-100" %>
+                    class: "w-9 h-9 flex justify-center items-center rounded-full p-1 bg-zircon" do %>
+        <%= image_tag "#{@status_icon}.svg" %>
+      <% end %>
+      <%= link_to @goal,
+                  class: "w-9 h-9 flex justify-center items-center rounded-full p-1 bg-zircon" do %>
+        <%= image_tag 'category.svg' %>
+      <% end %>
+      <%= button_to goal_path(@goal),
+                    method: :delete,
+                    class: "w-9 h-9 flex justify-center items-center rounded-full p-1 bg-red-50" do %>
+        <%= image_tag 'delete.svg' %>
+      <% end %>
       <%#= link_to (image_tag 'edit.svg'),
                     edit_goal_path(@goal),
                     class: "w-9 h-9 flex justify-center items-center rounded-2xl p-2 bg-gray-100 inline-block font-medium" %>
-      <%#= link_to (image_tag 'category.svg'),
-                    @goal,
-                    class: "w-9 h-9 flex justify-center items-center rounded-2xl p-1 bg-gray-100 inline-block font-medium" %>
       <button data-action="click->toggle#toggleContent"
-              class="flex justify-center items-center rounded-2xl bg-zircon text-2xl text-blackCoral p-2">
+              class="w-9 h-9 flex justify-center items-center rounded-full p-1 bg-zircon">
         <%= image_tag 'x.svg', class: "w-4 h-4" %>
       </button>
     </div>
@@ -45,7 +49,7 @@
   <!--end-->
 
   <!--  Goal Card Details-->
-  <div class="flex flex-col gap-y-2 h-full w-full" data-controller="milestones" data-milestones-goal_id=<%= @goal.id %>>
+  <div class="flex flex-col gap-y-3 h-full w-full" data-controller="milestones" data-milestones-goal_id=<%= @goal.id %>>
     <!--    Name  &   Description-->
     <div class="text-sm font-medium text-quickSilver dark:text-white truncate">
       <%= @goal.category.name %>
@@ -75,22 +79,21 @@
                       }
         %>
       </div>
-      <!--    Progress Percentage -->
-      <div id="progress-<%= @goal.id %>" class="hidden flex flex-col gap-y-2">
-        <small class="text-xs font-normal text-[#717171] dark:text-white">
-          You’ve met <span class="font-bold"><%= @percentage %>% </span> of your goal</small>
-        <div class="w-full bg-indigo-200 rounded h-1 flex items-center">
-          <div class="bg-independence rounded h-1 my-2 w-[<%= @percentage %>%]" style="width: <%= @percentage %>%"></div>
-        </div>
-        <p class="text-xs text-quickSilver">
-          <strong class="font-medium">Created At:</strong>
-          <%= @goal.created_at.to_fs(:short) %>
-        </p>
+      <div id="progress-<%= @goal.id %>"
+           class="hidden flex flex-col gap-y-2">
+        <!--        Progress Bar-->
+        <%= render GoalProgressComponent.new(percentage: @percentage) %>
+        <!--        Dates-->
+        <%= render GoalDatesComponent.new(dates: {
+          created_at: @goal.created_at,
+          begin_date: @goal.begin_date,
+          end_date: @goal.end_date
+        }) %>
       </div>
     </div>
     <!--    end-->
     <!--    Milestones-->
-    <div class="mt-2 text-xs  font-medium  text-doveGray pb-1 dark:text-white">
+    <div class="text-xs  font-medium  text-doveGray pb-1 dark:text-white">
       Next Milestone
     </div>
     <p class="hidden text-xs text-doveGray">
@@ -121,8 +124,8 @@
                   method: :post,
                   disabled: true,
                   class: "
-                  flex-grow
-                  updateBtn w-full rounded-2xl bg-ceruleanBlue text-sm font-semibold p-2 text-white mt-2
+                  updateBtn
+                  btn-update
                   disabled:bg-wildSand
                   disabled:cursor-not-allowed
                   disabled:opacity-60

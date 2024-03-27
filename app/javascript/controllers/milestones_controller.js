@@ -8,8 +8,7 @@ export default class extends Controller {
 
     changeStatus(event){
         const milestone_id = event.currentTarget.dataset.milestoneId
-        document.querySelector(`#achievedMilestones #milestone_${milestone_id}`).classList.add('hidden')
-        document.querySelector(`#inProgressMilestones #milestone_${milestone_id}`).classList.add('hidden')
+        event.currentTarget.closest(`#milestone_${milestone_id}`).classList.add('hidden')
     }
 
     markMilestone(event){

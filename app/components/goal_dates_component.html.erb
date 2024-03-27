@@ -1,0 +1,18 @@
+<div class="flex flex-col gap-y-2">
+  <p class="text-xs text-quickSilver flex">
+    <strong class="font-medium w-20">Goal created:</strong>
+    <span><%= @created_at %></span>
+  </p>
+  <% if @begin_date %>
+    <p class="text-xs text-quickSilver flex">
+      <strong class="font-medium w-20">Goal started:</strong>
+      <span><%= @begin_date %></span>
+    </p>
+  <% end %>
+  <% if @end_date %>
+    <p class="text-xs text-quickSilver flex">
+      <strong class="font-medium w-20">Goal ends:</strong>
+      <span><%= @end_date%></span>
+    </p>
+  <% end %>
+</div>

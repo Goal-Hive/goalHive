@@ -131,7 +131,6 @@ class MilestonesController < ApplicationController
         when 'achieved'
           render turbo_stream: [
             turbo_stream.prepend('achievedMilestones', @milestone),
-            turbo_stream.replace(@milestone, partial: 'milestone', locals: { milestone: @milestone }),
             turbo_stream.prepend(:flash,
                                  partial: 'partials/common/notification',
                                  locals: { style: 'yellow-flash',

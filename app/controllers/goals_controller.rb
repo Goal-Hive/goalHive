@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GoalsController < ApplicationController
-  before_action :set_goal, only: %i[show edit update destroy update_status]
+  before_action :set_goal, only: %i[show edit update destroy update_status update_motivation]
   before_action :set_goals, only: %i[index]
   before_action :set_current_filters, only: %i[create filter index]
   before_action :filter_params, only: %i[filter]
@@ -53,11 +53,11 @@ class GoalsController < ApplicationController
           # if it is all category or same category and 'active status'
           if (@current_category == 'all' || @current_category.to_i == @goal.category_id) && @current_status == 'active'
             actions << turbo_stream.prepend('goals', partial: 'goals/goal',
-                                            locals: { goal: @goal })
+                                                     locals: { goal: @goal })
           end
           if new_category
             actions << turbo_stream.append('categories', partial: 'categories/category',
-                                           locals: { category: @goal.category })
+                                                         locals: { category: @goal.category })
           end
           actions << turbo_stream.prepend(:flash,
                                           partial: 'partials/common/notification',
@@ -102,7 +102,7 @@ class GoalsController < ApplicationController
   # DELETE /goals/1 or /goals/1.json
   def destroy
     @goal.destroy
-    flash.now[:notice] = "Goal Deleted"
+    flash.now[:notice] = 'Goal Deleted'
 
     respond_to do |format|
       format.turbo_stream do
@@ -127,7 +127,21 @@ class GoalsController < ApplicationController
           turbo_stream.remove(@goal),
           turbo_stream.prepend(:flash,
                                partial: 'partials/common/notification',
-                               locals: { style: 'blue-flash', image:  })
+                               locals: { style: 'blue-flash', image: image })
+        ]
+      end
+    end
+  end
+
+  def update_motivation
+    @goal.update(motivation: params[:motivation].strip)
+    flash.now[:notice] = 'Motivation has been updated'
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.prepend(:flash,
+                               partial: 'partials/common/notification',
+                               locals: { style: 'blue-flash' })
         ]
       end
     end
@@ -151,6 +165,7 @@ class GoalsController < ApplicationController
                                  :category_id,
                                  :begin_date,
                                  :end_date,
+                                 :motivation_media,
                                  milestones_attributes: %i[id description _destroy],
                                  category_attributes: [:name])
   end

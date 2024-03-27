@@ -18,7 +18,7 @@
                     action: 'click->milestones#changeStatus' } do %>
       <div class="flex justify-center items-center gap-x-2 bg-zircon rounded-2xl p-2 text-independence inline-block font-medium">
         <%= image_tag @update_progress_img %>
-        <p><%= @update_progress %></p>
+        <span class="hidden md:block"><%= @update_progress %></span>
       </div>
     <% end %>
     <button data-action="click->toggle#toggleContent"
