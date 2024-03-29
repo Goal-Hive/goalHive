@@ -51,10 +51,10 @@
   <!--  Goal Card Details-->
   <div class="flex flex-col gap-y-3 h-full w-full" data-controller="milestones" data-milestones-goal_id=<%= @goal.id %>>
     <!--    Name  &   Description-->
-    <div class="text-sm font-medium text-quickSilver dark:text-white truncate">
+    <div class="text-sm font-medium text-quickSilver  truncate">
       <%= @goal.category.name %>
     </div>
-    <h3 class="w-full font-semibold text-xl dark:text-white text-independence">
+    <h3 class="w-full font-semibold text-xl  text-independence">
       <%= link_to @goal.description, @goal, class: "w-full block truncate" %>
     </h3>
 
@@ -64,7 +64,7 @@
       <div class="flex items-center justify-between gap-x-1">
         <div class="flex items-center">
           <%= image_tag 'progress.svg', class: "w-5 h-5" %>
-          <span class="pl-2 text-xs font-medium text-doveGray dark:text-white">
+          <span class="pl-2 text-xs font-medium text-doveGray ">
             <%= @milestone_reached %> Milestones Reached
           </span>
         </div>
@@ -85,7 +85,7 @@
         <%= render GoalProgressComponent.new(percentage: @percentage) %>
         <!--        Dates-->
         <%= render GoalDatesComponent.new(dates: {
-          created_at: @goal.created_at,
+          # created_at: @goal.created_at,
           begin_date: @goal.begin_date,
           end_date: @goal.end_date
         }) %>
@@ -112,7 +112,7 @@
         <div class="rounded-full relative w-5 h-5 bg-gray-200 text-white flex justify-center items-center text-center p-1 shadow-xl">
           &#10003
         </div>
-        <p class="text-base font-medium text-doveGray dark:text-white truncate">
+        <p class="text-base font-medium text-doveGray  truncate">
           Milestone <%= @milestone_number %>:
           <%= @next_milestone&.description %>
         </p>
@@ -126,6 +126,7 @@
                   class: "
                   updateBtn
                   btn-update
+                  disabled:shadow-none
                   disabled:bg-wildSand
                   disabled:cursor-not-allowed
                   disabled:opacity-60
