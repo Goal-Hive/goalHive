@@ -13,9 +13,7 @@
           data-action='update-motivation#enableUpdateBtm form#autoExpand' ,
           data-update-motivation-target='text' ,
           data-form-target="textArea"
-        >
-          <%= @goal.motivation %>
-        </textarea>
+        ><%= @goal.motivation %></textarea>
         <%= button_to achieve_milestone_path(id: @goal.milestones.where(status: 'in_progress')&.first&.id || 0),
                       'data-update-motivation-target': 'updateBtn',
                       'data-action': 'update-motivation#updateMotivation',
@@ -34,7 +32,7 @@
         <% end %>
       </div>
       <!--      Motivation Media-->
-      <div class="p-3 bg-white rounded-md max-h-[400px] flex flex-col">
+      <div class="p-3 bg-white rounded-md h-[400px] flex flex-col">
         <p class="font-bold text-sm text-fiord leading-5 text-base mb-4">
           Motivating Media
         </p>
@@ -50,7 +48,7 @@
                 %>
                 <%= image_tag 'edit.svg' %>
               <% end %>
-              <%= image_tag @goal.motivation_media, class: 'object-scale-down' %>
+              <%= image_tag @goal.motivation_media, class: 'object-scale-down max-h-[300px]' %>
             <% else %>
               <%= form.label :motivation_media,
                              class: "flex gap-x-2 font-semibold text-fiord  bg-zircon px-3 py-2 rounded-full cursor-pointer" do %>
@@ -67,7 +65,7 @@
       </div>
     </div>
     <!--  2nd section-->
-    <div class="w-full md:w-6/12 flex flex-col gap-y-2 md:gap-y-5 ">
+    <div class="w-full md:w-6/12 flex flex-col ">
       <!--      Motivation & Activity for mobile-->
       <div class="md:hidden flex justify-start items-center gap-x-5 ">
         <button class="text-yankeesBlue bg-zircon rounded-xl px-3 py-2 font-medium"> Motivation</button>
@@ -89,7 +87,7 @@
         data-tabs-default-tab-value="inProgressMilestones"
       >
         <!-- buttons to toggle between tabs -->
-        <div class="flex justify-between items-center sticky top-0 py-2 bg-gray-50">
+        <div class="flex justify-between items-center sticky top-0 py-2 md:py-3 bg-gray-50">
           <!--          Buttons-->
           <div class="text-doveGray list-reset flex gap-x-3 justify-center items-center border rounded-3xl p-1 w-fit bg-slate-50 ">
             <button data-tab-id="inProgressMilestones" data-tabs-target="btn defaultBtn" data-action="click->tabs#select" class="milestone_tab">In-progress
