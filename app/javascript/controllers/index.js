@@ -16,6 +16,9 @@ application.register("dialog", DialogController)
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
+import EditContentController from "./edit_content_controller"
+application.register("edit-content", EditContentController)
+
 import FormController from "./form_controller"
 application.register("form", FormController)
 

@@ -16,7 +16,6 @@ export default class extends Controller {
 
     updateMotivation(e) {
         const goal_id = e.currentTarget.dataset.goal_id
-        console.log(this.textTarget.value)
         post(`/goals/${goal_id}/update_motivation`, {
             body: JSON.stringify(
                 {
