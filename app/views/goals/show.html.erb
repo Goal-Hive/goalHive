@@ -1,68 +1,9 @@
 <% content_for :goal_details do %>
   <div class='flex justify-around gap-x-16 items-start p-2 md:p-5'>
     <!--  1st section-->
-    <div class='w-3/12 hidden lg:flex flex-col gap-y-5 sticky top-5' data-controller="form update-motivation">
-      <!--      Motivation Text-->
-      <div class="p-3 bg-white border-solid border border-gray-200 rounded-md flex flex-col gap-y-3">
-        <p class="font-bold text-sm text-fiord leading-5 text-base">
-          Your Motivation
-        </p>
-        <textarea
-          class='focus:border-0 bg-wildSand p-3 text-doveGray rounded-md'
-          contentEditable='true'
-          data-action='update-motivation#enableUpdateBtm form#autoExpand' ,
-          data-update-motivation-target='text' ,
-          data-form-target="textArea"
-        ><%= @goal.motivation %></textarea>
-        <%= button_to achieve_milestone_path(id: @goal.milestones.where(status: 'in_progress')&.first&.id || 0),
-                      'data-update-motivation-target': 'updateBtn',
-                      'data-action': 'update-motivation#updateMotivation',
-                      'data-goal_id': @goal.id,
-                      method: :post,
-                      disabled: true,
-                      class: "
-                  btn-update
-                  w-fit
-                  disabled:hidden
-                  disabled:bg-wildSand
-                  disabled:cursor-not-allowed
-                  disabled:opacity-60
-                  disabled:text-doveGray" do %>
-          Save Changes
-        <% end %>
-      </div>
-      <!--      Motivation Media-->
-      <div class="p-3 bg-white rounded-md h-[400px] flex flex-col">
-        <p class="font-bold text-sm text-fiord leading-5 text-base mb-4">
-          Motivating Media
-        </p>
-        <div class="flex flex-col justify-center items-center flex-grow" data-controller="form">
-          <%= form_with(model: @goal, class: "relative flex flex-col justify-between items-center gap-y-5") do |form| %>
-            <% if @goal.motivation_media.attached? %>
-              <%= form.label :motivation_media,
-                             class: "w-fit flex gap-x-2 font-semibold text-fiord  bg-zircon px-3 py-2 rounded-full cursor-pointer self-end absolute right-2 top-2" do %>
-                <%= form.file_field :motivation_media,
-                                    class: "hidden",
-                                    data: { action: 'change->form#autoSubmit' }
-
-                %>
-                <%= image_tag 'edit.svg' %>
-              <% end %>
-              <%= image_tag @goal.motivation_media, class: 'object-scale-down max-h-[300px]' %>
-            <% else %>
-              <%= form.label :motivation_media,
-                             class: "flex gap-x-2 font-semibold text-fiord  bg-zircon px-3 py-2 rounded-full cursor-pointer" do %>
-                <%= image_tag 'upload_image.svg' %>
-                Add Media
-                <%= form.file_field :motivation_media,
-                                    style: "display: none;",
-                                    data: { action: 'change->form#autoSubmit' }
-                %>
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+    <div class='w-3/12 hidden lg:flex flex-col gap-y-5 sticky top-5'>
+      <%= render 'details/motivation_text' %>
+      <%= render 'details/motivation_media' %>
     </div>
     <!--  2nd section-->
     <div class="w-full lg:w-6/12 flex flex-col"
@@ -77,7 +18,7 @@
           <button class='flex justify-center items-center'
                   data-action='edit-content#editMode'
                   data-edit-content-target="editBtn">
-            <%= image_tag 'edit.svg'%>
+            <%= image_tag 'edit.svg' %>
           </button>
           <button class='hidden flex justify-center items-center text-ceruleanBlue bold text-lg'
                   data-action='edit-content#saveMode'
@@ -87,7 +28,7 @@
             <%= image_tag 'check.svg', class: 'w-4 h-4' %>
           </button>
           <button class='flex justify-center items-center'>
-            <%= image_tag 'folder.svg'%>
+            <%= image_tag 'folder.svg' %>
           </button>
         </div>
       </div>

@@ -1,0 +1,32 @@
+<!--      Motivation Media-->
+<div class="p-3 bg-white rounded-md h-[400px] flex flex-col">
+  <p class="font-bold text-sm text-fiord leading-5 text-base mb-4">
+    Motivating Media
+  </p>
+  <div class="flex flex-col justify-center items-center flex-grow" data-controller="form">
+    <%= form_with(model: @goal, class: "relative flex flex-col justify-between items-center gap-y-5") do |form| %>
+      <% if @goal.motivation_media.attached? %>
+        <%= form.label :motivation_media,
+                       class: "w-fit flex gap-x-2 font-semibold text-fiord  bg-zircon px-3 py-2 rounded-full cursor-pointer self-end absolute right-2 top-2" do %>
+          <%= form.file_field :motivation_media,
+                              class: "hidden",
+                              data: { action: 'change->form#autoSubmit' }
+
+          %>
+          <%= image_tag 'edit.svg' %>
+        <% end %>
+        <%= image_tag @goal.motivation_media, class: 'object-scale-down max-h-[300px]' %>
+      <% else %>
+        <%= form.label :motivation_media,
+                       class: "flex gap-x-2 font-semibold text-fiord  bg-zircon px-3 py-2 rounded-full cursor-pointer" do %>
+          <%= image_tag 'upload_image.svg' %>
+          Add Media
+          <%= form.file_field :motivation_media,
+                              style: "display: none;",
+                              data: { action: 'change->form#autoSubmit' }
+          %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
