@@ -1,35 +1,33 @@
-<div>
-  <div class="hidden flex justify-start items-center gap-x-3" data-toggle-target="toggledContent">
-    <%= form.fields_for :category_attributes do |category_fields| %>
-      <div class="flex gap-x-3 w-full">
-        <%= category_fields.text_field :name,
-                                       class: "goal_input text-doveGray shadow rounded-md outline-none font-base",
-                                       placeholder: "Your new category name!",
-                                       value: '',
-                                       'data-stepper-target': 'newGoalCategoryInput',
-                                       'data-action': 'keydown.enter->stepper#FocusOnNextTarget
+<div class="hidden flex justify-start items-center gap-x-3" data-toggle-target="toggledContent">
+  <%= form.fields_for :category_attributes do |category_fields| %>
+    <div class="flex gap-x-3 w-full">
+      <%= category_fields.text_field :name,
+                                     class: "goal_input text-doveGray shadow rounded-md outline-none font-base",
+                                     placeholder: "Your new category name!",
+                                     value: '',
+                                     'data-stepper-target': 'newGoalCategoryInput',
+                                     'data-action': 'keydown.enter->stepper#FocusOnNextTarget
                                                                       stepper#enableNext' %>
-        <div class="text-independence flex gap-x-3">
-          <!--          <button data-action="toggle#toggleContent-->
-          <!--                               stepper#enableCategoriesOptions-->
-          <!--                               stepper#resetNewGoalCategoryInput-->
-          <!--                               stepper#disableNext"-->
-          <!--                  class="bg-red-100 p-2 text-red-500 whitespace-nowrap">-->
-          <!--            &#10007 cancel-->
-          <!--          </button>-->
-        </div>
+      <div class="text-independence flex gap-x-3">
+        <!--          <button data-action="toggle#toggleContent-->
+        <!--                               stepper#enableCategoriesOptions-->
+        <!--                               stepper#resetNewGoalCategoryInput-->
+        <!--                               stepper#disableNext"-->
+        <!--                  class="bg-red-100 p-2 text-red-500 whitespace-nowrap">-->
+        <!--            &#10007 cancel-->
+        <!--          </button>-->
       </div>
-    <% end %>
-  </div>
-  <button
-    data-stepper-target="newGoalCategoryBtn"
-    data-action="toggle#toggleContent
+    </div>
+  <% end %>
+</div>
+<button
+  data-stepper-target="newGoalCategoryBtn"
+  data-action="toggle#toggleContent
                  stepper#unselectCategoriesOptions
                  stepper#disableNext
                  stepper#FocusOnNextTarget"
-    data-toggle-target="toggleBtn"
-    class="text-ceruleanBlue bg-zircon p-2 flex justify-start w-fit rounded-md">
-    <p>Create New Category?</p>
-  </button>
-</div>
+  data-toggle-target="toggleBtn"
+  class="text-ceruleanBlue p-2 flex justify-start w-fit rounded-md">
+  <p>Create New Category?</p>
+</button>
 

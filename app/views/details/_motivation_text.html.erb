@@ -5,9 +5,9 @@
     Your Motivation
   </p>
   <textarea
-    class='focus:border-0 bg-wildSand p-3 text-doveGray rounded-md'
+    class='focus:border-0 bg-wildSand p-3 text-doveGray rounded-md min-h-[100px]'
     contentEditable='true'
-    data-action='update-motivation#enableUpdateBtm form#autoExpand' ,
+    data-action='update-motivation#enableUpdateBtm' ,
     data-update-motivation-target='text' ,
     data-form-target="textArea"
   ><%= @goal.motivation %></textarea>
@@ -17,7 +17,7 @@
                 'data-goal_id': @goal.id,
                 method: :post,
                 disabled: true,
-                class: "btn-update w-fit" do %>
+                class: "btn-update w-fit disabled:hidden" do %>
     Save Changes
   <% end %>
 </div>

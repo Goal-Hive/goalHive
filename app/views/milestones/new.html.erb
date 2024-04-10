@@ -1,9 +1,8 @@
 <%= turbo_frame_tag :modal do %>
   <div data-controller="turbo-modal"
        data-action="turbo:submit-end->dialog#submitEnd"
-       class="mx-auto md:w-2/3 w-full p-3 pt-10">
-    <p class="font-base">New milestone</p>
-
+       class="p-5 pt-0">
+    <p class="font-light text-sm text-yankeesBlue">New milestone</p>
     <%= render "form", milestone: @milestone %>
   </div>
 <% end %>
