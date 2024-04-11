@@ -1,7 +1,7 @@
 databases:
   - name: goalhive_pg_1
-    databaseName: goalhive_pg_1
-    user: goalhive_pg_1_user
+    databaseName: goalhive_pg_1_1yv3
+    user: goalhive_pg_1_1yv3_user
 
 services:
   - type: web
