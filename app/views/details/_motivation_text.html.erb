@@ -1,0 +1,23 @@
+<!--      Motivation Text-->
+<div class="p-3 bg-white border-solid border border-gray-200 rounded-md flex flex-col gap-y-3"
+     data-controller="form update-motivation">
+  <p class="font-bold text-sm text-fiord leading-5 text-base">
+    Your Motivation
+  </p>
+  <textarea
+    class='focus:border-0 bg-wildSand p-3 text-doveGray rounded-md min-h-[100px]'
+    contentEditable='true'
+    data-action='update-motivation#enableUpdateBtm' ,
+    data-update-motivation-target='text' ,
+    data-form-target="textArea"
+  ><%= @goal.motivation %></textarea>
+  <%= button_to achieve_milestone_path(id: @goal.milestones.where(status: 'in_progress')&.first&.id || 0),
+                'data-update-motivation-target': 'updateBtn',
+                'data-action': 'update-motivation#updateMotivation',
+                'data-goal_id': @goal.id,
+                method: :post,
+                disabled: true,
+                class: "btn-update w-fit disabled:hidden" do %>
+    Save Changes
+  <% end %>
+</div>

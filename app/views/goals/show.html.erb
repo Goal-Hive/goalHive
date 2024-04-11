@@ -1,93 +1,44 @@
 <% content_for :goal_details do %>
   <div class='flex justify-around gap-x-16 items-start p-2 md:p-5'>
     <!--  1st section-->
-    <div class='w-3/12 hidden md:flex flex-col gap-y-5 sticky top-5' data-controller="form update-motivation">
-      <!--      Motivation Text-->
-      <div class="p-3 bg-white border-solid border border-gray-200 rounded-md flex flex-col gap-y-3">
-        <p class="font-bold text-sm text-fiord leading-5 text-base">
-          Your Motivation
-        </p>
-        <textarea
-          class='focus:border-0 bg-wildSand p-3 text-doveGray rounded-md'
-          contentEditable='true'
-          data-action='update-motivation#enableUpdateBtm form#autoExpand' ,
-          data-update-motivation-target='text' ,
-          data-form-target="textArea"
-        ><%= @goal.motivation %></textarea>
-        <%= button_to achieve_milestone_path(id: @goal.milestones.where(status: 'in_progress')&.first&.id || 0),
-                      'data-update-motivation-target': 'updateBtn',
-                      'data-action': 'update-motivation#updateMotivation',
-                      'data-goal_id': @goal.id,
-                      method: :post,
-                      disabled: true,
-                      class: "
-                  btn-update
-                  w-fit
-                  disabled:hidden
-                  disabled:bg-wildSand
-                  disabled:cursor-not-allowed
-                  disabled:opacity-60
-                  disabled:text-doveGray" do %>
-          Save Changes
-        <% end %>
-      </div>
-      <!--      Motivation Media-->
-      <div class="p-3 bg-white rounded-md h-[400px] flex flex-col">
-        <p class="font-bold text-sm text-fiord leading-5 text-base mb-4">
-          Motivating Media
-        </p>
-        <div class="flex flex-col justify-center items-center flex-grow" data-controller="form">
-          <%= form_with(model: @goal, class: "relative flex flex-col justify-between items-center gap-y-5") do |form| %>
-            <% if @goal.motivation_media.attached? %>
-              <%= form.label :motivation_media,
-                             class: "w-fit flex gap-x-2 font-semibold text-fiord  bg-zircon px-3 py-2 rounded-full cursor-pointer self-end absolute right-2 top-2" do %>
-                <%= form.file_field :motivation_media,
-                                    class: "hidden",
-                                    data: { action: 'change->form#autoSubmit' }
-
-                %>
-                <%= image_tag 'edit.svg' %>
-              <% end %>
-              <%= image_tag @goal.motivation_media, class: 'object-scale-down max-h-[300px]' %>
-            <% else %>
-              <%= form.label :motivation_media,
-                             class: "flex gap-x-2 font-semibold text-fiord  bg-zircon px-3 py-2 rounded-full cursor-pointer" do %>
-                <%= image_tag 'upload_image.svg' %>
-                Add Media
-                <%= form.file_field :motivation_media,
-                                    style: "display: none;",
-                                    data: { action: 'change->form#autoSubmit' }
-                %>
-              <% end %>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+    <div class='w-3/12 hidden lg:flex flex-col gap-y-5 sticky top-5'>
+      <%= render 'details/motivation_text' %>
+      <%= render 'details/motivation_media' %>
     </div>
     <!--  2nd section-->
-    <div class="w-full md:w-6/12 flex flex-col ">
+    <div class="w-full lg:w-6/12 flex flex-col"
+         data-controller="edit-content">
       <!--      Motivation & Activity for mobile-->
-      <div class="md:hidden flex justify-start items-center gap-x-5 ">
-        <button class="text-yankeesBlue bg-zircon rounded-xl px-3 py-2 font-medium"> Motivation</button>
-        <button class="text-yankeesBlue bg-zircon rounded-xl px-3 py-2 font-medium"> Activity</button>
-      </div>
-      <div class="flex justify-between">
-        <p class="text-2xl truncate text-yankeesBlue font-semibold">
+      <div class="flex justify-between gap-x-5">
+        <p class="text-2xl truncate text-yankeesBlue font-semibold w-full p-2"
+           data-edit-content-target="content">
           <%= @goal.description %>
         </p>
-        <div class="flex  gap-x-1">
-          <button class='h-10 w-10 flex justify-center items-center'> <%= image_tag 'edit.svg' %></button>
-          <button class='h-10 w-10 flex justify-center items-center'> <%= image_tag 'folder.svg' %> </button>
+        <div class="flex  gap-x-3">
+          <button class='flex justify-center items-center'
+                  data-action='edit-content#editMode'
+                  data-edit-content-target="editBtn">
+            <%= image_tag 'edit.svg' %>
+          </button>
+          <button class='hidden flex justify-center items-center text-ceruleanBlue bold text-lg'
+                  data-action='edit-content#saveMode'
+                  data-update-url='<%= goals_path %>'
+                  data-goal-id='<%= @goal.id %>'
+                  data-edit-content-target="updateBtn">
+            <%= image_tag 'check.svg', class: 'w-4 h-4' %>
+          </button>
+          <button class='flex justify-center items-center'>
+            <%= image_tag 'folder.svg' %>
+          </button>
         </div>
       </div>
-
       <div
         data-controller="tabs"
         data-tabs-active-class="border border-gray-400 rounded-3xl bg-white text-independence"
         data-tabs-default-tab-value="inProgressMilestones"
       >
         <!-- buttons to toggle between tabs -->
-        <div class="flex justify-between items-center sticky top-0 py-2 md:py-3 bg-gray-50">
+        <div class="flex justify-between items-center sticky top-0 py-2 bg-gray-50">
           <!--          Buttons-->
           <div class="text-doveGray list-reset flex gap-x-3 justify-center items-center border rounded-3xl p-1 w-fit bg-slate-50 ">
             <button data-tab-id="inProgressMilestones" data-tabs-target="btn defaultBtn" data-action="click->tabs#select" class="milestone_tab">In-progress
@@ -100,15 +51,44 @@
             <!--             All Milestones-->
             <!--            </button>-->
           </div>
-          <!--          Add a new Milestone-->
-          <%= button_to new_milestone_path(goal_id: @goal.id),
-                        method: :post,
-                        class: 'gap-x-2 bg-ceruleanBlue flex justify-between items-center p-2 md:py-1 md:px-4 rounded-full  md:rounded-3xl',
-                        data: { turbo_frame: "modal",
-                                action: 'dialog#open' } do %>
-            <%= image_tag 'plus.svg' %>
-            <span class="hidden md:block font-semibold text-md text-white"> Add Milestone </span>
-          <% end %>
+          <!--          Add a new Milestone, Motivation, Activity-->
+          <div class="flex justify-center items-center gap-x-4">
+            <button class='lg:hidden flex justify-between items-center p-2 rounded-full bg-[#F4F6FF]'
+                    data-action='dialog#open'
+                    data-dialog-content-id="motivation">
+              <%= image_tag 'motivation.svg' %>
+              <% content_for :modal_content do %>
+                <div class="w-90v h-90v p-3 flex flex-col gap-y-3"
+                     id='motivation'
+                     data-dialog-target="content">
+                  <%= render 'details/motivation_text' %>
+                  <%= render 'details/motivation_media' %>
+                </div>
+              <% end %>
+            </button>
+
+            <button class='lg:hidden flex justify-between items-center p-2 rounded-full bg-[#F4F6FF]'
+                    data-action='dialog#open'
+                    data-dialog-content-id="activity">
+              <%= image_tag 'activity.svg' %>
+              <% content_for :modal_content do %>
+                <div class="w-90v h-90v p-3"
+                     id='activity'
+                     data-dialog-target="content">
+                  <%= render 'details/motivation_media' %>
+                </div>
+              <% end %>
+            </button>
+
+            <%= button_to new_milestone_path(goal_id: @goal.id),
+                          method: :post,
+                          class: 'gap-x-2 bg-ceruleanBlue flex justify-between items-center p-2 md:py-1 md:px-4 rounded-full  md:rounded-3xl',
+                          data: { turbo_frame: "modal",
+                                  action: 'dialog#open' } do %>
+              <%= image_tag 'plus.svg' %>
+              <span class="hidden md:block font-semibold text-md text-white"> Add Milestone </span>
+            <% end %>
+          </div>
         </div>
         <!-- the tabs -->
         <div class="rounded-lg">
@@ -138,7 +118,7 @@
       </div>
     </div>
     <!--  3rd section-->
-    <div class="w-3/12 hidden md:flex">
+    <div class="w-3/12 hidden lg:flex">
 
     </div>
   </div>

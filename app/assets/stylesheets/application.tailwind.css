@@ -3,6 +3,19 @@
 @tailwind utilities;
 
 @layer components {
+    .dialog {
+        @apply
+        backdrop:bg-black
+        backdrop:bg-opacity-60 w-fit h-fit
+        rounded-lg relative
+        relative
+    }
+
+    .dialog form {
+        @apply
+        text-doveGray text-2xl sticky top-0 right-0
+    }
+
     .flash {
         @apply py-2 px-6
         font-medium rounded-full flex gap-x-3

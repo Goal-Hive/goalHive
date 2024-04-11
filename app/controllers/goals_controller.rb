@@ -53,11 +53,11 @@ class GoalsController < ApplicationController
           # if it is all category or same category and 'active status'
           if (@current_category == 'all' || @current_category.to_i == @goal.category_id) && @current_status == 'active'
             actions << turbo_stream.prepend('goals', partial: 'goals/goal',
-                                                     locals: { goal: @goal })
+                                            locals: { goal: @goal })
           end
           if new_category
             actions << turbo_stream.append('categories', partial: 'categories/category',
-                                                         locals: { category: @goal.category })
+                                           locals: { category: @goal.category })
           end
           actions << turbo_stream.prepend(:flash,
                                           partial: 'partials/common/notification',
@@ -90,6 +90,9 @@ class GoalsController < ApplicationController
   def update
     respond_to do |format|
       if @goal.update(goal_params)
+        format.turbo_stream do
+          render turbo_stream: []
+        end
         format.html { redirect_to goal_url(@goal), notice: 'Goal was successfully updated.' }
         format.json { render :show, status: :ok, location: @goal }
       else
