@@ -8,9 +8,7 @@
       <%# end %>
       <%= f.password_field :password, autocomplete: "new-password", class: "rounded border-gray-300 bg-gray-100 p-1 text-sm font-normal", placeholder: "Password" %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "rounded border-gray-300 bg-gray-100 p-1 text-sm font-normal w-full", placeholder: "Confirm Password" %>
-      <div class="btn-primary">
-        <%= f.submit "Sign up" %>
-      </div>
+      <%= f.submit "Sign up", class: 'btn-primary' %>
     </div>
   <% end %>
 <% end %>
