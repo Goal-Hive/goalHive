@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Frozen: Represents the concept of "no value" or "unknown value" in Ruby.
 #
 class String
