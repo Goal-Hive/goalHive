@@ -12,9 +12,8 @@ class GoalDatesComponent < ViewComponent::Base
   end
 
   def format_dates
-    @created_at = @created_at&.strftime("%B %e, %Y")
-    @begin_date = @begin_date&.strftime("%B %e, %Y")
-    @end_date = @end_date&.strftime("%B %e, %Y")
+    @created_at = @created_at&.strftime('%B %e, %Y')
+    @begin_date = @begin_date&.strftime('%B %e, %Y')
+    @end_date = @end_date&.strftime('%B %e, %Y')
   end
-
 end

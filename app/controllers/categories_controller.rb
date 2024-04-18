@@ -46,7 +46,7 @@ class CategoriesController < ApplicationController
             turbo_stream.remove('new_category'),
             turbo_stream.prepend(:flash,
                                  partial: 'partials/common/notification',
-                                 locals: {style: 'green-flash'})
+                                 locals: { style: 'green-flash' })
           ]
         end
         #   format.html { redirect_to category_url(@category), notice: 'Category was successfully created.' }
@@ -80,8 +80,7 @@ class CategoriesController < ApplicationController
             turbo_stream.replace(@category,
                                  partial: 'categories/category',
                                  locals: { category: @category,
-                                           selected: params[:selected].to_boolean
-                                 }),
+                                           selected: params[:selected].to_boolean }),
             turbo_stream.update('notice', 'Category is Updated')
           ]
         end
@@ -130,5 +129,4 @@ class CategoriesController < ApplicationController
   def category_params
     params.require(:category).permit(:name)
   end
-
 end

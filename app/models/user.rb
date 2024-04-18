@@ -8,16 +8,15 @@ class User < ApplicationRecord
          :recoverable,
          :rememberable,
          :validatable
-         # :confirmable,
-         # :lockable,
-         # :timeoutable,
-         # :trackable,
-         # :omniauthable
+  # :confirmable,
+  # :lockable,
+  # :timeoutable,
+  # :trackable,
+  # :omniauthable
 
   has_many :goals, dependent: :destroy
   has_many :categories, dependent: :destroy
   after_create :initiate_categories
-
 
   def self.from_omniauth(auth)
     find_or_create_by(provider: auth.provider, uid: auth.uid) do |user|

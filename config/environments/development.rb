@@ -60,7 +60,7 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  config.lookbook.project_name = "Lookbook Demo"
+  config.lookbook.project_name = 'Lookbook Demo'
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

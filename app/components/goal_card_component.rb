@@ -45,5 +45,4 @@ class GoalCardComponent < ViewComponent::Base
       @status_icon = 'pause'
     end
   end
-
 end
