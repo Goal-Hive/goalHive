@@ -1,7 +1,8 @@
 # frozen_string_literal: true
-
+# milestones of details page
 class MilestoneComponent < ViewComponent::Base
   def initialize(milestone:)
+    super
     @milestone = milestone
     prepare_data
   end

@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
+# GoalCardComponent
 class GoalCardComponent < ViewComponent::Base
   def initialize(goal:)
+    super
     @goal = goal
     generate_goal_data
   end

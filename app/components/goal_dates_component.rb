@@ -1,7 +1,8 @@
 # frozen_string_literal: true
-
+# Dates for goal card and details page
 class GoalDatesComponent < ViewComponent::Base
   def initialize(dates:)
+    super
     @dates = dates
     generate_dates
     format_dates
