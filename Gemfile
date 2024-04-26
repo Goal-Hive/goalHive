@@ -83,6 +83,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  gem 'trace_location'
 end
 
 group :test do
@@ -101,3 +103,5 @@ gem 'view_component'
 gem 'ranked-model', '~> 0.4.9'
 
 gem 'requestjs-rails', '~> 0.0.11'
+
+gem 'image_processing', '~> 1.0'
