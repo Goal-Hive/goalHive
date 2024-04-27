@@ -19,10 +19,12 @@ class Milestone < ApplicationRecord
     case status
     when 'achieved'
       status_achieved!
+      self.update(achieved_at: DateTime.now)
     when 'in_progress'
       status_in_progress!
       goal.status_active!
     end
+
     goal.mark_complete
   end
 end

@@ -14,7 +14,6 @@ export default class extends Controller {
 
 
     onEnd(e) {
-        console.log(e)
         e.preventDefault()
         const url = e.target.dataset.sortableUrl
         const position = e.target.dataset.sortablePosition

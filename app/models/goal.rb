@@ -39,4 +39,16 @@ class Goal < ApplicationRecord
   def mark_complete
     status_achieved! if milestones.status_in_progress.empty?
   end
+
+  def all_milestones_count
+    milestones.count
+  end
+
+  def achieved_count
+    milestones.where(status: 'achieved').count
+  end
+
+  def goal_progress_percentage
+    all_milestones_count != 0 ? (achieved_count * 100) / all_milestones_count : 0
+  end
 end
