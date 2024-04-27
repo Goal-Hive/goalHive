@@ -17,14 +17,14 @@ class GoalCardComponent < ViewComponent::Base
   end
 
   def calculate_milestone_stats
-    @all_milestones = @goal.milestones.count
-    @achieved_count = @goal.milestones.where(status: 'achieved').count
+    @all_milestones = @goal.all_milestones_count
+    @achieved_count = @goal.achieved_count
     @milestone_reached = "#{@achieved_count}/#{@all_milestones}"
-    @milestone_number = @all_milestones - @goal.milestones.where(status: 'in_progress').count + 1
+    @milestone_number = @achieved_count + 1
   end
 
   def calculate_percentage
-    @percentage = @all_milestones != 0 ? (@achieved_count * 100) / @all_milestones : 0
+    @percentage = @goal.goal_progress_percentage
   end
 
   def set_next_milestone
