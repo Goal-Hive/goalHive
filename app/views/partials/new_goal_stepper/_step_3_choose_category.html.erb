@@ -5,10 +5,5 @@
   <h3 class="step_title">Choosing a category to add your goal to</h3>
   <div class="step_desc"><p data-stepper-target="goalReplica"></p></div>
   <p> Your recent categories </p>
-  <div class="flex gap-x-5 flex-wrap gap-y-3 pb-4" id="new_goal_categories">
-    <% current_user.categories.each do |category| %>
-      <%= render 'partials/new_goal_stepper/new_goal_category', form:, category: %>
-    <% end %>
-  </div>
-  <%= render 'partials/new_goal_stepper/new_goal_category_form', form: %>
+  <%= render 'categories/controller', form: %>
 </div>
