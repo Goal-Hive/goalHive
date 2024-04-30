@@ -16,7 +16,7 @@ export default class extends Controller {
         "goalReplica",
         "newGoalCategoryOption",
         'newGoalCategoryBtn',
-        "newGoalCategoryInput",
+        "newCategoryInput",
         "nextTooltip",
     ]
 
@@ -34,8 +34,8 @@ export default class extends Controller {
             type: Object, default: {
                 'goalInput': 'goalMotivation',
                 'goalMotivation': 'next',
-                'newGoalCategoryBtn': 'newGoalCategoryInput',
-                'newGoalCategoryInput': 'next'
+                'newGoalCategoryBtn': 'newCategoryInput',
+                'newCategoryInput': 'next'
             }
         }
     }
@@ -171,9 +171,8 @@ export default class extends Controller {
         });
     }
 
-    resetNewGoalCategoryInput() {
+    resetNewCategoryInput() {
         this.categoryTypedValue = false
-        this.newGoalCategoryInputTarget.value = ''
     }
 
     disableNext() {
