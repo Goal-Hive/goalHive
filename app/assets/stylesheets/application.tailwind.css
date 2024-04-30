@@ -3,6 +3,15 @@
 @tailwind utilities;
 
 @layer components {
+    .category_form_label {
+        @apply
+        flex px-3 py-1 text-fiord rounded-md border border-gray-300 cursor-pointer focus:outline-none hover:bg-gray-50
+        peer-checked:ring-indigo-500
+        peer-checked:ring-2
+        peer-checked:border-transparent
+        truncate
+    }
+
     .dialog {
         @apply
         backdrop:bg-black
