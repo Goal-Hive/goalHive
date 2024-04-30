@@ -10,6 +10,9 @@ application.register("autohide", AutohideController)
 import Categories__NavbarController from "./categories/navbar_controller"
 application.register("categories--navbar", Categories__NavbarController)
 
+import CategoriesController from "./categories_controller"
+application.register("categories", CategoriesController)
+
 import DialogController from "./dialog_controller"
 application.register("dialog", DialogController)
 
