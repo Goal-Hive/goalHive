@@ -6,6 +6,9 @@ class Goal < ApplicationRecord
 
   has_many :milestones, class_name: 'Milestone', dependent: :destroy
 
+  accepts_nested_attributes_for :milestones, :category
+
+
   has_one_attached :motivation_media
 
   validates :description, presence: true
@@ -24,7 +27,6 @@ class Goal < ApplicationRecord
     scope
   }
 
-  accepts_nested_attributes_for :milestones, :category
 
   enum :status, %i[paused active achieved archived], default: :active, prefix: true
 

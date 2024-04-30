@@ -1,0 +1,18 @@
+<div class="flex gap-x-5 flex-wrap gap-y-3 pb-4 w-full">
+  <% current_user.categories.each do |category| %>
+    <div class="max-w-2xl">
+      <%= form.radio_button :category_id,
+                            category.id,
+                            'data-stepper-target': "newGoalCategoryOption",
+                            'data-action': 'stepper#enableNext
+                                            stepper#resetNewCategoryInput
+                                            categories#resetNewCategoryInput
+                                            toggle#hideContent',
+                            class: "sr-only peer" %>
+      <label class="category_form_label"
+             for="goal_category_id_<%= category.id %>">
+        <%= category.name %>
+      </label>
+    </div>
+  <% end %>
+</div>

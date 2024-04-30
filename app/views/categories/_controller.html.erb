@@ -1,0 +1,11 @@
+<div class="flex flex-col gap-y-3 pb-4 w-full"
+     data-controller="toggle categories">
+    <%= render 'categories/category_form', form: %>
+  <div class="flex gap-x-3 justify-between ">
+    <%= render 'categories/new_category_form', form: %>
+    <% if content_for?(:confirm_update) %>
+      <%= yield(:confirm_update) %>
+    <% end %>
+  </div>
+</div>
+

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GoalsController < ApplicationController
-  before_action :set_goal, only: %i[show edit update destroy update_status update_motivation]
+  before_action :set_goal, only: %i[show edit update destroy update_status update_motivation update_category]
   before_action :set_goals, only: %i[index]
   before_action :set_current_filters, only: %i[create filter index]
   before_action :filter_params, only: %i[filter]
@@ -53,11 +53,11 @@ class GoalsController < ApplicationController
           # if it is all category or same category and 'active status'
           if (@current_category == 'all' || @current_category.to_i == @goal.category_id) && @current_status == 'active'
             actions << turbo_stream.prepend('goals', partial: 'goals/goal',
-                                                     locals: { goal: @goal })
+                                            locals: { goal: @goal })
           end
           if new_category
             actions << turbo_stream.append('categories', partial: 'categories/category',
-                                                         locals: { category: @goal.category })
+                                           locals: { category: @goal.category })
           end
           actions << turbo_stream.prepend(:flash,
                                           partial: 'partials/common/notification',
@@ -72,18 +72,6 @@ class GoalsController < ApplicationController
         format.json { render json: @goal.errors, status: :unprocessable_entity }
       end
     end
-  end
-
-  def find_or_create_category
-    new_category = false
-    category = nil
-    if goal_params[:category_id].present?
-      category = Category.find(goal_params[:category_id])
-    elsif goal_params.dig(:category_attributes, :name).present?
-      new_category = true
-      category = current_user.categories.build(name: goal_params[:category_attributes][:name])
-    end
-    { category: category, new_category: new_category }
   end
 
   # PATCH/PUT /goals/1 or /goals/1.json
@@ -150,6 +138,25 @@ class GoalsController < ApplicationController
     end
   end
 
+  def update_category
+    respond_to do |format|
+      if @goal.update(category: find_or_create_category[:category])
+        flash.now[:notice] = "Goal has been moved to: #{@goal.category.name.capitalize}"
+        format.turbo_stream do
+          render turbo_stream:
+          turbo_stream.prepend(:flash,
+                               partial: 'partials/common/notification',
+                               locals: { style: 'blue-flash' })
+        end
+        format.html { redirect_to goal_url(@goal), notice: 'Goal was successfully updated.' }
+        format.json { render :show, status: :ok, location: @goal }
+      else
+        format.html { render :show, status: :unprocessable_entity }
+        format.json { render json: @goal.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -161,6 +168,18 @@ class GoalsController < ApplicationController
     @goals = current_user.goals.order(created_at: :desc)
   end
 
+  def find_or_create_category
+    new_category = false
+    category = nil
+    if goal_params.dig(:category_attributes, :name).present?
+      new_category = true
+      category = current_user.categories.build(name: goal_params[:category_attributes][:name])
+    elsif goal_params[:category_id].present?
+      category = Category.find(goal_params[:category_id])
+    end
+    { category:, new_category: }
+  end
+
   # Only allow a list of trusted parameters through.
   def goal_params
     params.require(:goal).permit(:description,
@@ -170,7 +189,7 @@ class GoalsController < ApplicationController
                                  :end_date,
                                  :motivation_media,
                                  milestones_attributes: %i[id description _destroy],
-                                 category_attributes: [:name])
+                                 category_attributes: %i[name])
   end
 
   def filter_params
