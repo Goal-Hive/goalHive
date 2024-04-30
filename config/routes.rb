@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     member do
       post 'update_status(/:status)', to: 'goals#update_status', as: 'update_status'
       post 'update_motivation(/:motivation)', to: 'goals#update_motivation', as: 'update_motivation'
+      patch 'update_category'
     end
     collection do
       post :filter

@@ -27,8 +27,17 @@
                   data-edit-content-target="updateBtn">
             <%= image_tag 'check.svg', class: 'w-4 h-4' %>
           </button>
-          <button class='flex justify-center items-center'>
+          <button class='flex justify-center items-center'
+                  data-action='dialog#open'
+                  data-dialog-content-id="update_category">
             <%= image_tag 'folder.svg' %>
+            <% content_for :modal_content do %>
+              <div class="w-60v p-8 flex flex-col gap-y-3"
+                   id='update_category'
+                   data-dialog-target="content">
+                <%= render 'goals/update_category' %>
+              </div>
+            <% end %>
           </button>
         </div>
       </div>
@@ -75,7 +84,7 @@
                 <div class="w-90v h-90v p-3"
                      id='activity'
                      data-dialog-target="content">
-                  <%= render 'details/recent_activity', goal:@goal %>
+                  <%= render 'details/recent_activity', goal: @goal %>
                 </div>
               <% end %>
             </button>
@@ -119,7 +128,7 @@
     </div>
     <!--  3rd section-->
     <div class="w-3/12 hidden lg:block sticky top-5">
-      <%= render 'details/recent_activity', goal:@goal %>
+      <%= render 'details/recent_activity', goal: @goal %>
     </div>
   </div>
 
