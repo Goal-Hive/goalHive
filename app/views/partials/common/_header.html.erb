@@ -1,13 +1,10 @@
 <% if current_user %>
-  <header class="flex flex-col sticky top-0 h-[7.5rem] md:h-[8.5rem] z-50">
+  <header class="flex flex-col sticky top-0 h-[7.5rem] md:h-[8.5rem] z-50 ">
     <!--    First Row-->
     <div class="
   bg-header flex h-[4rem] md:h-[5rem] justify-between items-center px-2 md:px-6 py-3">
       <%= link_to root_path do %>
-        <div class="text-3xl font-semibold flex relative">
-          <span class="text-fiord">Goal</span><span class="text-ceruleanBlue ">Hive</span>
-          <%= image_tag 'hive_logo.svg', class: "absolute left-[125px] top-1 w-8 h-8" %>
-        </div>
+        <%= image_tag 'goalhyve.svg' %>
       <% end %>
       <%= DateTime.now.sec if Rails.env.development? %>
 
@@ -54,11 +51,11 @@
         <p class="hover:underline underline-offset-4 select-none"> Dashboard</p>
       <% end %>
       <%#= active_link_to '/hives', class:'' do %>
-        <p class="has-tooltip select-none">
+      <p class="has-tooltip select-none">
           <span class='tooltip rounded shadow-lg p-1 bg-gray-500 text-white -mt-8 text-sm font-light'> Soon.
           </span>
-          Hives
-        </p>
+        Hives
+      </p>
       <%# end %>
       <% if content_for?(:dropdown_filter) %>
         <%= yield(:dropdown_filter) %>
