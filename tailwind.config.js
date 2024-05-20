@@ -64,7 +64,7 @@ module.exports = {
                 blackCoral: '#5B5B66',
                 quickSilver: '#A5A3A3',
                 floralWhite: '#FFFCEF',
-                header: "rgba(251, 234, 200, 0.7)",
+                header: "rgba(251, 234, 200, 0.35)",
                 tabs: "rgba(65, 84, 114, 0.75)",
             }
         },
