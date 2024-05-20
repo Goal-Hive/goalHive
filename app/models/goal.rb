@@ -2,7 +2,7 @@
 
 class Goal < ApplicationRecord
   belongs_to :user
-  belongs_to :category
+  belongs_to :category, counter_cache: true
 
   has_many :milestones, class_name: 'Milestone', dependent: :destroy
 
@@ -42,15 +42,11 @@ class Goal < ApplicationRecord
     status_achieved! if milestones.status_in_progress.empty?
   end
 
-  def all_milestones_count
-    milestones.count
-  end
-
   def achieved_count
     milestones.where(status: 'achieved').count
   end
 
   def goal_progress_percentage
-    all_milestones_count != 0 ? (achieved_count * 100) / all_milestones_count : 0
+    total_milestones != 0 ? (achieved_count * 100) / total_milestones : 0
   end
 end
