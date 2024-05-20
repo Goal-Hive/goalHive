@@ -165,7 +165,7 @@ class GoalsController < ApplicationController
   end
 
   def set_goals
-    @goals = current_user.goals.order(created_at: :desc).includes([:category])
+    @goals = current_user.goals.order(created_at: :desc).includes([:milestones, :category])
   end
 
   def find_or_create_category
