@@ -2,7 +2,7 @@
   <div class="flex  gap-x-2  text-lg font-semibold">
     <%= image_tag 'achieved.svg' %>
     <h1>
-      <%= @goal.achieved_count %>/<%= @goal.total_milestones %> Milestones Reached
+      <%= @goal.achieved_count %>/<%= @goal.milestones_count %> Milestones Reached
     </h1>
   </div>
   <%= render GoalProgressComponent.new(percentage: @goal.goal_progress_percentage) %>
