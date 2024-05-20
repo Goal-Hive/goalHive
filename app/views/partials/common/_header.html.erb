@@ -50,17 +50,22 @@
           <%= yield(:toggle_side_nav_btns) %>
         <% end %>
       </div>
-      <!--      TODO: Make it dynamic depends on the current link-->
       <%= active_link_to root_path do %>
-          <button class="hover:underline underline-offset-4 select-none"> Dashboard</button>
+        <p class="hover:underline underline-offset-4 select-none"> Dashboard</p>
       <% end %>
-      <%= active_link_to '/hives', class:'pointer-events-none' do %>
-        <button class="hover:underline underline-offset-4 select-none"> Hives</button>
-      <% end %>
+      <%#= active_link_to '/hives', class:'' do %>
+        <p class="has-tooltip select-none">
+          <span class='tooltip rounded shadow-lg p-1 bg-gray-500 text-white -mt-8 text-sm font-light'> Soon.
+          </span>
+          Hives
+        </p>
+      <%# end %>
       <% if content_for?(:dropdown_filter) %>
         <%= yield(:dropdown_filter) %>
       <% end %>
+
     </div>
+
   </header>
 <% end %>
 
