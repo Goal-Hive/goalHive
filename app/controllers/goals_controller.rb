@@ -45,6 +45,7 @@ class GoalsController < ApplicationController
     @goal.category = find_or_create_category[:category]
     new_category = find_or_create_category[:new_category]
     @goal.user = current_user
+    @goal.milestones_count = @goal.milestones.length
     respond_to do |format|
       if @goal.save
         flash.now[:notice] = 'Goal is created'

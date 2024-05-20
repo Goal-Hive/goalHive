@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Milestone < ApplicationRecord
-  belongs_to :goal, counter_cache: :total_milestones
+  belongs_to :goal, counter_cache: true
 
   validates :description, presence: true
 

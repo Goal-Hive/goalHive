@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_20_074912) do
     t.integer "status", default: 0
     t.datetime "begin_date"
     t.datetime "end_date"
-    t.integer "total_milestones"
+    t.integer "milestones_count", default: 0
     t.index ["category_id"], name: "index_goals_on_category_id"
     t.index ["user_id"], name: "index_goals_on_user_id"
   end
