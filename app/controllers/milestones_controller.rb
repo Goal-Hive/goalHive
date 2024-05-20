@@ -9,6 +9,7 @@ class MilestonesController < ApplicationController
     @milestone = Milestone.new(description: create_milestone_params[:description])
     @goal = Goal.find(create_milestone_params[:goal][:goal_id])
     @goal.milestones << @milestone
+    @goal.status_active! if @goal.status_achieved?
     respond_to do |format|
       if @milestone.save
         flash.now[:notice] = "Milestone #{@milestone.goal.milestones.count} is created"

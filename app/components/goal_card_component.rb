@@ -17,7 +17,7 @@ class GoalCardComponent < ViewComponent::Base
   end
 
   def calculate_milestone_stats
-    @all_milestones = @goal.total_milestones
+    @all_milestones = @goal.milestones_count
     @achieved_count = @goal.achieved_count
     @milestone_reached = "#{@achieved_count}/#{@all_milestones}"
     @milestone_number = @achieved_count + 1

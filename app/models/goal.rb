@@ -2,12 +2,14 @@
 
 class Goal < ApplicationRecord
   belongs_to :user
-  belongs_to :category, counter_cache: true
+  belongs_to :category
 
-  has_many :milestones, class_name: 'Milestone', dependent: :destroy
+  has_many :milestones,
+           class_name: 'Milestone',
+           dependent: :destroy,
+           counter_cache: :milestones_count
 
   accepts_nested_attributes_for :milestones, :category
-
 
   has_one_attached :motivation_media
 
@@ -26,7 +28,6 @@ class Goal < ApplicationRecord
     scope = scope.by_category(category) if category.present?
     scope
   }
-
 
   enum :status, %i[paused active achieved archived], default: :active, prefix: true
 
@@ -47,6 +48,6 @@ class Goal < ApplicationRecord
   end
 
   def goal_progress_percentage
-    total_milestones != 0 ? (achieved_count * 100) / total_milestones : 0
+    milestones_count != 0 ? (achieved_count * 100) / milestones_count : 0
   end
 end

@@ -1,4 +1,6 @@
-<div id="<%= dom_id milestone %>" class="border rounded-md bg-white p-3 flex flex-col gap-y-4" data-sortable-id="<%= milestone.id %>">
+<div id="<%= dom_id milestone %>" \
+     class="border rounded-md bg-white p-3 flex flex-col gap-y-4"
+     data-sortable-id="<%= milestone.id %>">
   <%= render(MilestoneComponent.new(milestone: milestone)) do %>
   <% end %>
 </div>

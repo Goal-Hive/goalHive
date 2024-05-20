@@ -2,6 +2,7 @@
 
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[show edit update destroy update_status update_motivation update_category]
+  before_action :set_ordered_milestones, only: %i[show]
   before_action :set_goals, only: %i[index]
   before_action :set_current_filters, only: %i[create filter index]
   before_action :filter_params, only: %i[filter]
@@ -45,6 +46,7 @@ class GoalsController < ApplicationController
     @goal.category = find_or_create_category[:category]
     new_category = find_or_create_category[:new_category]
     @goal.user = current_user
+    @goal.milestones_count = @goal.milestones.length
     respond_to do |format|
       if @goal.save
         flash.now[:notice] = 'Goal is created'
@@ -144,9 +146,9 @@ class GoalsController < ApplicationController
         flash.now[:notice] = "Goal has been moved to: #{@goal.category.name.capitalize}"
         format.turbo_stream do
           render turbo_stream:
-          turbo_stream.prepend(:flash,
-                               partial: 'partials/common/notification',
-                               locals: { style: 'blue-flash' })
+                   turbo_stream.prepend(:flash,
+                                        partial: 'partials/common/notification',
+                                        locals: { style: 'blue-flash' })
         end
         format.html { redirect_to goal_url(@goal), notice: 'Goal was successfully updated.' }
         format.json { render :show, status: :ok, location: @goal }
@@ -155,6 +157,12 @@ class GoalsController < ApplicationController
         format.json { render json: @goal.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  private
+
+  def set_ordered_milestones
+    @ordered_milestones = @goal.milestones.order(updated_at: :desc)
   end
 
   private
