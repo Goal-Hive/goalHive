@@ -1,13 +1,16 @@
-<div class="flex justify-between" data-controller="toggle">
+<div class="flex justify-between w-full"
+     data-controller="toggle">
   <%= content %>
   <!--    Progress State-->
-  <div class="flex justify-center items-center  <%= @background %> p-2 gap-x-2 rounded-xl text-independence ">
+  <div class="flex justify-center items-center <%= @background %> p-2 gap-x-2 rounded-xl text-independence ">
     <%= image_tag @message_img %>
     <P class="<%= @text_color %>"><%= @message %></P>
   </div>
 
   <!--    Toggle Menu-->
-  <div class="hidden flex justify-end items-center gap-x-1" data-toggle-target="toggledContent" data-controller="milestones">
+  <div class="hidden flex justify-end items-center gap-x-1"
+       data-toggle-target="toggledContent"
+       data-controller="milestones">
     <%= button_to (image_tag 'delete.svg'),
                   milestone_path(@milestone), method: :delete,
                   class: "w-9 h-9 flex justify-center items-center rounded-2xl p-2 bg-red-100" %>
@@ -26,13 +29,14 @@
       <span>&#10007;</span>
     </button>
   </div>
-  <button data-action="click->toggle#toggleContent" data-toggle-target="toggleBtn">
+  <button data-action="click->toggle#toggleContent"
+          data-toggle-target="toggleBtn">
     <%= image_tag 'dots.svg' %>
   </button>
 </div>
 
 <div class="flex justify-between items-center">
-  <P class="text-yankeesBlue">
+  <P class="text-yankeesBlue w-11/12">
     <%= @milestone.description %>
   </P>
 
