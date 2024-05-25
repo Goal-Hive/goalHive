@@ -1,13 +1,13 @@
 <dialog data-dialog-target="modal"
         class="dialog"
-        data-action="click->dialog#clickOutside
-                     turbo:submit-end->dialog#submitEnd">
+        data-action="click->dialog#clickOutside">
   <!--    x button to close the dialog-->
   <form method="dialog" class="sticky top-0 right-0">
     <div class="flex justify-end p-3 pb-1">
       <button formmethod="dialog"
-              data-action="dialog#close"
-              class="bg-gray-50 rounded-full opacity-90  w-7 h-7"> &#10007</button>
+              data-action="dialog#close">
+        <%= image_tag 'x', class: 'bg-gray-50 rounded-full opacity-90  p-1 w-5 h-5' %>
+      </button>
     </div>
   </form>
   <!--  Modal Content-->

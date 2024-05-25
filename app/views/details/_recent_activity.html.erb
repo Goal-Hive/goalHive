@@ -6,11 +6,50 @@
     </h1>
   </div>
   <%= render GoalProgressComponent.new(percentage: @goal.goal_progress_percentage) %>
-  <%= render GoalDatesComponent.new(dates: {
+  <%#= render GoalDatesComponent.new(dates: {
     created_at: @goal.created_at,
     begin_date: @goal.begin_date,
-    end_date: @goal.end_date
+    end_date: @goal.end_date,
   }) %>
+  <%= form_with(model: @goal,
+                class: "contents text-sm",
+                data: { controller: 'flatpickr' }) do |form| %>
+    <!--    BeginDate-->
+    <div class="flex flex-wrap items-center"
+         data-controller="form"
+         data-datetype="beginDate">
+      <%= form.label :begin_date, "Start Date:",
+                     class: "text-base w-20  whitespace-nowrap" %>
+      <div class="flex flex-wrap items-center gap-x-2 hover:border-gray-300  cursor-pointer">
+        <%= form.date_field :begin_date,
+                            class: "w-44 rounded-xl hover:border-b border-none",
+                            data: { action: 'change->form#autoSubmit' },
+                            placeholder: 'N/A',
+                            'data-flatpickr-target': "beginDate" %>
+        <%= image_tag 'calendar', class: 'w-5 h-5', 'data-action': 'click->flatpickr#showDate' %>
+        <%= image_tag 'x', class: 'bg-gray-50 rounded-full p-1 w-5 h-5',
+                      'data-action': 'click->flatpickr#clearDate' %>
+      </div>
+    </div>
+    <!--    End Date-->
+    <div class="flex flex-wrap items-center"
+         data-controller="form"
+         data-datetype="endDate">
+      <%= form.label :end_date, "End Date:",
+                     class: "text-base w-20  whitespace-nowrap" %>
+      <div class="flex  flex-wrap items-center gap-x-2 hover:border-gray-300 cursor-pointer">
+        <%= form.date_field :end_date,
+                            class: "w-44 rounded-xl hover:border-b border-none",
+                            data: { action: 'change->form#autoSubmit' },
+                            placeholder: 'N/A',
+                            'data-flatpickr-target': "endDate" %>
+        <%= image_tag 'calendar', class: 'w-5 h-5',
+                      'data-action': 'click->flatpickr#showDate' %>
+        <%= image_tag 'x', class: 'bg-gray-50 rounded-full p-1 w-5 h-5',
+                      'data-action': 'click->flatpickr#clearDate' %>
+      </div>
+    </div>
+  <% end %>
   <div>
     <div class="text-doveGray flex flex-col gap-y-3 bg-wildSand rounded-md p-3">
       <p class="text-lg font-semibold"> Recent Activity</p>
@@ -18,7 +57,7 @@
         <% @ordered_milestones.each do |m| %>
           <% if m.status_achieved? && m.achieved_at %>
             <div>
-              <p class="font-medium"><%= m.achieved_at&.strftime('%B %e, %Y') %></p>
+              <p class="font-medium"><%= m.achieved_at&.strftime('%B %e, %Y ') %></p>
               <p>You achieved "<%= m.description %>"</p>
             </div>
           <% end %>

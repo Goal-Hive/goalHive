@@ -12,7 +12,7 @@ export default class extends Controller {
 
     connect() {
         // console.log('toggle side nav is connected')
-        useClickOutside(this, {element: this.sideNavTarget})
+        if (this.hasSideNavTarget) useClickOutside(this, {element: this.sideNavTarget})
     }
 
     toggle(e) {

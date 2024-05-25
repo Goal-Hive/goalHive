@@ -22,6 +22,9 @@ application.register("dropdown", DropdownController)
 import EditContentController from "./edit_content_controller"
 application.register("edit-content", EditContentController)
 
+import flatpickrController from "./flatpickr_controller"
+application.register("flatpickr", flatpickrController)
+
 import FormController from "./form_controller"
 application.register("form", FormController)
 

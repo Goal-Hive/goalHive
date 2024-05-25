@@ -11,6 +11,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.14",
     "esbuild": "^0.17.18",
+    "flatpickr": "^4.6.13",
     "flowbite": "^1.7.0",
     "forman": "^0.3.0",
     "postcss": "^8.4.24",
