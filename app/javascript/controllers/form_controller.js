@@ -21,13 +21,15 @@ export default class extends Controller {
         this.textAreaTarget.style.height = `${this.textAreaTarget.scrollHeight}px`;
     }
 
-    autoSubmit(e) {
-        e.preventDefault()
-        e.target.form.requestSubmit();
-        // e.target.closest('form').submit()
+    autoSubmit(e){
+        // e.preventDefault()
+        e.target.closest('form').submit()
     }
 
-
+    autoRequestSubmit(e) {
+        e.preventDefault()
+        e.target.closest('form').requestSubmit()
+    }
 
     // cancel(e) {
     //   e.preventDefault()
