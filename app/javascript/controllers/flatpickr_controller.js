@@ -9,14 +9,16 @@ export default class extends Controller {
     connect() {
         this.flatPickrBeginDate = flatpickr(this.beginDateTarget, {
             altInput: true,
+            static: true
         });
         this.flatPickrEndDate = flatpickr(this.endDateTarget, {
             altInput: true,
+            static: true
         });
     }
 
     showDate(e) {
-        this.decideFlatPickrType(e).open()
+        this.decideFlatPickrType(e).toggle()
     }
 
     clearDate(e) {
