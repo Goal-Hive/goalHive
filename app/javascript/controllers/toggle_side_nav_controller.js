@@ -21,7 +21,7 @@ export default class extends Controller {
 
     handleBigScreen() {
         // If it is small screen and the side nav is toggled if it contains hidden that target small screens
-        if (!isSmallScreen() && !this.sideNavTarget.classList.contains('hidden')) {
+        if (!isSmallScreen() && this.hasSideNavTarget && !this.sideNavTarget.classList.contains('hidden')) {
             this.toggleMobileClasses()
         }
     }
