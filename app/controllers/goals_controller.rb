@@ -86,10 +86,6 @@ class GoalsController < ApplicationController
                                           partial: 'partials/common/notification',
                                           locals: { style: 'green-flash' })
           # if params[:goal][:motivation_media]
-          #   flash.now[:notice] = 'Hey.'
-          #   actions << turbo_stream.prepend(:flash,
-          #                                   partial: 'partials/common/notification',
-          #                                   locals: { style: 'green-flash' })
           #   actions << turbo_stream.replace('motivationMedia',
           #                                   partial: 'details/motivation_media',
           #                                   locals: { goal: @goal })
