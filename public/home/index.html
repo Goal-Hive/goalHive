@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoalHyve - The Content Managment System For Your Goals</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav id="nav">
+    <a href="#"> <img src="GoalHyve.svg" id="logo" alt="Logo">
+    </a>
+
+    <ul id="nav-links">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+    <div id="conversion">
+        <a href="/users/sign_in">Sign In</a>
+        <a id="actionButton" href="/users/sign_up">Create Account</a>
+    </div>
+    <button id="hamburger">☰</button>
+</nav>
+<div id="mainBody">
+    <h1>The content management system for your goals.</h1>
+    <p style="margin-bottom: 24px;">GoalHyve is a tool built to tell stories of the most challenging, interesting &
+        worthwhile moments of our lives.</P>
+    <a id="actionButton"
+       href="/users/sign_up"
+       style="justify-self:start; margin-bottom:24px; width: fit-content">Get Started
+        <svg
+                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-arrow-right-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+        </svg>
+    </a>
+    <img src="hero.gif" id="hero" alt="hero"></div>
+</div>
+
+<div id="secondBody">
+    <h2>Resolutions are tracked, but<br>they can also be documented.</br></h2>
+    <p>Manage goals in a more meaningful & engaging way - <br> that's beyond progress bars & to-do lists.</br></p>
+    <div id="filterContainer">
+        <div id="filterContext">
+            <p id="badge" style="width:fit-content!important; border-radius: 50px!important;"><b>Diogo's Goal: </b> Get
+                my driver's license 🚗</p>
+            <div class="filters">
+                <button class="activeFilter" onclick="filterSelection('1')">Milestone 1</button>
+                <button class="inactiveFilter" onclick="filterSelection('2')">Milestone 2</button>
+                <button class="inactiveFilter" onclick="filterSelection('3')">Milestone 3</button>
+                <button class="inactiveFilter" onclick="filterSelection('4')">Milestone 4</button>
+            </div>
+
+        </div>
+    </div>
+    <div id="filterBottom">
+        <div class="reflectionContent1">
+            <p id="badge"
+               style="background-color: rgb(255, 247, 220,.5)!important; padding: 5px !important; width:fit-content!important; margin-bottom: 10px; font-size: 10px; color:#7c661d; border-radius: 5px!important;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"
+                     style="margin-right:2px; vertical-align:middle;">
+                    <path fill="#ba9a26"
+                          d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10c0-1.16-.21-2.31-.61-3.39l-1.6 1.6c.14.59.21 1.19.21 1.79a8 8 0 0 1-8 8a8 8 0 0 1-8-8a8 8 0 0 1 8-8c.6 0 1.2.07 1.79.21L15.4 2.6C14.31 2.21 13.16 2 12 2m7 0l-4 4v1.5l-2.55 2.55C12.3 10 12.15 10 12 10a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2c0-.15 0-.3-.05-.45L16.5 9H18l4-4h-3zm-7 4a6 6 0 0 0-6 6a6 6 0 0 0 6 6a6 6 0 0 0 6-6h-2a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4z"/>
+                </svg>
+                <b>Achieved:</b> First Day Of Driver's Ed
+            </p>
+
+            <img src="noob level.jpeg" id="filterPicture">
+            <p id="badge" style=" margin-top: 8px; padding: 8px !important; background-color: #fafafa!important;"><b>Diogo's
+                Reflection:</b>
+                <span>This is the text under Diogo's Reflection. This is the text under Diogo's Reflection.</span>
+
+            </p>
+        </div>
+        <div class="reflectionContent2" style="display:none;">
+            <p id="badge"
+               style="background-color: rgb(255, 247, 220,.5)!important; padding: 5px !important; width:fit-content!important; margin-bottom: 10px; font-size: 10px; color:#7c661d; border-radius: 5px!important;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"
+                     style="margin-right:2px; vertical-align:middle;">
+                    <path fill="#ba9a26"
+                          d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10c0-1.16-.21-2.31-.61-3.39l-1.6 1.6c.14.59.21 1.19.21 1.79a8 8 0 0 1-8 8a8 8 0 0 1-8-8a8 8 0 0 1 8-8c.6 0 1.2.07 1.79.21L15.4 2.6C14.31 2.21 13.16 2 12 2m7 0l-4 4v1.5l-2.55 2.55C12.3 10 12.15 10 12 10a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2c0-.15 0-.3-.05-.45L16.5 9H18l4-4h-3zm-7 4a6 6 0 0 0-6 6a6 6 0 0 0 6 6a6 6 0 0 0 6-6h-2a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4z"/>
+                </svg>
+                <b>Achieved:</b> First Night Drive
+            </p>
+            <img src="driveinthe dark.jpeg" id="filterPicture">
+            <p id="badge" style=" margin-top: 8px; padding: 8px !important; background-color: #fafafa!important;"><b>Diogo's
+                Reflection:</b>
+                <span>Hot sauce.</span>
+
+            </p>
+        </div>
+
+        <div class="reflectionContent3" style="display:none;">
+            <p id="badge"
+               style="background-color: rgb(255, 247, 220,.5)!important; padding: 5px !important; width:fit-content!important; margin-bottom: 10px; font-size: 10px; color:#7c661d; border-radius: 5px!important;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 24 24"
+                     style="margin-right:2px; vertical-align:middle;">
+                    <path fill="#ba9a26"
+                          d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10a10 10 0 0 0 10-10c0-1.16-.21-2.31-.61-3.39l-1.6 1.6c.14.59.21 1.19.21 1.79a8 8 0 0 1-8 8a8 8 0 0 1-8-8a8 8 0 0 1 8-8c.6 0 1.2.07 1.79.21L15.4 2.6C14.31 2.21 13.16 2 12 2m7 0l-4 4v1.5l-2.55 2.55C12.3 10 12.15 10 12 10a2 2 0 0 0-2 2a2 2 0 0 0 2 2a2 2 0 0 0 2-2c0-.15 0-.3-.05-.45L16.5 9H18l4-4h-3zm-7 4a6 6 0 0 0-6 6a6 6 0 0 0 6 6a6 6 0 0 0 6-6h-2a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4z"/>
+                </svg>
+                <b>Achieved:</b> "Hitting" The Curb (fail edition)
+            </p>
+            <img src="failmilestone.jpg" id="filterPicture">
+            <p id="badge" style=" margin-top: 8px; padding: 8px !important; background-color: #fafafa!important;"><b>Diogo's
+                Reflection:</b>
+                <span>Hot sauce.</span>
+
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<div id="stackContainer">
+    <h2>Self-belief comes and goes, <br>these features make it a bit more sustainable.</br></h2>
+    <p>With every goal, there's a story to tell. Our features provide the depth and emotional connection nedeed for
+        effective <b>long-term goal management.</b></p>
+    <div class="stack">
+        <div class="stack_card">
+            <h3 style="text-align: start;">Goal Composer</h3>
+            <p style="text-align:left!important; width:auto; margin-bottom:16px; font-size:14px;">Allows you to create a
+                goal, document motivations towards that goal, and most importantly, develop milestones that provides a
+                plan on how to achieve said goal.</p>
+            <img src="Feature 1.png" style="height: 350px; border:solid; border-width: .9px; border-color: rgb(65, 84, 114, .15)
+        ;" id="filterPicture">
+        </div>
+        <div class="stack_card">
+            <h3 style="text-align: start;">Goal Card</h3>
+            <p style="text-align:left!important; width:auto; margin-bottom:16px; font-size:14px;">After creating a goal,
+                these goals can be found living on your dashboard via a "<b>goal card</b>". These cards provide a quick
+                status of a goal & next steps to take towards completion.</p>
+            <img src="Feature 2.png"
+                 style="height: 350px;  border:solid; border-width:.9px; border-color: rgb(65, 84, 114, .15) ;"
+                 id="filterPicture">
+        </div>
+        <div class="stack_card">
+
+            <h3 style="text-align: start;">Motivation Hub</h3>
+            <p style="text-align:left!important; width:auto; margin-bottom:16px;font-size:14px;">Each goal comes with
+                its own details page. These pages host your motivations & milestone details.You can also add
+                motivational media to a goal through images & gifs.</p>
+            <img src="Feature 3.png"
+                 style="height: 350px; border:solid; border-width:.9px; border-color: rgb(65, 84, 114, .15) ;"
+                 id="filterPicture">
+
+        </div>
+
+        <div class="stack_card">
+
+            <h3 style="text-align: start;">Reflection Icebreakers</h3>
+            <p style="text-align:left!important; width:auto; margin-bottom:16px;font-size:14px;">Commemorating small
+                wins as you work through a long-term goal is pivotal for maitaining conviction & self-belief. These
+                icebreakers inspire what to write on as you commemorate milestones.</p>
+            <img src="Feature 4.png"
+                 style="height: 350px; border:solid; border-width:.9px; border-color: rgb(65, 84, 114, .15) ;"
+                 id="filterPicture">
+
+        </div>
+
+        <div id="lastcard" class="stack_card" style="visibility: hidden; height:0px; margin-bottom: 8px!important;">
+
+
+        </div>
+    </div>
+</div>
+
+
+<div id="secondBody" style="margin-top: -136px;">
+    <h2>How Goal<span style="color:#414FC7;">Hyve</span> Works</h2>
+    <div id="cardContainer">
+        <div id="card">
+            <div id="header" style="display:flex; align-items:center; width: fit-content; margin-bottom: 16px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="svg"
+                     viewBox="0 0 16 16">
+                    <path d="M7 7V1.414a1 1 0 0 1 2 0V2h5a1 1 0 0 1 .8.4l.975 1.3a.5.5 0 0 1 0 .6L14.8 5.6a1 1 0 0 1-.8.4H9v10H7v-5H2a1 1 0 0 1-.8-.4L.225 9.3a.5.5 0 0 1 0-.6L1.2 7.4A1 1 0 0 1 2 7zm1 3V8H2l-.75 1L2 10zm0-5h6l.75-1L14 3H8z"/>
+                </svg>
+                <h4 style="text-align: left;">Create A Plan</h4></div>
+            <p style="margin-bottom: 0px; text-align:left; width: auto; font-size:14px;">Planning out goals provides an
+                initial list of actionable milestones to work towards.</p>
+        </div>
+
+        <div id="card">
+            <div id="header" style="display:flex; align-items:center; width: fit-content; margin-bottom: 16px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="svg"
+                     viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2"/>
+                </svg>
+                <h4 style="text-align: left;">Take Action</h4></div>
+            <p style="margin-bottom: 0px; text-align:left; width: auto; font-size:14px;">Taking action on these
+                milestones helps build momentum and ultimately, progress.</p>
+        </div>
+
+        <div id="card">
+            <div id="header" style="display:flex; align-items:center; width: fit-content; margin-bottom: 16px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="svg"
+                     viewBox="0 0 16 16">
+                    <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                </svg>
+                <h4 style="text-align: left;">Track Action</h4></div>
+            <p style="margin-bottom: 0px; text-align:left; width: auto; font-size:14px;">Tracking action brings
+                consciousness to one's efforts, this in return, helps with accountability and self-belief.</p>
+        </div>
+
+        <div id="card">
+            <div id="header" style="display:flex; align-items:center; width: fit-content; margin-bottom: 16px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="svg"
+                     viewBox="0 0 16 16">
+                    <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935M3.504 1q.01.775.056 1.469c.13 2.028.457 3.546.87 4.667C5.294 9.48 6.484 10 7 10a.5.5 0 0 1 .5.5v2.61a1 1 0 0 1-.757.97l-1.426.356a.5.5 0 0 0-.179.085L4.5 15h7l-.638-.479a.5.5 0 0 0-.18-.085l-1.425-.356a1 1 0 0 1-.757-.97V10.5A.5.5 0 0 1 9 10c.516 0 1.706-.52 2.57-2.864.413-1.12.74-2.64.87-4.667q.045-.694.056-1.469z"/>
+                </svg>
+                <h4 style="text-align: left;">Achieve Key Milestones</h4></div>
+            <p style="margin-bottom: 0px; text-align:left; width: auto; font-size:14px;">Reach key milestones &
+                celebrate 🎉 the small-wins within your goal.</p>
+        </div>
+
+        <div id="card">
+            <div id="header" style="display:flex; align-items:center; width: fit-content; margin-bottom: 16px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="svg"
+                     viewBox="0 0 16 16">
+                    <path d="M7.5 3.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0m-.861 1.542 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047L11 4.75V7a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 7v-.5s1.54-1.274 1.639-1.208M5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5"/>
+                    <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2"/>
+                    <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1z"/>
+                </svg>
+                <h4 style="text-align: left;">Reflect On Key Milestones</h4></div>
+            <p style="margin-bottom: 0px; text-align:left; width: auto; font-size:14px;">Commemorating milestones builds
+                conviction. Even more wortwhile, it helps tell the story of how a goal was achieved.</p>
+        </div>
+
+
+        <div id="card">
+            <div id="header"
+                 style="display:flex; align-items:center; width: fit-content; height: auto; margin-bottom: 16px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="svg"
+                     viewBox="0 0 16 16">
+                    <path d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v3.5A1.5 1.5 0 0 1 11.5 6h-7A1.5 1.5 0 0 1 3 4.5V1H1.5a.5.5 0 0 0-.5.5m9.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/>
+                </svg>
+                <h4 style="text-align: left;">Revisit Achievements For Future You</h4></div>
+            <p style="margin-bottom: 0px; text-align:left; width: auto; font-size:14px;">Life will always throw lemons
+                when reaching for our dreams. GoalHyve helps rediscover self-belief when doubt rises.</p>
+        </div>
+    </div>
+
+</div>
+<div id="scrollSection">
+    <div id="CTA">
+        <h2 style="text-align:left; margin:auto;">Memories of life updates,<br> in<span
+                style="color:#414FC7;"> one</span> place.</h2>
+        <a href="/users/sign_up" id="actionButton" style="justify-self:start; margin-left:0px;">Get GoalHyve</a>
+    </div>
+    <div id="scroll-container" onmouseenter="sayPause()" onmouseleave="sayGo()">
+        <div id="scrolltext">
+            <p style="width: fit-content; font-size: 14px;">How I Became A Home Owner 🏘️</p><br>
+            <p style="width: fit-content; font-size: 14px;">How I Directed My First Indie-Film 🎬</p></br>
+            <p style="width: fit-content; font-size: 14px;">How I Got My Driver's License 🪪</p><br>
+            <p style="width: fit-content; font-size: 14px;">How We Got Our First, Sold Out Gig 🎸</p></br>
+            <p style="width: fit-content; font-size: 14px;">How I Became A Parent 🍼</p><br>
+            <p style="width: fit-content; font-size: 14px;">How I Started My Own Restaurant 🍝</p><br>
+            <p style="width: fit-content; font-size: 14px;">How I Became Sober 🍺</p><br>
+            <p style="width: fit-content; font-size: 14px;">How I Spoke At My First Conference 🗣️</p></br>
+            <p style="width: fit-content; font-size: 14px;">How I Became An American Citizen 🇺🇸</p></br>
+            <p style="width: fit-content; font-size: 14px;">How I Learned How To Ride A Bicycle 🚲</p></br>           <p
+                style="width: fit-content; font-size: 14px;">How I Transformed My Yard Into A Bird Friendly Habitat
+            🐤 </p></br>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+<div id="secondBody">
+    <h2>FAQs</h2>
+    <div class='faq'>
+        <div id="faqComponent">
+            <div class="faq">
+                <input id='faq-a' type='checkbox'>
+                <label for='faq-a'>
+                    <p class="faq-heading" style="font-size: 14px;">What's GoalHyve Statement On Privacy?</p>
+                    <div class='faq-arrow'></div>
+                </label>
+                <p class="faq-text" style="font-size: 15px;">All data is yours. Data is hosted with our cloud providers
+                    and can't be accessed or tracked down to a certain individual.</p>
+            </div>
+        </div>
+
+        <div id="faqComponent">
+            <div class="faq">
+                <input id='faq-b' type='checkbox'>
+                <label for='faq-b'>
+                    <p class="faq-heading" style="font-size: 14px;">Does GoalHyve Use AI?</p>
+                    <div class='faq-arrow'></div>
+                </label>
+                <p class="faq-text" style="font-size: 15px">No.</p>
+            </div>
+        </div>
+
+        <!-- Add more FAQs as needed -->
+    </div>
+</div>
+
+
+</body>
+<script src="script.js"></script>
+
+
+<footer id="footer">
+    <div id="linkContainer">
+        <a href="#"> <img src="GoalHyve.svg" id="logo" alt="Logo" style="margin-bottom: 0px; height:36px;">
+            <div id="links">
+                <a href="#"
+                   style="padding:8px; background-color: #fafafa; border-radius: 4px; text-decoration: none; font-size: small;color: #6a6e74; margin-right: 8px; width: fit-content;">About</a>
+                <a href="#"
+                   style="padding:8px; background-color: #fafafa; border-radius: 4px; text-decoration: none; font-size: small;color: #6a6e74; margin-right: 8px; width: fit-content;">Blog</a>
+                <a href="#"
+                   style="padding:8px; background-color: #fafafa; border-radius: 4px; text-decoration: none; font-size: small;color: #6a6e74;  width: fit-content;">Contact</a>
+            </div>
+
+
+        </a></div>
+    <p style="width: auto; margin-bottom: 0px; font-size: small; text-align: left;">GoalHyve.Inc™ - <span
+            style="font-size:x-small; color: #a0a3a8;"> Built in Egypt & Boston</span></p>
+</footer>
+
+</html>
