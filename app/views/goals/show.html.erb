@@ -15,11 +15,13 @@
           <%= @goal.description %>
         </p>
         <div class="flex  gap-x-3">
+<!--          Edit Button-->
           <button class='flex justify-center items-center'
                   data-action='edit-content#editMode'
                   data-edit-content-target="editBtn">
             <%= image_tag 'edit.svg' %>
           </button>
+<!--          Check Button-->
           <button class='hidden flex justify-center items-center text-ceruleanBlue bold text-lg'
                   data-action='edit-content#saveMode'
                   data-update-url='<%= goals_path %>'
@@ -27,6 +29,7 @@
                   data-edit-content-target="updateBtn">
             <%= image_tag 'check.svg', class: 'w-4 h-4' %>
           </button>
+<!--          Update Category Button-->
           <button class='flex justify-center items-center'
                   data-action='dialog#open'
                   data-dialog-content-id="update_category">
@@ -41,6 +44,7 @@
           </button>
         </div>
       </div>
+<!--      Tabs Section-->
       <div
         data-controller="tabs"
         data-tabs-active-class="border border-gray-400 rounded-3xl bg-white text-independence"

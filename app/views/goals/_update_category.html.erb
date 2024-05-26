@@ -1,8 +1,12 @@
 <p class="text-xl font-bold text-yankeesBlue">Choose a category to move your goal to</p>
 <p class="text-doveGray text-base">Current Category : <%= @goal.category.name %></p>
-<%= form_with(model: @goal, url: update_category_goal_path(@goal), method: :patch) do |form| %>
-  <% content_for :confirm_update do %>
-    <%= form.submit 'Update', class: 'cursor-pointer hover:bg-indigo-50 p-2 rounded-lg' %>
-  <% end %>
-  <%= render 'categories/controller', form: form %>
+<div data-action="turbo:submit-end->dialog#submitEnd">
+  <%= form_with(model: @goal, url: update_category_goal_path(@goal), method: :patch) do |form| %>
+    <% content_for :confirm_update do %>
+      <%= form.submit 'Update',
+                      class: 'cursor-pointer hover:bg-indigo-50 p-2 rounded-lg' %>
+    <% end %>
+    <%= render 'categories/controller', form: form %>
+</div>
+
 <% end %>
