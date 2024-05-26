@@ -21,8 +21,7 @@ class MilestonesController < ApplicationController
             # in case of the milestone creation in the goal details page
             turbo_stream.append(:inProgressMilestones, partial: 'milestone', locals: { milestone: @milestone }),
             # turbo_stream.append(:allMilestones, partial: 'milestone', locals: { milestone: @milestone }),
-
-            turbo_stream.prepend(:flash, partial: 'details/_motivation_media.html.erb', locals: { goal: @goal })
+            turbo_stream.prepend(:flash, partial: 'partials/common/notification', locals: { style: 'green-flash' })
           ]
         end
       end
