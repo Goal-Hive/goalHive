@@ -16,7 +16,12 @@ module GoalHive
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    # Require the custom middleware
+    # config.autoload_paths += %W(#{config.root}/lib/middleware)
 
+    # Use custom middleware to serve root.html at root URL
+    # config.middleware.use "StaticIndex"
+    # config.middleware.use "MyMiddleware"
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

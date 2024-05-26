@@ -3,7 +3,7 @@
     <!--    First Row-->
     <div class="
   bg-header flex h-[4rem] md:h-[5rem] justify-between items-center px-2 md:px-6 py-3">
-      <%= link_to root_path do %>
+      <%= link_to goals_path do %>
         <%= image_tag 'goalhyve.svg' %>
       <% end %>
       <%= DateTime.now.sec if Rails.env.development? %>
@@ -47,7 +47,7 @@
           <%= yield(:toggle_side_nav_btns) %>
         <% end %>
       </div>
-      <%= active_link_to root_path do %>
+      <%= active_link_to goals_path do %>
         <p class="hover:underline underline-offset-4 select-none"> Dashboard</p>
       <% end %>
       <%#= active_link_to '/hives', class:'' do %>
