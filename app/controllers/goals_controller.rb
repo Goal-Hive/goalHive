@@ -79,10 +79,20 @@ class GoalsController < ApplicationController
   def update
     respond_to do |format|
       if @goal.update(goal_params)
+        flash.now[:notice] = 'Goal was successfully updated.'
         format.turbo_stream do
-          render turbo_stream: []
+          actions = []
+          actions << turbo_stream.prepend(:flash,
+                                          partial: 'partials/common/notification',
+                                          locals: { style: 'green-flash' })
+          # if params[:goal][:motivation_media]
+          #   actions << turbo_stream.replace('motivationMedia',
+          #                                   partial: 'details/motivation_media',
+          #                                   locals: { goal: @goal })
+          # end
+          render turbo_stream: actions
         end
-        format.html { redirect_to goal_url(@goal), notice: 'Goal was successfully updated.' }
+        format.html { redirect_to goal_url(@goal), notice: 'Goal is updated.' }
         format.json { render :show, status: :ok, location: @goal }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -108,6 +118,10 @@ class GoalsController < ApplicationController
     end
   end
 
+  def update_motivation_media
+    flash.now[:notice] = "Motivation media has been updated"
+  end
+
   def update_status
     @goal.toggle_status
     flash.now[:notice] = "Goal #{@goal.status.capitalize}"
@@ -119,7 +133,7 @@ class GoalsController < ApplicationController
           turbo_stream.remove(@goal),
           turbo_stream.prepend(:flash,
                                partial: 'partials/common/notification',
-                               locals: { style: 'blue-flash', image: image })
+                               locals: { style: 'blue-flash', image: })
         ]
       end
     end
@@ -163,8 +177,6 @@ class GoalsController < ApplicationController
   def set_ordered_milestones
     @ordered_milestones = @goal.milestones.order(updated_at: :desc)
   end
-
-  private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_goal

@@ -13,40 +13,51 @@
   }) %>
   <%= form_with(model: @goal,
                 class: "contents text-sm",
-                data: { controller: 'flatpickr' }) do |form| %>
+                data: { controller: 'flatpickr' } ) do |form| %>
     <!--    BeginDate-->
-    <div class="flex flex-wrap items-center"
+    <div class="flex flex-col "
          data-controller="form"
          data-datetype="beginDate">
       <%= form.label :begin_date, "Start Date:",
-                     class: "text-base w-20  whitespace-nowrap" %>
-      <div class="flex flex-wrap items-center gap-x-2 hover:border-gray-300  cursor-pointer">
+                     class: "font-medium w-20  whitespace-nowrap px-3" %>
+      <div class="flex flex-wrap items-center gap-x-2 hover:border-gray-300  cursor-pointer group">
         <%= form.date_field :begin_date,
                             class: "w-44 rounded-xl hover:border-b border-none",
-                            data: { action: 'change->form#autoSubmit' },
+                            data: { action: 'change->form#autoRequestSubmit
+                            ' },
                             placeholder: 'N/A',
                             'data-flatpickr-target': "beginDate" %>
         <%= image_tag 'calendar.svg', class: 'w-5 h-5', 'data-action': 'click->flatpickr#showDate' %>
-        <%= image_tag 'x.svg', class: 'bg-gray-50 rounded-full p-1 w-5 h-5',
-                      'data-action': 'click->flatpickr#clearDate' %>
+        <div class="has-tooltip">
+          <span class='tooltip rounded shadow-lg p-1 bg-gray-500 text-white -mt-8 text-sm font-light'> Clear Date
+          </span>
+          <%= image_tag 'x.svg', class: 'block md:hidden group-hover:block bg-gray-50 rounded-full p-1 w-5 h-5',
+                        'data-action': 'click->flatpickr#clearDate' %>
+        </div>
       </div>
     </div>
     <!--    End Date-->
-    <div class="flex flex-wrap items-center"
+    <div class="flex flex-col"
          data-controller="form"
          data-datetype="endDate">
       <%= form.label :end_date, "End Date:",
-                     class: "text-base w-20  whitespace-nowrap" %>
-      <div class="flex  flex-wrap items-center gap-x-2 hover:border-gray-300 cursor-pointer">
+                     class: "font-medium w-20  whitespace-nowrap px-3" %>
+      <div class="flex flex-wrap items-center gap-x-2 hover:border-gray-300 cursor-pointer group">
         <%= form.date_field :end_date,
                             class: "w-44 rounded-xl hover:border-b border-none",
-                            data: { action: 'change->form#autoSubmit' },
+                            data: { action: 'change->form#autoRequestSubmit' },
                             placeholder: 'N/A',
                             'data-flatpickr-target': "endDate" %>
         <%= image_tag 'calendar.svg', class: 'w-5 h-5',
                       'data-action': 'click->flatpickr#showDate' %>
-        <%= image_tag 'x.svg', class: 'bg-gray-50 rounded-full p-1 w-5 h-5',
-                      'data-action': 'click->flatpickr#clearDate' %>
+
+
+        <div class="has-tooltip">
+          <span class='tooltip rounded shadow-lg p-1 bg-gray-500 text-white -mt-8 text-sm font-light'> Clear Date
+          </span>
+          <%= image_tag 'x.svg', class: 'block md:hidden group-hover:block bg-gray-50 rounded-full p-1 w-5 h-5',
+                        'data-action': 'click->flatpickr#clearDate' %>
+        </div>
       </div>
     </div>
   <% end %>
