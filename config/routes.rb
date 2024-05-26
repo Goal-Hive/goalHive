@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'goals#index'
   devise_for :users
+  # root 'goals#index'
+  # root 'static_pages#root', as: 'home'
+  root to: redirect('/home/index.html')
+
   # ,controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :goals do
