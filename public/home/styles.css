@@ -195,10 +195,16 @@ button {
     margin-left: auto;
    align-items: center;
     display: flex;
+
+
 }
+
+
 #conversion a {
-    margin-right: 28px;
+display: flex;
+margin-left:8px;
 }
+
 #hamburger {
     
     display:none;
