@@ -4,65 +4,61 @@ document.addEventListener('DOMContentLoaded', function () {
     var conversion = document.getElementById('conversion');
     var nav = document.getElementById('nav');
 
-    // Initially show the navigation links and conversion items till window is resized.
-    navLinks.style.display = 'flex';
-    conversion.style.display = 'flex';
+    // Initially set the navigation display based on window width
+    function setInitialNavState() {
+        if (window.innerWidth > 770) {
+            navLinks.style.display = 'flex';
+            conversion.style.display = 'flex';
+            nav.style.flexDirection = 'row';
+            hamburger.style.display = 'none';
+        } else {
+            navLinks.style.display = 'none';
+            conversion.style.display = 'none';
+            nav.style.flexDirection = 'row';
+            hamburger.style.display = 'block';
+            hamburger.textContent = '☰';
+        }
+    }
 
-
-
+    setInitialNavState();
 
     function toggleMenu() {
-        // Toggle display for navLinks and conversion
         const shouldDisplay = navLinks.style.display === 'none' || navLinks.style.display === '';
         navLinks.style.display = shouldDisplay ? 'flex' : 'none';
         conversion.style.display = shouldDisplay ? 'flex' : 'none';
 
-        // Change flex direction to column when navLinks are displayed
         if (shouldDisplay) {
             nav.style.flexDirection = 'column';
-            hamburger.classList.add('active'); // Add the active class to the hamburger button
         } else {
-            nav.style.flexDirection = ''; // Revert to default style
-            hamburger.classList.remove('active'); // Remove the active class from the hamburger button
+            nav.style.flexDirection = '';
         }
 
-        // Toggle active class on hamburger button
-        hamburger.classList.toggle('active');
-
-        // Toggle text of hamburger button
         if (hamburger.textContent === '☰') {
-            hamburger.textContent = '×'; // Change button text to ×
-        } else if (hamburger.textContent === '×') {
-            hamburger.textContent = '☰'; // Change button text to ☰
+            hamburger.textContent = '×';
+        } else {
+            hamburger.textContent = '☰';
         }
-        
-
     }
 
-    // Event listener for hamburger menu click
     hamburger.addEventListener('click', toggleMenu);
 
-
-
-
-    // Event listener for window resize
     window.addEventListener('resize', function () {
-        // Reset display for navLinks and conversion when window size changes
         if (window.innerWidth > 770) {
             navLinks.style.display = 'flex';
             conversion.style.display = 'flex';
-            nav.style.flexDirection = '';
-        }
-        else {
-            if (window.innerWidth < 770 || window.innerWidth === 770) {
-                navLinks.style.display = 'none';
-                conversion.style.display = 'none';
-
-            }
+            nav.style.flexDirection = 'row';
+            hamburger.style.display = 'none';
+            hamburger.textContent = '☰';
+        } else {
+            navLinks.style.display = 'none';
+            conversion.style.display = 'none';
+            nav.style.flexDirection = 'column';
+            hamburger.style.display = 'block';
+            hamburger.textContent = '☰';
         }
     });
-
 });
+
 
 function filterSelection(filter) {
     // Hide all filter elements

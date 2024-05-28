@@ -212,13 +212,16 @@ margin-left:16px;
   margin-left:16px;
   }
   
-#hamburger {
-    
-    display:none;
-     border: none;
-     font-size: 16px;
-     cursor: pointer;
- }
+  #hamburger {
+    display: flex; /* Display the hamburger icon */
+    text-align: center;
+    align-items: center;
+    font-size: 14px;
+    width: 33px;
+    height: 33px;
+    justify-self: center;
+    margin-left: auto;   
+}
 
    
 /*filter componenet styling*/
@@ -673,7 +676,7 @@ margin-bottom: 64px;
 @media (max-width: 768px) and (min-width:275px) {
 
     nav {
-        background-color: rgba(250, 241, 222, 0.15);
+        background-color: rgba(250, 248, 244, 0.65);
         backdrop-filter: blur(6px);
         padding: 8px 8px; /* Adjusted padding */
         width: auto;
@@ -703,14 +706,19 @@ margin-bottom: 64px;
         flex-direction: column;
     }
 
-   nav li {
-        font-size: x-small;
-        justify-content: center;
-        display: block;
-        flex-direction: grid;
-        margin-right: auto;
-        margin-left: auto;
-    }
+    nav li {
+      font-size: x-small;
+      justify-content: center;
+      display: block;
+      flex-direction: grid;
+      margin-right: auto;
+      margin-left: auto;
+      background-color: #fafafa;
+      border-radius: 4px;
+      border-color: #f0f0f0;
+      border-width: .5px;
+      padding: 4px;
+  }
 
 
     #logo {
@@ -728,26 +736,27 @@ text-align: center;
         justify-self: center;
         gap: 8px ;
         display: block;
+        
     }
 
     #conversion a {
       margin: auto;
       margin-bottom: 8px;
       display: block;
+     
     }
 
     #hamburger {
-        display: flex; /* Display the hamburger icon */
-        text-align: center;
-        align-items: center;
-        font-size: 14px;
-        width: 30px;
-        height: 28px;
-        justify-self: center;
-       
-
-        
-    }
+      display: flex; /* Display the hamburger icon */
+      text-align: center;
+      align-items: center;
+      font-size: 14px;
+      width: 33px;
+      height: 33px;
+      justify-self: center;
+      margin-left: auto;   
+  }
+  
 
 
 
